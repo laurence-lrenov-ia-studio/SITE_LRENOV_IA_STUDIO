@@ -1,0 +1,189 @@
+# ============================================
+# .htaccess — L'Rénov IA Studio
+# Serveur : Apache (Hostinger)
+# Maj : 26 mai 2026
+# ============================================
+
+# ----- Pages d'erreur -----
+# Vraie page 404 (et non l'accueil) pour éviter les "fausses 404" côté Google
+ErrorDocument 404 /404.html
+
+# ----- Encodage par défaut -----
+AddDefaultCharset UTF-8
+
+# ----- Désactiver la signature serveur -----
+ServerSignature Off
+
+# ============================================
+# REDIRECTIONS HTTPS + canonical
+# ============================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Force non-www (canonical : https://lrenov-ia.studio/)
+  RewriteCond %{HTTP_HOST} ^www\.lrenov-ia\.studio$ [NC]
+  RewriteRule ^(.*)$ https://lrenov-ia.studio/$1 [L,R=301]
+
+  # ============================================
+  # REDIRECTIONS REFONTE — anciennes pages -> nouvelles
+  # (placées AVANT la règle anti-.html : elles doivent passer en premier)
+  # ============================================
+
+  # Anciens catalogues sectoriels
+  RewriteRule ^catalogue-assurance\.html$   /secteur-assurance [R=301,L]
+  RewriteRule ^catalogue-formation\.html$   /formations [R=301,L]
+  # Tout autre ancien catalogue -> page d'accueil des secteurs (sûr, aucune 404)
+  RewriteRule ^catalogue-.*\.html$          /secteurs [R=301,L]
+
+  # Anciennes pages formation
+  RewriteRule ^formation\.html$             /formations [R=301,L]
+  RewriteRule ^formation-cpf\.html$         /formations [R=301,L]
+
+  # Anciennes fiches
+  RewriteRule ^fiche-IMM-02\.html$          /secteur-immobilier [R=301,L]
+  RewriteRule ^fiche-.*\.html$              /secteurs [R=301,L]
+
+  # ============================================
+
+  # Retire le .html dans l'URL affichée (URL propres)
+  # Si la requête contient .html : redirection 301 vers URL sans extension
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # Sert le fichier .html si l'URL ne le contient pas
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
+
+# ============================================
+# COMPRESSION GZIP
+# ============================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/woff
+  AddOutputFilterByType DEFLATE font/woff2
+  AddOutputFilterByType DEFLATE application/font-woff
+  AddOutputFilterByType DEFLATE application/font-woff2
+</IfModule>
+
+# ============================================
+# CACHE NAVIGATEUR (Expires)
+# ============================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                                      "access plus 1 month"
+
+  # HTML : court (mises à jour fréquentes)
+  ExpiresByType text/html                             "access plus 0 seconds"
+
+  # CSS / JS : 1 mois
+  ExpiresByType text/css                              "access plus 1 month"
+  ExpiresByType application/javascript                "access plus 1 month"
+  ExpiresByType text/javascript                       "access plus 1 month"
+
+  # Images : 1 an
+  ExpiresByType image/jpg                             "access plus 1 year"
+  ExpiresByType image/jpeg                            "access plus 1 year"
+  ExpiresByType image/png                             "access plus 1 year"
+  ExpiresByType image/webp                            "access plus 1 year"
+  ExpiresByType image/svg+xml                         "access plus 1 year"
+  ExpiresByType image/x-icon                          "access plus 1 year"
+  ExpiresByType image/avif                            "access plus 1 year"
+
+  # Polices : 1 an
+  ExpiresByType font/woff                             "access plus 1 year"
+  ExpiresByType font/woff2                            "access plus 1 year"
+  ExpiresByType application/font-woff                 "access plus 1 year"
+  ExpiresByType application/font-woff2                "access plus 1 year"
+  ExpiresByType application/x-font-ttf                "access plus 1 year"
+
+  # XML : 1 jour (sitemap)
+  ExpiresByType application/xml                       "access plus 1 day"
+  ExpiresByType text/xml                              "access plus 1 day"
+</IfModule>
+
+# Cache-Control headers
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "max-age=0, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "max-age=2592000, public"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|avif|woff|woff2|ttf|otf)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+  </FilesMatch>
+</IfModule>
+
+# ============================================
+# HEADERS DE SÉCURITÉ
+# ============================================
+<IfModule mod_headers.c>
+
+  # Empêche le clickjacking (le site ne peut être inclus dans une iframe que par lui-même)
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Empêche le navigateur de "deviner" les types MIME
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Restreint le Referer envoyé en cross-origin
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Bloque les fonctionnalités sensibles par défaut
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+
+  # HSTS — force HTTPS pendant 1 an (à activer une fois le HTTPS stable)
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+
+  # Content-Security-Policy — compatible Tally + Google Fonts + LinkedIn/Insta/Facebook embeds
+  # NB : 'unsafe-inline' nécessaire car styles inline + <script> inline pour nav/animations
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://tally.so https://*.tally.so; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; frame-src https://tally.so https://*.tally.so https://radar.lrenov-ia.studio; connect-src 'self' https://tally.so https://*.tally.so; form-action 'self' https://tally.so; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+
+  # Retire le header X-Powered-By si présent
+  Header unset X-Powered-By
+</IfModule>
+
+# ============================================
+# PROTECTION FICHIERS SENSIBLES
+# ============================================
+<FilesMatch "^\.(htaccess|htpasswd|env|git|gitignore)$">
+  Require all denied
+</FilesMatch>
+
+<FilesMatch "\.(log|sql|bak|backup|old|swp|tmp)$">
+  Require all denied
+</FilesMatch>
+
+# Empêche l'affichage du contenu des répertoires
+Options -Indexes
+
+# ============================================
+# MIME TYPES (au cas où Hostinger n'aurait pas tous les types)
+# ============================================
+<IfModule mod_mime.c>
+  AddType image/svg+xml                       .svg .svgz
+  AddType image/webp                          .webp
+  AddType image/avif                          .avif
+  AddType font/woff                           .woff
+  AddType font/woff2                          .woff2
+  AddType application/xml                     .xml
+  AddType text/plain                          .txt
+</IfModule>

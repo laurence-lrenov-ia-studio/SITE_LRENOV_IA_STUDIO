@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Perplexity">
+  <g fill="none" stroke="#2f8f8b" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 8v48M46 8v48M8 18h48M8 46h48M18 18l28 28M46 18 18 46M32 4v56M4 32h56"/>
+    <path d="M18 18h28v28H18z"/>
+  </g>
+</svg>

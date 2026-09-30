@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--
+  ════════════════════════════════════════════════════════════════════
+  TRAME PÉDAGOGIQUE ATELIERS — L'RÉNOV IA STUDIO
+  Document générique réutilisable pour tout prospect
+  Style : impersonnel / verbes d'action
+
+  ZONES OPTIONNELLES À PERSONNALISER selon le prospect :
+    - <title> + <h1>
+    - Tableau comparatif rapide
+    - Bloc ROI (chiffres CA / marge par défaut à ajuster)
+    - Exemples sectoriels dans onglets
+
+  Particularité de la famille Ateliers :
+    - 3 paliers : Demi-journée / Journée / Opérationnel groupe
+    - ROI structurellement différent : valeur d'appropriation rapide
+      et autonomie acquise par l'équipe (pas du temps gagné direct)
+    - Acompte 30 % (pas 50 % comme les Outils)
+    - Annulation < 48h = 100 % du montant dû
+    - Pas de session sans livrable opérationnel en sortie
+
+  Le cadrage express détaillé est envoyé séparément sur demande
+  via le CTA mailto en bas de page.
+  ════════════════════════════════════════════════════════════════════
+-->
+<title>Les 3 paliers d'atelier · Comprendre avant de choisir · L'Rénov IA Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #222b32;
+    --bg-card: #2a343c;
+    --bg-card-2: #313c46;
+    --gold: #d4893a;
+    --gold-light: #e8aa5c;
+    --cream: #f2ead8;
+    --white: #faf8f4;
+    --dim: #8a9499;
+    --border: rgba(242, 234, 216, 0.12);
+    --border-strong: rgba(242, 234, 216, 0.22);
+    --gold-soft: rgba(212, 137, 58, 0.08);
+    --red: #dc5050;
+    --green: #5fa97a;
+    --blue: #5b9aa8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-deep);
+    color: var(--cream);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  .container { max-width: 980px; margin: 0 auto; padding: 50px 24px 100px; }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .header-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: url('logo-lrenov.png') center/cover no-repeat;
+    box-shadow:
+      0 0 0 2px var(--gold),
+      0 0 25px rgba(212, 137, 58, 0.45),
+      0 0 50px rgba(212, 137, 58, 0.15);
+    margin: 0 auto 24px;
+    display: block;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold-soft);
+    border: 1px solid var(--gold);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 22px;
+  }
+  .pill::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  h1 {
+    font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+  h1 em { font-style: normal; color: var(--gold-light); }
+  .header-sub {
+    color: var(--cream);
+    font-size: 1rem;
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* INTRO */
+  .intro {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 30px;
+    margin-bottom: 28px;
+  }
+  .intro p { font-size: 0.96rem; line-height: 1.7; color: var(--cream); }
+  .intro p + p { margin-top: 10px; }
+  .intro strong { color: var(--gold-light); }
+
+  /* BANDEAU CADRAGE */
+  .cadrage-banner {
+    background: rgba(95, 169, 122, 0.08);
+    border: 1px solid rgba(95, 169, 122, 0.3);
+    border-left: 3px solid var(--green);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 24px;
+    margin-bottom: 30px;
+    font-size: 0.94rem;
+    color: var(--cream);
+    line-height: 1.65;
+  }
+  .cadrage-banner strong { color: var(--green); }
+  .cadrage-banner em { color: var(--gold-light); font-style: normal; font-weight: 600; }
+
+  /* TABLE DE COMPARAISON RAPIDE */
+  .quick-compare {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 36px;
+    overflow-x: auto;
+  }
+  .quick-compare-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  td:first-child { color: var(--cream); font-weight: 600; }
+
+  /* TABS */
+  .tabs-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+  .tabs-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+    background: rgba(34, 43, 50, 0.6);
+  }
+  @media (max-width: 720px) {
+    .tabs-nav { grid-template-columns: 1fr 1fr; }
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    padding: 18px 14px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    color: var(--dim);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    border-right: 1px solid var(--border);
+  }
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn:hover { color: var(--cream); background: rgba(212, 137, 58, 0.04); }
+  .tab-btn.active {
+    color: var(--gold-light);
+    background: var(--bg-deep);
+    border-bottom-color: var(--gold);
+  }
+  .tab-btn-num {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+
+  .tab-content { display: none; padding: 36px 34px 32px; }
+  .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* TAB HEADER */
+  .tab-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-head-icon {
+    font-size: 2.4rem;
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    background: var(--gold-soft);
+    border: 1px solid var(--gold);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tab-head-body { flex: 1; }
+  .tab-head h2 {
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .tab-head .sub {
+    color: var(--dim);
+    font-size: 0.92rem;
+    margin-bottom: 12px;
+  }
+  .tab-head .price {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    background: rgba(34, 43, 50, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    flex-wrap: wrap;
+  }
+  .tab-head .price-amount {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--gold-light);
+  }
+  .tab-head .price-detail { font-size: 0.8rem; color: var(--dim); }
+
+  /* BLOC SECTION DANS TAB */
+  .tab-section { margin-bottom: 26px; }
+  .tab-section:last-child { margin-bottom: 0; }
+  .tab-section-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tab-section-title::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .tab-section p {
+    color: var(--cream);
+    font-size: 0.94rem;
+    line-height: 1.7;
+  }
+  .tab-section p + p { margin-top: 10px; }
+  .tab-section p strong { color: var(--gold-light); }
+
+  /* PROCESS STEPS */
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .process-step {
+    display: flex;
+    gap: 14px;
+    padding: 12px 16px;
+    background: rgba(34, 43, 50, 0.4);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .process-step-num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    background: var(--gold);
+    color: var(--bg-deep);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.75rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .process-step-content {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--cream);
+    line-height: 1.55;
+  }
+  .process-step-content strong { color: var(--white); }
+
+  /* LISTES AVANTAGES / LIMITES */
+  .ay-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  @media (min-width: 700px) {
+    .ay-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .ay-box {
+    background: rgba(34, 43, 50, 0.4);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .ay-box.advantages { border-left: 3px solid var(--green); }
+  .ay-box.limites { border-left: 3px solid var(--red); }
+  .ay-box-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-size: 0.92rem;
+  }
+  .ay-box.advantages .ay-box-title { color: var(--green); }
+  .ay-box.limites .ay-box-title { color: var(--red); }
+  .ay-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  .ay-box li {
+    padding: 6px 0 6px 22px;
+    position: relative;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--cream);
+  }
+  .ay-box.advantages li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 800;
+  }
+  .ay-box.limites li::before {
+    content: '✕';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-weight: 800;
+  }
+
+  /* PROFIL ADAPTÉ / NON ADAPTÉ */
+  .for-who {
+    background: linear-gradient(135deg, rgba(212, 137, 58, 0.08), rgba(212, 137, 58, 0.02));
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+  }
+  .for-who-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+  .for-who-row:last-child { margin-bottom: 0; }
+  .for-who-label {
+    flex-shrink: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    min-width: 90px;
+    text-align: center;
+  }
+  .for-who-label.yes { background: rgba(95, 169, 122, 0.12); color: var(--green); border: 1px solid rgba(95, 169, 122, 0.3); }
+  .for-who-label.no { background: rgba(220, 80, 80, 0.12); color: var(--red); border: 1px solid rgba(220, 80, 80, 0.3); }
+  .for-who-text {
+    color: var(--cream);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* LICENCE BOX */
+  .licence-box {
+    background: rgba(34, 43, 50, 0.4);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 0.88rem;
+    color: var(--cream);
+    line-height: 1.6;
+  }
+  .licence-box strong { color: var(--gold-light); }
+
+  /* FORMATS TECHNIQUES (Onglet 1) */
+  .formats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  @media (min-width: 700px) {
+    .formats-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .format-card {
+    background: rgba(34, 43, 50, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .format-card-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    color: var(--gold-light);
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+  }
+  .format-card-text {
+    font-size: 0.82rem;
+    color: var(--cream);
+    line-height: 1.55;
+  }
+
+  /* EXEMPLES PAR SECTEUR */
+  .sectors-block {
+    background: rgba(34, 43, 50, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .sectors-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .sector-line {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--cream);
+    line-height: 1.55;
+  }
+  .sector-line:last-child { border-bottom: none; }
+  .sector-line strong {
+    color: var(--gold-light);
+    display: inline-block;
+    min-width: 90px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  /* ROI BLOCK */
+  .roi-block-section {
+    background: var(--bg-card);
+    border: 1px solid var(--gold);
+    border-radius: 16px;
+    padding: 32px 30px;
+    margin-bottom: 30px;
+  }
+  .roi-block-section-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .roi-block-section h2 {
+    color: var(--white);
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .roi-block-section h2 em { font-style: normal; color: var(--gold-light); }
+
+  .roi-intro {
+    color: var(--cream);
+    font-size: 0.94rem;
+    line-height: 1.65;
+    margin-bottom: 26px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .roi-intro strong { color: var(--gold-light); }
+
+  /* INPUTS CALCULATEUR */
+  .roi-inputs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  @media (min-width: 700px) {
+    .roi-inputs {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .roi-input-card {
+    background: rgba(34, 43, 50, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    transition: all 0.2s;
+  }
+  .roi-input-card:hover { border-color: var(--border-strong); }
+  .roi-input-card:focus-within { border-color: var(--gold); }
+
+  .roi-input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .roi-input-row label {
+    font-size: 0.84rem;
+    color: var(--cream);
+    font-weight: 500;
+  }
+  .roi-input-value {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    color: var(--gold-light);
+    font-size: 1rem;
+    min-width: 60px;
+    text-align: right;
+  }
+  .roi-input-card input[type="range"] {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-deep);
+    border-radius: 4px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  .roi-input-card input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--gold);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--bg-card);
+    box-shadow: 0 2px 6px rgba(212, 137, 58, 0.4);
+    transition: transform 0.15s;
+  }
+  .roi-input-card input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+  }
+  .roi-input-card input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--gold);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--bg-card);
+    box-shadow: 0 2px 6px rgba(212, 137, 58, 0.4);
+  }
+  .roi-input-scale {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+    font-size: 0.7rem;
+    color: var(--dim);
+  }
+
+  /* SYNTHÈSE TEMPS GAGNÉ */
+  .roi-synthesis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding: 22px;
+    background: linear-gradient(135deg, rgba(212, 137, 58, 0.06), rgba(212, 137, 58, 0.02));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+  .roi-synth-item {
+    flex: 1;
+    min-width: 130px;
+    text-align: center;
+    padding: 14px 12px;
+    background: rgba(34, 43, 50, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .roi-synth-item.highlight {
+    background: linear-gradient(135deg, rgba(212, 137, 58, 0.18), rgba(212, 137, 58, 0.06));
+    border-color: var(--gold);
+  }
+  .roi-synth-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .roi-synth-item.highlight .roi-synth-num { color: var(--gold-light); }
+  .roi-synth-label {
+    font-size: 0.78rem;
+    color: var(--dim);
+    line-height: 1.4;
+  }
+  .roi-synth-arrow {
+    color: var(--gold);
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  @media (max-width: 700px) {
+    .roi-synthesis { flex-direction: column; }
+    .roi-synth-arrow { transform: rotate(90deg); }
+  }
+
+  /* COMPARAISON 4 NIVEAUX */
+  .roi-compare-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .roi-compare-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  @media (min-width: 600px) {
+    .roi-compare-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 900px) {
+    .roi-compare-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .roi-compare-card {
+    background: rgba(34, 43, 50, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .roi-compare-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .roi-compare-card.highlight {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, rgba(212, 137, 58, 0.06), rgba(34, 43, 50, 0.5));
+    box-shadow: 0 8px 24px rgba(212, 137, 58, 0.1);
+  }
+
+  .roi-compare-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    color: var(--cream);
+    font-size: 0.95rem;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .roi-compare-name span {
+    font-size: 0.78rem;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+  .roi-compare-price {
+    font-size: 0.78rem;
+    color: var(--dim);
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .roi-compare-result {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .roi-compare-roi {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1.1;
+    transition: color 0.3s;
+  }
+  .roi-compare-card.negative .roi-compare-roi { color: var(--red); }
+  .roi-compare-roi-label {
+    font-size: 0.7rem;
+    color: var(--dim);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+  .roi-compare-payback {
+    font-size: 0.82rem;
+    color: var(--cream);
+    text-align: center;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+  .roi-compare-payback strong { color: var(--gold-light); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
+
+  /* CONCLUSION NOTE */
+  .roi-conclusion-note {
+    background: rgba(91, 154, 168, 0.06);
+    border: 1px solid rgba(91, 154, 168, 0.2);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 20px;
+    font-size: 0.88rem;
+    color: var(--cream);
+    line-height: 1.65;
+  }
+  .roi-conclusion-note strong { color: #8fc4d0; }
+
+  /* COMMENT ON DÉCIDE */
+  .decision-block {
+    background: rgba(91, 154, 168, 0.04);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 12px 12px 0;
+    padding: 22px 28px;
+    margin-bottom: 30px;
+  }
+  .decision-block p { color: var(--cream); font-size: 0.94rem; line-height: 1.7; }
+  .decision-block p + p { margin-top: 10px; }
+  .decision-block strong { color: #8fc4d0; }
+
+  /* CTA FINAL */
+  .cta-block {
+    background: linear-gradient(135deg, rgba(212, 137, 58, 0.12), rgba(212, 137, 58, 0.04));
+    border: 1px solid var(--gold);
+    border-radius: 16px;
+    padding: 36px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  .cta-block h2 {
+    color: var(--white);
+    margin-bottom: 14px;
+    font-size: 1.5rem;
+  }
+  .cta-block h2 em { font-style: normal; color: var(--gold-light); }
+  .cta-block p {
+    color: var(--cream);
+    margin-bottom: 22px;
+    font-size: 0.96rem;
+    line-height: 1.7;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--bg-deep);
+    padding: 13px 26px;
+    border-radius: 100px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid var(--border-strong);
+    padding: 13px 26px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 40px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--dim);
+    line-height: 1.7;
+  }
+  .footer strong { color: var(--gold); }
+
+  /* BACK LINK — retour vers carte de visite */
+  .back-to-presta {
+    margin-top: 60px;
+    padding: 28px 32px;
+    background: rgba(212, 137, 58, 0.06);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .back-to-presta-text {
+    flex: 1;
+    min-width: 240px;
+  }
+  .back-to-presta-eyebrow {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .back-to-presta-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.35;
+  }
+  .back-to-presta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.25s;
+  }
+  .back-to-presta-link:hover {
+    background: var(--gold-light);
+    transform: translateX(-3px);
+  }
+
+  /* CTA CADRAGE — demande du questionnaire de cadrage express */
+  .cta-cadrage {
+    margin-top: 50px;
+    padding: 32px;
+    background: linear-gradient(135deg, rgba(212, 137, 58, 0.12) 0%, rgba(212, 137, 58, 0.04) 100%);
+    border: 1px solid var(--gold);
+    border-radius: 14px;
+    text-align: center;
+  }
+  .cta-cadrage-eyebrow {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .cta-cadrage-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 12px;
+    letter-spacing: -0.015em;
+  }
+  .cta-cadrage-title em {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .cta-cadrage-desc {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.65;
+    max-width: 620px;
+    margin: 0 auto 22px;
+    opacity: 0.9;
+  }
+  .cta-cadrage-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.25s;
+  }
+  .cta-cadrage-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 137, 58, 0.25);
+  }
+  .cta-cadrage-note {
+    margin-top: 14px;
+    font-size: 0.78rem;
+    color: var(--dim);
+    opacity: 0.8;
+  }
+
+/* ===== INTÉGRATION SITE ===== */
+
+  /* ====== INTÉGRATION SITE — surcharge container trame pour laisser place à la nav ====== */
+  body { cursor: none; }
+  body > .container { padding-top: 110px !important; }
+  /* Curseur custom */
+  .cursor{
+    position:fixed;top:0;left:0;
+    width:8px;height:8px;border-radius:50%;
+    background:#d4893a;
+    pointer-events:none;z-index:9999;
+    transform:translate(-50%,-50%);
+    transition:transform .15s ease,width .25s ease,height .25s ease,background .2s ease;
+    mix-blend-mode:difference;
+  }
+  .cursor.hover{width:48px;height:48px;background:transparent;border:1px solid #d4893a}
+  .cursor.click{transform:translate(-50%,-50%) scale(.7)}
+  .cursor-trail{
+    position:fixed;top:0;left:0;
+    width:36px;height:36px;border-radius:50%;
+    border:1px solid #d4893a;
+    pointer-events:none;z-index:9998;
+    transform:translate(-50%,-50%);
+    opacity:.4;
+    transition:transform .55s cubic-bezier(.23,1,.32,1),width .3s,height .3s;
+  }
+  .cursor-trail.hover{width:60px;height:60px;opacity:.6}
+  @media(hover:none),(max-width:1024px){
+    body{cursor:auto}
+    .cursor,.cursor-trail{display:none}
+  }
+
+
+  nav#mainNav{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    background:rgba(26,34,41,.78);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+    border-bottom:1px solid rgba(242,234,216,.06);
+    transition:all .3s ease;
+    font-family:'DM Sans',sans-serif;
+  }
+  nav#mainNav.scrolled{background:rgba(26,34,41,.95);border-bottom-color:rgba(212,137,58,.16)}
+  nav#mainNav .nav-wrap{
+    max-width:1320px;margin:0 auto;padding:0 2.4rem;height:78px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  nav#mainNav .nav-logo{display:flex;align-items:center;gap:.85rem;text-decoration:none}
+  nav#mainNav .nav-logo img{height:46px;width:46px;object-fit:contain;border-radius:6px;transition:transform .4s}
+  nav#mainNav .nav-logo:hover img{transform:rotate(8deg) scale(1.05)}
+  nav#mainNav .nav-logo-text{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:600;font-size:.98rem;color:#f2ead8;
+    line-height:1.2;letter-spacing:-.01em;white-space:nowrap;
+  }
+  nav#mainNav .nav-logo-text span{color:#d4893a}
+  nav#mainNav .nav-links{display:flex;gap:.4rem;list-style:none;align-items:center;margin:0;padding:0}
+  nav#mainNav .nav-links > li{position:relative}
+  nav#mainNav .nav-links a{
+    color:rgba(242,234,216,.55);text-decoration:none;
+    font-size:.74rem;font-weight:500;letter-spacing:.06em;
+    text-transform:uppercase;padding:.6rem 1rem;border-radius:4px;
+    transition:all .25s;
+    display:inline-flex;align-items:center;gap:.35rem;position:relative;
+  }
+  nav#mainNav .nav-links a:hover,nav#mainNav .nav-links a.active{color:#d4893a}
+  nav#mainNav .nav-links a.active::after{
+    content:"";position:absolute;bottom:.15rem;left:1rem;right:1rem;height:1px;background:#d4893a;
+  }
+  nav#mainNav .nav-links .has-mega::after{content:"";display:inline-block;width:6px;height:6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);margin-left:.2rem;opacity:.6}
+  nav#mainNav .nav-links li.has-mega-li::after{
+    content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+    width:160px;height:18px;background:transparent;z-index:201;
+  }
+  nav#mainNav .mega{
+    position:absolute;top:calc(100% + 12px);left:50%;
+    transform:translateX(-50%) translateY(-12px);
+    background:rgba(34,43,50,.96);
+    backdrop-filter:blur(24px) saturate(160%);
+    -webkit-backdrop-filter:blur(24px) saturate(160%);
+    border:1px solid rgba(212,137,58,.16);border-radius:14px;padding:1.6rem;width:720px;
+    display:grid;grid-template-columns:1fr 1fr;gap:.6rem;
+    opacity:0;pointer-events:none;
+    transition:opacity .3s ease,transform .3s cubic-bezier(.23,1,.32,1);
+    box-shadow:0 32px 80px rgba(0,0,0,.6);z-index:202;
+  }
+  nav#mainNav .nav-links li:hover .mega,nav#mainNav .nav-links li:focus-within .mega{
+    opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);
+  }
+  nav#mainNav .mega::before{
+    content:"";position:absolute;top:-7px;left:50%;
+    transform:translateX(-50%) rotate(45deg);width:13px;height:13px;
+    background:rgba(34,43,50,.96);
+    border-left:1px solid rgba(212,137,58,.16);border-top:1px solid rgba(212,137,58,.16);
+  }
+  nav#mainNav .mega a.mega-overview{
+    grid-column:1/-1;padding:.85rem 1rem;
+    background:linear-gradient(135deg,rgba(212,137,58,.12) 0%,rgba(232,170,92,.06) 100%);
+    border:1px solid rgba(212,137,58,.32);border-radius:8px;
+    color:#d4893a;font-weight:600;font-size:.78rem;
+    text-align:center;text-transform:uppercase;letter-spacing:.1em;
+    transition:all .25s;display:block;
+  }
+  nav#mainNav .mega a.mega-overview:hover{background:#d4893a;color:#1a2229}
+  nav#mainNav .mega a.mega-item{
+    display:flex;align-items:flex-start;gap:.85rem;
+    padding:.9rem 1rem;border-radius:8px;border:1px solid transparent;
+    text-transform:none;letter-spacing:0;color:#f2ead8;transition:all .25s;
+  }
+  nav#mainNav .mega a.mega-item:hover{
+    background:rgba(212,137,58,.08);border-color:rgba(212,137,58,.16);transform:translateX(2px);
+  }
+  nav#mainNav .mega-icon{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#d4893a;transition:all .3s;margin-top:.2rem;background:none;border:none}
+  nav#mainNav .mega a.mega-item:hover .mega-icon{color:var(--gold2);transform:translateX(2px);background:none;border:none}
+  nav#mainNav .mega-icon svg{width:22px;height:22px;stroke:currentColor;fill:none}
+  nav#mainNav .mega-content{display:flex;flex-direction:column;gap:.15rem;flex:1}
+  nav#mainNav .mega-content strong{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.88rem;color:#f2ead8}
+  nav#mainNav .mega-content span.desc{font-size:.74rem;color:rgba(242,234,216,.55);font-weight:400;line-height:1.5}
+  nav#mainNav .nav-btn{
+    border:1px solid #d4893a;color:#d4893a;
+    padding:.55rem 1.2rem;border-radius:4px;
+    font-size:.72rem;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;text-decoration:none;
+    transition:all .25s;white-space:nowrap;position:relative;overflow:hidden;
+  }
+  nav#mainNav .nav-btn::before{
+    content:"";position:absolute;inset:0;
+    background:#d4893a;transform:translateX(-101%);transition:transform .35s ease;z-index:-1;
+  }
+  nav#mainNav .nav-btn:hover{color:#1a2229}
+  nav#mainNav .nav-btn:hover::before{transform:translateX(0)}
+  nav#mainNav .nav-mobile-btn{
+    display:none;background:none;border:1px solid rgba(212,137,58,.16);
+    color:#f2ead8;font-size:1.3rem;cursor:pointer;padding:.5rem .7rem;border-radius:4px;
+  }
+  nav#mainNav + .nav-mobile,
+  nav#mainNav .nav-mobile{
+    display:none;flex-direction:column;background:rgba(26,34,41,.99);
+    border-top:1px solid rgba(212,137,58,.16);padding:1.2rem 2rem;
+    max-height:calc(100vh - 78px);overflow-y:auto;
+  }
+  nav#mainNav .nav-mobile a{
+    color:rgba(242,234,216,.7);text-decoration:none;
+    font-size:.92rem;font-weight:500;
+    padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,.04);letter-spacing:.04em;
+  }
+  nav#mainNav .nav-mobile a.sub{padding-left:1.2rem;font-size:.82rem;color:rgba(242,234,216,.5)}
+  nav#mainNav .nav-mobile a:hover{color:#d4893a}
+  nav#mainNav .nav-mobile.open{display:flex}
+  @media(max-width:1024px){
+    nav#mainNav .nav-links{display:none}
+    nav#mainNav .nav-mobile-btn{display:block}
+    nav#mainNav .nav-btn.desk{display:none}
+  }
+
+
+  footer{
+    background:#13191e;color:rgba(242,234,216,.5);
+    padding:4rem 2rem 2rem;border-top:1px solid rgba(242,234,216,.06);position:relative;
+    font-family:'DM Sans',sans-serif;
+  }
+  footer .foot-wrap{
+    max-width:1280px;margin:0 auto;
+    display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;
+  }
+  footer .foot-col h4{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:.74rem;font-weight:700;letter-spacing:.22em;
+    color:#d4893a;text-transform:uppercase;margin:0 0 1.4rem;
+    display:flex;align-items:center;gap:.6rem;
+  }
+  footer .foot-col h4::after{content:"";flex:1;height:1px;background:rgba(242,234,216,.06);max-width:48px}
+  footer .foot-col a{
+    display:block;font-size:.86rem;color:rgba(242,234,216,.5);
+    text-decoration:none;padding:.4rem 0;transition:all .25s;position:relative;
+  }
+  footer .foot-col a::before{
+    content:"";position:absolute;left:-12px;top:50%;transform:translateY(-50%);
+    width:0;height:1px;background:#d4893a;transition:width .25s;
+  }
+  footer .foot-col a:hover{color:#d4893a;padding-left:14px}
+  footer .foot-col a:hover::before{width:8px}
+  footer .foot-brand{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:1.2rem;
+    color:#f2ead8;margin-bottom:.8rem;letter-spacing:-.01em;
+  }
+  footer .foot-brand span{color:#d4893a}
+  footer .foot-tagline{
+    font-size:.88rem;line-height:1.75;color:rgba(242,234,216,.5);
+    max-width:360px;margin-bottom:1.5rem;
+  }
+  footer .foot-social{display:flex;gap:.7rem;margin-top:1.4rem}
+  footer .foot-social a{
+    width:40px;height:40px;border-radius:50%;background:rgba(34,43,50,.6);
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(242,234,216,.55);
+    transition:all .3s cubic-bezier(.23,1,.32,1);
+    border:1px solid rgba(242,234,216,.06);padding:0;
+  }
+  footer .foot-social a::before{display:none}
+  footer .foot-social a:hover{
+    background:#d4893a;color:#1a2229;border-color:#d4893a;
+    transform:translateY(-4px) rotate(-6deg);
+    box-shadow:0 8px 20px rgba(212,137,58,.3);padding-left:0;
+  }
+  footer .foot-social svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.5;fill:none}
+  footer .foot-contact{font-size:.82rem;line-height:1.6;color:rgba(242,234,216,.5);margin-top:.7rem;padding:.4rem 0}
+  footer .foot-bottom{
+    max-width:1280px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(242,234,216,.06);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+    font-size:.76rem;color:rgba(242,234,216,.32);
+  }
+  footer .foot-bottom-links{display:flex;gap:1.6rem;flex-wrap:wrap}
+  footer .foot-bottom-links a{color:rgba(242,234,216,.4);text-decoration:none;transition:color .25s;font-size:.76rem}
+  footer .foot-bottom-links a:hover{color:#d4893a}
+  @media(max-width:680px){
+    footer .foot-wrap{grid-template-columns:1fr;gap:2rem}
+    footer .foot-bottom{flex-direction:column;text-align:center}
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- CURSEUR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- ========================================
+       NAVIGATION (mega-menu 5 piliers + secteurs)
+       ======================================== -->
+  <nav id="mainNav">
+    <div class="nav-wrap">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/img/logo.png" alt="L'Rénov IA Studio">
+        <div class="nav-logo-text">
+          L'Rénov <span>IA Studio</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li class="has-mega-li">
+          <a href="assistant.html" class="has-mega">Mon assistant IA</a>
+          <div class="mega">
+            <a href="assistant.html" class="mega-overview">Vue d'ensemble — Les 5 prestations →</a>
+            <a href="audit.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></div>
+              <div class="mega-content"><strong>Audit IA</strong><span class="desc">Diagnostiquer · cartographier · planifier</span></div>
+            </a>
+            <a href="outils.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+              <div class="mega-content"><strong>Outils métier</strong><span class="desc">Cœur de l'activité · sur-mesure sectoriel</span></div>
+            </a>
+            <a href="agents.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v2"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg></div>
+              <div class="mega-content"><strong>Agents IA</strong><span class="desc">Génération conversationnelle ciblée</span></div>
+            </a>
+            <a href="ateliers.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1"/><circle cx="17" cy="9" r="2.5"/><path d="M15 20v-1a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v1"/></svg></div>
+              <div class="mega-content"><strong>Ateliers</strong><span class="desc">Co-construction dirigeant + équipe</span></div>
+            </a>
+            <a href="formations.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div>
+              <div class="mega-content"><strong>Formations</strong><span class="desc">3 parcours · Qualiopi · OPCO/CPF</span></div>
+            </a>
+          </div>
+        </li>
+        <li class="has-mega-li">
+          <a href="secteurs.html" class="has-mega">Par secteur</a>
+          <div class="mega mega-sectors">
+            <a href="secteurs.html" class="mega-overview">Vue d'ensemble — Tous les secteurs adressés →</a>
+            <a href="secteur-immobilier.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2h-4v-7H10v7H5a2 2 0 0 1-2-2V10z"/></svg></div>
+              <div class="mega-content"><strong>Immobilier · ALUR</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-btp.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l4-3 4 3v11M13 21V14l4-3 4 3v7M8 14h1M8 17h1"/></svg></div>
+              <div class="mega-content"><strong>BTP · Artisans</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-finance-comptabilite.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 5h11a3 3 0 0 1 0 6H8a3 3 0 0 0 0 6h11"/></svg></div>
+              <div class="mega-content"><strong>Compta · Finance</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-assurance.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 5v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V5l-8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+              <div class="mega-content"><strong>Assurance · IARD</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-juridique.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 8h12M4 21h16M7 8l-3 6h6L7 8zm10 0l-3 6h6l-3-6z"/></svg></div>
+              <div class="mega-content"><strong>Juridique · Notariat</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-professions-liberales.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div>
+              <div class="mega-content"><strong>Professions libérales</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-communication.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8v.5a8 8 0 0 1-8 8H8l-5 2 1.5-4A8 8 0 0 1 3 11.5V11z"/></svg></div>
+              <div class="mega-content"><strong>Communication · Marketing</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+          </div>
+        </li>
+        <li><a href="ia-et-moi.html">L'IA et moi</a></li>
+        <li><a href="formations.html">Formations</a></li>
+        <li><a href="radar-ia.html">Radar IA</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <a href="https://calendly.com/laurence-lrenov-ia/30min" class="nav-btn desk">On en parle ?</a>
+      <button class="nav-mobile-btn" id="navMobBtn" aria-label="Menu">☰</button>
+    </div>
+
+    <div class="nav-mobile" id="navMob">
+      <a href="index.html">Accueil</a>
+      <a href="assistant.html">Mon assistant IA</a>
+      <a href="audit.html" class="sub">→ Audit IA</a>
+      <a href="outils.html" class="sub">→ Outils métier</a>
+      <a href="agents.html" class="sub">→ Agents IA</a>
+      <a href="ateliers.html" class="sub">→ Ateliers</a>
+      <a href="formations.html" class="sub">→ Formations</a>
+      <a href="secteurs.html">Par secteur</a>
+      <a href="secteur-immobilier.html" class="sub">→ Immobilier ALUR</a>
+      <a href="secteur-btp.html" class="sub">→ BTP · Artisans</a>
+      <a href="secteur-finance-comptabilite.html" class="sub">→ Compta · Finance</a>
+      <a href="secteur-assurance.html" class="sub">→ Assurance</a>
+      <a href="secteur-juridique.html" class="sub">→ Juridique · Notariat</a>
+      <a href="secteur-professions-liberales.html" class="sub">→ Professions libérales</a>
+      <a href="secteur-communication.html" class="sub">→ Communication</a>
+      <a href="ia-et-moi.html">L'IA et moi</a>
+      <a href="formations.html">Formations</a>
+      <a href="radar-ia.html">Radar IA</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://calendly.com/laurence-lrenov-ia/30min" style="color:var(--gold);font-weight:600;border-top:1px solid var(--border);margin-top:.5rem;padding-top:1rem">On en parle ?</a>
+    </div>
+  </nav>
+
+
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo"></div>
+    <div class="pill">Comprendre avant de choisir</div>
+    <h1>Les 3 paliers d'<em>atelier</em><br>pour s'approprier ensemble</h1>
+    <p class="header-sub">Un éclairage pédagogique sur ce qui existe entre "demi-journée pour configurer un système simple" et "format étalé sur un mois pour s'approprier en profondeur". Avec les vrais avantages, les limites assumées, et les profils adaptés — ou non — à chaque palier.</p>
+  </header>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <p><strong>Découvrir. Construire. S'approprier.</strong> Un atelier L'Rénov n'est pas une formation théorique ni une démonstration. C'est une <strong>session intensive de co-construction</strong> dirigeant + équipe, avec un livrable opérationnel en sortie de session.</p>
+    <p>La règle absolue : <strong>pas de session sans livrable</strong>. À la fin de chaque atelier, le client repart avec quelque chose qui fonctionne — un système simple configuré, un parcours de travail structuré, une méthode opérationnelle prête à être utilisée par l'équipe.</p>
+    <p>Voici les <strong>3 paliers d'intervention possibles</strong>, du format court à l'accompagnement étalé sur un mois. Aucune mention "recommandé" n'est apposée — c'est le cadrage initial qui permet de positionner le bon format selon la complexité du sujet, la taille du groupe et le niveau d'appropriation visé.</p>
+  </div>
+
+  <!-- BANDEAU CADRAGE — invitation générique -->
+  <div class="cadrage-banner">
+    <strong>Avant l'atelier</strong> : un <em>cadrage express</em> est envoyé sur demande pour préparer la session — quelques questions sur le sujet à travailler, le niveau actuel de l'équipe et le livrable visé. L'atelier est <strong>plus efficace quand le contexte est posé en amont</strong> — chaque heure compte. Aucun engagement, simple éclairage.
+  </div>
+  <!-- TABLEAU COMPARATIF -->
+  <div class="quick-compare">
+    <div class="quick-compare-title">⚡ Comparaison rapide</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Palier</th>
+          <th>Tarif HT</th>
+          <th>Durée</th>
+          <th>Livrable</th>
+          <th>Format</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1 · Demi-journée</td>
+          <td>390 €</td>
+          <td>4 h</td>
+          <td>1 système simple configuré</td>
+          <td>Visio ou présentiel</td>
+        </tr>
+        <tr>
+          <td>2 · Journée</td>
+          <td>690 €</td>
+          <td>7 h</td>
+          <td>1-2 systèmes + prise en main</td>
+          <td>Visio ou présentiel</td>
+        </tr>
+        <tr>
+          <td>3 · Opérationnel groupe</td>
+          <td>690-890 €/personne</td>
+          <td>7 h sur 1 mois</td>
+          <td>Collectif + visio + bilan J+30</td>
+          <td>Mixte étalé</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs-wrap">
+    <nav class="tabs-nav">
+      <button class="tab-btn active" data-tab="1">
+        <span class="tab-btn-num">Palier 1</span>
+        Demi-journée
+      </button>
+      <button class="tab-btn" data-tab="2">
+        <span class="tab-btn-num">Palier 2</span>
+        Journée
+      </button>
+      <button class="tab-btn" data-tab="3">
+        <span class="tab-btn-num">Palier 3</span>
+        Opérationnel
+      </button>
+    </nav>
+
+    <!-- ============================================
+         TAB 1 — ATELIER DEMI-JOURNÉE
+         ============================================ -->
+    <div class="tab-content active" data-tab="1">
+
+      <div class="tab-head">
+        <div class="tab-head-icon">⚡</div>
+        <div class="tab-head-body">
+          <h2>Atelier Demi-journée</h2>
+          <p class="sub">4 heures intensives pour <strong>configurer un système simple ensemble</strong>. Le format le plus court — idéal pour démarrer concrètement sur un sujet unique et circonscrit.</p>
+          <div class="price">
+            <span class="price-amount">390 € HT</span>
+            <span class="price-detail">acompte 30 % · visio ou présentiel</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Définition</div>
+        <p>Une <strong>session de 4h en visio ou présentiel</strong> consacrée à un sujet unique et préalablement cadré. Le temps est utilisé pour configurer ensemble un système simple — base Notion structurée, parcours de qualification client, modèle de devis, séquence d'emails type, etc.</p>
+        <p>Ce n'est <strong>pas une formation théorique</strong> : c'est du faire-ensemble. À la fin de la session, le client repart avec un système qui fonctionne, paramétré sur ses données réelles, prêt à être utilisé dès le lendemain.</p>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Ce qui se passe pendant les 4 heures</div>
+        <div class="formats-grid">
+          <div class="format-card">
+            <div class="format-card-title">Phase 1 · Mise en route (1 h)</div>
+            <div class="format-card-text">Validation du périmètre, présentation des éléments à intégrer, exemples de données réelles. Le sujet a été cadré en amont — on entre directement dans le travail.</div>
+          </div>
+          <div class="format-card">
+            <div class="format-card-title">Phase 2 · Construction (2 h 30)</div>
+            <div class="format-card-text">Co-construction du système : structuration, paramétrage, intégration des données du client. Le dirigeant ou l'équipe est aux commandes — guidage et expertise apportés par L'Rénov en parallèle.</div>
+          </div>
+          <div class="format-card">
+            <div class="format-card-title">Phase 3 · Prise en main (30 min)</div>
+            <div class="format-card-text">Test du système sur cas réels, ajustements de dernière minute, transmission des bonnes pratiques d'évolution autonome. Le client repart avec un outil opérationnel.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Le process en 4 étapes</div>
+        <div class="process-steps">
+          <div class="process-step"><div class="process-step-num">1</div><div class="process-step-content"><strong>Cadrage préparatoire</strong> (15 min visio gratuit) — Validation du sujet, du livrable visé, des données à apporter. Permet de garantir que les 4 h seront productives dès la première minute.</div></div>
+          <div class="process-step"><div class="process-step-num">2</div><div class="process-step-content"><strong>Réservation et acompte</strong> — Acompte 30 % à la commande. Créneau fixé selon disponibilités. Le client prépare ses données réelles en amont (liste de clients, modèles existants, etc.).</div></div>
+          <div class="process-step"><div class="process-step-num">3</div><div class="process-step-content"><strong>Session 4h</strong> — Visio ou présentiel selon préférence. Travail intensif en co-construction. Pas de phase théorique : on construit dès la première heure.</div></div>
+          <div class="process-step"><div class="process-step-num">4</div><div class="process-step-content"><strong>Système livré + récap écrit</strong> — Le système configuré est livré en fin de session. Un récapitulatif écrit synthétique est envoyé sous 24 h ouvrées avec les étapes clés et les recommandations.</div></div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Avantages réels · Limites assumées</div>
+        <div class="ay-grid">
+          <div class="ay-box advantages">
+            <div class="ay-box-title">✓ Ce que ce palier apporte</div>
+            <ul>
+              <li>Ticket d'entrée maîtrisé · résultat opérationnel en une demi-journée</li>
+              <li>Co-construction · le client repart autonome sur le système</li>
+              <li>Données réelles utilisées · pas de cas d'école déconnecté</li>
+              <li>Acompte 30 % seulement · moins engageant qu'un Outil</li>
+              <li>Format idéal pour tester L'Rénov avant d'engager plus</li>
+            </ul>
+          </div>
+          <div class="ay-box limites">
+            <div class="ay-box-title">✕ Ce que ce palier ne fait pas</div>
+            <ul>
+              <li>4 h ne permettent qu'un système simple sur un sujet unique</li>
+              <li>Pas de prise en main approfondie ni d'extension multi-systèmes</li>
+              <li>Adapté à 1-2 personnes maximum (pas un format groupe)</li>
+              <li>Pas adapté si le sujet est mal défini en amont — voir Audit Découverte</li>
+              <li>Annulation &lt; 48 h = 100 % du montant dû (règle stricte)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Exemples d'ateliers Demi-journée par secteur</div>
+        <div class="sectors-block">
+          <div class="sector-line"><strong>BTP</strong>Configuration d'un suivi de chantier Notion avec photos, statuts, alertes simples</div>
+          <div class="sector-line"><strong>Compta</strong>Structuration d'un parcours d'onboarding client : qualification, devis, kick-off mission</div>
+          <div class="sector-line"><strong>Assurance</strong>Mise en place d'une fiche sinistre type avec workflow de qualification initial</div>
+          <div class="sector-line"><strong>Notariat</strong>Configuration d'un suivi de RDV pré-acte avec checklist documents et rappels automatiques</div>
+          <div class="sector-line"><strong>Immobilier</strong>Structuration d'un pipeline de mandats avec étapes, alertes et reporting hebdomadaire</div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Profil adapté · Profil non adapté</div>
+        <div class="for-who">
+          <div class="for-who-row">
+            <span class="for-who-label yes">Adapté</span>
+            <div class="for-who-text">Dirigeant qui sait précisément ce qu'il veut configurer et qui a ses données disponibles. Sujet circonscrit, ne nécessitant pas plusieurs sessions. Volonté de repartir avec quelque chose d'opérationnel dès la fin de session. Test possible avant engagement plus large.</div>
+          </div>
+          <div class="for-who-row">
+            <span class="for-who-label no">Non adapté</span>
+            <div class="for-who-text">Sujet flou ou pas encore défini — il faut d'abord un Audit Découverte ou Express. Équipe de plus de 2 personnes à former. Sujet complexe nécessitant plusieurs systèmes interconnectés. Dans ces cas, la Journée ou l'Opérationnel sont plus adaptés.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Modalités</div>
+        <div class="licence-box">
+          <strong>Format</strong> : 4 h visio ou présentiel · <strong>Acompte 30 %</strong> à la commande · Récap écrit sous 24h ouvrées. <strong>Annulation &lt; 48 h</strong> = 100 % du montant dû. Pas de session sans livrable : si le sujet n'est pas suffisamment cadré, l'atelier est reporté.
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+         TAB 2 — ATELIER JOURNÉE
+         ============================================ -->
+    <div class="tab-content" data-tab="2">
+
+      <div class="tab-head">
+        <div class="tab-head-icon"></div>
+        <div class="tab-head-body">
+          <h2>Atelier Journée</h2>
+          <p class="sub">7 heures pour <strong>configurer 1 à 2 systèmes interconnectés + prise en main</strong>. Le format complet pour aller au-delà d'un système isolé et installer une vraie cohérence opérationnelle.</p>
+          <div class="price">
+            <span class="price-amount">690 € HT</span>
+            <span class="price-detail">acompte 30 % · visio ou présentiel</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Définition</div>
+        <p>Une <strong>session de 7 heures sur une journée complète</strong>, visio ou présentiel. Le format permet de <strong>connecter 1 à 2 systèmes entre eux</strong> et de prendre le temps de la prise en main par l'équipe — pas seulement de configurer, mais aussi de pratiquer.</p>
+        <p>Différence clé avec la Demi-journée : ici on installe une <strong>cohérence opérationnelle</strong>. Par exemple un parcours commercial Notion connecté à un workflow d'emails automatique, ou un système de qualification client connecté à la génération de devis. La journée laisse le temps de tester en conditions réelles.</p>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Ce qui se passe pendant les 7 heures</div>
+        <div class="formats-grid">
+          <div class="format-card">
+            <div class="format-card-title">Matin · Construction (3 h 30)</div>
+            <div class="format-card-text">Configuration des 1 à 2 systèmes, structuration de la base de données, paramétrage des règles métier et des automatisations. Intégration des données réelles du client.</div>
+          </div>
+          <div class="format-card">
+            <div class="format-card-title">Pause déjeuner</div>
+            <div class="format-card-text">1 heure de pause. En présentiel, repas pris ensemble si souhaité. En visio, coupure totale pour permettre une vraie respiration entre les deux phases.</div>
+          </div>
+          <div class="format-card">
+            <div class="format-card-title">Après-midi · Prise en main (2 h 30)</div>
+            <div class="format-card-text">Tests en conditions réelles, ajustements, prise en main approfondie par le dirigeant et l'équipe. Transmission des méthodes d'évolution autonome. Le client est aux commandes pendant cette phase.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Le process en 5 étapes</div>
+        <div class="process-steps">
+          <div class="process-step"><div class="process-step-num">1</div><div class="process-step-content"><strong>Cadrage préparatoire</strong> (30 min visio gratuit) — Validation des 1 à 2 systèmes visés, des connexions à installer, des données à apporter. La journée n'est productive que si le cadrage est solide.</div></div>
+          <div class="process-step"><div class="process-step-num">2</div><div class="process-step-content"><strong>Réservation et acompte</strong> — Acompte 30 % à la commande. Créneau journée complète bloqué. Le client reçoit une checklist de préparation : données, comptes, accès à anticiper.</div></div>
+          <div class="process-step"><div class="process-step-num">3</div><div class="process-step-content"><strong>Journée d'atelier</strong> — 7 heures en présentiel ou visio. Matin construction + après-midi prise en main. Pause déjeuner respectée. Pas de réunion parallèle côté client.</div></div>
+          <div class="process-step"><div class="process-step-num">4</div><div class="process-step-content"><strong>Systèmes livrés + récap écrit</strong> — Livraison des systèmes configurés en fin de journée. Récap écrit envoyé sous 48 h ouvrées avec les étapes clés, captures d'écran et bonnes pratiques.</div></div>
+          <div class="process-step"><div class="process-step-num">5</div><div class="process-step-content"><strong>Échange de validation J+15</strong> (30 min visio, inclus) — Point de retour 15 jours après l'atelier : ajustements éventuels, questions d'usage, validation que le système est bien intégré au quotidien.</div></div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Avantages réels · Limites assumées</div>
+        <div class="ay-grid">
+          <div class="ay-box advantages">
+            <div class="ay-box-title">✓ Ce que ce palier apporte</div>
+            <ul>
+              <li>1 à 2 systèmes connectés · vraie cohérence opérationnelle</li>
+              <li>Prise en main approfondie · pas seulement de la configuration</li>
+              <li>Point de retour J+15 inclus · ajustements possibles à froid</li>
+              <li>Format adapté pour dirigeant + 1 ou 2 collaborateurs</li>
+              <li>Acompte 30 % seulement · démarrage maîtrisé</li>
+            </ul>
+          </div>
+          <div class="ay-box limites">
+            <div class="ay-box-title">✕ Ce que ce palier ne fait pas</div>
+            <ul>
+              <li>Pas adapté pour équipe de plus de 3 personnes — voir Opérationnel groupe</li>
+              <li>1 journée ne permet pas d'aller au-delà de 2 systèmes interconnectés</li>
+              <li>Pas d'accompagnement étalé dans le temps (1 mois) — voir Opérationnel</li>
+              <li>Annulation &lt; 48 h = 100 % du montant dû (règle stricte)</li>
+              <li>Pas adapté si la culture interne nécessite plusieurs séances pour absorber</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Exemples d'ateliers Journée par secteur</div>
+        <div class="sectors-block">
+          <div class="sector-line"><strong>BTP</strong>Suivi de chantier Notion connecté à un workflow de génération de comptes-rendus photos automatisés</div>
+          <div class="sector-line"><strong>Compta</strong>Parcours d'onboarding client complet : qualification + devis + kick-off + facturation automatisée</div>
+          <div class="sector-line"><strong>Assurance</strong>Fiche sinistre + workflow de gestion + alertes échéances et statuts intermédiaires</div>
+          <div class="sector-line"><strong>Notariat</strong>Suivi pré-acte + workflow post-RDV avec relances automatiques sur documents manquants</div>
+          <div class="sector-line"><strong>Immobilier</strong>Pipeline mandats + génération mandat conforme ALUR + suivi acquéreurs automatisé</div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Profil adapté · Profil non adapté</div>
+        <div class="for-who">
+          <div class="for-who-row">
+            <span class="for-who-label yes">Adapté</span>
+            <div class="for-who-text">Dirigeant + 1 à 2 collaborateurs prêts à consacrer une journée entière sans interruption. Sujet déjà cadré nécessitant 2 systèmes connectés. Volonté d'aller jusqu'à la prise en main complète, pas seulement la configuration. Capacité à se libérer une journée pleine.</div>
+          </div>
+          <div class="for-who-row">
+            <span class="for-who-label no">Non adapté</span>
+            <div class="for-who-text">Équipe de plus de 3 personnes à former (voir Opérationnel groupe). Sujet trop large nécessitant plusieurs paliers d'outils (voir Outil Pro ou Expert). Indisponibilité d'une journée pleine — préférer 2 demi-journées espacées.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Modalités</div>
+        <div class="licence-box">
+          <strong>Format</strong> : 7 h visio ou présentiel · <strong>Acompte 30 %</strong> à la commande · Récap écrit sous 48 h ouvrées · <strong>Échange J+15 inclus</strong> (30 min visio). <strong>Annulation &lt; 48 h</strong> = 100 % du montant dû. Pas de session sans livrable.
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+         TAB 3 — ATELIER OPÉRATIONNEL GROUPE
+         ============================================ -->
+    <div class="tab-content" data-tab="3">
+
+      <div class="tab-head">
+        <div class="tab-head-icon">🏛️</div>
+        <div class="tab-head-body">
+          <h2>Atelier Opérationnel groupe</h2>
+          <p class="sub">7 heures <strong>étalées sur 1 mois</strong> avec un groupe : collectif + visio individuelle + bilan J+30. Le format qui garantit la vraie appropriation par l'équipe — pas juste la formation.</p>
+          <div class="price">
+            <span class="price-amount">690 - 890 € HT / personne</span>
+            <span class="price-detail">acompte 30 % · présentiel collectif + visios individuelles</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Définition</div>
+        <p>Le format <strong>étalé dans le temps</strong>, conçu pour qu'une équipe entière s'approprie un système opérationnel. La différence avec la Journée n'est pas le contenu — c'est <strong>l'apprentissage par paliers</strong>, avec retours d'expérience entre chaque étape.</p>
+        <p>Structure : <strong>4 h collectif</strong> (lancement, configuration ensemble, premières manipulations) + <strong>2 h en visios individuelles</strong> espacées sur 3 semaines (1 h par participant en moyenne) + <strong>1 h bilan collectif J+30</strong> pour consolider l'usage et ajuster.</p>
+        <p>Adapté aux structures de <strong>3 à 8 personnes</strong>. Le tarif par personne diminue à mesure que le groupe grandit (économies d'échelle sur le collectif). Tarif modulable entre 690 et 890 € selon la complexité du sujet et l'intensité du suivi individuel attendu.</p>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">La structure étalée sur 1 mois</div>
+        <div class="formats-grid">
+          <div class="format-card">
+            <div class="format-card-title">J0 · Collectif lancement (4 h)</div>
+            <div class="format-card-text">Présentation du système, configuration ensemble sur cas réels du groupe, premières manipulations par chaque participant. Les bases sont posées en commun. Présentiel privilégié si possible.</div>
+          </div>
+          <div class="format-card">
+            <div class="format-card-title">J+7 à J+21 · Visios individuelles (2 h)</div>
+            <div class="format-card-text">Environ 1 h de visio par participant, planifiée à son rythme. Reprise sur ses propres dossiers, levée des blocages spécifiques, ajustements personnalisés. Personne ne reste sur le bord du chemin.</div>
+          </div>
+          <div class="format-card">
+            <div class="format-card-title">J+30 · Bilan collectif (1 h)</div>
+            <div class="format-card-text">Point collectif visio : retour d'usage de chacun, partage des trouvailles entre membres, identification des besoins d'évolution. Consolidation finale et autonomie validée.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Le process en 5 étapes</div>
+        <div class="process-steps">
+          <div class="process-step"><div class="process-step-num">1</div><div class="process-step-content"><strong>Cadrage avec le dirigeant</strong> (1 h visio gratuit) — Validation du sujet, du nombre de participants, du planning, du tarif/personne selon scope. Préparation des données du groupe.</div></div>
+          <div class="process-step"><div class="process-step-num">2</div><div class="process-step-content"><strong>Réservation et acompte</strong> — Acompte 30 % à la commande. Bloquage des dates collectives + créneaux flexibles pour les visios individuelles à programmer entre J+7 et J+21.</div></div>
+          <div class="process-step"><div class="process-step-num">3</div><div class="process-step-content"><strong>J0 · Collectif lancement</strong> (4 h) — Présentiel ou visio selon contraintes du groupe. Configuration en commun, premières manipulations, transmission de la méthode.</div></div>
+          <div class="process-step"><div class="process-step-num">4</div><div class="process-step-content"><strong>J+7 à J+21 · Visios individuelles</strong> — Chaque participant programme sa séance d'1 h selon ses disponibilités. Le contenu s'adapte à son niveau d'autonomie et ses cas concrets.</div></div>
+          <div class="process-step"><div class="process-step-num">5</div><div class="process-step-content"><strong>J+30 · Bilan collectif + récap écrit</strong> (1 h) — Restitution des retours individuels, partage en groupe, plan d'évolution autonome. Récap écrit envoyé sous 48 h ouvrées avec les bonnes pratiques consolidées du groupe.</div></div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Avantages réels · Limites assumées</div>
+        <div class="ay-grid">
+          <div class="ay-box advantages">
+            <div class="ay-box-title">✓ Ce que ce palier apporte</div>
+            <ul>
+              <li>Vraie appropriation par chaque membre de l'équipe</li>
+              <li>Suivi individuel inclus · personne ne décroche</li>
+              <li>Effet de groupe · partage des trouvailles entre participants</li>
+              <li>Bilan J+30 · consolidation à froid, pas dans l'urgence</li>
+              <li>Tarif par personne dégressif selon la taille du groupe</li>
+            </ul>
+          </div>
+          <div class="ay-box limites">
+            <div class="ay-box-title">✕ Ce que ce palier ne fait pas</div>
+            <ul>
+              <li>Engagement temps sur 1 mois — moins adapté si urgence immédiate</li>
+              <li>Pas adapté pour un solo ou un binôme — voir Demi-journée ou Journée</li>
+              <li>Coordination plus exigeante (planning de 6 à 8 personnes)</li>
+              <li>Annulation &lt; 48 h sur séances bloquées = 100 % dû (règle stricte)</li>
+              <li>Pas adapté pour un sujet purement technique sans dimension humaine</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Exemples d'ateliers Opérationnel groupe par secteur</div>
+        <div class="sectors-block">
+          <div class="sector-line"><strong>BTP</strong>Équipe conduite de travaux (4-6 pers.) : suivi chantier + reporting hebdomadaire + remontée d'alertes</div>
+          <div class="sector-line"><strong>Compta</strong>Cabinet (5-8 pers.) : harmonisation des process clients + onboarding standard + outils de suivi</div>
+          <div class="sector-line"><strong>Assurance</strong>Agence (4-7 pers.) : gestion sinistres harmonisée + qualification client + suivi des dossiers</div>
+          <div class="sector-line"><strong>Notariat</strong>Cabinet (5-8 pers.) : process pré-RDV harmonisés, suivi post-acte, communication client</div>
+          <div class="sector-line"><strong>Immobilier</strong>Agence (4-6 pers.) : pipeline mandats partagé + scoring leads + reporting hebdomadaire</div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Profil adapté · Profil non adapté</div>
+        <div class="for-who">
+          <div class="for-who-row">
+            <span class="for-who-label yes">Adapté</span>
+            <div class="for-who-text">Structure de 3 à 8 personnes nécessitant une vraie harmonisation des pratiques. Dirigeant qui veut éviter qu'un seul collaborateur "garde la connaissance". Capacité à libérer 4 h collectives + 1 h par personne sur le mois. Sujet qui demande de l'appropriation, pas juste de la formation.</div>
+          </div>
+          <div class="for-who-row">
+            <span class="for-who-label no">Non adapté</span>
+            <div class="for-who-text">Indépendant ou binôme — la Demi-journée ou la Journée suffisent. Besoin immédiat sans pouvoir étaler sur 1 mois (voir Journée intensive). Structure de plus de 8 personnes — préférer 2 groupes successifs pour garder la qualité du suivi individuel.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Modalités</div>
+        <div class="licence-box">
+          <strong>Format</strong> : 7 h étalées sur 1 mois (4 h collectif + 2 h visios individuelles + 1 h bilan J+30) · <strong>Acompte 30 %</strong> à la commande · Récap écrit consolidé sous 48 h après J+30. <strong>Participant supplémentaire au-delà du scope</strong> : 100 € par tranche de 5 personnes. <strong>Annulation &lt; 48 h</strong> sur séances bloquées = 100 % du montant dû.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOC ROI -->
+  <!-- ✏️ ZONE PERSONNALISABLE 5 : Calculateur ROI (valeurs par défaut à adapter au cadrage client) -->
+  <section class="roi-block-section">
+    <div class="roi-block-section-title">Calculateur ROI</div>
+    <h2>Combien <em>ce dispositif rapporte</em> dans votre contexte</h2>
+    <p class="roi-intro">
+      Ajustez les curseurs selon votre réalité. Le calcul se met à jour automatiquement. <strong>Pas d'argumentaire</strong> : ce sont les chiffres qui décident.
+    </p>
+
+    <!-- INPUTS -->
+    <div class="roi-inputs">
+
+      <div class="roi-input-card">
+        <div class="roi-input-row">
+          <label for="participants">👥 Participants à former</label>
+          <span class="roi-input-value"><span id="participants-val">3</span></span>
+        </div>
+        <input type="range" id="participants" min="1" max="10" value="3" step="1">
+        <div class="roi-input-scale"><span>1</span><span>10</span></div>
+      </div>
+
+      <div class="roi-input-card">
+        <div class="roi-input-row">
+          <label for="cout-horaire">💰 Coût horaire moyen équipe</label>
+          <span class="roi-input-value"><span id="cout-horaire-val">50</span> €/h</span>
+        </div>
+        <input type="range" id="cout-horaire" min="25" max="150" value="50" step="5">
+        <div class="roi-input-scale"><span>25 €</span><span>150 €</span></div>
+      </div>
+
+      <div class="roi-input-card">
+        <div class="roi-input-row">
+          <label for="freins">🔒 Heures perdues / mois par tâtonnement</label>
+          <span class="roi-input-value"><span id="freins-val">8</span> h</span>
+        </div>
+        <input type="range" id="freins" min="2" max="40" value="8" step="2">
+        <div class="roi-input-scale"><span>2 h</span><span>40 h</span></div>
+      </div>
+
+      <div class="roi-input-card">
+        <div class="roi-input-row">
+          <label for="consultant">🆘 Coût d'1 intervention externe</label>
+          <span class="roi-input-value"><span id="consultant-val">800</span> €</span>
+        </div>
+        <input type="range" id="consultant" min="200" max="3000" value="800" step="100">
+        <div class="roi-input-scale"><span>200 €</span><span>3 k€</span></div>
+      </div>
+
+      <div class="roi-input-card">
+        <div class="roi-input-row">
+          <label for="freq">📅 Interventions externes évitées / an</label>
+          <span class="roi-input-value"><span id="freq-val">4</span></span>
+        </div>
+        <input type="range" id="freq" min="0" max="15" value="4" step="1">
+        <div class="roi-input-scale"><span>0</span><span>15</span></div>
+      </div>
+
+    </div>
+
+    <!-- SYNTHÈSE VALEUR ANNUELLE -->
+    <div class="roi-synthesis">
+      <div class="roi-synth-item">
+        <div class="roi-synth-num" id="autonomie-an">4 800 €</div>
+        <div class="roi-synth-label">heures de tâtonnement évitées / an</div>
+      </div>
+      <div class="roi-synth-arrow">+</div>
+      <div class="roi-synth-item">
+        <div class="roi-synth-num" id="externe-an">3 200 €</div>
+        <div class="roi-synth-label">interventions externes évitées / an</div>
+      </div>
+      <div class="roi-synth-arrow">=</div>
+      <div class="roi-synth-item highlight">
+        <div class="roi-synth-num" id="valeur-an">8 000 €</div>
+        <div class="roi-synth-label">valeur d'autonomie acquise / an</div>
+      </div>
+    </div>
+
+    <!-- COMPARAISON 3 PALIERS -->
+    <div class="roi-compare-title">Confrontation avec les 3 paliers Ateliers</div>
+    <div class="roi-compare-grid">
+
+      <div class="roi-compare-card" data-level="1">
+        <div class="roi-compare-name">Palier 1<br><span>Demi-journée</span></div>
+        <div class="roi-compare-price">390 € · forfait</div>
+        <div class="roi-compare-result">
+          <div class="roi-compare-roi" id="roi-1">7 610 €</div>
+          <div class="roi-compare-roi-label">valeur nette an 1</div>
+        </div>
+        <div class="roi-compare-payback">
+          Amorti en <strong id="payback-1">~ 3 sem.</strong>
+        </div>
+      </div>
+
+      <div class="roi-compare-card highlight" data-level="2">
+        <div class="roi-compare-name">Palier 2<br><span>Journée</span></div>
+        <div class="roi-compare-price">690 € · forfait</div>
+        <div class="roi-compare-result">
+          <div class="roi-compare-roi" id="roi-2">7 310 €</div>
+          <div class="roi-compare-roi-label">valeur nette an 1</div>
+        </div>
+        <div class="roi-compare-payback">
+          Amorti en <strong id="payback-2">~ 4 sem.</strong>
+        </div>
+      </div>
+
+      <div class="roi-compare-card" data-level="3">
+        <div class="roi-compare-name">Palier 3<br><span>Opérationnel</span></div>
+        <div class="roi-compare-price">790 €/personne (moy.)</div>
+        <div class="roi-compare-result">
+          <div class="roi-compare-roi" id="roi-3">5 630 €</div>
+          <div class="roi-compare-roi-label">valeur nette an 1</div>
+        </div>
+        <div class="roi-compare-payback">
+          Amorti en <strong id="payback-3">~ 15 sem.</strong>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="roi-conclusion-note">
+      💡 <strong>Particularité d'un atelier</strong> : la valeur n'est pas immédiate mais <strong>cumulative</strong>. Plus l'équipe est autonome, moins elle dépend d'interventions externes, plus elle évolue ses propres systèmes. Le calcul ci-dessus chiffre uniquement les pertes évitées la première année — sur 2-3 ans, la valeur d'autonomie acquise se multiplie. <strong>L'Opérationnel groupe</strong> a un payback plus long mais garantit l'appropriation par l'ensemble de l'équipe (pas un seul collaborateur "qui sait").
+    </div>
+  </section>
+  <!-- ✏️ FIN ZONE 5 -->
+
+  <!-- COMMENT ON DÉCIDE -->
+  <div class="decision-block">
+    <p><strong>Comment décider du bon palier d'atelier ?</strong></p>
+    <p>Selon la taille du groupe et la profondeur d'appropriation visée. <strong>Demi-journée</strong> si le sujet est cadré et que le dirigeant veut un système simple opérationnel rapidement. <strong>Journée</strong> si 1-2 systèmes doivent être connectés et qu'une prise en main approfondie est nécessaire. <strong>Opérationnel groupe</strong> si plusieurs collaborateurs doivent vraiment s'approprier (et pas juste être formés).</p>
+    <p>Pas de palier "recommandé" par défaut — c'est le contexte (taille équipe, complexité, étalement souhaité) qui dicte le bon choix. Un échange préalable de 15 min permet de trancher si l'hésitation persiste.</p>
+  </div>
+
+  <!-- CTA CADRAGE EXPRESS — mailto pré-rempli pour recevoir le questionnaire -->
+  <div class="cta-cadrage">
+    <div class="cta-cadrage-eyebrow">Avant de réserver un atelier</div>
+    <h3 class="cta-cadrage-title">Recevoir le <em>cadrage express</em> pour situer le bon format.</h3>
+    <p class="cta-cadrage-desc">
+      Un court questionnaire personnalisé envoyé par email. Quelques questions sur le sujet à travailler, la taille du groupe et le livrable visé — pour identifier ensemble si la cible naturelle est plutôt Demi-journée, Journée ou Opérationnel. Aucun engagement, simple éclairage avant tout choix.
+    </p>
+    <a class="cta-cadrage-btn" href="mailto:laurence@lrenov-ia.studio?subject=Demande%20de%20cadrage%20express%20%E2%80%94%20Atelier&body=Bonjour%20Laurence%2C%0A%0AJe%20viens%20de%20parcourir%20le%20document%20p%C3%A9dagogique%20sur%20les%203%20paliers%20d%27atelier%20et%20je%20souhaite%20recevoir%20le%20cadrage%20express%20pour%20situer%20le%20bon%20format%20pour%20mon%20activit%C3%A9.%0A%0AContexte%20rapide%20%3A%0A-%20Mon%20m%C3%A9tier%20%3A%20%0A-%20Taille%20du%20groupe%20%C3%A0%20former%20%3A%20%0A-%20Sujet%20%C3%A0%20travailler%20%3A%20%0A-%20Livrable%20vis%C3%A9%20en%20sortie%20%3A%20%0A%0AMerci%2C%0A">
+      Recevoir le cadrage par mail
+    </a>
+    <div class="cta-cadrage-note">
+      Réponse sous 24h ouvrées · laurence@lrenov-ia.studio · 06 09 22 57 11
+    </div>
+  </div>
+
+  
+  </div>
+
+    <!-- ========================================
+       FOOTER
+       ======================================== -->
+  <footer>
+    <div class="foot-wrap">
+      <div class="foot-col">
+        <div class="foot-brand">L'Rénov <span>IA Studio</span></div>
+        <div class="foot-tagline">
+          Votre métier en mémoire. Votre style en sortie.<br>
+          Pas un outil de plus. Le vôtre.
+        </div>
+        <div class="foot-social">
+          <a href="https://www.linkedin.com/in/laurence-borras-l-renov-ia-studio-31b0992a2" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/laurence_lrenov_ia_studio" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
+          </a>
+          <a href="https://www.facebook.com/LaurenceBorrasLRenovEspacesetIA" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4>Prestations</h4>
+        <a href="audit.html">Audit IA</a>
+        <a href="outils.html">Outils métier</a>
+        <a href="agents.html">Agents IA</a>
+        <a href="ateliers.html">Ateliers</a>
+        <a href="formations.html">Formations</a>
+      </div>
+
+      <div class="foot-col">
+        <h4>Par secteur</h4>
+        <a href="secteur-immobilier.html">Immobilier · ALUR</a>
+        <a href="secteur-btp.html">BTP · Artisans</a>
+        <a href="secteur-finance-comptabilite.html">Compta · Finance</a>
+        <a href="secteur-assurance.html">Assurance</a>
+        <a href="secteur-juridique.html">Juridique · Notariat</a>
+        <a href="secteurs.html">Tous les secteurs</a>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@lrenov-ia.studio">contact@lrenov-ia.studio</a>
+        <a href="contact.html">Formulaire</a>
+        <a href="https://calendly.com/laurence-lrenov-ia/30min">RDV 30 min offertes</a>
+        <a href="radar-ia.html">Radar IA</a>
+        <div class="foot-contact">
+          Blanquefort 33 · Gironde<br>
+          Bordeaux et toute la France
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>© 2026 L'Rénov IA Studio · Laurence Borras · SIRET 912 942 869 00013</div>
+      <div class="foot-bottom-links">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+        <a href="confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  /* CURSEUR */
+  const cursor = document.getElementById('cursor');
+  const cursorTrail = document.getElementById('cursorTrail');
+  let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
+  if(cursor && window.matchMedia('(hover: hover)').matches && window.innerWidth > 1024){
+    document.addEventListener('mousemove',(e)=>{
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px';
+    });
+    (function animateTrail(){
+      trailX += (mouseX - trailX) * .12;
+      trailY += (mouseY - trailY) * .12;
+      cursorTrail.style.left = trailX + 'px'; cursorTrail.style.top = trailY + 'px';
+      requestAnimationFrame(animateTrail);
+    })();
+    const clickables = document.querySelectorAll('a,button,input,textarea,.presta-card,.pilier-card,.tab-btn,.sector-card');
+    clickables.forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cursor.classList.add('hover');cursorTrail.classList.add('hover')});
+      el.addEventListener('mouseleave',()=>{cursor.classList.remove('hover');cursorTrail.classList.remove('hover')});
+    });
+    document.addEventListener('mousedown',()=>cursor.classList.add('click'));
+    document.addEventListener('mouseup',()=>cursor.classList.remove('click'));
+  }
+
+  /* ANIMATIONS APPARITION */
+  const fuObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); fuObs.unobserve(e.target); }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.fu').forEach(el=>fuObs.observe(el));
+
+  /* GLOW QUI SUIT LE CURSEUR sur cards */
+  document.querySelectorAll('.presta-card,.pilier-card,.sector-card,.parcours-card').forEach(card=>{
+    card.addEventListener('mousemove',(e)=>{
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mx', x + '%');
+      card.style.setProperty('--my', y + '%');
+    });
+  });
+
+  /* NAV — fond opaque au scroll */
+  const nav = document.getElementById('mainNav');
+  if(nav){
+    window.addEventListener('scroll',()=>{
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  }
+
+  /* MENU MOBILE */
+  const navMobBtn = document.getElementById('navMobBtn');
+  const navMob = document.getElementById('navMob');
+  if(navMobBtn && navMob){
+    navMobBtn.addEventListener('click',()=>{
+      navMob.classList.toggle('open');
+      navMobBtn.textContent = navMob.classList.contains('open') ? '✕' : '☰';
+    });
+    navMob.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click',()=>{ navMob.classList.remove('open'); navMobBtn.textContent = '☰'; });
+    });
+  }
+
+  /* SCROLL FLUIDE ANCRES */
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      const href = this.getAttribute('href');
+      if(href === '#' || href.length < 2) return;
+      const target = document.querySelector(href);
+      if(target){
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+      }
+    });
+  });
+  </script>
+</body>
+</html>

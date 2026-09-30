@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panorama IA de L'Rénov IA Studio : comprendre les différences entre ChatGPT, Claude, Gemini, Mistral et Perplexity selon les missions professionnelles.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://lrenov-ia.studio/panorama-ia/">
+  <meta property="og:title" content="Panorama IA — L'Rénov IA Studio">
+  <meta property="og:description" content="Qui est le plus adapté à quelle mission ? Un comparatif pédagogique pour choisir selon votre besoin, vos outils et vos données.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lrenov-ia.studio/panorama-ia/">
+  <title>Panorama IA — L'Rénov IA Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="panorama.css">
+  <script src="panorama.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../index.html" aria-label="Retour au site L'Rénov IA Studio">
+        <img src="assets/logo-lrenov-ia.png" alt="Logo L'Rénov IA Studio">
+        <span><strong>L'Rénov IA Studio</strong><small>Panorama IA</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span><span class="sr-only">Ouvrir le menu</span>
+      </button>
+      <nav id="main-nav" class="main-nav" aria-label="Navigation du Panorama">
+        <a href="#missions">Qui pour quoi ?</a>
+        <a href="#modeles">Les écosystèmes</a>
+        <a href="#radar">Radar</a>
+        <a href="#metiers">Par métier</a>
+        <a href="#roi">Valeur</a>
+        <a href="#sources">Sources</a>
+        <a class="nav-secondary" href="../radar-ia.html">Radar IA</a>
+        <a class="nav-primary" href="https://calendly.com/laurence-lrenov-ia/30min" target="_blank" rel="noopener">Parler de mon besoin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-glow hero-glow-a"></div>
+      <div class="hero-glow hero-glow-b"></div>
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span>Mise à jour du 22 juillet 2026</div>
+          <h1>Les IA ne sont pas toutes fortes au <em>même endroit.</em></h1>
+          <p class="hero-lead">ChatGPT, Claude, Gemini, Mistral et Perplexity ne jouent pas exactement le même rôle. Ce Panorama vous aide à comprendre qui ressort selon la mission — sans jargon et sans prétendre qu'un seul outil gagne partout.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#missions">Voir qui fait quoi</a>
+            <a class="btn btn-ghost" href="#methode">Comprendre les notes</a>
+          </div>
+          <p class="hero-note">Lecture éditoriale fondée sur les capacités officielles publiées par les fournisseurs et sur des usages professionnels. Ce n'est pas un benchmark scientifique ni une garantie de résultat.</p>
+        </div>
+        <div class="hero-card" aria-label="Repères essentiels">
+          <div class="hero-card-top"><span class="live-dot"></span><span>Le repère à retenir</span></div>
+          <div class="hero-card-title">Le bon choix dépend de quatre choses</div>
+          <ol class="decision-list">
+            <li><span>01</span><div><strong>La mission</strong><small>Écrire, chercher, analyser, automatiser, coder ou créer.</small></div></li>
+            <li><span>02</span><div><strong>L'environnement</strong><small>Google, fichiers, navigateur, applications connectées ou code.</small></div></li>
+            <li><span>03</span><div><strong>Les données</strong><small>Publiques, internes, personnelles ou confidentielles.</small></div></li>
+            <li><span>04</span><div><strong>Le niveau d'autonomie</strong><small>Une réponse, une méthode réutilisable ou une action dans vos outils.</small></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="brand-strip" aria-label="Écosystèmes comparés">
+      <div class="container brand-strip-inner">
+        <div class="brand-pill"><img src="https://chatgpt.com/favicon.ico" onerror="this.onerror=null;this.src='assets/logo-openai.svg'" alt=""><span>ChatGPT</span></div>
+        <div class="brand-pill claude"><img src="https://claude.ai/favicon.ico" onerror="this.onerror=null;this.src='assets/logo-claude.svg'" alt=""><span>Claude</span></div>
+        <div class="brand-pill gemini"><img src="https://gemini.google.com/favicon.ico" onerror="this.onerror=null;this.src='assets/logo-gemini.svg'" alt=""><span>Gemini</span></div>
+        <div class="brand-pill mistral"><img src="https://mistral.ai/favicon.ico" onerror="this.onerror=null;this.src='assets/logo-mistral.svg'" alt=""><span>Mistral</span></div>
+        <div class="brand-pill perplexity"><img src="https://www.perplexity.ai/favicon.ico" onerror="this.onerror=null;this.src='assets/logo-perplexity.svg'" alt=""><span>Perplexity</span></div>
+      </div>
+    </section>
+
+    <section id="actualites" class="section section-light compact-section">
+      <div class="container">
+        <div class="section-heading split-heading">
+          <div>
+            <div class="eyebrow dark"><span></span>Radar IA — juillet 2026</div>
+            <h2>Deux actualités à remettre dans leur contexte.</h2>
+          </div>
+          <a class="text-link" href="../radar-ia.html">Voir tous les articles</a>
+        </div>
+        <div class="article-grid">
+          <a class="article-card article-featured" href="../radar-ia.html#article-16">
+            <div class="article-kicker">ChatGPT · Plugins · Skills · Codex</div>
+            <h3>ChatGPT dépassé par Claude ? Le match se déplace vers les connexions et l'exécution.</h3>
+            <p>La compétition ne porte plus seulement sur la qualité d'une réponse, mais sur la capacité à accéder aux outils, réutiliser une méthode et agir.</p>
+            <span>Lire l'analyse</span>
+          </a>
+          <a class="article-card" href="../radar-ia.html#article-15">
+            <div class="article-kicker">Claude · Fable 5</div>
+            <h3>Fable 5 : une puissance supérieure, mais pas un choix automatique.</h3>
+            <p>Anthropic le destine aux tâches les plus longues et complexes. Son coût, ses garde-fous et le niveau réel du besoin restent déterminants.</p>
+            <span>Lire l'analyse</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="missions" class="section section-cream">
+      <div class="container">
+        <div class="section-heading split-heading">
+          <div>
+            <div class="eyebrow dark"><span></span>Tableau principal</div>
+            <h2>Qui est le plus à l'aise sur quelle mission&nbsp;?</h2>
+            <p>Une lecture simple pour les non-spécialistes. Le « repère principal » indique l'écosystème qui ressort le plus naturellement pour ce besoin aujourd'hui. Les alternatives restent souvent excellentes.</p>
+          </div>
+          <div class="legend-card" aria-label="Légende">
+            <span><i class="dot leader"></i>Repère principal</span>
+            <span><i class="dot close"></i>Très bon choix</span>
+            <span><i class="dot context"></i>Dépend du contexte</span>
+          </div>
+        </div>
+        <div class="filter-row" role="group" aria-label="Filtrer les missions">
+          <button type="button" class="filter-btn active" data-filter="all">Toutes</button>
+          <button type="button" class="filter-btn" data-filter="production">Produire</button>
+          <button type="button" class="filter-btn" data-filter="analyse">Analyser</button>
+          <button type="button" class="filter-btn" data-filter="recherche">Rechercher</button>
+          <button type="button" class="filter-btn" data-filter="action">Agir</button>
+          <button type="button" class="filter-btn" data-filter="conformite">Maîtriser les données</button>
+        </div>
+        <div class="mission-table-wrap">
+          <table class="mission-table">
+            <thead>
+              <tr>
+                <th>Mission</th>
+                <th>Repère principal</th>
+                <th>Pourquoi</th>
+                <th>Alternative forte</th>
+                <th>À surveiller</th>
+              </tr>
+            </thead>
+            <tbody id="mission-table-body"></tbody>
+          </table>
+        </div>
+        <div class="mission-cards" id="mission-cards"></div>
+        <div id="mission-detail" class="mission-detail" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="modeles" class="section section-dark">
+      <div class="container">
+        <div class="section-heading light-heading">
+          <div class="eyebrow"><span></span>Les écosystèmes en clair</div>
+          <h2>Cinq portes d'entrée, cinq logiques.</h2>
+          <p>Le nom du modèle compte. Mais, pour une TPE, l'environnement complet — fichiers, connexions, agents, outils de recherche et déploiement — compte souvent davantage.</p>
+        </div>
+        <div class="ecosystem-grid" id="ecosystem-grid"></div>
+      </div>
+    </section>
+
+    <section id="radar" class="section radar-section">
+      <div class="container">
+        <div class="section-heading split-heading light-heading">
+          <div>
+            <div class="eyebrow"><span></span>Radar multi-axes</div>
+            <h2>Visualiser les différences sans fabriquer un champion universel.</h2>
+            <p>Les notes sont des repères éditoriaux sur 5, fondés sur les fonctions disponibles à date. Cliquez sur un ou plusieurs écosystèmes pour comparer leurs profils.</p>
+          </div>
+          <div class="method-badge">Notes éditoriales — non scientifiques</div>
+        </div>
+        <div class="radar-layout">
+          <div class="radar-controls">
+            <div id="radar-switches" class="radar-switches"></div>
+            <div id="radar-explanation" class="radar-explanation"></div>
+          </div>
+          <div class="radar-canvas-card">
+            <svg id="radar-svg" viewBox="0 0 700 620" role="img" aria-labelledby="radar-title radar-desc">
+              <title id="radar-title">Radar comparatif des écosystèmes IA</title>
+              <desc id="radar-desc">Comparaison sur huit dimensions professionnelles.</desc>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="metiers" class="section section-light">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow dark"><span></span>Par métier</div>
+          <h2>La bonne combinaison change selon votre terrain.</h2>
+          <p>Choisissez un profil pour voir une stack de départ et le principal point de vigilance.</p>
+        </div>
+        <div class="job-tabs" id="job-tabs" role="tablist" aria-label="Choisir un métier"></div>
+        <div class="job-panel" id="job-panel" role="tabpanel"></div>
+      </div>
+    </section>
+
+    <section id="roi" class="section section-cream">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow dark"><span></span>Calculateur de valeur</div>
+          <h2>Le bon calcul n'est pas le prix de l'abonnement.</h2>
+          <p>Il faut comparer le coût à la valeur du temps utile récupéré — sans oublier le temps de contrôle humain.</p>
+        </div>
+        <div class="roi-layout">
+          <div class="roi-controls">
+            <label>Temps hebdomadaire sur des tâches répétitives <strong id="hours-value">5 h</strong><input id="hours" type="range" min="1" max="25" value="5"></label>
+            <label>Part réellement récupérable <strong id="rate-value">30 %</strong><input id="rate" type="range" min="10" max="70" step="5" value="30"></label>
+            <label>Valeur d'une heure de travail <strong id="hourly-value">50 €</strong><input id="hourly" type="range" min="20" max="150" step="5" value="50"></label>
+            <label>Budget mensuel outils et accompagnement <strong id="cost-value">60 €</strong><input id="cost" type="range" min="0" max="500" step="10" value="60"></label>
+          </div>
+          <div class="roi-card">
+            <div class="roi-label">Valeur nette mensuelle estimée</div>
+            <div class="roi-main" id="roi-main">265 €</div>
+            <div class="roi-stats">
+              <div><span>Temps récupéré</span><strong id="saved-hours">6,5 h</strong></div>
+              <div><span>Valeur brute</span><strong id="gross-value">325 €</strong></div>
+              <div><span>Retour sur budget</span><strong id="roi-rate">442 %</strong></div>
+            </div>
+            <p>Simulation indicative : elle ne tient pas compte des coûts d'intégration, de formation, de maintenance, des erreurs ni du temps de validation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="methode" class="section section-light methodology">
+      <div class="container methodology-grid">
+        <div>
+          <div class="eyebrow dark"><span></span>Méthode de lecture</div>
+          <h2>Ce que disent les notes — et ce qu'elles ne disent pas.</h2>
+          <p>Nous séparons les faits publiés par les fournisseurs de notre lecture éditoriale. Une fonction officiellement annoncée est un fait. Une note de 4,5/5 est une appréciation comparative, pas une mesure scientifique.</p>
+        </div>
+        <div class="method-list">
+          <div><span>01</span><p><strong>Sources primaires.</strong> Pages produits, documentations et annonces officielles datées.</p></div>
+          <div><span>02</span><p><strong>Usage professionnel.</strong> La question posée est : « à quoi cela sert concrètement dans une petite organisation ? »</p></div>
+          <div><span>03</span><p><strong>Pas de vérité universelle.</strong> Les performances varient selon le prompt, les données, le plan payé, les connexions et le pays.</p></div>
+          <div><span>04</span><p><strong>Actualisation nécessaire.</strong> Les noms, fonctions, tarifs et disponibilités peuvent évoluer en quelques semaines.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources" class="section source-section">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow dark"><span></span>Traçabilité</div>
+          <h2>Sources officielles utilisées pour cette édition.</h2>
+          <p>Dernière vérification : 22 juillet 2026. Les liens ouvrent les pages des fournisseurs.</p>
+        </div>
+        <div class="source-grid" id="source-grid"></div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-card">
+          <div>
+            <div class="eyebrow"><span></span>Vous hésitez entre plusieurs outils ?</div>
+            <h2>Partons de votre métier, pas du dernier modèle à la mode.</h2>
+            <p>Nous pouvons cartographier vos tâches, vos données et vos outils, puis décider s'il faut former, automatiser ou construire une application métier.</p>
+          </div>
+          <div class="hero-actions cta-actions">
+            <a class="btn btn-primary" href="https://calendly.com/laurence-lrenov-ia/30min" target="_blank" rel="noopener">Prendre rendez-vous</a>
+            <a class="btn btn-ghost" href="../radar-ia.html">Lire le Radar IA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand"><img src="assets/logo-lrenov-ia.png" alt=""><div><strong>L'Rénov IA Studio</strong><span>Panorama IA — juillet 2026</span></div></div>
+      <p>Comparatif éditorial et pédagogique. Toute décision impliquant des données sensibles, un engagement juridique ou une action automatique doit être validée humainement.</p>
+      <div class="footer-links"><a href="../index.html">Accueil</a><a href="../radar-ia.html">Radar IA</a><a href="../contact.html">Contact</a></div>
+    </div>
+  </footer>
+</body>
+</html>

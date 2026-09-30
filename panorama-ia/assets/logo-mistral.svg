@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mistral AI">
+  <path fill="#ffcf00" d="M8 8h12v12H8zM44 8h12v12H44zM8 20h12v12H8zM20 20h12v12H20zM32 20h12v12H32zM44 20h12v12H44z"/>
+  <path fill="#ff8a00" d="M8 32h12v12H8zM20 32h12v12H20zM32 32h12v12H32zM44 32h12v12H44z"/>
+  <path fill="#ff3d22" d="M8 44h12v12H8zM44 44h12v12H44zM20 32h12v12H20zM32 32h12v12H32z"/>
+  <path fill="#111" d="M20 32h8v12h-8zM36 32h8v12h-8z"/>
+</svg>

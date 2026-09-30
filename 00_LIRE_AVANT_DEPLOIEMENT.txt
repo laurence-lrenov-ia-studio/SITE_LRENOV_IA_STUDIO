@@ -1,0 +1,11 @@
+PAQUET DE RESTAURATION SÛR — L'RÉNOV IA STUDIO
+
+Contenu :
+- pages d'origine remises sous leur nom correct ;
+- Radar IA avec les deux articles de juillet ;
+- nouveau Panorama IA V2.1 dans /panorama-ia/ ;
+- logos Claude et Perplexity remplacés ;
+- liens Radar internes corrigés.
+
+À extraire directement dans public_html en remplaçant les fichiers existants.
+Ce paquet ne contient ni .htaccess, ni contact.php, ni les pages légales, ni les images générales.

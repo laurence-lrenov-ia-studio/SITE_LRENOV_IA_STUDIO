@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Communication · Marketing — L'Rénov IA Studio · Vos prestations IA dans ce métier</title>
+  <meta name="description" content="L'IA appliquée au métier communication · marketing. Exemples concrets d'interventions, cas d'usage, 5 prestations (audit, outils, agents, ateliers, formations)." />
+  <meta property="og:title" content="Communication · Marketing — L'Rénov IA Studio · Vos prestations IA dans ce métier" />
+  <meta property="og:description" content="L'IA appliquée au métier communication · marketing. Exemples concrets d'interventions, cas d'usage, 5 prestations (audit, outils, agents, ateliers, formations)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lrenov-ia.studio/secteur-communication.html" />
+  <link rel="canonical" href="https://lrenov-ia.studio/secteur-communication.html" />
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+
+  <style>
+
+  /* ========================================================================
+     CHARTE — VARIABLES (identiques à index.html)
+     ======================================================================== */
+  :root{
+    --dark:#1a2229;
+    --dark2:#222b32;
+    --dark3:#2a353e;
+    --dark4:#314048;
+    --gold:#d4893a;
+    --gold2:#e8aa5c;
+    --gold-soft:rgba(212,137,58,.12);
+    --cream:#f2ead8;
+    --white:#faf8f4;
+    --muted:#8a9ab5;
+    --text:#cbd2dc;
+    --border:rgba(212,137,58,.16);
+    --border2:rgba(212,137,58,.32);
+    --border-soft:rgba(242,234,216,.06);
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'DM Sans',sans-serif;
+    background:var(--dark);
+    color:var(--text);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    cursor:none;
+  }
+  h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
+  ::-webkit-scrollbar{width:6px}
+  ::-webkit-scrollbar-track{background:var(--dark)}
+  ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+  ::selection{background:var(--gold);color:var(--dark)}
+
+  /* CURSEUR CUSTOM */
+  .cursor{
+    position:fixed;top:0;left:0;
+    width:8px;height:8px;border-radius:50%;
+    background:var(--gold);
+    pointer-events:none;z-index:9999;
+    transform:translate(-50%,-50%);
+    transition:transform .15s ease,width .25s ease,height .25s ease,background .2s ease;
+    mix-blend-mode:difference;
+  }
+  .cursor.hover{width:48px;height:48px;background:transparent;border:1px solid var(--gold)}
+  .cursor.click{transform:translate(-50%,-50%) scale(.7)}
+  .cursor-trail{
+    position:fixed;top:0;left:0;
+    width:36px;height:36px;border-radius:50%;
+    border:1px solid var(--gold);
+    pointer-events:none;z-index:9998;
+    transform:translate(-50%,-50%);
+    opacity:.4;
+    transition:transform .55s cubic-bezier(.23,1,.32,1),width .3s,height .3s;
+  }
+  .cursor-trail.hover{width:60px;height:60px;opacity:.6}
+  @media(hover:none),(max-width:1024px){
+    body{cursor:auto}
+    .cursor,.cursor-trail{display:none}
+  }
+
+  /* ========================================================================
+     NAVIGATION (identique index)
+     ======================================================================== */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    background:rgba(26,34,41,.78);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+    border-bottom:1px solid var(--border-soft);
+    transition:all .3s ease;
+  }
+  nav.scrolled{background:rgba(26,34,41,.95);border-bottom-color:var(--border)}
+  .nav-wrap{
+    max-width:1320px;margin:0 auto;padding:0 2.4rem;height:78px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav-logo{display:flex;align-items:center;gap:.85rem;text-decoration:none}
+  .nav-logo img{height:46px;width:46px;object-fit:contain;border-radius:6px;transition:transform .4s}
+  .nav-logo:hover img{transform:rotate(8deg) scale(1.05)}
+  .nav-logo-text{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:600;font-size:.98rem;color:var(--cream);
+    line-height:1.2;letter-spacing:-.01em;white-space:nowrap;
+  }
+  .nav-logo-text span{color:var(--gold)}
+
+  .nav-links{display:flex;gap:.4rem;list-style:none;align-items:center}
+  .nav-links > li{position:relative}
+  .nav-links a{
+    color:rgba(242,234,216,.55);text-decoration:none;
+    font-size:.74rem;font-weight:500;letter-spacing:.06em;
+    text-transform:uppercase;padding:.6rem 1rem;border-radius:4px;
+    transition:all .25s;
+    display:inline-flex;align-items:center;gap:.35rem;position:relative;
+  }
+  .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+  .nav-links a.active::after{
+    content:"";position:absolute;
+    bottom:.15rem;left:1rem;right:1rem;height:1px;background:var(--gold);
+  }
+  .nav-links .has-mega::after{content:"";display:inline-block;width:6px;height:6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);margin-left:.2rem;opacity:.6}
+  .nav-links li.has-mega-li::after{
+    content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+    width:160px;height:18px;background:transparent;z-index:201;
+  }
+
+  .mega{
+    position:absolute;top:calc(100% + 12px);left:50%;
+    transform:translateX(-50%) translateY(-12px);
+    background:rgba(34,43,50,.96);
+    backdrop-filter:blur(24px) saturate(160%);
+    -webkit-backdrop-filter:blur(24px) saturate(160%);
+    border:1px solid var(--border);border-radius:14px;padding:1.6rem;width:720px;
+    display:grid;grid-template-columns:1fr 1fr;gap:.6rem;
+    opacity:0;pointer-events:none;
+    transition:opacity .3s ease,transform .3s cubic-bezier(.23,1,.32,1);
+    box-shadow:0 32px 80px rgba(0,0,0,.6);z-index:202;
+  }
+  .nav-links li:hover .mega,.nav-links li:focus-within .mega{
+    opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);
+  }
+  .mega::before{
+    content:"";position:absolute;top:-7px;left:50%;
+    transform:translateX(-50%) rotate(45deg);width:13px;height:13px;
+    background:rgba(34,43,50,.96);
+    border-left:1px solid var(--border);border-top:1px solid var(--border);
+  }
+  .mega a.mega-overview{
+    grid-column:1/-1;padding:.85rem 1rem;
+    background:linear-gradient(135deg,rgba(212,137,58,.12) 0%,rgba(232,170,92,.06) 100%);
+    border:1px solid var(--border2);border-radius:8px;
+    color:var(--gold);font-weight:600;font-size:.78rem;
+    text-align:center;text-transform:uppercase;letter-spacing:.1em;
+    transition:all .25s;display:block;
+  }
+  .mega a.mega-overview:hover{background:var(--gold);color:var(--dark)}
+  .mega a.mega-item{
+    display:flex;align-items:flex-start;gap:.85rem;
+    padding:.9rem 1rem;border-radius:8px;border:1px solid transparent;
+    text-transform:none;letter-spacing:0;color:var(--cream);transition:all .25s;
+  }
+  .mega a.mega-item:hover{
+    background:rgba(212,137,58,.08);border-color:var(--border);transform:translateX(2px);
+  }
+  .mega-icon{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:all .3s;margin-top:.2rem;background:none;border:none}
+  .mega a.mega-item:hover .mega-icon{color:var(--gold2);transform:translateX(2px);background:none;border:none}
+  .mega-icon svg{width:22px;height:22px;stroke:currentColor;fill:none}
+  .mega-content{display:flex;flex-direction:column;gap:.15rem;flex:1}
+  .mega-content strong{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.88rem;color:var(--cream)}
+  .mega-content span.desc{font-size:.74rem;color:rgba(242,234,216,.55);font-weight:400;line-height:1.5}
+
+  .nav-btn{
+    border:1px solid var(--gold);color:var(--gold);
+    padding:.55rem 1.2rem;border-radius:4px;
+    font-size:.72rem;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;text-decoration:none;
+    transition:all .25s;white-space:nowrap;position:relative;overflow:hidden;
+  }
+  .nav-btn::before{
+    content:"";position:absolute;inset:0;
+    background:var(--gold);transform:translateX(-101%);transition:transform .35s ease;z-index:-1;
+  }
+  .nav-btn:hover{color:var(--dark)}
+  .nav-btn:hover::before{transform:translateX(0)}
+
+  .nav-mobile-btn{
+    display:none;background:none;border:1px solid var(--border);
+    color:var(--cream);font-size:1.3rem;cursor:pointer;padding:.5rem .7rem;border-radius:4px;
+  }
+  .nav-mobile{
+    display:none;flex-direction:column;background:rgba(26,34,41,.99);
+    border-top:1px solid var(--border);padding:1.2rem 2rem;
+    max-height:calc(100vh - 78px);overflow-y:auto;
+  }
+  .nav-mobile a{
+    color:rgba(242,234,216,.7);text-decoration:none;
+    font-size:.92rem;font-weight:500;
+    padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,.04);letter-spacing:.04em;
+  }
+  .nav-mobile a.sub{padding-left:1.2rem;font-size:.82rem;color:rgba(242,234,216,.5)}
+  .nav-mobile a:hover{color:var(--gold)}
+  .nav-mobile.open{display:flex}
+
+  /* ========================================================================
+     UTILITAIRES
+     ======================================================================== */
+  section{padding:7rem 2rem;position:relative}
+  .wrap{max-width:1280px;margin:0 auto}
+  .wrap-narrow{max-width:1100px;margin:0 auto}
+
+  .eyebrow{
+    font-size:.7rem;font-weight:600;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;
+    display:flex;align-items:center;gap:.7rem;
+  }
+  .eyebrow::before{
+    content:"";width:32px;height:1px;background:var(--gold);
+    transform:scaleX(0);transform-origin:left;
+    animation:lineGrow .8s ease forwards;animation-delay:.2s;
+  }
+  .eyebrow.c{justify-content:center}
+  .eyebrow.c::before{display:none}
+  @keyframes lineGrow{to{transform:scaleX(1)}}
+
+  .stitle{
+    font-weight:700;font-size:clamp(2rem,3.8vw,3rem);
+    letter-spacing:-.02em;line-height:1.1;color:var(--cream);margin-bottom:1.2rem;
+  }
+  .stitle em{
+    color:var(--gold);font-style:italic;
+    background:linear-gradient(110deg,var(--gold) 0%,var(--gold2) 50%,var(--gold) 100%);
+    background-size:200% auto;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation:shimmer 5s linear infinite;
+  }
+  @keyframes shimmer{0%{background-position:0% center}100%{background-position:200% center}}
+
+  .ssub{font-size:1rem;color:var(--text);max-width:720px;line-height:1.75;opacity:.7}
+
+  /* Boutons */
+  .btn-gold{
+    background:var(--gold);color:var(--dark);
+    padding:1.05rem 2.2rem;border-radius:4px;
+    font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;
+    text-decoration:none;display:inline-block;border:none;cursor:pointer;
+    transition:all .3s cubic-bezier(.23,1,.32,1);
+    position:relative;overflow:hidden;
+  }
+  .btn-gold span{position:relative;z-index:2}
+  .btn-gold::before{
+    content:"";position:absolute;inset:0;background:var(--gold2);
+    transform:translateX(-101%);transition:transform .35s ease;z-index:1;
+  }
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(212,137,58,.28)}
+  .btn-gold:hover::before{transform:translateX(0)}
+
+  .btn-outline-gold{
+    border:1px solid var(--gold);color:var(--gold);
+    padding:1rem 2.1rem;border-radius:4px;
+    font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;
+    text-decoration:none;display:inline-block;background:transparent;cursor:pointer;
+    transition:all .3s;position:relative;overflow:hidden;
+  }
+  .btn-outline-gold::before{
+    content:"";position:absolute;inset:0;background:var(--gold);
+    transform:translateX(-101%);transition:transform .35s ease;
+  }
+  .btn-outline-gold span{position:relative;z-index:1;transition:color .3s}
+  .btn-outline-gold:hover span{color:var(--dark)}
+  .btn-outline-gold:hover::before{transform:translateX(0)}
+
+  .hero-cta-secondary{
+    color:var(--cream);text-decoration:none;
+    font-size:.86rem;font-weight:500;letter-spacing:.04em;
+    display:inline-flex;align-items:center;gap:.5rem;
+    padding:.85rem 1rem;border-radius:4px;
+    position:relative;transition:color .25s;
+  }
+  .hero-cta-secondary::after{
+    content:"";position:absolute;bottom:.3rem;left:1rem;right:1rem;
+    height:1px;background:rgba(242,234,216,.3);transform:scaleX(.4);transform-origin:left;
+    transition:transform .35s ease,background .35s ease;
+  }
+  .hero-cta-secondary:hover{color:var(--gold)}
+  .hero-cta-secondary:hover::after{transform:scaleX(1);background:var(--gold)}
+  .hero-cta-secondary svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.5;fill:none}
+
+  /* Animations apparition */
+  .fu{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.23,1,.32,1),transform .9s cubic-bezier(.23,1,.32,1)}
+  .fu.in{opacity:1;transform:translateY(0)}
+  .fu-d1{transition-delay:.08s}
+  .fu-d2{transition-delay:.16s}
+  .fu-d3{transition-delay:.24s}
+  .fu-d4{transition-delay:.32s}
+  .fu-d5{transition-delay:.40s}
+  .fu-d6{transition-delay:.48s}
+
+  /* ========================================================================
+     HERO — formations
+     ======================================================================== */
+  .hero{
+    min-height:78vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:9rem 2rem 5rem;
+    position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 18% 30%,rgba(212,137,58,.10) 0%,transparent 55%),
+      radial-gradient(circle at 80% 70%,rgba(232,170,92,.08) 0%,transparent 55%);
+    pointer-events:none;
+  }
+  .hero-glow{
+    position:absolute;width:560px;height:560px;border-radius:50%;
+    background:radial-gradient(circle,rgba(212,137,58,.15) 0%,transparent 60%);
+    filter:blur(40px);animation:floatGlow 18s ease-in-out infinite alternate;pointer-events:none;
+  }
+  .hero-glow.g1{top:-260px;right:-180px}
+  .hero-glow.g2{bottom:-340px;left:-260px;animation-delay:-9s;background:radial-gradient(circle,rgba(232,170,92,.12) 0%,transparent 60%)}
+  @keyframes floatGlow{0%{transform:translate(0,0)}100%{transform:translate(60px,-50px)}}
+
+  .hero-inner{position:relative;z-index:2;max-width:920px;margin:0 auto}
+  .hero-eyebrow{
+    font-size:.7rem;font-weight:600;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:2rem;
+    display:inline-flex;align-items:center;gap:.85rem;
+  }
+  .hero-eyebrow::before,.hero-eyebrow::after{
+    content:"";width:42px;height:1px;background:var(--gold);
+  }
+  .hero h1{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:clamp(2.2rem,5.2vw,3.8rem);
+    font-weight:700;line-height:1.08;letter-spacing:-.02em;
+    color:var(--cream);margin-bottom:1.6rem;
+  }
+  .hero h1 em{
+    color:var(--gold);font-style:italic;
+    background:linear-gradient(110deg,var(--gold) 0%,var(--gold2) 50%,var(--gold) 100%);
+    background-size:200% auto;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation:shimmer 5s linear infinite;
+  }
+  .hero-divider{
+    width:60px;height:1px;background:var(--gold);
+    margin:1.8rem auto;opacity:.6;
+  }
+  .hero-sub{
+    font-size:1.05rem;color:var(--text);max-width:680px;margin:0 auto 2.2rem;
+    line-height:1.75;opacity:.78;
+  }
+  .hero-cta{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;align-items:center}
+
+  /* ========================================================================
+     ANCRES — 3 modes
+     ======================================================================== */
+  .modes-anchors{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;
+    margin-top:3.6rem;
+  }
+  .mode-anchor{
+    text-decoration:none;color:var(--cream);
+    background:rgba(34,43,50,.5);
+    border:1px solid var(--border);border-radius:12px;
+    padding:1.5rem 1.4rem;
+    transition:all .35s cubic-bezier(.23,1,.32,1);
+    text-align:left;display:flex;flex-direction:column;gap:.5rem;
+    position:relative;overflow:hidden;
+  }
+  .mode-anchor::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:var(--gold);transform:scaleX(0);transform-origin:left;
+    transition:transform .4s ease;
+  }
+  .mode-anchor:hover{
+    border-color:var(--border2);transform:translateY(-4px);
+    background:rgba(34,43,50,.7);
+    box-shadow:0 18px 40px rgba(0,0,0,.3);
+  }
+  .mode-anchor:hover::before{transform:scaleX(1)}
+  .mode-anchor-letter{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:.7rem;font-weight:700;letter-spacing:.2em;color:var(--gold);
+    text-transform:uppercase;
+  }
+  .mode-anchor-title{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:1.1rem;font-weight:600;color:var(--cream);line-height:1.25;
+  }
+  .mode-anchor-desc{font-size:.84rem;color:rgba(242,234,216,.55);line-height:1.55}
+  .mode-anchor-arrow{
+    margin-top:.6rem;font-size:.74rem;color:var(--gold);letter-spacing:.06em;
+    text-transform:uppercase;font-weight:600;
+  }
+
+  /* ========================================================================
+     SECTION TITRE DE MODE
+     ======================================================================== */
+  .mode-section{position:relative}
+  .mode-section::before{
+    content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:120px;height:1px;background:var(--gold);opacity:.4;
+  }
+  .mode-label{
+    display:inline-flex;align-items:center;gap:.8rem;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:.74rem;font-weight:700;letter-spacing:.22em;
+    color:var(--gold);text-transform:uppercase;margin-bottom:1rem;
+  }
+  .mode-label-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:32px;height:32px;border-radius:50%;
+    background:rgba(212,137,58,.15);border:1px solid var(--border2);
+    font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:700;
+    color:var(--gold);
+  }
+
+  /* ========================================================================
+     MODE A — CATALOGUE : programmes par secteur
+     ======================================================================== */
+  .programmes-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;
+    margin-top:3rem;
+  }
+  .programme{
+    background:linear-gradient(165deg,rgba(34,43,50,.6) 0%,rgba(26,34,41,.4) 100%);
+    border:1px solid var(--border);border-radius:14px;
+    padding:1.8rem;
+    transition:all .35s cubic-bezier(.23,1,.32,1);
+    position:relative;overflow:hidden;
+    text-decoration:none;color:inherit;display:flex;flex-direction:column;
+  }
+  .programme::before{
+    content:"";position:absolute;
+    top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    transform:scaleX(0);transform-origin:left;transition:transform .5s ease;
+  }
+  .programme::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(212,137,58,.07) 0%,transparent 50%);
+    opacity:0;transition:opacity .4s;pointer-events:none;
+  }
+  .programme:hover{
+    border-color:var(--border2);transform:translateY(-6px);
+    box-shadow:0 26px 60px rgba(0,0,0,.45);
+  }
+  .programme:hover::before{transform:scaleX(1)}
+  .programme:hover::after{opacity:1}
+  .programme-icon{
+    width:48px;height:48px;border-radius:10px;
+    background:rgba(212,137,58,.1);border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:1.2rem;color:var(--gold);transition:all .3s;
+  }
+  .programme:hover .programme-icon{
+    background:var(--gold);color:var(--dark);transform:rotate(-6deg) scale(1.05);
+  }
+  .programme-icon svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.5;fill:none}
+  .programme-eyebrow{
+    font-size:.66rem;font-weight:600;letter-spacing:.18em;
+    color:var(--gold);text-transform:uppercase;margin-bottom:.6rem;
+  }
+  .programme-title{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:1.25rem;font-weight:700;color:var(--cream);
+    margin-bottom:.7rem;line-height:1.25;
+  }
+  .programme-desc{
+    font-size:.9rem;color:rgba(242,234,216,.62);
+    line-height:1.65;margin-bottom:1.4rem;flex:1;
+  }
+  .programme-meta{
+    display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem;
+  }
+  .programme-tag{
+    font-size:.7rem;font-weight:500;letter-spacing:.04em;
+    padding:.25rem .65rem;border-radius:50px;
+    background:rgba(212,137,58,.08);border:1px solid var(--border);
+    color:var(--cream);
+  }
+  .programme-tag.alur{background:rgba(232,170,92,.12);border-color:var(--border2);color:var(--gold2)}
+  .programme-link{
+    color:var(--gold);font-size:.78rem;font-weight:600;
+    letter-spacing:.08em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:.4rem;
+    margin-top:auto;
+  }
+  .programme-link svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.8;fill:none;transition:transform .3s}
+  .programme:hover .programme-link svg{transform:translateX(4px)}
+
+  /* ========================================================================
+     LES 2 VOIES (Direct vs OF porteur)
+     ======================================================================== */
+  .voies-wrap{
+    margin-top:4.5rem;
+  }
+  .voies-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;
+    margin-top:2.4rem;
+  }
+  .voie{
+    background:linear-gradient(165deg,rgba(34,43,50,.6) 0%,rgba(26,34,41,.4) 100%);
+    border:1px solid var(--border);border-radius:14px;padding:2.2rem;
+    position:relative;transition:all .4s;
+  }
+  .voie:hover{border-color:var(--border2);transform:translateY(-3px)}
+  .voie-head{
+    display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;
+    padding-bottom:1.4rem;border-bottom:1px solid var(--border-soft);
+  }
+  .voie-num{
+    width:56px;height:56px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(212,137,58,.12);border:1px solid var(--border2);
+    font-family:'Plus Jakarta Sans',sans-serif;font-size:1.35rem;font-weight:700;
+    color:var(--gold);flex-shrink:0;
+  }
+  .voie-headtext{flex:1}
+  .voie-eyebrow{
+    font-size:.66rem;font-weight:700;letter-spacing:.2em;
+    color:var(--gold);text-transform:uppercase;margin-bottom:.3rem;
+  }
+  .voie-title{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:1.35rem;font-weight:700;color:var(--cream);line-height:1.2;
+  }
+  .voie-points{list-style:none;padding:0;margin:0 0 1.4rem}
+  .voie-points li{
+    padding:.55rem 0 .55rem 1.6rem;font-size:.92rem;color:var(--text);
+    line-height:1.55;position:relative;
+  }
+  .voie-points li::before{
+    content:"";position:absolute;left:0;top:1rem;
+    width:8px;height:8px;border-radius:50%;background:var(--gold);
+  }
+  .voie-points li strong{color:var(--cream);font-weight:600}
+
+  .voie-partners{
+    background:rgba(26,34,41,.5);border:1px solid var(--border);border-radius:10px;
+    padding:1.2rem;margin-top:1rem;
+  }
+  .voie-partners-title{
+    font-size:.7rem;font-weight:700;letter-spacing:.18em;
+    color:var(--gold);text-transform:uppercase;margin-bottom:.9rem;
+  }
+  .voie-partner{
+    display:flex;align-items:baseline;gap:.7rem;
+    padding:.55rem 0;border-bottom:1px solid var(--border-soft);
+    font-size:.88rem;
+  }
+  .voie-partner:last-child{border-bottom:none}
+  .voie-partner-name{
+    color:var(--cream);font-weight:600;min-width:170px;
+  }
+  .voie-partner-scope{color:rgba(242,234,216,.6);font-size:.84rem;flex:1}
+
+  .voie-foot{
+    margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid var(--border-soft);
+    font-size:.82rem;color:rgba(242,234,216,.5);line-height:1.6;
+  }
+  .voie-foot strong{color:var(--gold);font-weight:600}
+
+  /* ========================================================================
+     MODE B — STUDIO COPILOTE
+     ======================================================================== */
+  .copilote{
+    background:linear-gradient(135deg,rgba(34,43,50,.7) 0%,rgba(26,34,41,.5) 100%);
+    border:1px solid var(--border2);border-radius:16px;
+    padding:3rem;margin-top:3rem;
+    display:grid;grid-template-columns:1.3fr 1fr;gap:3rem;
+    position:relative;overflow:hidden;
+  }
+  .copilote::before{
+    content:"";position:absolute;top:-50%;right:-30%;
+    width:80%;height:200%;
+    background:radial-gradient(circle,rgba(212,137,58,.08) 0%,transparent 60%);
+    pointer-events:none;
+  }
+  .copilote-left{position:relative;z-index:1}
+  .copilote-tag{
+    display:inline-block;
+    font-size:.66rem;font-weight:700;letter-spacing:.2em;color:var(--gold);
+    text-transform:uppercase;padding:.4rem .85rem;border-radius:50px;
+    background:rgba(212,137,58,.12);border:1px solid var(--border2);
+    margin-bottom:1.2rem;
+  }
+  .copilote-title{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;
+    color:var(--cream);line-height:1.15;letter-spacing:-.01em;margin-bottom:1rem;
+  }
+  .copilote-title em{
+    color:var(--gold);font-style:italic;
+    background:linear-gradient(110deg,var(--gold) 0%,var(--gold2) 50%,var(--gold) 100%);
+    background-size:200% auto;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation:shimmer 5s linear infinite;
+  }
+  .copilote-sub{
+    font-size:1rem;color:var(--text);line-height:1.7;opacity:.78;margin-bottom:1.6rem;
+  }
+  .copilote-pillars{
+    display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.8rem;
+  }
+  .copilote-pillar{
+    padding:1rem;background:rgba(26,34,41,.5);
+    border:1px solid var(--border);border-radius:10px;
+  }
+  .copilote-pillar-title{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:.86rem;font-weight:600;color:var(--gold);margin-bottom:.35rem;
+  }
+  .copilote-pillar-desc{
+    font-size:.82rem;color:rgba(242,234,216,.6);line-height:1.55;
+  }
+
+  .copilote-right{
+    position:relative;z-index:1;
+    background:rgba(26,34,41,.6);border:1px solid var(--border);border-radius:14px;
+    padding:1.8rem;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .copilote-formula{
+    font-size:.7rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;
+    font-weight:700;margin-bottom:1rem;
+  }
+  .copilote-features{list-style:none;padding:0;margin:0 0 1.6rem}
+  .copilote-features li{
+    padding:.65rem 0 .65rem 1.8rem;font-size:.92rem;color:var(--text);
+    line-height:1.5;position:relative;border-bottom:1px solid var(--border-soft);
+  }
+  .copilote-features li:last-child{border-bottom:none}
+  .copilote-features li::before{
+    content:"";position:absolute;left:0;top:1rem;
+    width:12px;height:12px;
+    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4893a' stroke-width='2'><polyline points='20 6 9 17 4 12'/></svg>") no-repeat center;
+  }
+  .copilote-features li strong{color:var(--cream);font-weight:600}
+  .copilote-note{
+    font-size:.76rem;color:rgba(242,234,216,.45);font-style:italic;
+    padding:.8rem 1rem;background:rgba(212,137,58,.05);border-left:2px solid var(--gold);
+    border-radius:4px;margin-bottom:1.4rem;
+  }
+
+  /* ========================================================================
+     MODE C — INSTITUT IA Skool
+     ======================================================================== */
+  .institut-card{
+    background:
+      linear-gradient(135deg,rgba(34,43,50,.7) 0%,rgba(26,34,41,.5) 100%),
+      radial-gradient(circle at 80% 20%,rgba(212,137,58,.15) 0%,transparent 50%);
+    border:1px solid var(--border2);border-radius:16px;
+    padding:3rem;margin-top:3rem;
+    display:grid;grid-template-columns:1.3fr 1fr;gap:3rem;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .institut-eyebrow{
+    display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1.2rem;
+    font-size:.7rem;letter-spacing:.2em;color:var(--gold);
+    text-transform:uppercase;font-weight:700;
+  }
+  .badge-skool{
+    background:var(--gold);color:var(--dark);padding:.25rem .7rem;
+    border-radius:50px;font-size:.66rem;font-weight:700;letter-spacing:.12em;
+  }
+  .institut-title{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;
+    color:var(--cream);line-height:1.15;letter-spacing:-.01em;margin-bottom:1rem;
+  }
+  .institut-title em{
+    color:var(--gold);font-style:italic;
+    background:linear-gradient(110deg,var(--gold) 0%,var(--gold2) 50%,var(--gold) 100%);
+    background-size:200% auto;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation:shimmer 5s linear infinite;
+  }
+  .institut-sub{
+    font-size:1rem;color:var(--text);line-height:1.7;opacity:.78;margin-bottom:1rem;
+  }
+  .institut-revenue{
+    font-size:.92rem;color:rgba(242,234,216,.65);line-height:1.65;margin-bottom:1.8rem;
+  }
+  .institut-revenue strong{color:var(--gold);font-weight:600}
+  .institut-cta{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+
+  .institut-benefits{
+    background:rgba(26,34,41,.5);border:1px solid var(--border);border-radius:14px;
+    padding:1.6rem;display:flex;flex-direction:column;gap:1.1rem;
+  }
+  .benefit-item{display:flex;gap:1rem;align-items:flex-start}
+  .benefit-check{
+    width:34px;height:34px;border-radius:50%;
+    background:rgba(212,137,58,.12);border:1px solid var(--border2);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    color:var(--gold);
+  }
+  .benefit-check.green{background:rgba(52,168,83,.12);border-color:rgba(52,168,83,.3);color:#34a853}
+  .benefit-check svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+  .benefit-content{flex:1}
+  .benefit-title{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:.95rem;font-weight:600;color:var(--cream);margin-bottom:.25rem;
+  }
+  .benefit-desc{font-size:.82rem;color:rgba(242,234,216,.55);line-height:1.55}
+
+  /* ========================================================================
+     COMMENT ÇA SE PASSE — méthode
+     ======================================================================== */
+  .methode-steps{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3rem;
+  }
+  .methode-step{
+    background:rgba(34,43,50,.4);border:1px solid var(--border);border-radius:12px;
+    padding:1.6rem;position:relative;transition:all .35s;
+  }
+  .methode-step:hover{
+    border-color:var(--border2);background:rgba(34,43,50,.6);transform:translateY(-3px);
+  }
+  .methode-step-num{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:2.4rem;font-weight:700;color:var(--gold);
+    line-height:1;margin-bottom:.6rem;opacity:.85;
+  }
+  .methode-step-title{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:.5rem;
+  }
+  .methode-step-desc{font-size:.84rem;color:rgba(242,234,216,.6);line-height:1.6}
+
+  /* ========================================================================
+     CTA FINAL
+     ======================================================================== */
+  .cta-final{
+    background:
+      linear-gradient(165deg,rgba(34,43,50,.7) 0%,rgba(26,34,41,.5) 100%),
+      radial-gradient(circle at 20% 30%,rgba(212,137,58,.12) 0%,transparent 50%);
+    border:1px solid var(--border2);border-radius:16px;
+    padding:3.5rem 3rem;text-align:center;margin-top:3rem;
+  }
+  .cta-final h2{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;
+    color:var(--cream);line-height:1.15;letter-spacing:-.01em;margin-bottom:1rem;
+  }
+  .cta-final h2 em{
+    color:var(--gold);font-style:italic;
+    background:linear-gradient(110deg,var(--gold) 0%,var(--gold2) 50%,var(--gold) 100%);
+    background-size:200% auto;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    animation:shimmer 5s linear infinite;
+  }
+  .cta-final p{
+    font-size:1rem;color:var(--text);max-width:620px;margin:0 auto 2rem;
+    line-height:1.7;opacity:.78;
+  }
+  .cta-final-actions{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap}
+
+  /* ========================================================================
+     FOOTER
+     ======================================================================== */
+  footer{
+    background:#13191e;color:rgba(242,234,216,.5);
+    padding:4rem 2rem 2rem;border-top:1px solid var(--border-soft);position:relative;
+  }
+  .foot-wrap{
+    max-width:1280px;margin:0 auto;
+    display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;
+  }
+  .foot-col h4{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:.74rem;font-weight:700;letter-spacing:.22em;
+    color:var(--gold);text-transform:uppercase;margin-bottom:1.4rem;
+    display:flex;align-items:center;gap:.6rem;
+  }
+  .foot-col h4::after{
+    content:"";flex:1;height:1px;background:var(--border-soft);max-width:48px;
+  }
+  .foot-col a{
+    display:block;font-size:.86rem;color:rgba(242,234,216,.5);
+    text-decoration:none;padding:.4rem 0;transition:all .25s;
+    position:relative;padding-left:0;
+  }
+  .foot-col a::before{
+    content:"";position:absolute;left:-12px;top:50%;transform:translateY(-50%);
+    width:0;height:1px;background:var(--gold);transition:width .25s;
+  }
+  .foot-col a:hover{color:var(--gold);padding-left:14px}
+  .foot-col a:hover::before{width:8px}
+
+  .foot-brand{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:1.2rem;
+    color:var(--cream);margin-bottom:.8rem;letter-spacing:-.01em;
+  }
+  .foot-brand span{color:var(--gold)}
+  .foot-tagline{
+    font-size:.88rem;line-height:1.75;color:rgba(242,234,216,.5);
+    max-width:360px;margin-bottom:1.5rem;
+  }
+  .foot-social{display:flex;gap:.7rem;margin-top:1.4rem}
+  .foot-social a{
+    width:40px;height:40px;border-radius:50%;background:rgba(34,43,50,.6);
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(242,234,216,.55);
+    transition:all .3s cubic-bezier(.23,1,.32,1);
+    border:1px solid var(--border-soft);padding:0;
+  }
+  .foot-social a::before{display:none}
+  .foot-social a:hover{
+    background:var(--gold);color:var(--dark);border-color:var(--gold);
+    transform:translateY(-4px) rotate(-6deg);
+    box-shadow:0 8px 20px rgba(212,137,58,.3);padding-left:0;
+  }
+  .foot-social svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.5;fill:none}
+  .foot-contact{font-size:.82rem;line-height:1.6;color:rgba(242,234,216,.5);margin-top:.7rem;padding:.4rem 0}
+  .foot-bottom{
+    max-width:1280px;margin:0 auto;padding-top:2rem;border-top:1px solid var(--border-soft);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+    font-size:.76rem;color:rgba(242,234,216,.32);
+  }
+  .foot-bottom-links{display:flex;gap:1.6rem;flex-wrap:wrap}
+  .foot-bottom-links a{color:rgba(242,234,216,.4);text-decoration:none;transition:color .25s;font-size:.76rem}
+  .foot-bottom-links a:hover{color:var(--gold)}
+
+  /* ========================================================================
+     RESPONSIVE
+     ======================================================================== */
+  @media(max-width:1024px){
+    .nav-links{display:none}
+    .nav-mobile-btn{display:block}
+    .nav-btn.desk{display:none}
+    section{padding:5rem 1.4rem}
+    .hero{padding:7rem 1.2rem 4rem;min-height:auto}
+    .modes-anchors{grid-template-columns:1fr;gap:1rem}
+    .programmes-grid{grid-template-columns:1fr 1fr;gap:1rem}
+    .voies-grid{grid-template-columns:1fr;gap:1.4rem}
+    .copilote,.institut-card{grid-template-columns:1fr;gap:2rem;padding:2.2rem}
+    .copilote-pillars{grid-template-columns:1fr 1fr}
+    .methode-steps{grid-template-columns:1fr 1fr;gap:1rem}
+    .foot-wrap{grid-template-columns:1fr 1fr;gap:2rem}
+  }
+  @media(max-width:680px){
+    section{padding:4rem 1.2rem}
+    .hero h1{font-size:clamp(1.7rem,8vw,2.4rem)}
+    .programmes-grid{grid-template-columns:1fr}
+    .methode-steps{grid-template-columns:1fr;gap:.8rem}
+    .copilote-pillars{grid-template-columns:1fr}
+    .voie-partner{flex-direction:column;align-items:flex-start;gap:.2rem}
+    .voie-partner-name{min-width:auto}
+    .cta-final{padding:2.4rem 1.6rem}
+    .copilote,.institut-card{padding:1.8rem}
+    .foot-wrap{grid-template-columns:1fr;gap:2rem}
+    .foot-bottom{flex-direction:column;text-align:center}
+  }
+
+
+  /* ========================================================================
+     COMPOSANTS NOUVELLE ARCHI (piliers, secteurs, parcours)
+     ======================================================================== */
+
+  /* CARDS PILIERS (assistant.html) */
+  .pilier-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-top:3rem}
+  .pilier-card{
+    background:linear-gradient(165deg,rgba(34,43,50,.6) 0%,rgba(26,34,41,.4) 100%);
+    border:1px solid var(--border);border-radius:14px;padding:2rem;
+    text-decoration:none;color:inherit;display:flex;flex-direction:column;
+    position:relative;overflow:hidden;transition:all .35s cubic-bezier(.23,1,.32,1);
+  }
+  .pilier-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    transform:scaleX(0);transform-origin:left;transition:transform .5s ease;
+  }
+  .pilier-card::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(212,137,58,.07) 0%,transparent 50%);
+    opacity:0;transition:opacity .4s;pointer-events:none;
+  }
+  .pilier-card:hover{border-color:var(--border2);transform:translateY(-6px);box-shadow:0 26px 60px rgba(0,0,0,.45)}
+  .pilier-card:hover::before{transform:scaleX(1)}
+  .pilier-card:hover::after{opacity:1}
+  .pilier-emoji{font-size:2.2rem;margin-bottom:1rem;line-height:1}
+  .pilier-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.45rem;font-weight:700;color:var(--cream);margin-bottom:.7rem;line-height:1.2}
+  .pilier-desc{font-size:.95rem;color:rgba(242,234,216,.7);line-height:1.7;margin-bottom:1.3rem;flex:1}
+  .pilier-desc strong{color:var(--cream)}
+  .pilier-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
+  .pilier-tag{
+    font-size:.7rem;font-weight:600;letter-spacing:.04em;
+    padding:.3rem .75rem;border-radius:50px;
+    background:rgba(212,137,58,.1);border:1px solid var(--border);color:var(--gold2);
+  }
+  .pilier-cta{
+    color:var(--gold);font-size:.78rem;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;display:inline-flex;align-items:center;gap:.5rem;margin-top:auto;
+  }
+  .pilier-cta svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.8;fill:none;transition:transform .3s}
+  .pilier-card:hover .pilier-cta svg{transform:translateX(5px)}
+
+  /* TABLEAU COMPARATIF */
+  .compare-table{width:100%;border-collapse:separate;border-spacing:0;margin:2rem 0;background:rgba(26,34,41,.4);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  .compare-table th,.compare-table td{padding:1rem 1.2rem;text-align:left;border-bottom:1px solid var(--border-soft)}
+  .compare-table thead th{background:rgba(212,137,58,.08);font-family:'Plus Jakarta Sans',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .compare-table tbody tr:last-child td{border-bottom:none}
+  .compare-table tbody tr:hover{background:rgba(212,137,58,.04)}
+  .compare-table td strong{color:var(--cream);font-weight:600}
+
+  /* SECTEUR — cards epurees */
+  .sectors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.5rem}
+  .sector-card{
+    background:rgba(34,43,50,.5);border:1px solid var(--border);border-radius:12px;
+    padding:1.6rem;text-decoration:none;color:inherit;
+    display:flex;flex-direction:column;gap:.6rem;
+    position:relative;overflow:hidden;transition:all .35s;
+  }
+  .sector-card::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(212,137,58,.06) 0%,transparent 50%);
+    opacity:0;transition:opacity .4s;pointer-events:none;
+  }
+  .sector-card:hover{border-color:var(--border2);transform:translateY(-4px);background:rgba(34,43,50,.7)}
+  .sector-card:hover::after{opacity:1}
+  .sector-icon{
+    width:42px;height:42px;border-radius:8px;
+    background:rgba(212,137,58,.1);border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;color:var(--gold);
+  }
+  .sector-icon svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.5;fill:none}
+  .sector-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.05rem;font-weight:700;color:var(--cream);line-height:1.2;margin-top:.4rem}
+  .sector-desc{font-size:.84rem;color:rgba(242,234,216,.55);line-height:1.55;flex:1}
+  .sector-link{font-size:.72rem;color:var(--gold);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:.5rem;display:inline-flex;align-items:center;gap:.4rem}
+
+  /* PARCOURS (page formations) — cards */
+  .parcours-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.5rem}
+  .parcours-card{
+    background:linear-gradient(165deg,rgba(34,43,50,.6) 0%,rgba(26,34,41,.4) 100%);
+    border:1px solid var(--border);border-radius:14px;padding:1.8rem;
+    transition:all .35s;text-decoration:none;color:inherit;display:flex;flex-direction:column;
+  }
+  .parcours-card:hover{border-color:var(--border2);transform:translateY(-4px)}
+  .parcours-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.5rem;opacity:.85}
+  .parcours-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.2rem;font-weight:700;color:var(--cream);margin-bottom:.7rem;line-height:1.25}
+  .parcours-desc{font-size:.88rem;color:rgba(242,234,216,.65);line-height:1.65;margin-bottom:1rem;flex:1}
+  .parcours-meta{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+  .parcours-tag{font-size:.7rem;font-weight:500;padding:.25rem .65rem;border-radius:50px;background:rgba(212,137,58,.08);border:1px solid var(--border);color:var(--cream)}
+
+  /* TAB SYSTEM (pour trames) */
+  .tab-nav{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+  .tab-btn{
+    background:rgba(34,43,50,.5);border:1px solid var(--border);
+    color:var(--cream);padding:.85rem 1.4rem;border-radius:8px;
+    font-family:'Plus Jakarta Sans',sans-serif;font-size:.86rem;font-weight:600;
+    cursor:pointer;transition:all .25s;
+  }
+  .tab-btn:hover{border-color:var(--border2);background:rgba(34,43,50,.7)}
+  .tab-btn.active{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+  .tab-pane{display:none;padding-top:2rem}
+  .tab-pane.active{display:block}
+
+  /* TAB HEAD */
+  .tab-head{display:flex;align-items:center;gap:1.2rem;margin-bottom:2rem;flex-wrap:wrap}
+  .tab-head-icon{
+    width:56px;height:56px;border-radius:12px;
+    background:rgba(212,137,58,.12);border:1px solid var(--border2);
+    display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.6rem;flex-shrink:0;
+  }
+  .tab-head-text h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:700;color:var(--cream);line-height:1.15}
+  .tab-head-text p{font-size:.92rem;color:rgba(242,234,216,.6);margin-top:.3rem}
+  .tab-price{
+    background:rgba(212,137,58,.1);border:1px solid var(--border2);border-radius:8px;
+    padding:.5rem 1rem;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--gold);font-size:.95rem;
+    margin-left:auto;
+  }
+
+  /* SECTION TITLE GÉNÉRIQUE */
+  .tab-section-title{
+    font-family:'Plus Jakarta Sans',sans-serif;font-size:.78rem;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
+    margin:2rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border-soft);
+  }
+
+  /* 3 CARDS HORIZONTAL (cœur du palier, process, etc.) */
+  .triple-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.2rem 0}
+  .triple-card{
+    background:rgba(26,34,41,.5);border:1px solid var(--border);border-radius:10px;
+    padding:1.3rem;
+  }
+  .triple-card-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;font-weight:600;color:var(--gold);margin-bottom:.5rem}
+  .triple-card-desc{font-size:.86rem;color:rgba(242,234,216,.65);line-height:1.55}
+
+  /* PROCESS STEPS */
+  .process-list{list-style:none;margin:1.2rem 0}
+  .process-item{
+    display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border-soft);align-items:flex-start;
+  }
+  .process-item:last-child{border-bottom:none}
+  .process-num{
+    width:32px;height:32px;border-radius:50%;
+    background:rgba(212,137,58,.15);border:1px solid var(--border2);
+    display:flex;align-items:center;justify-content:center;color:var(--gold);
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.85rem;flex-shrink:0;
+  }
+  .process-content{flex:1;font-size:.92rem;color:var(--text);line-height:1.6}
+  .process-content strong{color:var(--cream);font-weight:600}
+
+  /* DEUX COLONNES (avantages / limites) */
+  .two-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0}
+  .col-box{background:rgba(26,34,41,.5);border:1px solid var(--border);border-radius:10px;padding:1.4rem}
+  .col-box-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:.8rem}
+  .col-box.pos .col-box-title{color:#5fa97a}
+  .col-box.neg .col-box-title{color:#dc5050}
+  .col-box ul{list-style:none;padding:0;margin:0}
+  .col-box li{padding:.45rem 0 .45rem 1.4rem;font-size:.88rem;color:var(--text);line-height:1.55;position:relative}
+  .col-box.pos li::before{content:"";position:absolute;left:0;color:#5fa97a;font-weight:700}
+  .col-box.neg li::before{content:"";position:absolute;left:0;color:#dc5050;font-weight:700}
+
+  /* EXEMPLES SECTORIELS */
+  .examples-list{margin:1rem 0}
+  .example-line{
+    display:flex;gap:1rem;padding:.75rem 0;border-bottom:1px solid var(--border-soft);
+    font-size:.88rem;color:var(--text);line-height:1.55;
+  }
+  .example-line:last-child{border-bottom:none}
+  .example-line strong{color:var(--gold);min-width:120px;flex-shrink:0;font-weight:600}
+
+  /* PROFIL ADAPTÉ / NON ADAPTÉ */
+  .for-who{margin:1.2rem 0;display:flex;flex-direction:column;gap:.7rem}
+  .for-who-line{
+    background:rgba(26,34,41,.4);border:1px solid var(--border);border-radius:10px;
+    padding:1rem 1.2rem;display:flex;gap:.8rem;align-items:flex-start;
+  }
+  .for-who-label{
+    font-family:'Plus Jakarta Sans',sans-serif;font-size:.7rem;letter-spacing:.1em;
+    text-transform:uppercase;font-weight:700;padding:.3rem .65rem;border-radius:50px;
+    flex-shrink:0;white-space:nowrap;
+  }
+  .for-who-label.ok{background:rgba(95,169,122,.15);color:#5fa97a;border:1px solid rgba(95,169,122,.3)}
+  .for-who-label.ko{background:rgba(220,80,80,.15);color:#dc5050;border:1px solid rgba(220,80,80,.3)}
+  .for-who-text{font-size:.88rem;color:var(--text);line-height:1.55;flex:1}
+
+  /* MODALITES BOX */
+  .modalites-box{
+    background:linear-gradient(135deg,rgba(212,137,58,.08) 0%,rgba(232,170,92,.04) 100%);
+    border:1px solid var(--border2);border-radius:10px;padding:1.4rem;margin-top:1.5rem;
+  }
+  .modalites-box-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.8rem}
+  .modalites-box-content{font-size:.88rem;color:var(--text);line-height:1.65}
+
+  /* RESPONSIVE */
+  @media(max-width:1024px){
+    .pilier-grid{grid-template-columns:1fr}
+    .sectors-grid{grid-template-columns:1fr 1fr}
+    .parcours-grid{grid-template-columns:1fr}
+    .triple-cards{grid-template-columns:1fr}
+    .two-cols{grid-template-columns:1fr}
+    .tab-head{flex-direction:column;align-items:flex-start}
+    .tab-price{margin-left:0}
+    .compare-table{font-size:.84rem}
+    .compare-table th,.compare-table td{padding:.7rem .8rem}
+  }
+  @media(max-width:680px){
+    .sectors-grid{grid-template-columns:1fr}
+    .example-line{flex-direction:column;gap:.2rem}
+    .example-line strong{min-width:auto}
+  }
+
+
+  /* EXEMPLES CONCRETS — section dédiée par secteur */
+  .exemples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.5rem}
+  .exemple-card{
+    background:linear-gradient(165deg,rgba(34,43,50,.6) 0%,rgba(26,34,41,.4) 100%);
+    border:1px solid var(--border);border-radius:12px;padding:1.6rem;
+    transition:all .35s cubic-bezier(.23,1,.32,1);
+    position:relative;overflow:hidden;
+  }
+  .exemple-card::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:linear-gradient(180deg,var(--gold) 0%,var(--gold2) 100%);
+    transform:scaleY(0);transform-origin:top;transition:transform .5s ease;
+  }
+  .exemple-card:hover{border-color:var(--border2);transform:translateY(-4px)}
+  .exemple-card:hover::before{transform:scaleY(1)}
+  .exemple-tag{
+    display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:.74rem;font-weight:700;letter-spacing:.08em;
+    padding:.4rem .9rem;border-radius:50px;
+    background:rgba(212,137,58,.12);border:1px solid var(--border2);
+    color:var(--gold);margin-bottom:1rem;
+  }
+  .exemple-desc{font-size:.88rem;color:var(--text);line-height:1.65}
+  .exemple-desc strong{color:var(--cream);font-weight:600}
+  @media(max-width:1024px){.exemples-grid{grid-template-columns:1fr}}
+
+  </style>
+</head>
+<body>
+
+  <!-- CURSEUR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- ========================================
+       NAVIGATION (mega-menu 5 piliers + secteurs)
+       ======================================== -->
+  <nav id="mainNav">
+    <div class="nav-wrap">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/img/logo.png" alt="L'Rénov IA Studio">
+        <div class="nav-logo-text">
+          L'Rénov <span>IA Studio</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li class="has-mega-li">
+          <a href="assistant.html" class="has-mega">Mon assistant IA</a>
+          <div class="mega">
+            <a href="assistant.html" class="mega-overview">Vue d'ensemble — Les 5 prestations →</a>
+            <a href="audit.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></div>
+              <div class="mega-content"><strong>Audit IA</strong><span class="desc">Diagnostiquer · cartographier · planifier</span></div>
+            </a>
+            <a href="outils.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+              <div class="mega-content"><strong>Outils métier</strong><span class="desc">Cœur de l'activité · sur-mesure sectoriel</span></div>
+            </a>
+            <a href="agents.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v2"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg></div>
+              <div class="mega-content"><strong>Agents IA</strong><span class="desc">Génération conversationnelle ciblée</span></div>
+            </a>
+            <a href="ateliers.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1"/><circle cx="17" cy="9" r="2.5"/><path d="M15 20v-1a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v1"/></svg></div>
+              <div class="mega-content"><strong>Ateliers</strong><span class="desc">Co-construction dirigeant + équipe</span></div>
+            </a>
+            <a href="formations.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div>
+              <div class="mega-content"><strong>Formations</strong><span class="desc">3 parcours · Qualiopi · OPCO/CPF</span></div>
+            </a>
+          </div>
+        </li>
+        <li class="has-mega-li">
+          <a href="secteurs.html" class="has-mega">Par secteur</a>
+          <div class="mega mega-sectors">
+            <a href="secteurs.html" class="mega-overview">Vue d'ensemble — Tous les secteurs adressés →</a>
+            <a href="secteur-immobilier.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2h-4v-7H10v7H5a2 2 0 0 1-2-2V10z"/></svg></div>
+              <div class="mega-content"><strong>Immobilier · ALUR</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-btp.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l4-3 4 3v11M13 21V14l4-3 4 3v7M8 14h1M8 17h1"/></svg></div>
+              <div class="mega-content"><strong>BTP · Artisans</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-finance-comptabilite.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 5h11a3 3 0 0 1 0 6H8a3 3 0 0 0 0 6h11"/></svg></div>
+              <div class="mega-content"><strong>Compta · Finance</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-assurance.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 5v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V5l-8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+              <div class="mega-content"><strong>Assurance · IARD</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-juridique.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 8h12M4 21h16M7 8l-3 6h6L7 8zm10 0l-3 6h6l-3-6z"/></svg></div>
+              <div class="mega-content"><strong>Juridique · Notariat</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-professions-liberales.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div>
+              <div class="mega-content"><strong>Professions libérales</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-communication.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8v.5a8 8 0 0 1-8 8H8l-5 2 1.5-4A8 8 0 0 1 3 11.5V11z"/></svg></div>
+              <div class="mega-content"><strong>Communication · Marketing</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+          </div>
+        </li>
+        <li><a href="ia-et-moi.html">L'IA et moi</a></li>
+        <li><a href="formations.html">Formations</a></li>
+        <li><a href="radar-ia.html">Radar IA</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <a href="https://calendly.com/laurence-lrenov-ia/30min" class="nav-btn desk">On en parle ?</a>
+      <button class="nav-mobile-btn" id="navMobBtn" aria-label="Menu">☰</button>
+    </div>
+
+    <div class="nav-mobile" id="navMob">
+      <a href="index.html">Accueil</a>
+      <a href="assistant.html">Mon assistant IA</a>
+      <a href="audit.html" class="sub">→ Audit IA</a>
+      <a href="outils.html" class="sub">→ Outils métier</a>
+      <a href="agents.html" class="sub">→ Agents IA</a>
+      <a href="ateliers.html" class="sub">→ Ateliers</a>
+      <a href="formations.html" class="sub">→ Formations</a>
+      <a href="secteurs.html">Par secteur</a>
+      <a href="secteur-immobilier.html" class="sub">→ Immobilier ALUR</a>
+      <a href="secteur-btp.html" class="sub">→ BTP · Artisans</a>
+      <a href="secteur-finance-comptabilite.html" class="sub">→ Compta · Finance</a>
+      <a href="secteur-assurance.html" class="sub">→ Assurance</a>
+      <a href="secteur-juridique.html" class="sub">→ Juridique · Notariat</a>
+      <a href="secteur-professions-liberales.html" class="sub">→ Professions libérales</a>
+      <a href="secteur-communication.html" class="sub">→ Communication</a>
+      <a href="ia-et-moi.html">L'IA et moi</a>
+      <a href="formations.html">Formations</a>
+      <a href="radar-ia.html">Radar IA</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://calendly.com/laurence-lrenov-ia/30min" style="color:var(--gold);font-weight:600;border-top:1px solid var(--border);margin-top:.5rem;padding-top:1rem">On en parle ?</a>
+    </div>
+  </nav>
+
+  <!-- ========================================
+       HERO SECTEUR
+       ======================================== -->
+  <section class="hero" style="min-height:60vh">
+    <div class="hero-glow g1"></div>
+    <div class="hero-glow g2"></div>
+
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Votre métier · vos prestations</div>
+
+      <h1>
+        <span style="font-size:3rem;display:inline-block;margin-bottom:.5rem"></span><br>
+        L'IA pour <em>Communication · Marketing.</em>
+      </h1>
+
+      <div class="hero-divider"></div>
+
+      <p class="hero-sub fu fu-d3">
+        Marketeurs indépendants, agences de communication, responsables marketing PME. Voix éditoriale conservée.<br>
+        <strong style="color:var(--cream)">Audit · Outils · Agents · Ateliers · Formations</strong> — les 5 prestations L'Rénov, appliquées à votre métier.
+      </p>
+
+      <div class="hero-cta fu fu-d4">
+        <a href="#exemples" class="btn-gold"><span>Voir 3 exemples concrets →</span></a>
+        <a href="https://calendly.com/laurence-lrenov-ia/30min" class="hero-cta-secondary">
+          On en parle 30 min
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       APPROCHE SECTEUR
+       ======================================== -->
+  <section style="padding-top:3rem">
+    <div class="wrap-narrow">
+      <div class="eyebrow fu">L'approche</div>
+      <h2 class="stitle fu fu-d1">L'angle <em>L'Rénov</em> sur ce secteur.</h2>
+      <p class="ssub fu fu-d2" style="max-width:none">
+        Pour les marketeurs indépendants, les agences de communication (petites structures), les responsables marketing en PME. Le risque numéro un quand on utilise l'IA en communication : <strong>perdre sa voix et sonner comme tout le monde</strong>. L'approche L'Rénov : capturer la voix éditoriale réelle (corpus existant, registre, sujets de prédilection, formules récurrentes) et la maintenir dans tout ce que l'outil produit.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================================
+       EXEMPLES CONCRETS (NOUVEAU)
+       ======================================== -->
+  <section id="exemples" style="background:rgba(26,34,41,.4);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft)">
+    <div class="wrap">
+      <div class="eyebrow fu">Exemples concrets</div>
+      <h2 class="stitle fu fu-d1">À quoi <em>ressemble une intervention</em> dans ce secteur.</h2>
+      <p class="ssub fu fu-d2">
+        Trois cas-type représentatifs (anonymisés pour respect de la confidentialité client).
+        Chacun correspond à une prestation différente — Outil, Agent ou Atelier — pour montrer la diversité de ce qu'on peut construire.
+      </p>
+
+      <div class="exemples-grid">
+        
+        <div class="exemple-card fu fu-d1">
+          <div class="exemple-tag">Agent</div>
+          <div class="exemple-desc">Une consultante en marketing B2B (indépendante) a fait paramétrer un agent rédacteur qui produit ses posts LinkedIn calibrés sur 200 posts existants de son corpus. Voix éditoriale conservée à 90 %. <strong>Niveau Bras droit · 2 900 €</strong>.</div>
+        </div>
+        <div class="exemple-card fu fu-d2">
+          <div class="exemple-tag">Outil</div>
+          <div class="exemple-desc">Une petite agence de communication (5 personnes) a fait construire un outil de planning éditorial multi-clients : voix éditoriale par client, planning trimestriel, validation interne, archivage. <strong>Palier Pro · 2 900 €</strong>.</div>
+        </div>
+        <div class="exemple-card fu fu-d3">
+          <div class="exemple-tag">Atelier</div>
+          <div class="exemple-desc">Un responsable marketing en PME industrielle (1 personne, 80 salariés) a fait une journée d'atelier pour capturer sa voix éditoriale puis configurer son outil de rédaction d'articles SEO. <strong>Journée · 690 €</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       CAS D'USAGE
+       ======================================== -->
+  <section>
+    <div class="wrap">
+      <div class="eyebrow fu">Ce qu'on couvre</div>
+      <h2 class="stitle fu fu-d1">Les cas d'usage <em>les plus fréquents.</em></h2>
+      <p class="ssub fu fu-d2">
+        Pas une liste exhaustive — ce sont les besoins qui reviennent le plus souvent en cadrage.
+        Votre cas réel peut sortir de cette liste, c'est normal. C'est le rôle de l'audit ou du cadrage initial.
+      </p>
+
+      <div class="triple-cards fu" style="grid-template-columns:repeat(3,1fr);margin-top:2.5rem">
+        
+        <div class="triple-card">
+          <div class="triple-card-title">Posts LinkedIn / Instagram</div>
+          <div class="triple-card-desc">Brouillons calibrés sur votre voix éditoriale réelle. Variations selon angle, format, audience.</div>
+        </div>
+        <div class="triple-card">
+          <div class="triple-card-title">Newsletters</div>
+          <div class="triple-card-desc">Structure récurrente, sélection de sujets, ton préservé. Pas une newsletter générique.</div>
+        </div>
+        <div class="triple-card">
+          <div class="triple-card-title">Scripts vidéo / podcast</div>
+          <div class="triple-card-desc">Trame, accroche, points clés, transitions. Adapté à votre format.</div>
+        </div>
+        <div class="triple-card">
+          <div class="triple-card-title">Articles de blog / SEO</div>
+          <div class="triple-card-desc">Articles longs structurés, mots-clés intégrés sans bourrage, voix conservée.</div>
+        </div>
+        <div class="triple-card">
+          <div class="triple-card-title">Calendrier éditorial</div>
+          <div class="triple-card-desc">Planning trimestriel, équilibre des sujets, rappels production.</div>
+        </div>
+        <div class="triple-card">
+          <div class="triple-card-title">Réseaux et hashtags</div>
+          <div class="triple-card-desc">Veille des sujets émergents, analyse de la concurrence, opportunités d'angle.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       LES 5 PRESTATIONS APPLIQUÉES À CE SECTEUR
+       ======================================== -->
+  <section id="palettes" style="background:rgba(26,34,41,.4);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft)">
+    <div class="wrap">
+      <div class="eyebrow fu">Comment on intervient</div>
+      <h2 class="stitle fu fu-d1">Les 5 prestations, <em>appliquées à votre secteur.</em></h2>
+      <p class="ssub fu fu-d2">
+        Chaque prestation a une page dédiée avec ses paliers, ses tarifs, son ROI. Cliquez pour voir le détail.
+      </p>
+
+      <div class="pilier-grid" style="grid-template-columns:repeat(2,1fr);margin-top:2.5rem">
+        
+        <a href="audit.html" class="pilier-card fu fu-d1">
+          <h3 class="pilier-name" style="font-size:1.15rem">Audit IA</h3>
+          <p class="pilier-desc" style="font-size:.88rem">Audit pour identifier ce qui vaut la peine d'être outillé. <strong>150-690 €</strong>.</p>
+          <div class="pilier-cta">
+            Découvrir
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+        </a>
+        <a href="outils.html" class="pilier-card fu fu-d2">
+          <h3 class="pilier-name" style="font-size:1.15rem">Outils métier</h3>
+          <p class="pilier-desc" style="font-size:.88rem">Outil rédaction sur-mesure, calibré sur votre voix éditoriale (corpus existant analysé). <strong>1 490-6 990 €+</strong>.</p>
+          <div class="pilier-cta">
+            Découvrir
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+        </a>
+        <a href="agents.html" class="pilier-card fu fu-d3">
+          <h3 class="pilier-name" style="font-size:1.15rem">Agents IA</h3>
+          <p class="pilier-desc" style="font-size:.88rem">Agent rédacteur conversationnel, calibré sur votre style. Souvent le bon choix ici. <strong>690-4 500 €</strong>.</p>
+          <div class="pilier-cta">
+            Découvrir
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+        </a>
+        <a href="ateliers.html" class="pilier-card fu fu-d4">
+          <h3 class="pilier-name" style="font-size:1.15rem">Ateliers</h3>
+          <p class="pilier-desc" style="font-size:.88rem">Atelier de capture de voix éditoriale, puis configuration de l'outil. <strong>390-890 €</strong>.</p>
+          <div class="pilier-cta">
+            Découvrir
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+        </a>
+        <a href="formations.html" class="pilier-card fu fu-d5">
+          <h3 class="pilier-name" style="font-size:1.15rem">Formations</h3>
+          <p class="pilier-desc" style="font-size:.88rem">Formation IA pour communicants, finançable OPCO (Labacademy) ou CPF (CréActifs).</p>
+          <div class="pilier-cta">
+            Découvrir
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       POUR QUI
+       ======================================== -->
+  <section>
+    <div class="wrap-narrow">
+      <div class="eyebrow fu">Profil</div>
+      <h2 class="stitle fu fu-d1">À qui ça <em>parle vraiment.</em></h2>
+
+      <div class="for-who" style="margin-top:2rem">
+        <div class="for-who-line fu fu-d1">
+          <div class="for-who-label ok">Profil adapté</div>
+          <div class="for-who-text">Indépendant en communication qui produit beaucoup de contenu et veut un assistant qui colle à sa voix. Petite agence (1-8 personnes) qui veut industrialiser sans perdre ses clients (qui les ont choisis pour LEUR voix). Responsable marketing PME qui produit seul beaucoup de contenus.</div>
+        </div>
+        <div class="for-who-line fu fu-d2">
+          <div class="for-who-label ko">Profil non adapté</div>
+          <div class="for-who-text">Grande agence avec 30+ rédacteurs et des process déjà industrialisés (l'apport sera marginal). Marketeur qui veut juste tester l'IA générative sur 2 posts (passer par l'Institut Skool ou la formation socle).</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       CTA FINAL
+       ======================================== -->
+  <section>
+    <div class="wrap">
+      <div style="background:linear-gradient(165deg,rgba(34,43,50,.7) 0%,rgba(26,34,41,.5) 100%),radial-gradient(circle at 20% 30%,rgba(212,137,58,.12) 0%,transparent 50%);border:1px solid var(--border2);border-radius:16px;padding:3.5rem 3rem;text-align:center" class="fu">
+        <div class="eyebrow c">Prêt à cadrer votre cas ?</div>
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--cream);line-height:1.15;letter-spacing:-.01em;margin-bottom:1rem">
+          30 minutes pour <em style="font-style:italic;background:linear-gradient(110deg,var(--gold) 0%,var(--gold2) 50%,var(--gold) 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">identifier le bon point d'entrée.</em>
+        </h2>
+        <p style="font-size:1rem;color:var(--text);max-width:620px;margin:0 auto 2rem;line-height:1.7;opacity:.78">
+          Un appel gratuit pour parler de votre situation concrète. On choisit ensemble la bonne prestation (Audit, Outil, Agent, Atelier ou Formation) et on cale les prochaines étapes.
+        </p>
+        <div style="display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap">
+          <a href="https://calendly.com/laurence-lrenov-ia/30min" class="btn-gold"><span>Prendre RDV 30 min</span></a>
+          <a href="assistant.html" class="hero-cta-secondary">
+            Voir l'ensemble des prestations
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ========================================
+       FOOTER
+       ======================================== -->
+  <footer>
+    <div class="foot-wrap">
+      <div class="foot-col">
+        <div class="foot-brand">L'Rénov <span>IA Studio</span></div>
+        <div class="foot-tagline">
+          Votre métier en mémoire. Votre style en sortie.<br>
+          Pas un outil de plus. Le vôtre.
+        </div>
+        <div class="foot-social">
+          <a href="https://www.linkedin.com/in/laurence-borras-l-renov-ia-studio-31b0992a2" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/laurence_lrenov_ia_studio" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
+          </a>
+          <a href="https://www.facebook.com/LaurenceBorrasLRenovEspacesetIA" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4>Prestations</h4>
+        <a href="audit.html">Audit IA</a>
+        <a href="outils.html">Outils métier</a>
+        <a href="agents.html">Agents IA</a>
+        <a href="ateliers.html">Ateliers</a>
+        <a href="formations.html">Formations</a>
+      </div>
+
+      <div class="foot-col">
+        <h4>Par secteur</h4>
+        <a href="secteur-immobilier.html">Immobilier · ALUR</a>
+        <a href="secteur-btp.html">BTP · Artisans</a>
+        <a href="secteur-finance-comptabilite.html">Compta · Finance</a>
+        <a href="secteur-assurance.html">Assurance</a>
+        <a href="secteur-juridique.html">Juridique · Notariat</a>
+        <a href="secteurs.html">Tous les secteurs</a>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@lrenov-ia.studio">contact@lrenov-ia.studio</a>
+        <a href="contact.html">Formulaire</a>
+        <a href="https://calendly.com/laurence-lrenov-ia/30min">RDV 30 min offertes</a>
+        <a href="radar-ia.html">Radar IA</a>
+        <div class="foot-contact">
+          Blanquefort 33 · Gironde<br>
+          Bordeaux et toute la France
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>© 2026 L'Rénov IA Studio · Laurence Borras · SIRET 912 942 869 00013</div>
+      <div class="foot-bottom-links">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+        <a href="confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+  /* CURSEUR */
+  const cursor = document.getElementById('cursor');
+  const cursorTrail = document.getElementById('cursorTrail');
+  let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
+  if(cursor && window.matchMedia('(hover: hover)').matches && window.innerWidth > 1024){
+    document.addEventListener('mousemove',(e)=>{
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px';
+    });
+    (function animateTrail(){
+      trailX += (mouseX - trailX) * .12;
+      trailY += (mouseY - trailY) * .12;
+      cursorTrail.style.left = trailX + 'px'; cursorTrail.style.top = trailY + 'px';
+      requestAnimationFrame(animateTrail);
+    })();
+    const clickables = document.querySelectorAll('a,button,input,textarea,.presta-card,.pilier-card,.tab-btn,.sector-card');
+    clickables.forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cursor.classList.add('hover');cursorTrail.classList.add('hover')});
+      el.addEventListener('mouseleave',()=>{cursor.classList.remove('hover');cursorTrail.classList.remove('hover')});
+    });
+    document.addEventListener('mousedown',()=>cursor.classList.add('click'));
+    document.addEventListener('mouseup',()=>cursor.classList.remove('click'));
+  }
+
+  /* ANIMATIONS APPARITION */
+  const fuObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); fuObs.unobserve(e.target); }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.fu').forEach(el=>fuObs.observe(el));
+
+  /* GLOW QUI SUIT LE CURSEUR sur cards */
+  document.querySelectorAll('.presta-card,.pilier-card,.sector-card,.parcours-card').forEach(card=>{
+    card.addEventListener('mousemove',(e)=>{
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mx', x + '%');
+      card.style.setProperty('--my', y + '%');
+    });
+  });
+
+  /* NAV — fond opaque au scroll */
+  const nav = document.getElementById('mainNav');
+  if(nav){
+    window.addEventListener('scroll',()=>{
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  }
+
+  /* MENU MOBILE */
+  const navMobBtn = document.getElementById('navMobBtn');
+  const navMob = document.getElementById('navMob');
+  if(navMobBtn && navMob){
+    navMobBtn.addEventListener('click',()=>{
+      navMob.classList.toggle('open');
+      navMobBtn.textContent = navMob.classList.contains('open') ? '' : '☰';
+    });
+    navMob.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click',()=>{ navMob.classList.remove('open'); navMobBtn.textContent = '☰'; });
+    });
+  }
+
+  /* SCROLL FLUIDE ANCRES */
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      const href = this.getAttribute('href');
+      if(href === '#' || href.length < 2) return;
+      const target = document.querySelector(href);
+      if(target){
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+      }
+    });
+  });
+  </script>
+</body>
+</html>

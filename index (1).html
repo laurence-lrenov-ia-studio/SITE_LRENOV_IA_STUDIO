@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--
+  ════════════════════════════════════════════════════════════════════
+  TRAME PÉDAGOGIQUE FORMATIONS — L'RÉNOV IA STUDIO
+  Document générique réutilisable pour tout prospect
+  Style : impersonnel / verbes d'action
+
+  ZONES OPTIONNELLES À PERSONNALISER selon le prospect :
+    - <title> + <h1>
+    - Tableau comparatif rapide
+    - Calculateur de financement OPCO/CPF (taux par défaut à ajuster)
+    - Exemples de formations dans onglets selon secteur du prospect
+
+  Particularité de la famille Formations :
+    - 3 parcours pédagogiques (pas 3 paliers commerciaux)
+    - Initiation socle / Spécialisation sectorielle / Parcours certifiant
+    - Calculateur de prise en charge OPCO/CPF (pas un ROI classique)
+    - Certifiable Qualiopi · finançable OPCO/CPF/AFDAS
+    - Catalogue complet (~40 formations) sur demande
+
+  Le cadrage express détaillé est envoyé séparément sur demande
+  via le CTA mailto en bas de page.
+  ════════════════════════════════════════════════════════════════════
+-->
+<title>Trame Formations · L'Rénov</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #222b32;
+    --bg-card: #2a343c;
+    --bg-card-2: #313c46;
+    --gold: #d4893a;
+    --gold-light: #e8aa5c;
+    --cream: #f2ead8;
+    --white: #faf8f4;
+    --dim: #8a9499;
+    --border: rgba(242, 234, 216, 0.12);
+    --border-strong: rgba(242, 234, 216, 0.22);
+    --gold-soft: rgba(212, 137, 58, 0.08);
+    --red: #dc5050;
+    --green: #5fa97a;
+    --blue: #5b9aa8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-deep);
+    color: var(--cream);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  .container { max-width: 980px; margin: 0 auto; padding: 50px 24px 100px; }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .header-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: url('logo-lrenov.png') center/cover no-repeat;
+    box-shadow:
+      0 0 0 2px var(--gold),
+      0 0 25px rgba(212, 137, 58, 0.45),
+      0 0 50px rgba(212, 137, 58, 0.15);
+    margin: 0 auto 24px;
+    display: block;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold-soft);
+    border: 1px solid var(--gold);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 22px;
+  }
+  .pill::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  h1 {
+    font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+  h1 em { font-style: normal; color: var(--gold-light); }
+  .header-sub {
+    color: var(--cream);
+    font-size: 1rem;
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* INTRO */
+  .intro {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 30px;
+    margin-bottom: 28px;
+  }
+  .intro p { font-size: 0.96rem; line-height: 1.7; color: var(--cream); }
+  .intro p + p { margin-top: 10px; }
+  .intro strong { color: var(--gold-light); }
+
+  /* BANDEAU CADRAGE */
+  .cadrage-banner {
+    background: rgba(95, 169, 122, 0.08);
+    border: 1px solid rgba(95, 169, 122, 0.3);
+    border-left: 3px solid var(--green);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 24px;
+    margin-bottom: 30px;
+    font-size: 0.94rem;
+    color: var(--cream);
+    line-height: 1.65;
+  }
+  .cadrage-banner strong { color: var(--green); }
+  .cadrage-banner em { color: var(--gold-light); font-style: normal; font-weight: 600; }
+
+  /* TABLE DE COMPARAISON RAPIDE */
+  .quick-compare {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 36px;
+    overflow-x: auto;
+  }
+  .quick-compare-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  td:first-child { color: var(--cream); font-weight: 600; }
+
+  /* TABS */
+  .tabs-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+  .tabs-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+    background: rgba(34, 43, 50, 0.6);
+  }
+  @media (max-width: 720px) {
+    .tabs-nav { grid-template-columns: 1fr 1fr; }
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    padding: 18px 14px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    color: var(--dim);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    border-right: 1px solid var(--border);
+  }
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn:hover { color: var(--cream); background: rgba(212, 137, 58, 0.04); }
+  .tab-btn.active {
+    color: var(--gold-light);
+    background: var(--bg-deep);
+    border-bottom-color: var(--gold);
+  }
+  .tab-btn-num {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+
+  .tab-content { display: none; padding: 36px 34px 32px; }
+  .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* TAB HEADER */
+  .tab-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-head-icon:empty {
+    display: none;
+  }
+
+  .tab-head-icon {
+    font-size: 2.4rem;
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    background: var(--gold-soft);
+    border: 1px solid var(--gold);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tab-head-body { flex: 1; }
+  .tab-head h2 {
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .tab-head .sub {
+    color: var(--dim);
+    font-size: 0.92rem;
+    margin-bottom: 12px;
+  }
+  .tab-head .price {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    background: rgba(34, 43, 50, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    flex-wrap: wrap;
+  }
+  .tab-head .price-amount {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--gold-light);
+  }
+  .tab-head .price-detail { font-size: 0.8rem; color: var(--dim); }
+
+  /* BLOC SECTION DANS TAB */
+  .tab-section { margin-bottom: 26px; }
+  .tab-section:last-child { margin-bottom: 0; }
+  .tab-section-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tab-section-title::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .tab-section p {
+    color: var(--cream);
+    font-size: 0.94rem;
+    line-height: 1.7;
+  }
+  .tab-section p + p { margin-top: 10px; }
+  .tab-section p strong { color: var(--gold-light); }
+
+  /* PROCESS STEPS */
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .process-step {
+    display: flex;
+    gap: 14px;
+    padding: 12px 16px;
+    background: rgba(34, 43, 50, 0.4);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .process-step-num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    background: var(--gold);
+    color: var(--bg-deep);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.75rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .process-step-content {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--cream);
+    line-height: 1.55;
+  }
+  .process-step-content strong { color: var(--white); }
+
+  /* LISTES AVANTAGES / LIMITES */
+  .ay-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  @media (min-width: 700px) {
+    .ay-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .ay-box {
+    background: rgba(34, 43, 50, 0.4);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .ay-box.advantages { border-left: 3px solid var(--green); }
+  .ay-box.limites { border-left: 3px solid var(--red); }
+  .ay-box-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-size: 0.92rem;
+  }
+  .ay-box.advantages .ay-box-title { color: var(--green); }
+  .ay-box.limites .ay-box-title { color: var(--red); }
+  .ay-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  .ay-box li {
+    padding: 6px 0 6px 22px;
+    position: relative;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--cream);
+  }
+  .ay-box.advantages li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 800;
+  }
+  .ay-box.limites li::before {
+    content: '✕';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-weight: 800;
+  }
+
+  /* PROFIL ADAPTÉ / NON ADAPTÉ */
+  .for-who {
+    background: linear-gradient(135deg, rgba(212, 137, 58, 0.08), rgba(212, 137, 58, 0.02));
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+  }
+  .for-who-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+  .for-who-row:last-child { margin-bottom: 0; }
+  .for-who-label {
+    flex-shrink: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    min-width: 90px;
+    text-align: center;
+  }
+  .for-who-label.yes { background: rgba(95, 169, 122, 0.12); color: var(--green); border: 1px solid rgba(95, 169, 122, 0.3); }
+  .for-who-label.no { background: rgba(220, 80, 80, 0.12); color: var(--red); border: 1px solid rgba(220, 80, 80, 0.3); }
+  .for-who-text {
+    color: var(--cream);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* LICENCE BOX */
+  .licence-box {
+    background: rgba(34, 43, 50, 0.4);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 0.88rem;
+    color: var(--cream);
+    line-height: 1.6;
+  }
+  .licence-box strong { color: var(--gold-light); }
+
+  /* FORMATS TECHNIQUES (Onglet 1) */
+  .formats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  @media (min-width: 700px) {
+    .formats-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .format-card {
+    background: rgba(34, 43, 50, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .format-card-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    color: var(--gold-light);
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+  }
+  .format-card-text {
+    font-size: 0.82rem;
+    color: var(--cream);
+    line-height: 1.55;
+  }
+
+  /* EXEMPLES PAR SECTEUR */
+  .sectors-block {
+    background: rgba(34, 43, 50, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .sectors-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .sector-line {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--cream);
+    line-height: 1.55;
+  }
+  .sector-line:last-child { border-bottom: none; }
+  .sector-line strong {
+    color: var(--gold-light);
+    display: inline-block;
+    min-width: 90px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  /* ROI BLOCK */
+  .roi-block-section {
+    background: var(--bg-card);
+    border: 1px solid var(--gold);
+    border-radius: 16px;
+    padding: 32px 30px;
+    margin-bottom: 30px;
+  }
+  .roi-block-section-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .roi-block-section h2 {
+    color: var(--white);
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .roi-block-section h2 em { font-style: normal; color: var(--gold-light); }
+
+  .roi-intro {
+    color: var(--cream);
+    font-size: 0.94rem;
+    line-height: 1.65;
+    margin-bottom: 26px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .roi-intro strong { color: var(--gold-light); }
+
+  /* INPUTS CALCULATEUR */
+  .roi-inputs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  @media (min-width: 700px) {
+    .roi-inputs {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .roi-input-card {
+    background: rgba(34, 43, 50, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    transition: all 0.2s;
+  }
+  .roi-input-card:hover { border-color: var(--border-strong); }
+  .roi-input-card:focus-within { border-color: var(--gold); }
+
+  .roi-input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .roi-input-row label {
+    font-size: 0.84rem;
+    color: var(--cream);
+    font-weight: 500;
+  }
+  .roi-input-value {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    color: var(--gold-light);
+    font-size: 1rem;
+    min-width: 60px;
+    text-align: right;
+  }
+  .roi-input-card input[type="range"] {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-deep);
+    border-radius: 4px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  .roi-input-card input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--gold);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--bg-card);
+    box-shadow: 0 2px 6px rgba(212, 137, 58, 0.4);
+    transition: transform 0.15s;
+  }
+  .roi-input-card input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+  }
+  .roi-input-card input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--gold);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--bg-card);
+    box-shadow: 0 2px 6px rgba(212, 137, 58, 0.4);
+  }
+  .roi-input-scale {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+    font-size: 0.7rem;
+    color: var(--dim);
+  }
+
+  /* SYNTHÈSE TEMPS GAGNÉ */
+  .roi-synthesis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding: 22px;
+    background: linear-gradient(135deg, rgba(212, 137, 58, 0.06), rgba(212, 137, 58, 0.02));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+  .roi-synth-item {
+    flex: 1;
+    min-width: 130px;
+    text-align: center;
+    padding: 14px 12px;
+    background: rgba(34, 43, 50, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .roi-synth-item.highlight {
+    background: linear-gradient(135deg, rgba(212, 137, 58, 0.18), rgba(212, 137, 58, 0.06));
+    border-color: var(--gold);
+  }
+  .roi-synth-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .roi-synth-item.highlight .roi-synth-num { color: var(--gold-light); }
+  .roi-synth-label {
+    font-size: 0.78rem;
+    color: var(--dim);
+    line-height: 1.4;
+  }
+  .roi-synth-arrow {
+    color: var(--gold);
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  @media (max-width: 700px) {
+    .roi-synthesis { flex-direction: column; }
+    .roi-synth-arrow { transform: rotate(90deg); }
+  }
+
+  /* COMPARAISON 4 NIVEAUX */
+  .roi-compare-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .roi-compare-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  @media (min-width: 600px) {
+    .roi-compare-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 900px) {
+    .roi-compare-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .roi-compare-card {
+    background: rgba(34, 43, 50, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .roi-compare-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .roi-compare-card.highlight {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, rgba(212, 137, 58, 0.06), rgba(34, 43, 50, 0.5));
+    box-shadow: 0 8px 24px rgba(212, 137, 58, 0.1);
+  }
+
+  .roi-compare-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    color: var(--cream);
+    font-size: 0.95rem;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .roi-compare-name span {
+    font-size: 0.78rem;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+  .roi-compare-price {
+    font-size: 0.78rem;
+    color: var(--dim);
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .roi-compare-result {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .roi-compare-roi {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1.1;
+    transition: color 0.3s;
+  }
+  .roi-compare-card.negative .roi-compare-roi { color: var(--red); }
+  .roi-compare-roi-label {
+    font-size: 0.7rem;
+    color: var(--dim);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+  .roi-compare-payback {
+    font-size: 0.82rem;
+    color: var(--cream);
+    text-align: center;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+  .roi-compare-payback strong { color: var(--gold-light); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
+
+  /* CONCLUSION NOTE */
+  .roi-conclusion-note {
+    background: rgba(91, 154, 168, 0.06);
+    border: 1px solid rgba(91, 154, 168, 0.2);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 20px;
+    font-size: 0.88rem;
+    color: var(--cream);
+    line-height: 1.65;
+  }
+  .roi-conclusion-note strong { color: #8fc4d0; }
+
+  /* COMMENT ON DÉCIDE */
+  .decision-block {
+    background: rgba(91, 154, 168, 0.04);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 12px 12px 0;
+    padding: 22px 28px;
+    margin-bottom: 30px;
+  }
+  .decision-block p { color: var(--cream); font-size: 0.94rem; line-height: 1.7; }
+  .decision-block p + p { margin-top: 10px; }
+  .decision-block strong { color: #8fc4d0; }
+
+  /* CTA FINAL */
+  .cta-block {
+    background: linear-gradient(135deg, rgba(212, 137, 58, 0.12), rgba(212, 137, 58, 0.04));
+    border: 1px solid var(--gold);
+    border-radius: 16px;
+    padding: 36px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  .cta-block h2 {
+    color: var(--white);
+    margin-bottom: 14px;
+    font-size: 1.5rem;
+  }
+  .cta-block h2 em { font-style: normal; color: var(--gold-light); }
+  .cta-block p {
+    color: var(--cream);
+    margin-bottom: 22px;
+    font-size: 0.96rem;
+    line-height: 1.7;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--bg-deep);
+    padding: 13px 26px;
+    border-radius: 100px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid var(--border-strong);
+    padding: 13px 26px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 40px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--dim);
+    line-height: 1.7;
+  }
+  .footer strong { color: var(--gold); }
+
+  /* BACK LINK — retour vers carte de visite */
+  .back-to-presta {
+    margin-top: 60px;
+    padding: 28px 32px;
+    background: rgba(212, 137, 58, 0.06);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .back-to-presta-text {
+    flex: 1;
+    min-width: 240px;
+  }
+  .back-to-presta-eyebrow {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .back-to-presta-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.35;
+  }
+  .back-to-presta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.25s;
+  }
+  .back-to-presta-link:hover {
+    background: var(--gold-light);
+    transform: translateX(-3px);
+  }
+
+  /* CTA CADRAGE — demande du questionnaire de cadrage express */
+  .cta-cadrage {
+    margin-top: 50px;
+    padding: 32px;
+    background: linear-gradient(135deg, rgba(212, 137, 58, 0.12) 0%, rgba(212, 137, 58, 0.04) 100%);
+    border: 1px solid var(--gold);
+    border-radius: 14px;
+    text-align: center;
+  }
+  .cta-cadrage-eyebrow {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .cta-cadrage-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 12px;
+    letter-spacing: -0.015em;
+  }
+  .cta-cadrage-title em {
+    color: var(--gold);
+    font-style: italic;
+  }
+  .cta-cadrage-desc {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.65;
+    max-width: 620px;
+    margin: 0 auto 22px;
+    opacity: 0.9;
+  }
+  .cta-cadrage-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.25s;
+  }
+  .cta-cadrage-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 137, 58, 0.25);
+  }
+  .cta-cadrage-note {
+    margin-top: 14px;
+    font-size: 0.78rem;
+    color: var(--dim);
+    opacity: 0.8;
+  }
+
+/* ===== INTÉGRATION SITE ===== */
+
+  /* ====== INTÉGRATION SITE — surcharge container trame pour laisser place à la nav ====== */
+  body { cursor: none; }
+  body > .container { padding-top: 110px !important; }
+  /* Curseur custom */
+  .cursor{
+    position:fixed;top:0;left:0;
+    width:8px;height:8px;border-radius:50%;
+    background:#d4893a;
+    pointer-events:none;z-index:9999;
+    transform:translate(-50%,-50%);
+    transition:transform .15s ease,width .25s ease,height .25s ease,background .2s ease;
+    mix-blend-mode:difference;
+  }
+  .cursor.hover{width:48px;height:48px;background:transparent;border:1px solid #d4893a}
+  .cursor.click{transform:translate(-50%,-50%) scale(.7)}
+  .cursor-trail{
+    position:fixed;top:0;left:0;
+    width:36px;height:36px;border-radius:50%;
+    border:1px solid #d4893a;
+    pointer-events:none;z-index:9998;
+    transform:translate(-50%,-50%);
+    opacity:.4;
+    transition:transform .55s cubic-bezier(.23,1,.32,1),width .3s,height .3s;
+  }
+  .cursor-trail.hover{width:60px;height:60px;opacity:.6}
+  @media(hover:none),(max-width:1024px){
+    body{cursor:auto}
+    .cursor,.cursor-trail{display:none}
+  }
+
+
+  nav#mainNav{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    background:rgba(26,34,41,.78);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+    border-bottom:1px solid rgba(242,234,216,.06);
+    transition:all .3s ease;
+    font-family:'DM Sans',sans-serif;
+  }
+  nav#mainNav.scrolled{background:rgba(26,34,41,.95);border-bottom-color:rgba(212,137,58,.16)}
+  nav#mainNav .nav-wrap{
+    max-width:1320px;margin:0 auto;padding:0 2.4rem;height:78px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  nav#mainNav .nav-logo{display:flex;align-items:center;gap:.85rem;text-decoration:none}
+  nav#mainNav .nav-logo img{height:46px;width:46px;object-fit:contain;border-radius:6px;transition:transform .4s}
+  nav#mainNav .nav-logo:hover img{transform:rotate(8deg) scale(1.05)}
+  nav#mainNav .nav-logo-text{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:600;font-size:.98rem;color:#f2ead8;
+    line-height:1.2;letter-spacing:-.01em;white-space:nowrap;
+  }
+  nav#mainNav .nav-logo-text span{color:#d4893a}
+  nav#mainNav .nav-links{display:flex;gap:.4rem;list-style:none;align-items:center;margin:0;padding:0}
+  nav#mainNav .nav-links > li{position:relative}
+  nav#mainNav .nav-links a{
+    color:rgba(242,234,216,.55);text-decoration:none;
+    font-size:.74rem;font-weight:500;letter-spacing:.06em;
+    text-transform:uppercase;padding:.6rem 1rem;border-radius:4px;
+    transition:all .25s;
+    display:inline-flex;align-items:center;gap:.35rem;position:relative;
+  }
+  nav#mainNav .nav-links a:hover,nav#mainNav .nav-links a.active{color:#d4893a}
+  nav#mainNav .nav-links a.active::after{
+    content:"";position:absolute;bottom:.15rem;left:1rem;right:1rem;height:1px;background:#d4893a;
+  }
+  nav#mainNav .nav-links .has-mega::after{content:"";display:inline-block;width:6px;height:6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);margin-left:.2rem;opacity:.6}
+  nav#mainNav .nav-links li.has-mega-li::after{
+    content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+    width:160px;height:18px;background:transparent;z-index:201;
+  }
+  nav#mainNav .mega{
+    position:absolute;top:calc(100% + 12px);left:50%;
+    transform:translateX(-50%) translateY(-12px);
+    background:rgba(34,43,50,.96);
+    backdrop-filter:blur(24px) saturate(160%);
+    -webkit-backdrop-filter:blur(24px) saturate(160%);
+    border:1px solid rgba(212,137,58,.16);border-radius:14px;padding:1.6rem;width:720px;
+    display:grid;grid-template-columns:1fr 1fr;gap:.6rem;
+    opacity:0;pointer-events:none;
+    transition:opacity .3s ease,transform .3s cubic-bezier(.23,1,.32,1);
+    box-shadow:0 32px 80px rgba(0,0,0,.6);z-index:202;
+  }
+  nav#mainNav .nav-links li:hover .mega,nav#mainNav .nav-links li:focus-within .mega{
+    opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);
+  }
+  nav#mainNav .mega::before{
+    content:"";position:absolute;top:-7px;left:50%;
+    transform:translateX(-50%) rotate(45deg);width:13px;height:13px;
+    background:rgba(34,43,50,.96);
+    border-left:1px solid rgba(212,137,58,.16);border-top:1px solid rgba(212,137,58,.16);
+  }
+  nav#mainNav .mega a.mega-overview{
+    grid-column:1/-1;padding:.85rem 1rem;
+    background:linear-gradient(135deg,rgba(212,137,58,.12) 0%,rgba(232,170,92,.06) 100%);
+    border:1px solid rgba(212,137,58,.32);border-radius:8px;
+    color:#d4893a;font-weight:600;font-size:.78rem;
+    text-align:center;text-transform:uppercase;letter-spacing:.1em;
+    transition:all .25s;display:block;
+  }
+  nav#mainNav .mega a.mega-overview:hover{background:#d4893a;color:#1a2229}
+  nav#mainNav .mega a.mega-item{
+    display:flex;align-items:flex-start;gap:.85rem;
+    padding:.9rem 1rem;border-radius:8px;border:1px solid transparent;
+    text-transform:none;letter-spacing:0;color:#f2ead8;transition:all .25s;
+  }
+  nav#mainNav .mega a.mega-item:hover{
+    background:rgba(212,137,58,.08);border-color:rgba(212,137,58,.16);transform:translateX(2px);
+  }
+  nav#mainNav .mega-icon{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#d4893a;transition:all .3s;margin-top:.2rem;background:none;border:none}
+  nav#mainNav .mega a.mega-item:hover .mega-icon{color:var(--gold2);transform:translateX(2px);background:none;border:none}
+  nav#mainNav .mega-icon svg{width:22px;height:22px;stroke:currentColor;fill:none}
+  nav#mainNav .mega-content{display:flex;flex-direction:column;gap:.15rem;flex:1}
+  nav#mainNav .mega-content strong{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.88rem;color:#f2ead8}
+  nav#mainNav .mega-content span.desc{font-size:.74rem;color:rgba(242,234,216,.55);font-weight:400;line-height:1.5}
+  nav#mainNav .nav-btn{
+    border:1px solid #d4893a;color:#d4893a;
+    padding:.55rem 1.2rem;border-radius:4px;
+    font-size:.72rem;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;text-decoration:none;
+    transition:all .25s;white-space:nowrap;position:relative;overflow:hidden;
+  }
+  nav#mainNav .nav-btn::before{
+    content:"";position:absolute;inset:0;
+    background:#d4893a;transform:translateX(-101%);transition:transform .35s ease;z-index:-1;
+  }
+  nav#mainNav .nav-btn:hover{color:#1a2229}
+  nav#mainNav .nav-btn:hover::before{transform:translateX(0)}
+  nav#mainNav .nav-mobile-btn{
+    display:none;background:none;border:1px solid rgba(212,137,58,.16);
+    color:#f2ead8;font-size:1.3rem;cursor:pointer;padding:.5rem .7rem;border-radius:4px;
+  }
+  nav#mainNav + .nav-mobile,
+  nav#mainNav .nav-mobile{
+    display:none;flex-direction:column;background:rgba(26,34,41,.99);
+    border-top:1px solid rgba(212,137,58,.16);padding:1.2rem 2rem;
+    max-height:calc(100vh - 78px);overflow-y:auto;
+  }
+  nav#mainNav .nav-mobile a{
+    color:rgba(242,234,216,.7);text-decoration:none;
+    font-size:.92rem;font-weight:500;
+    padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,.04);letter-spacing:.04em;
+  }
+  nav#mainNav .nav-mobile a.sub{padding-left:1.2rem;font-size:.82rem;color:rgba(242,234,216,.5)}
+  nav#mainNav .nav-mobile a:hover{color:#d4893a}
+  nav#mainNav .nav-mobile.open{display:flex}
+  @media(max-width:1024px){
+    nav#mainNav .nav-links{display:none}
+    nav#mainNav .nav-mobile-btn{display:block}
+    nav#mainNav .nav-btn.desk{display:none}
+  }
+
+
+  footer{
+    background:#13191e;color:rgba(242,234,216,.5);
+    padding:4rem 2rem 2rem;border-top:1px solid rgba(242,234,216,.06);position:relative;
+    font-family:'DM Sans',sans-serif;
+  }
+  footer .foot-wrap{
+    max-width:1280px;margin:0 auto;
+    display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;
+  }
+  footer .foot-col h4{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:.74rem;font-weight:700;letter-spacing:.22em;
+    color:#d4893a;text-transform:uppercase;margin:0 0 1.4rem;
+    display:flex;align-items:center;gap:.6rem;
+  }
+  footer .foot-col h4::after{content:"";flex:1;height:1px;background:rgba(242,234,216,.06);max-width:48px}
+  footer .foot-col a{
+    display:block;font-size:.86rem;color:rgba(242,234,216,.5);
+    text-decoration:none;padding:.4rem 0;transition:all .25s;position:relative;
+  }
+  footer .foot-col a::before{
+    content:"";position:absolute;left:-12px;top:50%;transform:translateY(-50%);
+    width:0;height:1px;background:#d4893a;transition:width .25s;
+  }
+  footer .foot-col a:hover{color:#d4893a;padding-left:14px}
+  footer .foot-col a:hover::before{width:8px}
+  footer .foot-brand{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:1.2rem;
+    color:#f2ead8;margin-bottom:.8rem;letter-spacing:-.01em;
+  }
+  footer .foot-brand span{color:#d4893a}
+  footer .foot-tagline{
+    font-size:.88rem;line-height:1.75;color:rgba(242,234,216,.5);
+    max-width:360px;margin-bottom:1.5rem;
+  }
+  footer .foot-social{display:flex;gap:.7rem;margin-top:1.4rem}
+  footer .foot-social a{
+    width:40px;height:40px;border-radius:50%;background:rgba(34,43,50,.6);
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(242,234,216,.55);
+    transition:all .3s cubic-bezier(.23,1,.32,1);
+    border:1px solid rgba(242,234,216,.06);padding:0;
+  }
+  footer .foot-social a::before{display:none}
+  footer .foot-social a:hover{
+    background:#d4893a;color:#1a2229;border-color:#d4893a;
+    transform:translateY(-4px) rotate(-6deg);
+    box-shadow:0 8px 20px rgba(212,137,58,.3);padding-left:0;
+  }
+  footer .foot-social svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.5;fill:none}
+  footer .foot-contact{font-size:.82rem;line-height:1.6;color:rgba(242,234,216,.5);margin-top:.7rem;padding:.4rem 0}
+  footer .foot-bottom{
+    max-width:1280px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(242,234,216,.06);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+    font-size:.76rem;color:rgba(242,234,216,.32);
+  }
+  footer .foot-bottom-links{display:flex;gap:1.6rem;flex-wrap:wrap}
+  footer .foot-bottom-links a{color:rgba(242,234,216,.4);text-decoration:none;transition:color .25s;font-size:.76rem}
+  footer .foot-bottom-links a:hover{color:#d4893a}
+  @media(max-width:680px){
+    footer .foot-wrap{grid-template-columns:1fr;gap:2rem}
+    footer .foot-bottom{flex-direction:column;text-align:center}
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- CURSEUR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- ========================================
+       NAVIGATION (mega-menu 5 piliers + secteurs)
+       ======================================== -->
+  <nav id="mainNav">
+    <div class="nav-wrap">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/img/logo.png" alt="L'Rénov IA Studio">
+        <div class="nav-logo-text">
+          L'Rénov <span>IA Studio</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li class="has-mega-li">
+          <a href="assistant.html" class="has-mega">Mon assistant IA</a>
+          <div class="mega">
+            <a href="assistant.html" class="mega-overview">Vue d'ensemble — Les 5 prestations →</a>
+            <a href="audit.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></div>
+              <div class="mega-content"><strong>Audit IA</strong><span class="desc">Diagnostiquer · cartographier · planifier</span></div>
+            </a>
+            <a href="outils.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+              <div class="mega-content"><strong>Outils métier</strong><span class="desc">Cœur de l'activité · sur-mesure sectoriel</span></div>
+            </a>
+            <a href="agents.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v2"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg></div>
+              <div class="mega-content"><strong>Agents IA</strong><span class="desc">Génération conversationnelle ciblée</span></div>
+            </a>
+            <a href="ateliers.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1"/><circle cx="17" cy="9" r="2.5"/><path d="M15 20v-1a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v1"/></svg></div>
+              <div class="mega-content"><strong>Ateliers</strong><span class="desc">Co-construction dirigeant + équipe</span></div>
+            </a>
+            <a href="formations.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div>
+              <div class="mega-content"><strong>Formations</strong><span class="desc">3 parcours · Qualiopi · OPCO/CPF</span></div>
+            </a>
+          </div>
+        </li>
+        <li class="has-mega-li">
+          <a href="secteurs.html" class="has-mega">Par secteur</a>
+          <div class="mega mega-sectors">
+            <a href="secteurs.html" class="mega-overview">Vue d'ensemble — Tous les secteurs adressés →</a>
+            <a href="secteur-immobilier.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2h-4v-7H10v7H5a2 2 0 0 1-2-2V10z"/></svg></div>
+              <div class="mega-content"><strong>Immobilier · ALUR</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-btp.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l4-3 4 3v11M13 21V14l4-3 4 3v7M8 14h1M8 17h1"/></svg></div>
+              <div class="mega-content"><strong>BTP · Artisans</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-finance-comptabilite.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 5h11a3 3 0 0 1 0 6H8a3 3 0 0 0 0 6h11"/></svg></div>
+              <div class="mega-content"><strong>Compta · Finance</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-assurance.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 5v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V5l-8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+              <div class="mega-content"><strong>Assurance · IARD</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-juridique.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 8h12M4 21h16M7 8l-3 6h6L7 8zm10 0l-3 6h6l-3-6z"/></svg></div>
+              <div class="mega-content"><strong>Juridique · Notariat</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-professions-liberales.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div>
+              <div class="mega-content"><strong>Professions libérales</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+            <a href="secteur-communication.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8v.5a8 8 0 0 1-8 8H8l-5 2 1.5-4A8 8 0 0 1 3 11.5V11z"/></svg></div>
+              <div class="mega-content"><strong>Communication · Marketing</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            </a>
+          </div>
+        </li>
+        <li><a href="ia-et-moi.html">L'IA et moi</a></li>
+        <li><a href="formations.html" class="active">Formations</a></li>
+        <li><a href="radar-ia.html">Radar IA</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <a href="https://calendly.com/laurence-lrenov-ia/30min" class="nav-btn desk">On en parle ?</a>
+      <button class="nav-mobile-btn" id="navMobBtn" aria-label="Menu">☰</button>
+    </div>
+
+    <div class="nav-mobile" id="navMob">
+      <a href="index.html">Accueil</a>
+      <a href="assistant.html">Mon assistant IA</a>
+      <a href="audit.html" class="sub">→ Audit IA</a>
+      <a href="outils.html" class="sub">→ Outils métier</a>
+      <a href="agents.html" class="sub">→ Agents IA</a>
+      <a href="ateliers.html" class="sub">→ Ateliers</a>
+      <a href="formations.html" class="sub">→ Formations</a>
+      <a href="secteurs.html">Par secteur</a>
+      <a href="secteur-immobilier.html" class="sub">→ Immobilier ALUR</a>
+      <a href="secteur-btp.html" class="sub">→ BTP · Artisans</a>
+      <a href="secteur-finance-comptabilite.html" class="sub">→ Compta · Finance</a>
+      <a href="secteur-assurance.html" class="sub">→ Assurance</a>
+      <a href="secteur-juridique.html" class="sub">→ Juridique · Notariat</a>
+      <a href="secteur-professions-liberales.html" class="sub">→ Professions libérales</a>
+      <a href="secteur-communication.html" class="sub">→ Communication</a>
+      <a href="ia-et-moi.html">L'IA et moi</a>
+      <a href="formations.html">Formations</a>
+      <a href="radar-ia.html">Radar IA</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://calendly.com/laurence-lrenov-ia/30min" style="color:var(--gold);font-weight:600;border-top:1px solid var(--border);margin-top:.5rem;padding-top:1rem">On en parle ?</a>
+    </div>
+  </nav>
+
+
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo"></div>
+    <div class="pill">Comprendre avant de choisir</div>
+    <h1>Les 3 parcours de <em>formation IA</em><br>par L'Rénov</h1>
+    <p class="header-sub">Un éclairage pédagogique sur ce qui existe entre "découvrir l'IA" et "certifier toute une équipe avec un parcours Qualiopi". Avec les vrais avantages, les limites assumées, et les profils adaptés — ou non — à chaque parcours.</p>
+  </header>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <p><strong>Découvrir. Se spécialiser. Certifier son équipe.</strong> Une formation L'Rénov n'est pas un cours théorique sur ce qu'est l'IA. C'est un <strong>format pratique, sectorisé, finançable</strong> conçu pour faire entrer l'IA générative dans les usages quotidiens d'un métier précis.</p>
+    <p>Toutes les formations L'Rénov sont <strong>certifiables Qualiopi</strong> et <strong>finançables OPCO, AFDAS ou CPF</strong> selon le profil de l'apprenant. Tarifs visibles en HT — la prise en charge dépend du statut (salarié, indépendant, dirigeant) et de l'OPCO concerné.</p>
+    <p>Voici les <strong>3 parcours possibles</strong>, du socle universel au parcours certifiant complet. Aucune mention "recommandé" n'est apposée — c'est le cadrage initial qui permet de positionner le bon parcours en fonction du secteur, du niveau actuel de l'équipe et de l'objectif visé.</p>
+  </div>
+
+  <!-- BANDEAU CADRAGE — invitation générique -->
+  <div class="cadrage-banner">
+    <strong>Avant d'engager une formation</strong> : un <em>cadrage express</em> est envoyé sur demande. Quelques questions sur le secteur, le niveau de l'équipe et l'objectif visé — pour identifier ensemble si le bon parcours est plutôt Initiation, Spécialisation ou Certifiant. Le catalogue complet (~40 formations par secteur) est envoyé à la suite. Aucun engagement.
+  </div>
+  <!-- TABLEAU COMPARATIF -->
+  <div class="quick-compare">
+    <div class="quick-compare-title">Comparaison rapide</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Parcours</th>
+          <th>Durée</th>
+          <th>Tarif HT</th>
+          <th>Niveau</th>
+          <th>Financement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1 · Initiation socle</td>
+          <td>3-7 h</td>
+          <td>290 – 690 €</td>
+          <td>Essentiel</td>
+          <td>OPCO · CPF</td>
+        </tr>
+        <tr>
+          <td>2 · Spécialisation sectorielle</td>
+          <td>3-4 h / module</td>
+          <td>390 – 650 € / module</td>
+          <td>Professionnel · Expert</td>
+          <td>OPCO sectoriel</td>
+        </tr>
+        <tr>
+          <td>3 · Parcours certifiant</td>
+          <td>7-14 h</td>
+          <td>790 – 1 590 €</td>
+          <td>Professionnel · Expert</td>
+          <td>OPCO · CPF (1 500 €)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs-wrap">
+    <nav class="tabs-nav">
+      <button class="tab-btn active" data-tab="1">
+        <span class="tab-btn-num">Parcours 1</span>
+        Je découvre
+      </button>
+      <button class="tab-btn" data-tab="2">
+        <span class="tab-btn-num">Parcours 2</span>
+        Je me spécialise
+      </button>
+      <button class="tab-btn" data-tab="3">
+        <span class="tab-btn-num">Parcours 3</span>
+        Je certifie mon équipe
+      </button>
+    </nav>
+
+    <!-- ============================================
+         TAB 1 — INITIATION SOCLE (Je découvre)
+         ============================================ -->
+    <div class="tab-content active" data-tab="1">
+
+      <div class="tab-head">
+        <div class="tab-head-icon"></div>
+        <div class="tab-head-body">
+          <h2>Initiation socle</h2>
+          <p class="sub">Le <strong>socle universel</strong> pour comprendre concrètement ce que l'IA générative peut apporter à un métier. Format court, applicable à tout secteur, sans prérequis technique.</p>
+          <div class="price">
+            <span class="price-amount">290 – 690 € HT</span>
+            <span class="price-detail">3 à 7 h · Niveau Essentiel · OPCO · CPF</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Définition</div>
+        <p>Un <strong>parcours d'initiation court</strong>, conçu pour permettre à n'importe quel professionnel de comprendre l'IA générative et de l'expérimenter sur ses propres cas d'usage. Ce parcours s'adresse aussi bien aux indépendants qu'aux salariés en début de transformation IA.</p>
+        <p>Les formations socle SOC-01 et SOC-02 sont des <strong>prérequis universels</strong> avant tout parcours sectoriel — elles donnent les bases pour profiter pleinement des spécialisations métiers. Tous les supports sont remis en fin de session, exploitables immédiatement.</p>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Les 2 formations socle universelles</div>
+        <div class="formats-grid">
+          <div class="format-card">
+            <div class="format-card-title">SOC-01 · Découverte de l'IA générative</div>
+            <div class="format-card-text"><strong>3 h · 290 € HT</strong> · Niveau Essentiel. Bases de l'IA générative, panorama des outils (ChatGPT, Claude, Mistral, etc.), premiers prompts, cas d'usage par métier. Aucun prérequis technique.</div>
+          </div>
+          <div class="format-card">
+            <div class="format-card-title">SOC-02 · Maîtriser les prompts en pratique</div>
+            <div class="format-card-text"><strong>4 h · 390 € HT</strong> · Niveau Essentiel. Méthodologie de prompting, structuration des demandes, contextes professionnels, bonnes pratiques RGPD. Prérequis : SOC-01 ou équivalent.</div>
+          </div>
+          <div class="format-card">
+            <div class="format-card-title">Pack Socle complet (SOC-01 + SOC-02)</div>
+            <div class="format-card-text"><strong>7 h · 690 € HT</strong> · Niveau Essentiel. Les 2 formations enchaînées sur 2 demi-journées espacées de 7 jours minimum. Format recommandé pour démarrer sereinement.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Le déroulé pédagogique</div>
+        <div class="process-steps">
+          <div class="process-step"><div class="process-step-num">1</div><div class="process-step-content"><strong>Cadrage préparatoire</strong> — Évaluation du niveau initial, recueil des cas d'usage prioritaires, envoi du programme détaillé Qualiopi. Pas de questionnaire long, juste l'essentiel.</div></div>
+          <div class="process-step"><div class="process-step-num">2</div><div class="process-step-content"><strong>Session 1 · Découverte</strong> (3h) — Panorama IA, prise en main des outils, premiers prompts sur cas réels apportés par les participants. Manipulation directe pendant 80 % du temps.</div></div>
+          <div class="process-step"><div class="process-step-num">3</div><div class="process-step-content"><strong>Session 2 · Pratique</strong> (4h, si pack complet) — Méthodologie de prompting structurée, application sur des cas métier, RGPD et bonnes pratiques. Espacement 7-15 jours avec la session 1.</div></div>
+          <div class="process-step"><div class="process-step-num">4</div><div class="process-step-content"><strong>Évaluation Qualiopi + supports</strong> — QCM de validation, remise des supports complets, attestation de formation. Possibilité de prolonger sur un parcours Spécialisation sectorielle.</div></div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Avantages réels · Limites assumées</div>
+        <div class="ay-grid">
+          <div class="ay-box advantages">
+            <div class="ay-box-title">✓ Ce que ce parcours apporte</div>
+            <ul>
+              <li>Aucun prérequis technique · adapté à tout profil</li>
+              <li>Format court 3-7 h · finançable OPCO ou CPF</li>
+              <li>Manipulation directe d'outils IA · pas de théorie pure</li>
+              <li>Certifiable Qualiopi · attestation officielle</li>
+              <li>Pré-requis pour accéder aux parcours sectoriels</li>
+            </ul>
+          </div>
+          <div class="ay-box limites">
+            <div class="ay-box-title">✕ Ce que ce parcours ne fait pas</div>
+            <ul>
+              <li>Pas de spécialisation métier (voir Parcours 2)</li>
+              <li>Pas de certification avancée (voir Parcours 3)</li>
+              <li>Pas adapté pour quelqu'un déjà à l'aise avec l'IA</li>
+              <li>Pas de mise en production d'outils (voir famille Outils)</li>
+              <li>Format individuel ou très petit groupe (max 6)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Exemples d'usages couverts par secteur</div>
+        <div class="sectors-block">
+          <div class="sector-line"><strong>Immo/ALUR</strong>Premières utilisations de l'IA pour la communication client, la rédaction de mandats simples, la veille marché</div>
+          <div class="sector-line"><strong>Assurance</strong>Rédaction d'emails clients, synthèses de dossiers, première découverte des cas DDA</div>
+          <div class="sector-line"><strong>BTP/Artisans</strong>Devis simplifiés avec IA, suivi de chantier de base, rédaction administrative</div>
+          <div class="sector-line"><strong>Compta/Libéraux</strong>Réponses fiscales courantes, communication client, fiches techniques</div>
+          <div class="sector-line"><strong>Communication</strong>Premiers contenus IA, structuration des prompts éditoriaux, RGPD et droits d'auteur</div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Profil adapté · Profil non adapté</div>
+        <div class="for-who">
+          <div class="for-who-row">
+            <span class="for-who-label yes">Adapté</span>
+            <div class="for-who-text">Dirigeant ou salarié qui n'a jamais (ou très peu) utilisé l'IA générative. Volonté de découvrir concrètement avant d'engager une transformation plus profonde. Budget formation maîtrisé. Profil compatible avec un financement OPCO ou autofinancement.</div>
+          </div>
+          <div class="for-who-row">
+            <span class="for-who-label no">Non adapté</span>
+            <div class="for-who-text">Utilisateur déjà à l'aise avec ChatGPT, Claude ou équivalent — voir directement la Spécialisation sectorielle. Besoin de mettre en place un outil IA dans le métier — voir la famille Outils. Volonté de certifier toute une équipe — voir Parcours 3 certifiant.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Modalités</div>
+        <div class="licence-box">
+          <strong>Format</strong> : individuel ou petit groupe (max 6 personnes) · Présentiel ou visio · <strong>Certifiable Qualiopi</strong> · Finançable OPCO et CPF · Acompte 30 % à la commande · Annulation &lt; 48 h = 100 % du montant dû. Tarifs HT — la prise en charge dépend du statut et de l'OPCO.
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+         TAB 2 — SPÉCIALISATION SECTORIELLE (Je me spécialise)
+         ============================================ -->
+    <div class="tab-content" data-tab="2">
+
+      <div class="tab-head">
+        <div class="tab-head-icon"></div>
+        <div class="tab-head-body">
+          <h2>Spécialisation sectorielle</h2>
+          <p class="sub">Modules <strong>pratiques par secteur</strong> pour aller au-delà du socle universel : usages métier précis, contraintes réglementaires sectorielles, cas concrets du quotidien.</p>
+          <div class="price">
+            <span class="price-amount">390 – 650 € HT / module</span>
+            <span class="price-detail">3-4 h / module · Niveau Professionnel ou Expert · OPCO sectoriel</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Définition</div>
+        <p>Le parcours de <strong>spécialisation métier</strong> : chaque module se concentre sur un usage précis et concret de l'IA dans un secteur défini. Catalogue d'environ 40 formations sectorielles disponibles, sur des sujets variés selon les besoins.</p>
+        <p>Les modules sont indépendants et combinables : un dirigeant peut commencer par 1 ou 2 modules ciblés et compléter au fil du temps. <strong>Prérequis recommandé</strong> : SOC-01 (Découverte IA) — sauf si le participant maîtrise déjà les bases.</p>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Exemples de modules par secteur</div>
+        <div class="formats-grid">
+          <div class="format-card">
+            <div class="format-card-title">Assurance · 8 modules disponibles</div>
+            <div class="format-card-text">Analyse risques IARD (490 €) · Rédaction communications client (290 €) · RGPD assurance (550 €) · Automatisation suivi client (490 €) · Détection fraude (650 €) · Synthèses rapports (390 €) · Gestion réclamations (390 €) · Pilotage portefeuille (650 €).</div>
+          </div>
+          <div class="format-card">
+            <div class="format-card-title">Immobilier · catalogue ALUR conforme</div>
+            <div class="format-card-text">Rédaction mandats conformes ALUR · Qualification vendeurs/acquéreurs avec IA · Communication client multi-canale · Veille marché immobilier · Réponse aux objections client. Tarifs Ava Formation — non affichés ici.</div>
+          </div>
+          <div class="format-card">
+            <div class="format-card-title">BTP/Artisans · Compta/Libéraux · Communication</div>
+            <div class="format-card-text">Modules dédiés par secteur : devis terrain, chiffrage automatique, suivi chantier, rédaction technique (BTP) · Saisonnalité fiscale, communication client, fiches mission (Compta) · Stratégie éditoriale, création contenu, posts sociaux (Communication).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Le déroulé pédagogique d'un module</div>
+        <div class="process-steps">
+          <div class="process-step"><div class="process-step-num">1</div><div class="process-step-content"><strong>Cadrage métier</strong> — Recueil des cas d'usage précis du participant, validation des prérequis (SOC-01 idéalement), envoi du programme Qualiopi détaillé.</div></div>
+          <div class="process-step"><div class="process-step-num">2</div><div class="process-step-content"><strong>Session pratique 3-4 h</strong> — 20 % théorie réglementaire et bonnes pratiques sectorielles + 80 % manipulation sur cas réels. Les participants apportent leurs propres dossiers.</div></div>
+          <div class="process-step"><div class="process-step-num">3</div><div class="process-step-content"><strong>Exercices d'application</strong> — Mise en situation concrète, validation des acquis par cas concrets, ajustements personnalisés selon le métier.</div></div>
+          <div class="process-step"><div class="process-step-num">4</div><div class="process-step-content"><strong>Évaluation Qualiopi + ressources</strong> — QCM sectoriel, remise des supports + prompts métier prêts à l'emploi, attestation. Possibilité d'enchaîner avec d'autres modules ou un Parcours certifiant.</div></div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Avantages réels · Limites assumées</div>
+        <div class="ay-grid">
+          <div class="ay-box advantages">
+            <div class="ay-box-title">✓ Ce que ce parcours apporte</div>
+            <ul>
+              <li>~40 modules disponibles par secteur · large choix</li>
+              <li>Cas concrets métier · vocabulaire sectoriel respecté</li>
+              <li>Contraintes réglementaires intégrées (ALUR, DDA, RGPD)</li>
+              <li>Modules indépendants · construction progressive possible</li>
+              <li>Prompts métier prêts à l'emploi remis en fin de session</li>
+            </ul>
+          </div>
+          <div class="ay-box limites">
+            <div class="ay-box-title">✕ Ce que ce parcours ne fait pas</div>
+            <ul>
+              <li>Prérequis SOC-01 recommandé · pas pour grand débutant</li>
+              <li>Module unique : pas de vision globale (voir Parcours 3)</li>
+              <li>Pas de mise en production d'outil IA (voir famille Outils)</li>
+              <li>Tarifs sectoriels variables selon partenaire formateur</li>
+              <li>Pas d'accès CPF systématique (selon OPCO sectoriel)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">5 modules phares par secteur</div>
+        <div class="sectors-block">
+          <div class="sector-line"><strong>Assurance</strong>ASS-02 Communications client (290€) · ASS-04 Automatisation suivi (490€) · ASS-05 Détection fraude (650€) · ASS-03 RGPD (550€) · ASS-08 Pilotage portefeuille (650€)</div>
+          <div class="sector-line"><strong>Immobilier</strong>Rédaction mandats ALUR · Qualification leads · Communication multi-canale · Veille marché · Réponse objections (tarifs sur demande)</div>
+          <div class="sector-line"><strong>BTP/Artisans</strong>Devis terrain assisté · Chiffrage automatique · Rédaction CR chantier · Communication client · Suivi administratif</div>
+          <div class="sector-line"><strong>Compta/Libéraux</strong>Réponses fiscales · Communication mission · Fiches techniques · Veille réglementaire · Synthèses rapports</div>
+          <div class="sector-line"><strong>Communication</strong>COM-01 Création contenu à grande échelle (790€) · COM-02 Stratégie éditoriale (490€) · Posts réseaux sociaux · RGPD contenu · Briefs créatifs</div>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--dim); margin-top: 12px; font-style: italic;">
+          Catalogue complet (~40 formations sectorielles) envoyé par email sur demande après cadrage.
+        </p>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Profil adapté · Profil non adapté</div>
+        <div class="for-who">
+          <div class="for-who-row">
+            <span class="for-who-label yes">Adapté</span>
+            <div class="for-who-text">Professionnel ayant déjà manipulé l'IA générative (SOC-01 ou équivalent). Volonté de monter en compétence sur des usages métier précis. Capacité à se libérer 3-4 h par module. Profil compatible avec un financement OPCO sectoriel.</div>
+          </div>
+          <div class="for-who-row">
+            <span class="for-who-label no">Non adapté</span>
+            <div class="for-who-text">Grand débutant en IA — passer d'abord par l'Initiation socle. Besoin d'une vision globale et de plusieurs modules enchaînés — voir le Parcours certifiant. Besoin d'un outil métier opérationnel plutôt qu'une formation — voir la famille Outils.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Modalités</div>
+        <div class="licence-box">
+          <strong>Format</strong> : individuel ou petit groupe (max 8 personnes) · Présentiel ou visio · <strong>Certifiable Qualiopi</strong> · Finançable OPCO sectoriel · Acompte 30 % à la commande · Annulation &lt; 48 h = 100 % du montant dû. <strong>Tarifs Ava Formation</strong> (immobilier) non affichés — communiqués au cadrage selon profil.
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+         TAB 3 — PARCOURS CERTIFIANT (Je certifie mon équipe)
+         ============================================ -->
+    <div class="tab-content" data-tab="3">
+
+      <div class="tab-head">
+        <div class="tab-head-icon"></div>
+        <div class="tab-head-body">
+          <h2>Parcours certifiant</h2>
+          <p class="sub">Le format <strong>complet et structuré</strong> : 2 modules enchaînés (7-14 h) pour qualifier toute une équipe et accéder aux financements les plus avantageux (CPF, OPCO renforcé).</p>
+          <div class="price">
+            <span class="price-amount">790 – 1 590 € HT</span>
+            <span class="price-detail">7-14 h · Niveau Professionnel ou Expert · OPCO · CPF (1 500 €)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Définition</div>
+        <p>Le <strong>parcours certifiant complet</strong> : 2 modules sectoriels enchaînés sur 2 sessions espacées (généralement 2 × 3h30 ou 2 × 7h selon le niveau). Format conçu pour les structures qui veulent <strong>monter en compétence une équipe entière</strong> et accéder aux financements les plus structurants.</p>
+        <p>Niveau Expert (1 090 – 1 590 €) accessible avec prérequis : SOC-01 + SOC-02 validés + expérience terrain active dans le secteur. <strong>Compatible CPF</strong> à 1 500 € : permet à un salarié de financer la formation sur son propre compte personnel de formation.</p>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Exemples de parcours certifiants par secteur</div>
+        <div class="formats-grid">
+          <div class="format-card">
+            <div class="format-card-title">ASS-P1 · Parcours Agent</div>
+            <div class="format-card-text"><strong>7 h (2×3h30) · 790 € HT · Niveau Professionnel</strong>. Essentiel IA assurance : panorama, communications client, suivi pipeline, premiers cas DDA. OPCO Atlas.</div>
+          </div>
+          <div class="format-card">
+            <div class="format-card-title">ASS-P2 · Parcours Manager</div>
+            <div class="format-card-text"><strong>7 h (2×3h30) · 1 090 € HT · Niveau Expert</strong>. IA stratégique en assurance : pilotage portefeuille, détection fraude, conformité DDA, reporting. Prérequis SOC-01/02 + expérience. OPCO Atlas.</div>
+          </div>
+          <div class="format-card">
+            <div class="format-card-title">Parcours Expert sectoriel · 14 h</div>
+            <div class="format-card-text"><strong>14 h · 1 590 € HT · Niveau Expert</strong>. Parcours complet sur 4 sessions espacées (2 × 3h30 + 2 × 3h30). Approfondissement métier, mises en situation complexes, accompagnement post-formation. Compatible CPF.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Le déroulé pédagogique d'un parcours</div>
+        <div class="process-steps">
+          <div class="process-step"><div class="process-step-num">1</div><div class="process-step-content"><strong>Cadrage approfondi</strong> — Validation des prérequis, recueil des cas d'usage stratégiques, montage du dossier de financement (OPCO ou CPF), envoi du programme Qualiopi complet.</div></div>
+          <div class="process-step"><div class="process-step-num">2</div><div class="process-step-content"><strong>Session 1 · Fondamentaux du parcours</strong> (3h30) — Mise à niveau partagée, cadre réglementaire sectoriel, premières manipulations sur cas pré-cadrés.</div></div>
+          <div class="process-step"><div class="process-step-num">3</div><div class="process-step-content"><strong>Inter-sessions</strong> (7-15 jours) — Travail sur cas concrets entre les sessions, questions par email, mise en application directe sur le métier.</div></div>
+          <div class="process-step"><div class="process-step-num">4</div><div class="process-step-content"><strong>Session 2 · Approfondissement</strong> (3h30) — Retour d'expérience, levée des blocages, mises en situation avancées, méthodes d'évolution autonome.</div></div>
+          <div class="process-step"><div class="process-step-num">5</div><div class="process-step-content"><strong>Évaluation Qualiopi + certificat</strong> — QCM final approfondi, mises en situation pratiques, remise du certificat de réussite, supports complets + prompts métier + accompagnement post-formation (1 mois).</div></div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Avantages réels · Limites assumées</div>
+        <div class="ay-grid">
+          <div class="ay-box advantages">
+            <div class="ay-box-title">✓ Ce que ce parcours apporte</div>
+            <ul>
+              <li>Certificat de réussite officiel · valeur reconnue</li>
+              <li>Compatible CPF (1 500 € de prise en charge possible)</li>
+              <li>Format groupe : monte en compétence toute l'équipe</li>
+              <li>Accompagnement post-formation 1 mois inclus</li>
+              <li>Inter-sessions = vraie appropriation entre les modules</li>
+            </ul>
+          </div>
+          <div class="ay-box limites">
+            <div class="ay-box-title">✕ Ce que ce parcours ne fait pas</div>
+            <ul>
+              <li>Engagement 7 à 14 h sur 1 mois — moins flexible</li>
+              <li>Niveau Expert : prérequis SOC-01/02 + expérience terrain</li>
+              <li>Tarif plus élevé (justifie le montage financier OPCO/CPF)</li>
+              <li>Pas adapté pour un test rapide (voir Initiation socle)</li>
+              <li>Pas de mise en production d'outil métier (voir famille Outils)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Parcours certifiants disponibles par secteur</div>
+        <div class="sectors-block">
+          <div class="sector-line"><strong>Assurance</strong>ASS-P1 Parcours Agent (790€ · 7h · Pro) · ASS-P2 Parcours Manager (1 090€ · 7h · Expert) · Parcours Expert sectoriel sur mesure (1 590€ · 14h)</div>
+          <div class="sector-line"><strong>Immobilier</strong>Parcours ALUR conforme · Parcours Agent immobilier IA · Parcours Manager agence (tarifs Ava Formation, communiqués au cadrage)</div>
+          <div class="sector-line"><strong>BTP/Artisans</strong>Parcours Dirigeant TPE BTP · Parcours Conducteur de travaux · Parcours Pilotage chantier IA (tarifs sur demande selon OPCO)</div>
+          <div class="sector-line"><strong>Compta/Libéraux</strong>Parcours Expert-comptable IA · Parcours Collaborateur cabinet · Parcours Manager cabinet (tarifs sur demande selon OPCO)</div>
+          <div class="sector-line"><strong>Communication</strong>COM-01 Création contenu à grande échelle (790€ · 7h · Pro) · Parcours Manager éditorial · Parcours Expert IA générative communication</div>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--dim); margin-top: 12px; font-style: italic;">
+          Détail complet de chaque parcours certifiant envoyé sur demande après cadrage. Montage OPCO/CPF accompagné par L'Rénov.
+        </p>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Profil adapté · Profil non adapté</div>
+        <div class="for-who">
+          <div class="for-who-row">
+            <span class="for-who-label yes">Adapté</span>
+            <div class="for-who-text">Structure de 3 à 10 personnes à monter en compétence simultanément. Dirigeant qui veut un niveau réellement opérationnel pour son équipe. Capacité à dégager 7-14 h sur 1 mois. Budget significatif qui justifie le montage OPCO/CPF (la prise en charge peut couvrir 50-100 % du tarif).</div>
+          </div>
+          <div class="for-who-row">
+            <span class="for-who-label no">Non adapté</span>
+            <div class="for-who-text">Grand débutant : passer par l'Initiation socle. Besoin d'un module ponctuel seulement : voir la Spécialisation sectorielle. Pas de financement OPCO/CPF disponible et budget serré : le parcours certifiant représente un investissement plus structurant.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-section">
+        <div class="tab-section-title">Modalités</div>
+        <div class="licence-box">
+          <strong>Format</strong> : groupe (3-10 personnes) · Présentiel ou visio · <strong>Certifiable Qualiopi</strong> · Finançable OPCO renforcé et CPF (1 500 €) · <strong>Acompte 30 %</strong> à la commande · Annulation &lt; 48 h = 100 % du montant dû. <strong>Accompagnement post-formation 1 mois inclus</strong>. Montage du dossier de financement accompagné par L'Rénov.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- BLOC CALCULATEUR FINANCEMENT — spécifique trame Formations -->
+  <section class="roi-block-section">
+    <div class="roi-block-section-title">Calculateur de financement OPCO / CPF</div>
+    <h2>Combien <em>vous payez réellement</em> après prise en charge</h2>
+    <p class="roi-intro">
+      Ajustez les curseurs selon votre situation. Le calcul estime votre <strong>reste à charge réel</strong> selon le type de financement et le taux de prise en charge.
+      <em>Pas un calcul officiel</em> — pour la décision finale, le montage est validé avec votre OPCO et L'Rénov.
+    </p>
+
+    <!-- INPUTS -->
+    <div class="roi-inputs">
+
+      <div class="roi-input-card">
+        <div class="roi-input-row">
+          <label for="duree">Durée formation visée</label>
+          <span class="roi-input-value"><span id="duree-val">7</span> h</span>
+        </div>
+        <input type="range" id="duree" min="3" max="14" value="7" step="1">
+        <div class="roi-input-scale"><span>3 h</span><span>14 h</span></div>
+      </div>
+
+      <div class="roi-input-card">
+        <div class="roi-input-row">
+          <label for="tarif">Tarif HT estimé / personne</label>
+          <span class="roi-input-value"><span id="tarif-val">790</span> €</span>
+        </div>
+        <input type="range" id="tarif" min="290" max="1590" value="790" step="50">
+        <div class="roi-input-scale"><span>290 €</span><span>1 590 €</span></div>
+      </div>
+
+      <div class="roi-input-card">
+        <div class="roi-input-row">
+          <label for="personnes">Personnes à former</label>
+          <span class="roi-input-value"><span id="personnes-val">1</span></span>
+        </div>
+        <input type="range" id="personnes" min="1" max="10" value="1" step="1">
+        <div class="roi-input-scale"><span>1</span><span>10</span></div>
+      </div>
+
+      <div class="roi-input-card">
+        <div class="roi-input-row">
+          <label for="financement">Type de financement</label>
+          <span class="roi-input-value" id="financement-val">OPCO standard</span>
+        </div>
+        <input type="range" id="financement" min="0" max="3" value="1" step="1">
+        <div class="roi-input-scale"><span>Aucun</span><span>CPF</span></div>
+      </div>
+
+      <div class="roi-input-card">
+        <div class="roi-input-row">
+          <label for="taux">Taux de prise en charge</label>
+          <span class="roi-input-value"><span id="taux-val">70</span>%</span>
+        </div>
+        <input type="range" id="taux" min="0" max="100" value="70" step="5">
+        <div class="roi-input-scale"><span>0%</span><span>100%</span></div>
+      </div>
+
+    </div>
+
+    <!-- SYNTHÈSE FINANCEMENT -->
+    <div class="roi-synthesis">
+      <div class="roi-synth-item">
+        <div class="roi-synth-num" id="cout-brut">790 €</div>
+        <div class="roi-synth-label">coût brut HT total</div>
+      </div>
+      <div class="roi-synth-arrow">−</div>
+      <div class="roi-synth-item">
+        <div class="roi-synth-num" id="prise-charge">553 €</div>
+        <div class="roi-synth-label">prise en charge estimée</div>
+      </div>
+      <div class="roi-synth-arrow">=</div>
+      <div class="roi-synth-item highlight">
+        <div class="roi-synth-num" id="reste-charge">237 €</div>
+        <div class="roi-synth-label">reste à charge réel</div>
+      </div>
+    </div>
+
+    <!-- COMPARAISON 3 PARCOURS -->
+    <div class="roi-compare-title">Confrontation avec les 3 parcours Formations</div>
+    <div class="roi-compare-grid">
+
+      <div class="roi-compare-card" data-level="1">
+        <div class="roi-compare-name">Parcours 1<br><span>Initiation socle</span></div>
+        <div class="roi-compare-price">290 – 690 € HT</div>
+        <div class="roi-compare-result">
+          <div class="roi-compare-roi" id="reste-1">207 €</div>
+          <div class="roi-compare-roi-label">reste à charge moy.</div>
+        </div>
+        <div class="roi-compare-payback">
+          Sur tarif moyen <strong>690 €</strong>
+        </div>
+      </div>
+
+      <div class="roi-compare-card highlight" data-level="2">
+        <div class="roi-compare-name">Parcours 2<br><span>Spécialisation</span></div>
+        <div class="roi-compare-price">390 – 650 € / module</div>
+        <div class="roi-compare-result">
+          <div class="roi-compare-roi" id="reste-2">156 €</div>
+          <div class="roi-compare-roi-label">reste à charge / module</div>
+        </div>
+        <div class="roi-compare-payback">
+          Sur tarif moyen <strong>520 €</strong>
+        </div>
+      </div>
+
+      <div class="roi-compare-card" data-level="3">
+        <div class="roi-compare-name">Parcours 3<br><span>Certifiant</span></div>
+        <div class="roi-compare-price">790 – 1 590 € HT</div>
+        <div class="roi-compare-result">
+          <div class="roi-compare-roi" id="reste-3">357 €</div>
+          <div class="roi-compare-roi-label">reste à charge moy.</div>
+        </div>
+        <div class="roi-compare-payback">
+          Sur tarif moyen <strong>1 190 €</strong>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="roi-conclusion-note">
+      <strong>Particularité de la prise en charge formation</strong> : le montant affiché est une <strong>estimation</strong> basée sur les taux moyens constatés. Le taux réel dépend de votre OPCO, de votre statut (salarié, indépendant, dirigeant), et de votre solde CPF (pour les particuliers). <strong>L'Rénov accompagne le montage du dossier</strong> de financement gratuitement — c'est inclus dans le cadrage. Les financements possibles : <strong>OPCO</strong> (Atlas, AFDAS, OPCO EP, etc.), <strong>CPF</strong> (1 500 € max pour les formations éligibles), <strong>FAFCEA / FIF-PL</strong> pour les indépendants.
+    </div>
+  </section>
+  <!-- FIN ZONE 5 -->
+
+  <!-- COMMENT ON DÉCIDE -->
+  <div class="decision-block">
+    <p><strong>Comment décider du bon parcours ?</strong></p>
+    <p>Selon le niveau actuel de l'équipe et l'objectif visé. <strong>Initiation socle</strong> si l'IA est encore une zone floue pour la majorité — il faut d'abord poser les bases. <strong>Spécialisation sectorielle</strong> si les bases sont là et qu'il faut maintenant aller au métier avec des modules ciblés. <strong>Parcours certifiant</strong> si l'enjeu est de monter en compétence toute une équipe avec un dispositif structurant et finançable CPF.</p>
+    <p>Pas de parcours "recommandé" par défaut — c'est le contexte (niveau, équipe, objectif, financement disponible) qui dicte le bon choix. Un échange préalable de 15-30 min permet de trancher et de monter le dossier de financement.</p>
+  </div>
+
+  <!-- CTA CADRAGE EXPRESS — mailto pré-rempli pour recevoir le questionnaire -->
+  <div class="cta-cadrage">
+    <div class="cta-cadrage-eyebrow">Avant de s'engager sur une formation</div>
+    <h3 class="cta-cadrage-title">Recevoir le <em>catalogue complet</em> + simulation OPCO/CPF.</h3>
+    <p class="cta-cadrage-desc">
+      Un court questionnaire personnalisé envoyé par email. Quelques questions sur le secteur, la taille de l'équipe et l'objectif visé — pour identifier le bon parcours et monter ensemble le dossier de financement OPCO ou CPF. Catalogue détaillé envoyé à la suite.
+    </p>
+    <a class="cta-cadrage-btn" href="mailto:laurence@lrenov-ia.studio?subject=Demande%20de%20catalogue%20Formations%20%2B%20simulation%20financement&body=Bonjour%20Laurence%2C%0A%0AJe%20viens%20de%20parcourir%20le%20document%20p%C3%A9dagogique%20sur%20les%203%20parcours%20de%20formation%20IA%20et%20je%20souhaite%20recevoir%20le%20catalogue%20complet%20avec%20une%20simulation%20de%20prise%20en%20charge%20OPCO%2FCPF.%0A%0AContexte%20rapide%20%3A%0A-%20Mon%20secteur%20%3A%20%0A-%20Taille%20de%20l%27%C3%A9quipe%20%C3%A0%20former%20%3A%20%0A-%20Niveau%20IA%20actuel%20%28grand%20d%C3%A9butant%20%2F%20intermediate%20%2F%20avanc%C3%A9%29%20%3A%20%0A-%20Objectif%20%28d%C3%A9couvrir%20%2F%20se%20sp%C3%A9cialiser%20%2F%20certifier%20l%27%C3%A9quipe%29%20%3A%20%0A-%20OPCO%20rattach%C3%A9%20%28si%20connu%29%20%3A%20%0A%0AMerci%2C%0A">
+      Recevoir le catalogue + simulation
+    </a>
+    <div class="cta-cadrage-note">
+      Réponse sous 24h ouvrées · laurence@lrenov-ia.studio · 06 09 22 57 11
+    </div>
+  </div>
+
+  
+  </div>
+
+    <!-- ========================================
+       FOOTER
+       ======================================== -->
+  <footer>
+    <div class="foot-wrap">
+      <div class="foot-col">
+        <div class="foot-brand">L'Rénov <span>IA Studio</span></div>
+        <div class="foot-tagline">
+          Votre métier en mémoire. Votre style en sortie.<br>
+          Pas un outil de plus. Le vôtre.
+        </div>
+        <div class="foot-social">
+          <a href="https://www.linkedin.com/in/laurence-borras-l-renov-ia-studio-31b0992a2" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/laurence_lrenov_ia_studio" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
+          </a>
+          <a href="https://www.facebook.com/LaurenceBorrasLRenovEspacesetIA" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4>Prestations</h4>
+        <a href="audit.html">Audit IA</a>
+        <a href="outils.html">Outils métier</a>
+        <a href="agents.html">Agents IA</a>
+        <a href="ateliers.html">Ateliers</a>
+        <a href="formations.html">Formations</a>
+      </div>
+
+      <div class="foot-col">
+        <h4>Par secteur</h4>
+        <a href="secteur-immobilier.html">Immobilier · ALUR</a>
+        <a href="secteur-btp.html">BTP · Artisans</a>
+        <a href="secteur-finance-comptabilite.html">Compta · Finance</a>
+        <a href="secteur-assurance.html">Assurance</a>
+        <a href="secteur-juridique.html">Juridique · Notariat</a>
+        <a href="secteurs.html">Tous les secteurs</a>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@lrenov-ia.studio">contact@lrenov-ia.studio</a>
+        <a href="contact.html">Formulaire</a>
+        <a href="https://calendly.com/laurence-lrenov-ia/30min">RDV 30 min offertes</a>
+        <a href="radar-ia.html">Radar IA</a>
+        <div class="foot-contact">
+          Blanquefort 33 · Gironde<br>
+          Bordeaux et toute la France
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>© 2026 L'Rénov IA Studio · Laurence Borras · SIRET 912 942 869 00013</div>
+      <div class="foot-bottom-links">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+        <a href="confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  /* CURSEUR */
+  const cursor = document.getElementById('cursor');
+  const cursorTrail = document.getElementById('cursorTrail');
+  let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
+  if(cursor && window.matchMedia('(hover: hover)').matches && window.innerWidth > 1024){
+    document.addEventListener('mousemove',(e)=>{
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px';
+    });
+    (function animateTrail(){
+      trailX += (mouseX - trailX) * .12;
+      trailY += (mouseY - trailY) * .12;
+      cursorTrail.style.left = trailX + 'px'; cursorTrail.style.top = trailY + 'px';
+      requestAnimationFrame(animateTrail);
+    })();
+    const clickables = document.querySelectorAll('a,button,input,textarea,.presta-card,.pilier-card,.tab-btn,.sector-card');
+    clickables.forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cursor.classList.add('hover');cursorTrail.classList.add('hover')});
+      el.addEventListener('mouseleave',()=>{cursor.classList.remove('hover');cursorTrail.classList.remove('hover')});
+    });
+    document.addEventListener('mousedown',()=>cursor.classList.add('click'));
+    document.addEventListener('mouseup',()=>cursor.classList.remove('click'));
+  }
+
+  /* ANIMATIONS APPARITION */
+  const fuObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); fuObs.unobserve(e.target); }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.fu').forEach(el=>fuObs.observe(el));
+
+  /* GLOW QUI SUIT LE CURSEUR sur cards */
+  document.querySelectorAll('.presta-card,.pilier-card,.sector-card,.parcours-card').forEach(card=>{
+    card.addEventListener('mousemove',(e)=>{
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mx', x + '%');
+      card.style.setProperty('--my', y + '%');
+    });
+  });
+
+  /* NAV — fond opaque au scroll */
+  const nav = document.getElementById('mainNav');
+  if(nav){
+    window.addEventListener('scroll',()=>{
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+  }
+
+  /* MENU MOBILE */
+  const navMobBtn = document.getElementById('navMobBtn');
+  const navMob = document.getElementById('navMob');
+  if(navMobBtn && navMob){
+    navMobBtn.addEventListener('click',()=>{
+      navMob.classList.toggle('open');
+      navMobBtn.textContent = navMob.classList.contains('open') ? '✕' : '☰';
+    });
+    navMob.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click',()=>{ navMob.classList.remove('open'); navMobBtn.textContent = '☰'; });
+    });
+  }
+
+  /* SCROLL FLUIDE ANCRES */
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      const href = this.getAttribute('href');
+      if(href === '#' || href.length < 2) return;
+      const target = document.querySelector(href);
+      if(target){
+        e.preventDefault();
+        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+      }
+    });
+  });
+  </script>
+</body>
+</html>

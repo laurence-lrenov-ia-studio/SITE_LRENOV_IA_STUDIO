@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar IA — L'Rénov IA Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark: #222b32;
+  --dark2: #1a2229;
+  --dark3: #2d3940;
+  --dark4: #243038;
+  --gold: #d4893a;
+  --gold2: #e8aa5c;
+  --cream: #f2ead8;
+  --white: #faf8f4;
+  --border: rgba(212,137,58,.16);
+  --border2: rgba(212,137,58,.32);
+  --border-soft: rgba(242,234,216,.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--white); min-height: 100vh; }
+
+/* ── HERO ── */
+.hero {
+  padding: 96px 24px 56px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+  align-items: center;
+}
+@media(max-width:768px){ .hero { grid-template-columns:1fr; } .widget-pano { display:none; } }
+.hero-left {}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+}
+.hero-eyebrow::before { content:''; display:block; width:28px; height:2px; background:var(--gold); }
+.hero h1 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800; line-height: 1.1; color: var(--white); margin-bottom: 16px;
+}
+.hero h1 em { font-style: normal; color: var(--gold); }
+.hero-sub { font-size: 1rem; color: rgba(242,234,216,.55); max-width: 480px; line-height: 1.6; margin-bottom: 24px; }
+.badge-update {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(212,137,58,.12); border: 1px solid rgba(212,137,58,.3);
+  border-radius: 20px; padding: 6px 14px;
+  font-size: .72rem; font-weight: 600; color: var(--gold2); letter-spacing: .04em;
+}
+.badge-update::before {
+  content:''; width:6px; height:6px; border-radius:50%; background:var(--gold);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ── WIDGET PANORAMA ── */
+.widget-pano {
+  background: var(--dark2);
+  border: 1px solid rgba(212,137,58,.15);
+  border-radius: 20px;
+  padding: 0;
+  cursor: pointer;
+  transition: transform .25s, box-shadow .3s, border-color .25s;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 320px;
+  justify-content: flex-end;
+}
+.widget-pano:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 56px rgba(0,0,0,.5), 0 0 40px rgba(212,137,58,.08);
+  border-color: rgba(212,137,58,.35);
+}
+/* Canvas sonar dans le widget */
+.wp-canvas-wrap {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 100%;
+  z-index: 0;
+}
+#wpCanvas {
+  width: 100%; height: 100%;
+  display: block;
+  opacity: .9;
+  position: absolute; top:0; left:0;
+}
+/* Dégradé bas pour lisibilité du texte */
+.wp-gradient {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 70%;
+  background: linear-gradient(to top, rgba(26,34,41,.98) 0%, rgba(26,34,41,.7) 60%, transparent 100%);
+  z-index: 1;
+}
+/* Contenu texte */
+.wp-content {
+  position: relative;
+  z-index: 2;
+  padding: 18px 20px 20px;
+  width: 100%;
+}
+.wp-badge {
+  display: inline-block;
+  font-size: .6rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(212,137,58,.8);
+  border: 1px solid rgba(212,137,58,.25);
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+}
+.wp-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.15rem; font-weight: 800; color: var(--white);
+  line-height: 1.2; margin-bottom: 6px;
+  letter-spacing: -.01em;
+}
+.wp-sub {
+  font-size: .72rem; color: rgba(242,234,216,.4);
+  line-height: 1.45; margin-bottom: 14px;
+}
+.wp-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .75rem; font-weight: 700;
+  color: var(--dark);
+  background: var(--gold);
+  padding: 7px 16px;
+  border-radius: 8px;
+  transition: background .2s;
+}
+.widget-pano:hover .wp-cta { background: var(--gold2); }
+@keyframes radarRing {
+  0% { transform: scale(1); opacity:1; }
+  100% { transform: scale(1.6); opacity:0; }
+}
+
+/* ── FILTRES ── */
+.filters-wrap { max-width: 1100px; margin: 0 auto 40px; padding: 0 24px; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filter-btn {
+  border: 1.5px solid rgba(212,137,58,.25); background: transparent;
+  color: rgba(242,234,216,.6); border-radius: 24px; padding: 7px 18px;
+  font-size: .78rem; font-weight: 500; font-family: 'DM Sans', sans-serif;
+  cursor: pointer; transition: all .2s;
+}
+.filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+.filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--dark); font-weight: 700; }
+
+/* ── GRILLE ── */
+.grid-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+
+/* ── CARD ── */
+.card {
+  background: var(--dark3); border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(212,137,58,.1); cursor: pointer;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+  display: flex; flex-direction: column;
+}
+.card:hover { transform: translateY(-4px); border-color: rgba(212,137,58,.35); box-shadow: 0 20px 40px rgba(0,0,0,.35); }
+.card-img { position: relative; height: 200px; overflow: hidden; background: var(--dark2); }
+.card-img img { width:100%; height:100%; object-fit:cover; transition: transform .4s; display:block; }
+.card:hover .card-img img { transform: scale(1.04); }
+.card-img-overlay { position:absolute; inset:0; background: linear-gradient(180deg, transparent 40%, rgba(34,43,50,.9) 100%); }
+.card-badge {
+  position:absolute; top:14px; left:14px;
+  background: var(--dark); border: 1px solid rgba(212,137,58,.4);
+  color: var(--gold); font-size:.65rem; font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; padding:4px 10px; border-radius:12px;
+}
+/* Écusson "Nouveau" clignotant — articles récents */
+.card-new {
+  position:absolute; top:14px; right:14px; z-index:3;
+  background: var(--gold); color: var(--dark);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.6rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+  padding:4px 10px; border-radius:12px;
+  box-shadow:0 0 0 0 rgba(212,137,58,.6);
+  animation: newPulse 1.8s ease-out infinite;
+}
+@keyframes newPulse {
+  0%   { box-shadow:0 0 0 0 rgba(212,137,58,.55); opacity:1; }
+  70%  { box-shadow:0 0 0 9px rgba(212,137,58,0); opacity:.85; }
+  100% { box-shadow:0 0 0 0 rgba(212,137,58,0); opacity:1; }
+}
+@media (prefers-reduced-motion: reduce){ .card-new{ animation:none } }
+.card-body { padding: 20px 22px 22px; flex:1; display:flex; flex-direction:column; }
+.card-date { font-size:.7rem; color:rgba(242,234,216,.35); font-weight:500; margin-bottom:8px; letter-spacing:.04em; }
+.card-title { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.02rem; font-weight:700; line-height:1.35; color:var(--white); margin-bottom:10px; }
+.card-excerpt { font-size:.82rem; color:rgba(242,234,216,.5); line-height:1.55; flex:1; }
+.card-footer { display:flex; align-items:center; justify-content:space-between; margin-top:16px; padding-top:14px; border-top:1px solid rgba(242,234,216,.07); }
+.card-read { font-size:.75rem; font-weight:600; color:var(--gold); display:flex; align-items:center; gap:5px; }
+.card-read svg { transition: transform .2s; }
+.card:hover .card-read svg { transform: translateX(3px); }
+.card-verdict-preview { font-size:.68rem; color:rgba(242,234,216,.3); }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(15,20,24,.88);
+  backdrop-filter:blur(8px); z-index:100;
+  display:flex; align-items:flex-start; justify-content:center;
+  padding:40px 20px; overflow-y:auto;
+  opacity:0; pointer-events:none; transition:opacity .3s;
+}
+.modal-overlay.open { opacity:1; pointer-events:all; }
+.modal {
+  background: var(--dark3); border:1px solid rgba(212,137,58,.2);
+  border-radius:20px; max-width:720px; width:100%; overflow:hidden;
+  transform:translateY(24px); transition:transform .35s; position:relative;
+}
+.modal-overlay.open .modal { transform:translateY(0); }
+.modal-img { height:260px; overflow:hidden; position:relative; }
+.modal-img img { width:100%; height:100%; object-fit:cover; }
+.modal-img-overlay { position:absolute; inset:0; background:linear-gradient(180deg,transparent 30%,rgba(45,57,64,.95) 100%); }
+.modal-close {
+  position:absolute; top:16px; right:16px;
+  background:rgba(34,43,50,.8); border:1px solid rgba(212,137,58,.3);
+  color:var(--cream); width:36px; height:36px; border-radius:50%;
+  font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  z-index:10; transition:background .2s;
+}
+.modal-close:hover { background:rgba(212,137,58,.2); }
+.modal-content { padding:28px 32px 32px; }
+@media(max-width:600px){ .modal-content{padding:20px 18px 24px;} }
+.modal-cat {
+  display:inline-block; font-size:.65rem; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--gold); border:1px solid rgba(212,137,58,.3);
+  border-radius:10px; padding:3px 10px; margin-bottom:14px;
+}
+.modal-title { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.45rem; font-weight:800; line-height:1.25; color:var(--white); margin-bottom:20px; }
+.modal-body { font-size:.92rem; color:rgba(242,234,216,.72); line-height:1.72; }
+.modal-body p { margin-bottom:16px; }
+
+/* Blocs structurés dans l'article */
+.bloc-avantage {
+  background: rgba(52,168,83,.08); border-left:3px solid #34a853;
+  border-radius:0 10px 10px 0; padding:14px 18px; margin:20px 0;
+  font-size:.88rem; color:rgba(242,234,216,.8); line-height:1.55;
+}
+.bloc-avantage .bloc-label { font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#34a853; margin-bottom:6px; }
+.bloc-contrainte {
+  background: rgba(251,140,0,.08); border-left:3px solid #fb8c00;
+  border-radius:0 10px 10px 0; padding:14px 18px; margin:20px 0;
+  font-size:.88rem; color:rgba(242,234,216,.8); line-height:1.55;
+}
+.bloc-contrainte .bloc-label { font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#fb8c00; margin-bottom:6px; }
+.bloc-roi {
+  background: rgba(212,137,58,.1); border-left:3px solid var(--gold);
+  border-radius:0 10px 10px 0; padding:14px 18px; margin:20px 0;
+  font-size:.88rem; color:var(--cream); line-height:1.55;
+}
+.bloc-roi .bloc-label { font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--gold); margin-bottom:6px; }
+.bloc-verdict {
+  background: var(--dark2); border:1px solid rgba(212,137,58,.2);
+  border-radius:10px; padding:16px 20px; margin:24px 0 0;
+  font-size:.9rem; color:var(--cream); line-height:1.55;
+}
+.bloc-verdict strong { color:var(--gold); }
+
+/* ── OUTIL INTERACTIF ── */
+.outil {
+  background:rgba(34,43,50,.8); border:1.5px solid rgba(212,137,58,.2);
+  border-radius:14px; padding:22px; margin-top:24px;
+}
+.outil-header { display:flex; align-items:center; gap:8px; margin-bottom:18px; }
+.outil-icon { width:32px; height:32px; background:rgba(212,137,58,.15); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:.9rem; }
+.outil-label { font-family:'Plus Jakarta Sans',sans-serif; font-size:.8rem; font-weight:700; color:var(--gold); letter-spacing:.04em; }
+.question { margin-bottom:16px; }
+.question-text { font-size:.85rem; font-weight:600; color:var(--cream); margin-bottom:9px; line-height:1.45; }
+.opts { display:flex; flex-wrap:wrap; gap:7px; }
+.opt {
+  border:1.5px solid rgba(212,137,58,.2); background:rgba(212,137,58,.05);
+  color:rgba(242,234,216,.6); border-radius:8px; padding:8px 14px;
+  font-size:.8rem; font-family:'DM Sans',sans-serif; cursor:pointer; transition:all .15s;
+}
+.opt:hover { border-color:var(--gold); color:var(--gold); background:rgba(212,137,58,.1); }
+.opt.sel { background:var(--gold); border-color:var(--gold); color:var(--dark); font-weight:700; }
+.btn-go {
+  display:none; margin-top:14px; background:var(--gold); color:var(--dark);
+  border:none; border-radius:8px; padding:11px 22px;
+  font-size:.85rem; font-weight:700; font-family:'Plus Jakarta Sans',sans-serif;
+  cursor:pointer; transition:background .2s, transform .15s; width:100%;
+}
+.btn-go:hover { background:var(--gold2); transform:translateY(-1px); }
+.result-box { display:none; margin-top:14px; border-radius:10px; padding:15px 18px; font-size:.85rem; line-height:1.6; }
+.result-box.utile { background:rgba(52,168,83,.12); border-left:3px solid #34a853; color:#a8f0b8; }
+.result-box.gadget { background:rgba(251,140,0,.1); border-left:3px solid #fb8c00; color:#ffd580; }
+.result-box.attente { background:rgba(156,163,175,.1); border-left:3px solid #9ca3af; color:rgba(242,234,216,.65); }
+.result-box strong { display:block; margin-bottom:5px; font-size:.9rem; }
+.cta-rdv {
+  display:none; margin-top:12px; background:rgba(212,137,58,.08);
+  border:1px solid rgba(212,137,58,.2); border-radius:10px;
+  padding:13px 16px; font-size:.82rem; color:rgba(242,234,216,.7); line-height:1.5;
+}
+.cta-rdv a { color:var(--gold); font-weight:700; text-decoration:none; }
+.cta-rdv a:hover { text-decoration:underline; }
+
+/* ── MODAL PANORAMA ── */
+.pano-overlay {
+  position:fixed; inset:0; background:rgba(10,15,20,.92);
+  backdrop-filter:blur(12px); z-index:200;
+  display:flex; align-items:center; justify-content:center; padding:20px;
+  opacity:0; pointer-events:none; transition:opacity .3s;
+}
+.pano-overlay.open { opacity:1; pointer-events:all; }
+.pano-frame {
+  width:100%; max-width:1000px; height:85vh;
+  border-radius:16px; overflow:hidden; border:1px solid rgba(212,137,58,.3);
+  background:var(--dark2);
+  transform:scale(.95); transition:transform .35s;
+  position:relative;
+}
+.pano-overlay.open .pano-frame { transform:scale(1); }
+.pano-frame iframe { width:100%; height:100%; border:none; }
+.pano-close {
+  position:absolute; top:14px; right:14px;
+  background:rgba(34,43,50,.9); border:1px solid rgba(212,137,58,.4);
+  color:var(--cream); width:36px; height:36px; border-radius:50%;
+  font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  z-index:10; transition:background .2s;
+}
+.pano-close:hover { background:rgba(212,137,58,.2); }
+
+  /* ===== NAVIGATION — alignée sur les pages refondues ===== */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    background:rgba(26,34,41,.78);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+    border-bottom:1px solid var(--border-soft);
+    transition:all .3s ease;
+  }
+  nav.scrolled{
+    background:rgba(26,34,41,.95);
+    border-bottom-color:var(--border);
+  }
+  .nav-wrap{
+    max-width:1320px;margin:0 auto;padding:0 2.4rem;height:78px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav-logo{display:flex;align-items:center;gap:.85rem;text-decoration:none}
+  .nav-logo img{height:46px;width:46px;object-fit:contain;border-radius:6px;transition:transform .4s}
+  .nav-logo:hover img{transform:rotate(8deg) scale(1.05)}
+  .nav-logo-text{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:600;font-size:.98rem;color:var(--cream);
+    line-height:1.2;letter-spacing:-.01em;white-space:nowrap;
+  }
+  .nav-logo-text span{color:var(--gold)}
+
+  .nav-links{display:flex;gap:.4rem;list-style:none;align-items:center}
+  .nav-links > li{position:relative}
+  .nav-links a{
+    color:rgba(242,234,216,.55);
+    text-decoration:none;
+    font-size:.74rem;font-weight:500;letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:.6rem 1rem;
+    border-radius:4px;
+    transition:all .25s;
+    display:inline-flex;align-items:center;gap:.35rem;
+    position:relative;
+  }
+  .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+  .nav-links a.active::after{
+    content:"";position:absolute;
+    bottom:.15rem;left:1rem;right:1rem;height:1px;
+    background:var(--gold);
+  }
+  .nav-links .has-mega::after{content:"";display:inline-block;width:6px;height:6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);margin-left:.2rem;opacity:.6}
+  .nav-links li.has-mega-li::after{
+    content:"";position:absolute;
+    top:100%;left:50%;transform:translateX(-50%);
+    width:160px;height:18px;background:transparent;z-index:201;
+  }
+  /* MÉGA-MENU */
+  .mega{
+    position:absolute;top:calc(100% + 12px);left:50%;
+    transform:translateX(-50%) translateY(-12px);
+    background:rgba(34,43,50,.96);
+    backdrop-filter:blur(24px) saturate(160%);
+    -webkit-backdrop-filter:blur(24px) saturate(160%);
+    border:1px solid var(--border);
+    border-radius:14px;padding:1.6rem;width:720px;
+    display:grid;grid-template-columns:1fr 1fr;gap:.6rem;
+    opacity:0;pointer-events:none;
+    transition:opacity .3s ease,transform .3s cubic-bezier(.23,1,.32,1);
+    box-shadow:0 32px 80px rgba(0,0,0,.6);z-index:202;
+  }
+  .nav-links li:hover .mega,
+  .nav-links li:focus-within .mega{
+    opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);
+  }
+  .mega::before{
+    content:"";position:absolute;top:-7px;left:50%;
+    transform:translateX(-50%) rotate(45deg);
+    width:13px;height:13px;background:rgba(34,43,50,.96);
+    border-left:1px solid var(--border);border-top:1px solid var(--border);
+  }
+  .mega a.mega-overview{
+    grid-column:1/-1;padding:.85rem 1rem;
+    background:linear-gradient(135deg,rgba(212,137,58,.12) 0%,rgba(232,170,92,.06) 100%);
+    border:1px solid var(--border2);border-radius:8px;
+    color:var(--gold);font-weight:600;font-size:.78rem;
+    text-align:center;text-transform:uppercase;letter-spacing:.1em;
+    transition:all .25s;display:block;
+  }
+  .mega a.mega-overview:hover{background:var(--gold);color:var(--dark)}
+  .mega a.mega-item{
+    display:flex;align-items:flex-start;gap:.85rem;
+    padding:.9rem 1rem;border-radius:8px;border:1px solid transparent;
+    text-transform:none;letter-spacing:0;color:var(--cream);transition:all .25s;
+  }
+  .mega a.mega-item:hover{
+    background:rgba(212,137,58,.08);border-color:var(--border);transform:translateX(2px);
+  }
+  .mega-icon{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:all .3s;margin-top:.2rem;background:none;border:none}
+  .mega a.mega-item:hover .mega-icon{color:var(--gold2);transform:translateX(2px)}
+  .mega-icon svg{width:22px;height:22px;stroke:currentColor;fill:none}
+  .mega-content{display:flex;flex-direction:column;gap:.15rem;flex:1}
+  .mega-content strong{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.88rem;color:var(--cream)}
+  .mega-content span.desc{font-size:.74rem;color:rgba(242,234,216,.55);font-weight:400;line-height:1.5}
+
+  .nav-btn{
+    border:1px solid var(--gold);color:var(--gold);
+    padding:.55rem 1.2rem;border-radius:4px;
+    font-size:.72rem;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;text-decoration:none;
+    transition:all .25s;white-space:nowrap;position:relative;overflow:hidden;
+  }
+  .nav-btn::before{content:"";position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .35s ease;z-index:-1}
+  .nav-btn:hover{color:var(--dark)}
+  .nav-btn:hover::before{transform:translateX(0)}
+
+  .nav-mobile-btn{display:none;background:none;border:1px solid var(--border);color:var(--cream);font-size:1.3rem;cursor:pointer;padding:.5rem .7rem;border-radius:4px}
+  .nav-mobile{display:none;flex-direction:column;background:rgba(26,34,41,.99);border-top:1px solid var(--border);padding:1.2rem 2rem;max-height:calc(100vh - 78px);overflow-y:auto}
+  .nav-mobile a{color:rgba(242,234,216,.7);text-decoration:none;font-size:.92rem;font-weight:500;padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,.04);letter-spacing:.04em}
+  .nav-mobile a.sub{padding-left:1.2rem;font-size:.82rem;color:rgba(242,234,216,.5)}
+  .nav-mobile a:hover{color:var(--gold)}
+  .nav-mobile.open{display:flex}
+  footer{background:var(--dark2);border-top:1px solid rgba(212,137,58,.18);padding:2rem}
+  .foot-wrap{max-width:1200px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+  .foot-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.98rem;color:var(--cream)}
+  .foot-logo span{color:var(--gold)}
+  .foot-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+  .foot-links a{font-size:.73rem;color:rgba(242,234,216,.3);text-decoration:none;transition:color .2s}
+  .foot-links a:hover{color:var(--gold)}
+  footer .copy{font-size:.72rem;color:rgba(242,234,216,.22);width:100%;margin-top:.5rem}
+  @media(max-width:1024px){.nav-links,.nav-btn.desk{display:none}.nav-mobile-btn{display:block}}
+
+  /* RADAR ICON ANIMATION */
+  .nav-radar-wrap{display:inline-flex;align-items:center;position:relative}
+  .nav-radar-icon{animation:radarSpin 2s linear infinite}
+  @keyframes radarSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+  .radar-beam{transform-origin:12px 12px;animation:beamSpin 2s linear infinite}
+  @keyframes beamSpin{0%{transform:rotate(0deg);opacity:1}50%{opacity:.3}100%{transform:rotate(360deg);opacity:1}}
+
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <div class="nav-wrap">
+    <a href="https://lrenov-ia.studio/index.html" class="nav-logo">
+      <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCASwBLADASIAAhEBAxEB/8QAHAABAAICAwEAAAAAAAAAAAAAAAECBAcDBQYI/8QAVRABAAEDAgMEBAgJBwsDAgcBAAECAwQFEQYhMQcSQVETYXGBFCIyUnKRscEVIzQ2QnN0odEWJjM1Q1ViCBckU1SCkpPC4fBjZPElsjdEoqSz0vLi/8QAGwEBAAIDAQEAAAAAAAAAAAAAAAECAwUGBAf/xAA6EQEAAQMBBAUKBgMBAQADAAAAAQIDEQQFEiExQVFhcbEGEyI0gZGhwdHhFDIzUnLwIyRiQpIVovH/2gAMAwEAAhEDEQA/APnQB6HnAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//Z" alt="L'Rénov IA Studio" style="height:50px;width:50px;object-fit:contain;border-radius:6px" />
+      <div class="nav-logo-text"><div style="white-space:nowrap">L'Rénov <span>IA</span> Studio</div><div style="font-size:.65rem;font-weight:400;color:rgba(242,234,216,.4);letter-spacing:.04em;white-space:nowrap">Laurence Borras</div></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://lrenov-ia.studio/index.html">Accueil</a></li>
+      <li class="has-mega-li">
+        <a href="https://lrenov-ia.studio/assistant.html" class="has-mega">Mon assistant IA</a>
+        <div class="mega">
+          <a href="https://lrenov-ia.studio/assistant.html" class="mega-overview">Vue d'ensemble — Les 5 prestations →</a>
+          <a href="https://lrenov-ia.studio/audit.html" class="mega-item">
+            <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></div>
+            <div class="mega-content"><strong>Audit IA</strong><span class="desc">Diagnostiquer · cartographier · planifier</span></div>
+          </a>
+          <a href="https://lrenov-ia.studio/outils.html" class="mega-item">
+            <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <div class="mega-content"><strong>Outils métier</strong><span class="desc">Cœur de l'activité · sur-mesure sectoriel</span></div>
+          </a>
+          <a href="https://lrenov-ia.studio/agents.html" class="mega-item">
+            <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v2"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg></div>
+            <div class="mega-content"><strong>Agents IA</strong><span class="desc">Génération conversationnelle ciblée</span></div>
+          </a>
+          <a href="https://lrenov-ia.studio/ateliers.html" class="mega-item">
+            <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1"/><circle cx="17" cy="9" r="2.5"/><path d="M15 20v-1a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v1"/></svg></div>
+            <div class="mega-content"><strong>Ateliers</strong><span class="desc">Co-construction dirigeant + équipe</span></div>
+          </a>
+          <a href="https://lrenov-ia.studio/formations.html" class="mega-item">
+            <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div>
+            <div class="mega-content"><strong>Formations</strong><span class="desc">3 parcours · Qualiopi · OPCO/CPF</span></div>
+          </a>
+        </div>
+      </li>
+      <li class="has-mega-li">
+        <a href="https://lrenov-ia.studio/secteurs.html" class="has-mega">Par secteur</a>
+        <div class="mega mega-sectors">
+          <a href="https://lrenov-ia.studio/secteurs.html" class="mega-overview">Vue d'ensemble — Tous les secteurs adressés →</a>
+          <a href="https://lrenov-ia.studio/secteur-immobilier.html" class="mega-item">
+            <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2h-4v-7H10v7H5a2 2 0 0 1-2-2V10z"/></svg></div>
+            <div class="mega-content"><strong>Immobilier · ALUR</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+          </a>
+          <a href="https://lrenov-ia.studio/secteur-btp.html" class="mega-item">
+            <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l4-3 4 3v11M13 21V14l4-3 4 3v7M8 14h1M8 17h1"/></svg></div>
+            <div class="mega-content"><strong>BTP · Artisans</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+          </a>
+          <a href="https://lrenov-ia.studio/secteur-finance-comptabilite.html" class="mega-item">
+            <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 5h11a3 3 0 0 1 0 6H8a3 3 0 0 0 0 6h11"/></svg></div>
+            <div class="mega-content"><strong>Compta · Finance</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+          </a>
+          <a href="https://lrenov-ia.studio/secteur-assurance.html" class="mega-item">
+            <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 5v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V5l-8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div class="mega-content"><strong>Assurance · IARD</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+          </a>
+          <a href="https://lrenov-ia.studio/secteur-juridique.html" class="mega-item">
+            <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 8h12M4 21h16M7 8l-3 6h6L7 8zm10 0l-3 6h6l-3-6z"/></svg></div>
+            <div class="mega-content"><strong>Juridique · Notariat</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+          </a>
+          <a href="https://lrenov-ia.studio/secteur-professions-liberales.html" class="mega-item">
+            <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div>
+            <div class="mega-content"><strong>Professions libérales</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+          </a>
+          <a href="https://lrenov-ia.studio/secteur-communication.html" class="mega-item">
+            <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8v.5a8 8 0 0 1-8 8H8l-5 2 1.5-4A8 8 0 0 1 3 11.5V11z"/></svg></div>
+            <div class="mega-content"><strong>Communication · Marketing</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+          </a>
+        </div>
+      </li>
+      <li><a href="https://lrenov-ia.studio/ia-et-moi.html">L'IA et moi</a></li>
+      <li><a href="https://lrenov-ia.studio/formations.html">Formations</a></li>
+      <li><a href="radar-ia.html" class="active"><span class="nav-radar-wrap"><svg class="nav-radar-icon" width="12" height="12" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><line x1="12" y1="2" x2="12" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="radar-beam"/></svg></span>Radar IA</a></li>
+      <li><a href="https://lrenov-ia.studio/contact.html">Contact</a></li>
+    </ul>
+    <a href="https://calendly.com/laurence-lrenov-ia/30min" class="nav-btn desk">On en parle ?</a>
+    <button class="nav-mobile-btn" onclick="toggleMenu()" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="https://lrenov-ia.studio/index.html">Accueil</a>
+    <a href="https://lrenov-ia.studio/assistant.html">Mon assistant IA</a>
+    <a href="https://lrenov-ia.studio/audit.html" class="sub">→ Audit IA</a>
+    <a href="https://lrenov-ia.studio/outils.html" class="sub">→ Outils métier</a>
+    <a href="https://lrenov-ia.studio/agents.html" class="sub">→ Agents IA</a>
+    <a href="https://lrenov-ia.studio/ateliers.html" class="sub">→ Ateliers</a>
+    <a href="https://lrenov-ia.studio/formations.html" class="sub">→ Formations</a>
+    <a href="https://lrenov-ia.studio/secteurs.html">Par secteur</a>
+    <a href="https://lrenov-ia.studio/secteur-immobilier.html" class="sub">→ Immobilier ALUR</a>
+    <a href="https://lrenov-ia.studio/secteur-btp.html" class="sub">→ BTP · Artisans</a>
+    <a href="https://lrenov-ia.studio/secteur-finance-comptabilite.html" class="sub">→ Compta · Finance</a>
+    <a href="https://lrenov-ia.studio/secteur-assurance.html" class="sub">→ Assurance</a>
+    <a href="https://lrenov-ia.studio/secteur-juridique.html" class="sub">→ Juridique · Notariat</a>
+    <a href="https://lrenov-ia.studio/secteur-professions-liberales.html" class="sub">→ Professions libérales</a>
+    <a href="https://lrenov-ia.studio/secteur-communication.html" class="sub">→ Communication</a>
+    <a href="https://lrenov-ia.studio/ia-et-moi.html">L'IA et moi</a>
+    <a href="https://lrenov-ia.studio/formations.html">Formations</a>
+    <a href="radar-ia.html" style="color:var(--gold)">Radar IA</a>
+    <a href="https://lrenov-ia.studio/contact.html">Contact</a>
+    <a href="https://calendly.com/laurence-lrenov-ia/30min" style="color:var(--gold);font-weight:600;border-top:1px solid var(--border);margin-top:.5rem;padding-top:1rem">On en parle ?</a>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Radar IA</div>
+    <h1>Ce qui buzze.<br><em>Ce qui compte vraiment.</em></h1>
+    <p class="hero-sub">J'ai testé pour vous. Je vous dis franchement si ça vaut le coup — ou pas — pour votre métier.</p>
+    <span class="badge-update">Mis à jour · Avril 2026</span>
+  </div>
+
+  <!-- WIDGET PANORAMA -->
+  <div class="widget-pano" onclick="openPano()">
+    <div class="wp-canvas-wrap"><canvas id="wpCanvas"></canvas></div>
+    <div class="wp-gradient"></div>
+    <div class="wp-content">
+      <div class="wp-badge">L'Rénov IA Studio · Intelligence de terrain</div>
+      <div class="wp-title">Panorama IA Pro<br>2026</div>
+      <div class="wp-sub">GPT · Claude · Gemini · Mistral<br>Radar 8 axes · ROI · Profils métier</div>
+      <div class="wp-cta">Ouvrir le panorama <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTRES -->
+<div class="filters-wrap">
+  <div class="filters">
+    <button class="filter-btn active" onclick="filter('tout',this)">Tout voir</button>
+    <button class="filter-btn" onclick="filter('actu',this)">Actu IA</button>
+    <button class="filter-btn" onclick="filter('outil',this)">Outils</button>
+    <button class="filter-btn" onclick="filter('metier',this)">Par métier</button>
+    <button class="filter-btn" onclick="filter('rgpd',this)">RGPD & Sécurité</button>
+    <button class="filter-btn" onclick="filter('systeme',this)">Systèmes</button>
+  </div>
+</div>
+
+<!-- GRILLE -->
+<div class="grid-wrap">
+  <div class="grid" id="grid"></div>
+</div>
+
+<!-- MODAL ARTICLE -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-img"><img id="modal-img" src="" alt=""><div class="modal-img-overlay"></div></div>
+    <div class="modal-content">
+      <span class="modal-cat" id="modal-cat"></span>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PANORAMA -->
+<div class="pano-overlay" id="panoOverlay" onclick="closePanoOutside(event)">
+  <div class="pano-frame">
+    <button class="pano-close" onclick="closePano()">✕</button>
+    <iframe id="pano-iframe" src="" title="Panorama IA Pro 2026"></iframe>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// DONNÉES — ACTUS ÉTOFFÉES
+// ─────────────────────────────────────────────
+const actus = [
+  {
+    id:16, nouveau:true, cat:'Actu IA', tag:'actu', date:'Juillet 2026',
+    photo:'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80',
+    title:'ChatGPT dépassé par Claude ? Plugins, Skills et Codex viennent de relancer le match.',
+    excerpt:'Claude avait pris de l’avance avec ses Skills et ses connecteurs. ChatGPT réunit désormais connexions, méthodes réutilisables et exécution. Ce n’est plus une guerre de réponses : c’est une guerre d’écosystèmes.',
+    body:`
+<p>Depuis des mois, le verdict semblait entendu : Claude serait devenu l’outil le plus sérieux pour travailler, tandis que ChatGPT resterait surtout le champion de la conversation grand public. Puis OpenAI a réorganisé son écosystème autour de trois briques : les <strong>Plugins</strong>, les <strong>Skills</strong> et <strong>Codex</strong>.</p>
+<p>Le 9 juillet 2026, le répertoire des applications de ChatGPT est devenu le répertoire des plugins. Derrière ce changement de nom, il y a surtout un changement de logique. Un plugin peut désormais réunir une connexion à un outil, une méthode de travail réutilisable et les éléments nécessaires pour exécuter un workflow complet.</p>
+<p>Les applications donnent accès à vos outils et à vos données : Gmail, Drive, GitHub, Canva, Calendar ou d’autres services. Les Skills enregistrent votre façon de travailler : vos étapes, vos règles, vos exemples et, si nécessaire, du code. Codex, lui, peut intervenir pour construire, corriger ou faire évoluer les outils techniques qui soutiennent cette méthode.</p>
+<p>Je l’ai testé sur un cas réel. J’ai demandé à ChatGPT d’observer ma façon de préparer, vérifier et faire évoluer mes projets avec Codex. Il a transformé cette méthode en une compétence réutilisable, installée dans mon espace sous le nom <strong>« piloter-projets-codex »</strong>. Je ne repars donc plus d’une consigne vide : je peux réactiver une méthode déjà cadrée.</p>
+<p>Claude conserve de vrais points forts, notamment son écosystème de connecteurs, ses Skills et la qualité de son travail sur de longs documents. Mais annoncer que ChatGPT serait « dépassé » devient beaucoup trop simple. Les deux plateformes construisent désormais la même promesse de fond : une IA qui ne se contente plus de répondre, mais qui comprend votre méthode, accède aux bons outils et agit dans un cadre défini.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L’avantage</div>Vous pouvez réunir dans un même environnement vos outils connectés, votre méthode de travail et son exécution. Pour une entreprise, cela signifie moins de copier-coller, moins de consignes répétées et moins de dispersion entre cinq applications. Le vrai gain n’est pas une réponse plus brillante : c’est un travail qui se répète correctement.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>Un outil connecté n’est pas automatiquement un bon système. Il faut vérifier les droits d’accès, les actions autorisées, les données réellement partagées et les validations humaines avant exécution. Et une Skill mal cadrée reproduira vos imprécisions avec beaucoup de régularité. Plus l’IA agit, plus le cadrage initial devient important.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Prenez une procédure que vous répétez dix fois par mois : préparer un dossier, contrôler des pièces, mettre à jour un suivi ou lancer une série d’actions. Si vous perdez quinze minutes à retrouver les informations et réexpliquer la méthode à chaque fois, cela représente deux heures trente par mois sur une seule procédure. Une connexion propre et une Skill bien construite peuvent supprimer une grande partie de cette friction.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> non, ChatGPT n’est pas dépassé par Claude. Claude garde une avance sur certains usages, ChatGPT sur d’autres. Mais le match a changé de terrain : on ne compare plus seulement deux modèles capables d’écrire. On compare deux écosystèmes capables de connecter vos outils, mémoriser vos méthodes et exécuter du travail. Et sur ce terrain, la partie est très loin d’être terminée.</div>`,
+    questions:[
+      {id:'q1', text:'Tu utilises plusieurs outils séparés pour réaliser une même tâche ?', opts:[{v:'souvent',l:'Oui, tout le temps'},{v:'parfois',l:'Parfois'},{v:'non',l:'Non, très peu'}]},
+      {id:'q2', text:'Tu répètes régulièrement les mêmes consignes à l’IA ?', opts:[{v:'oui',l:'Oui, souvent'},{v:'qq',l:'De temps en temps'},{v:'non',l:'Rarement'}]},
+      {id:'q3', text:'Tes procédures importantes sont-elles clairement documentées ?', opts:[{v:'oui',l:'Oui, elles sont écrites'},{v:'partiel',l:'En partie seulement'},{v:'tete',l:'Non, elles sont dans ma tête'}]},
+      {id:'q4', text:'Tu aimerais que l’IA puisse agir dans Drive, Gmail, GitHub ou d’autres outils ?', opts:[{v:'oui',l:'Oui, clairement'},{v:'peut',l:'Peut-être, avec contrôle'},{v:'non',l:'Non, je préfère copier-coller'}]},
+      {id:'q5', text:'Ton besoin principal aujourd’hui ?', opts:[{v:'methode',l:'Fiabiliser une méthode'},{v:'connexion',l:'Relier mes outils'},{v:'outil',l:'Construire un outil métier'},{v:'aucun',l:'Je ne sais pas encore'}]},
+    ],
+    getVerdict(a){
+  const friction = a.q1==='souvent'||a.q1==='parfois'||a.q2==='oui'||a.q2==='qq';
+  if(friction&&a.q3==='tete') return {cls:'utile',txt:'✅ <strong>Ton premier chantier n’est pas le plugin : c’est la méthode.</strong> Tu as de la répétition et du savoir-faire encore dans ta tête. On capture d’abord la procédure, puis on décide ce qui doit être connecté ou automatisé.'};
+  if(a.q4==='oui'&&(a.q5==='connexion'||a.q5==='methode')) return {cls:'utile',txt:'✅ <strong>Tu es exactement dans la cible.</strong> Une connexion seule ne suffit pas : il faut lui associer une méthode, des droits clairs et une validation humaine. C’est là que le nouveau couple Plugins + Skills devient réellement utile.'};
+  if(a.q5==='outil') return {cls:'utile',txt:'✅ <strong>Ton besoin dépasse le simple abonnement IA.</strong> Tu cherches un vrai outil métier. Les Skills et Codex peuvent accélérer sa conception, mais il faut d’abord cadrer les utilisateurs, les données et les étapes de travail.'};
+  if(!friction&&a.q4==='non') return {cls:'gadget',txt:'⚠️ <strong>Pas besoin de tout connecter.</strong> Si tu as peu de répétition et que ton organisation fonctionne, garde un usage simple de l’IA. Une nouvelle fonction n’est utile que si elle enlève une friction réelle.'};
+  return {cls:'attente',txt:'⏳ <strong>À tester sur une seule procédure.</strong> Choisis une tâche répétitive, mesure le temps perdu aujourd’hui et vérifie si une Skill ou une connexion apporte un gain réel avant de généraliser.'};
+}
+  },
+  {
+    id:15, nouveau:true, cat:'Actu IA', tag:'actu', date:'Juillet 2026',
+    photo:'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
+    title:'Claude Fable 5 : l’IA la plus puissante d’Anthropic… mais pas forcément celle qu’il vous faut.',
+    excerpt:'Fable 5 peut soutenir des tâches complexes pendant des jours, manipuler un contexte immense et produire des réponses très longues. Mais sa puissance vient avec un prix, des refus et une question simple : avez-vous réellement un travail assez difficile à lui confier ?',
+    body:`
+<p>Claude Fable 5 est le modèle le plus puissant qu’Anthropic ait largement diffusé. Il a été conçu pour les travaux de raisonnement les plus exigeants, les projets de programmation complexes et les tâches agentiques qui s’étendent dans le temps. Anthropic annonce une fenêtre de contexte d’un million de tokens et jusqu’à 128 000 tokens de sortie : de quoi absorber des masses de documents et produire des livrables exceptionnellement longs.</p>
+<p>Traduisons cela pour une entreprise. Fable 5 n’est pas fait pour écrire un mail de relance, résumer deux pages ou préparer une publication LinkedIn. Pour ces tâches, un modèle plus léger suffit largement. Fable prend son sens quand il faut analyser un dossier énorme, maintenir une logique sur des centaines de fichiers, comparer plusieurs scénarios, construire un logiciel complexe ou conduire une mission qui demande des heures — voire des jours — de travail.</p>
+<p>La puissance est réelle, mais Anthropic a aussi renforcé les garde-fous. Certaines demandes sont refusées ou redirigées vers Claude Opus 4.8. Anthropic reconnaît que ces protections ont été réglées de façon prudente et peuvent bloquer des demandes pourtant légitimes. Ce n’est donc pas seulement un sujet de performance : pour un usage professionnel, il faut aussi prévoir ce qui se passe quand le modèle refuse de traiter une partie du dossier.</p>
+<p>Fable 5 est disponible sur les offres payantes concernées et via l’API. Côté API, il est facturé 10 dollars par million de tokens en entrée et 50 dollars par million en sortie. Autrement dit : plus vous lui confiez de gros volumes et plus vous exigez de longues productions, plus le coût devient un vrai paramètre de projet.</p>
+<p>Le piège classique serait de choisir Fable parce que c’est « le plus puissant ». Dans la vraie vie, le meilleur modèle n’est pas celui qui obtient le score le plus élevé sur un benchmark. C’est celui qui réalise correctement votre tâche, dans votre délai, à un coût cohérent et sans créer une usine à gaz.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L’avantage</div>Fable 5 peut maintenir une cohérence sur des missions que les modèles précédents avaient tendance à perdre en route : analyse documentaire massive, architecture logicielle, recherche complexe, contrôle croisé de nombreux fichiers ou production de livrables longs. Pour les tâches réellement difficiles, son avance peut éviter de découper artificiellement le travail en dizaines de conversations.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>Sa puissance s’accompagne de trois limites : un coût supérieur, une consommation plus rapide de vos quotas et des garde-fous capables de refuser certaines demandes légitimes. Un processus professionnel doit donc prévoir une validation humaine, un modèle de repli et une façon claire de reprendre le travail si Fable s’arrête au milieu.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Pour rédiger dix mails, Fable est surdimensionné. Pour analyser 300 documents et produire une synthèse exploitable, il peut au contraire remplacer plusieurs journées de tri. Le bon calcul consiste à comparer son coût au temps humain évité sur une mission complexe — pas à comparer le prix de deux abonnements. Plus la tâche est longue, structurée et coûteuse à réaliser manuellement, plus Fable devient pertinent.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> Fable 5 est une démonstration impressionnante de puissance, mais ce n’est pas le nouveau choix par défaut. Pour la majorité des professionnels, Sonnet ou Opus restent plus rationnels au quotidien. Fable doit être réservé aux tâches où sa capacité à tenir un raisonnement très long change réellement le résultat. Le bon réflexe n’est pas « prendre le plus fort » : c’est attribuer le bon modèle à la bonne mission.</div>`,
+    questions:[
+      {id:'q1', text:'Tes missions impliquent-elles parfois des dizaines ou centaines de documents ?', opts:[{v:'souvent',l:'Oui, régulièrement'},{v:'parfois',l:'Parfois'},{v:'non',l:'Non, rarement'}]},
+      {id:'q2', text:'Une même analyse peut-elle te prendre plus d’une journée ?', opts:[{v:'oui',l:'Oui'},{v:'qqh',l:'Quelques heures'},{v:'non',l:'Non, moins d’une heure'}]},
+      {id:'q3', text:'As-tu besoin que l’IA produise un livrable très long ou pilote un projet complexe ?', opts:[{v:'oui',l:'Oui, clairement'},{v:'peut',l:'Peut-être ponctuellement'},{v:'non',l:'Non'}]},
+      {id:'q4', text:'Un refus ou un arrêt en cours de tâche serait-il bloquant ?', opts:[{v:'fort',l:'Oui, très bloquant'},{v:'gerable',l:'Gérable avec un plan B'},{v:'non',l:'Non, je peux reprendre'}]},
+      {id:'q5', text:'Ton usage principal de Claude aujourd’hui ?', opts:[{v:'simple',l:'Mails, résumés, contenus courts'},{v:'docs',l:'Analyse de dossiers importants'},{v:'code',l:'Développement ou architecture technique'},{v:'aucun',l:'Je ne l’utilise pas encore'}]},
+    ],
+    getVerdict(a){
+  const lourd = a.q1==='souvent'||a.q2==='oui'||a.q3==='oui';
+  if(a.q5==='simple'&&!lourd) return {cls:'gadget',txt:'⚠️ <strong>Fable serait surdimensionné pour toi.</strong> Pour les mails, résumés et contenus courts, un modèle plus léger sera plus rapide, moins coûteux et largement suffisant.'};
+  if(lourd&&(a.q5==='docs'||a.q5==='code')&&a.q4!=='fort') return {cls:'utile',txt:'✅ <strong>Tu as un vrai cas Fable.</strong> Gros volumes, mission longue, complexité réelle : c’est précisément là que sa puissance peut changer le résultat. Prévois quand même un contrôle humain et un modèle de repli.'};
+  if(lourd&&a.q4==='fort') return {cls:'attente',txt:'⏳ <strong>La puissance t’intéresse, mais la continuité est critique.</strong> Teste Fable sur un dossier non bloquant et prépare une reprise sur Opus avant de l’intégrer à une production sensible.'};
+  if(a.q5==='aucun') return {cls:'attente',txt:'⏳ <strong>Ne commence pas par Fable.</strong> Découvre d’abord Claude avec un modèle standard sur deux ou trois usages concrets. La puissance extrême n’a d’intérêt qu’une fois le besoin clairement identifié.'};
+  return {cls:'attente',txt:'⏳ <strong>À réserver aux missions exceptionnelles.</strong> Ton quotidien ne justifie probablement pas Fable en permanence, mais garde-le comme option pour un dossier massif, une analyse longue ou un projet technique complexe.'};
+}
+  },
+  {
+    id:13, nouveau:true, cat:'Outils', tag:'outil', date:'Juin 2026',
+    photo:'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+    title:'Claude peut apprendre votre métier une fois pour toutes. Ça s’appelle un Skill.',
+    excerpt:'Vous expliquez votre façon de faire un devis, un acte, un mail de relance — une seule fois. Claude l’applique pareil à chaque fois, sans que vous ayez à le recadrer. C’est ça, un Skill.',
+    body:`
+<p>Jusqu’ici, chaque conversation avec une IA repartait un peu de zéro. Vous réexpliquiez votre façon de rédiger un devis, les mentions obligatoires de vos actes, le ton de vos relances. À chaque fois. Les Skills changent ça : vous décrivez votre procédure une seule fois, et Claude l’applique de la même manière à chaque demande.</p>
+<p>Concrètement, un Skill, c’est un dossier qui réunit vos instructions, vos modèles et vos exemples. Claude le charge tout seul quand la tâche s’y prête, et seulement à ce moment-là. L’image juste : c’est le manuel qu’on remet à une nouvelle recrue. On explique la méthode une fois, on ne la répète plus jamais.</p>
+<p>Pour un notaire : un Skill qui connaît votre trame d’acte, vos clauses types, vos formules. Pour un courtier : un Skill qui structure vos comparatifs et vos relances dans votre ton. Pour un artisan : un Skill qui transforme vos notes dictées en devis présenté comme les vôtres. À chaque fois, le résultat colle à VOTRE façon de travailler — pas à celle d’un assistant générique.</p>
+<p>Et ce n’est pas réservé aux développeurs : un Skill simple s’écrit en quelques lignes de texte, sans une ligne de code. Là où ça demande du soin, c’est en amont. Pour que Claude reproduise fidèlement votre méthode, il faut d’abord la formuler clairement. Et ça, c’est précisément le travail.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L’avantage</div>Vous arrêtez de vous répéter. Une fois la procédure capturée, Claude l’applique avec la même logique à chaque fois — fini la dérive, fini le résultat «à côté» un jour sur deux. Vos collaborateurs obtiennent le même niveau de sortie que vous, sans connaître vos astuces. C’est votre savoir-faire, rangé et réutilisable.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>Un Skill ne vaut que ce que vaut la procédure qu’on lui donne. Si votre méthode est floue dans votre tête, le Skill sera flou aussi. Documenter proprement une fois — vos étapes, vos exemples, vos cas particuliers — c’est un vrai travail de cadrage. Deux points d’attention : n’installez que des Skills de confiance (les vôtres ou ceux d’Anthropic), un Skill mal intentionné peut faire faire n’importe quoi à l’IA ; et créer vos propres Skills demande une offre payante (Pro, Max, Team ou Enterprise).</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Comptez le nombre de fois où vous réexpliquez la même chose à l’IA dans une semaine. Chaque devis recadré, chaque mail repris, chaque «non, pas comme ça». Un Skill bien construit supprime cette friction pour de bon. Le coût, ce n’est pas l’outil — il est inclus dans votre abonnement — c’est le temps de cadrage initial. Une demi-journée pour capturer une procédure que vous répétez 20 fois par mois : le calcul se fait tout seul.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> les Skills, c’est le moment où l’IA arrête d’être un assistant générique pour devenir VOTRE outil métier. Mais le résultat dépend entièrement de la qualité du cadrage. Capturer une procédure proprement, la tester, vous la remettre en main pour que vous soyez autonome : c’est exactement ce qu’on construit ensemble.</div>`,
+    questions:[
+      {id:'q1', text:'Tu réexpliques souvent la même chose à l’IA d’une fois sur l’autre ?', opts:[{v:'oui',l:'Oui, tout le temps'},{v:'parfois',l:'De temps en temps'},{v:'non',l:'Non, pas vraiment'}]},
+      {id:'q2', text:'Tu as des tâches répétitives bien cadrées (devis, actes, mails types) ?', opts:[{v:'bcp',l:'Oui, plein'},{v:'qq',l:'Quelques-unes'},{v:'peu',l:'Pas vraiment'}]},
+      {id:'q3', text:'Quand quelqu’un fait la tâche à ta place, le résultat est au niveau ?', opts:[{v:'non',l:'Rarement, je repasse derrière'},{v:'parfois',l:'Ça dépend'},{v:'oui',l:'Oui, c’est carré'}]},
+      {id:'q4', text:'Tu utilises Claude (ou une autre IA) avec une offre payante ?', opts:[{v:'oui',l:'Oui'},{v:'non',l:'Non, version gratuite'},{v:'sais',l:'Je ne sais pas'}]},
+      {id:'q5', text:'Ta façon de faire ces tâches, elle est écrite quelque part ?', opts:[{v:'tete',l:'Non, c’est dans ma tête'},{v:'partiel',l:'En partie'},{v:'oui',l:'Oui, c’est documenté'}]},
+    ],
+    getVerdict(a){
+  const repet = a.q1==='oui'||a.q1==='parfois';
+  const cadre = a.q2==='bcp'||a.q2==='qq';
+  if(a.q2==='peu') return {cls:'attente',txt:'⏳ <strong>Pas ta priorité tout de suite.</strong> Les Skills brillent sur des tâches répétitives et cadrées. Si ton activité est surtout du cas par cas, le gain est plus limité — on regardera d’autres leviers ensemble.'};
+  if(repet&&cadre&&a.q5==='tete') return {cls:'utile',txt:'✅ <strong>C’est exactement ton cas.</strong> Tu as des procédures répétitives, mais elles sont dans ta tête. Les capturer en Skills, c’est arrêter de te répéter ET rendre ton équipe autonome. Le seul vrai travail, c’est le cadrage — c’est là qu’on intervient.'};
+  if(repet&&a.q3==='non') return {cls:'utile',txt:'✅ <strong>Le bon signal.</strong> Si tu dois toujours repasser derrière, c’est que ta méthode n’est nulle part. Un Skill encode ta façon de faire une fois — et le résultat est au niveau à chaque fois. 30 min pour repérer la première procédure à capturer.'};
+  if(a.q4==='non') return {cls:'attente',txt:'⏳ <strong>Vérifie d’abord ton offre.</strong> Créer tes propres Skills demande une offre payante. Mais si tu as des procédures répétitives, l’investissement se rentabilise vite — on fait le point ensemble.'};
+  return {cls:'attente',txt:'⏳ <strong>À creuser selon ton activité.</strong> Tu as peut-être des procédures à capturer sans le savoir. 30 minutes pour repérer ce qui se répète chez toi et ce qui mérite un Skill.'};
+}
+  },
+  {
+    id:14, nouveau:true, cat:'Actu IA', tag:'actu', date:'Juin 2026',
+    photo:'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&q=80',
+    title:'OpenAI Codex code à votre place. Mais vous n’êtes pas développeur — alors ça vous concerne ?',
+    excerpt:'Codex écrit du code, corrige des bugs, automatise des tâches techniques. C’est puissant. Mais c’est un outil de développeur. Voici la seule situation où ça change vraiment quelque chose pour votre activité.',
+    body:`
+<p>Codex, c’est l’agent de développement d’OpenAI. Vous lui décrivez ce que vous voulez, il écrit le code, le teste, corrige ses propres erreurs et vous rend un résultat. Depuis peu, il tourne même à distance : vous lancez une tâche depuis votre téléphone, elle s’exécute sur votre ordinateur, et vous validez les actions à distance.</p>
+<p>Soyons direct : c’est un outil de développeur. Si votre métier, c’est le notariat, l’immobilier, le BTP ou l’assurance, vous n’allez pas écrire de logiciel. La plupart des titres que vous voyez passer sur Codex ne vous concernent pas — et il n’y a aucune raison de culpabiliser de «ne pas suivre».</p>
+<p>Il y a quand même une situation où ça compte pour vous : si vous faites développer ou maintenir quelque chose. Un site, un formulaire, un petit outil interne, une automatisation. Aujourd’hui, ce type de prestation passe par un développeur. Avec un agent comme Codex, une partie de ce travail technique se fait plus vite et pour moins cher. Ça ne veut pas dire que vous le ferez vous-même — ça veut dire que la personne qui construit vos outils va plus vite, et que ça devrait se voir sur la facture.</p>
+<p>L’autre nouveauté qui mérite votre attention : ces agents savent désormais mener une tâche du début à la fin, en autonomie, jusqu’à vérification. C’est un signal de fond — le travail technique se délègue de plus en plus à des agents. Mais pour vous, à court terme, ça reste un sujet de prestataire, pas un outil du quotidien.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L’avantage</div>Si vous faites construire des outils (site, automatisations, mini-applis), le travail technique va plus vite et coûte moins cher. Ce n’est pas vous qui codez — c’est que la personne qui le fait pour vous est démultipliée. À périmètre égal, une presta qui prenait une semaine peut en prendre deux jours.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>Codex ne s’adresse pas à un utilisateur non technique. Ce n’est pas «ChatGPT en mieux» pour rédiger vos mails — c’est un outil pour produire du logiciel. Le piège serait de vous abonner ou de passer du temps dessus en pensant que ça va transformer votre quotidien métier. Pour 90 % de ce que vous faites, ce n’est pas l’outil. Le bon réflexe : savoir que ça existe, pour en parler à celui qui construit vos outils — pas pour vous y mettre vous-même.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Le calcul ne se fait pas sur votre temps à vous, mais sur vos prestations techniques. Si vous payez du développement (site, outil, automatisation), demandez à votre prestataire s’il utilise ce type d’agent — et ce que ça change sur le délai et le prix. C’est là que se trouve votre gain, pas dans un énième abonnement.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> Codex est un excellent outil… pour les développeurs. Pour vous, c’est un sujet à connaître, pas à adopter. Le vrai levier de votre côté, ce n’est pas d’apprendre à coder avec une IA — c’est d’avoir les bons outils métier construits pour vous. Et ça, ça se cadre.</div>`,
+    questions:[
+      {id:'q1', text:'Tu écris du code ou tu développes des logiciels dans ton activité ?', opts:[{v:'oui',l:'Oui, régulièrement'},{v:'parfois',l:'Un peu, à l’occasion'},{v:'non',l:'Non, jamais'}]},
+      {id:'q2', text:'Tu fais développer ou maintenir un site, un outil ou des automatisations ?', opts:[{v:'oui',l:'Oui'},{v:'projet',l:'Un projet en cours / j’y pense'},{v:'non',l:'Non'}]},
+      {id:'q3', text:'Tu paies un prestataire technique aujourd’hui ?', opts:[{v:'oui',l:'Oui'},{v:'parfois',l:'Ponctuellement'},{v:'non',l:'Non'}]},
+      {id:'q4', text:'Quand tu vois passer une actu technique sur l’IA, tu ressens quoi ?', opts:[{v:'perdu',l:'Ça me dépasse un peu'},{v:'curieux',l:'Curieux mais pas concerné'},{v:'chaud',l:'Ça m’intéresse, je creuse'}]},
+      {id:'q5', text:'Ce que tu cherches avec l’IA, c’est plutôt…', opts:[{v:'quotidien',l:'Gagner du temps sur mon quotidien'},{v:'outils',l:'Avoir des outils métier sur mesure'},{v:'sais',l:'Je ne sais pas encore'}]},
+    ],
+    getVerdict(a){
+  const presta = a.q2==='oui'||a.q2==='projet'||a.q3==='oui'||a.q3==='parfois';
+  if(a.q1==='oui') return {cls:'utile',txt:'✅ <strong>Là, ça te parle vraiment.</strong> Tu développes — Codex et les agents de code peuvent sérieusement accélérer ton travail. Ce n’est pas le cœur de ce qu’on fait, mais on peut t’aider à cadrer où l’agentique apporte le plus.'};
+  if(a.q1==='non'&&presta) return {cls:'utile',txt:'✅ <strong>Ton angle, c’est la facture.</strong> Tu ne codes pas, mais tu fais construire des outils. Demande à ton prestataire s’il utilise ce type d’agent — ça doit se voir sur le délai et le prix. Et si tu veux des outils métier pensés pour toi, c’est exactement notre terrain.'};
+  if(a.q1==='non'&&a.q5==='outils') return {cls:'utile',txt:'✅ <strong>Codex n’est pas pour toi — mais ton besoin, si.</strong> Tu ne veux pas coder, tu veux des outils métier sur mesure. C’est précisément ce qu’on construit : on s’occupe de la technique, tu récupères l’outil prêt à l’emploi.'};
+  if(a.q1==='non'&&a.q5==='quotidien') return {cls:'gadget',txt:'⚠️ <strong>Oublie Codex pour l’instant.</strong> Ton besoin, c’est de gagner du temps au quotidien — pas de produire du logiciel. ChatGPT ou Claude bien paramétrés feront bien plus pour toi. On regarde tes vrais cas d’usage.'};
+  return {cls:'attente',txt:'⏳ <strong>Pas ta priorité immédiate.</strong> Codex est un outil de dev. Si tu fais construire des outils un jour, garde-le en tête pour ton prestataire. Sinon, on se concentre sur ce qui te fait gagner du temps maintenant.'};
+}
+  },
+  {
+    id:11, cat:'Actu IA', tag:'actu', date:'Mai 2026',
+    photo:'https://images.unsplash.com/photo-1679403766665-67ed6cd2df30?w=800&q=80',
+    title:'GPT-5.5 est sorti. Pour vous, ça change quoi par rapport à GPT-5.4 ?',
+    excerpt:'OpenAI a sorti GPT-5.5 fin avril. Plus rapide, meilleur en maths et en code. Mais si vous n\'écrivez pas de code et que vous ne payez pas à l\'API — est-ce que ça vous concerne vraiment ?',
+    body:`
+<p>OpenAI a sorti GPT-5.5 (nom de code « Spud ») le 23 avril 2026. Le discours officiel : il est plus rapide, il se débrouille mieux sur les problèmes de mathématiques et de code, et il coûte 5 dollars en entrée et 30 dollars en sortie par million de tokens côté API.</p>
+<p>Traduisons. « Côté API », ça veut dire : pour les développeurs qui branchent GPT dans leurs propres logiciels. Si vous utilisez ChatGPT depuis l'application ou le site, vous n'êtes pas concerné par ces prix — vous payez votre abonnement habituel, point. Et « meilleur en maths et en code » : si votre métier n'est pas d'écrire du code, ce n'est pas votre critère.</p>
+<p>Ce qui change réellement pour vous tient en deux mots : vitesse et fiabilité. Les réponses arrivent plus vite, et le modèle se trompe un peu moins. Concrètement : une annonce immobilière rédigée en quelques secondes au lieu d'une dizaine, un résumé de bail commercial un peu plus fidèle, une série de relances clients générée sans relire trois fois pour corriger. Ce ne sont pas des révolutions. Ce sont des frictions en moins, tous les jours.</p>
+<p>Pour un courtier qui prépare ses mails de relance, un artisan qui structure un devis à partir de notes dictées, un notaire qui résume un acte : la différence avec GPT-5.4 est réelle mais discrète. Vous ne changez rien à votre façon de travailler. L'outil est juste un peu plus rapide et un peu plus sûr.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L'avantage</div>Si vous utilisez déjà ChatGPT au quotidien, la mise à jour est automatique et gratuite sur les offres payantes. Vous gagnez en vitesse et en fiabilité sans rien faire, sans rien réapprendre. C'est le genre de progrès qui ne se voit pas en une fois, mais qui se sent au bout d'une semaine.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>Une nouvelle version n'a jamais rendu un mauvais usage bon. Si vous donnez des consignes floues à l'IA, GPT-5.5 vous répondra plus vite — mais toujours à côté. Le facteur qui fait la différence, ce n'est pas la version du modèle : c'est la qualité de ce que vous lui demandez. Et ça, aucune mise à jour ne le règle à votre place.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Changer d'abonnement pour la dernière version « parce que c'est la dernière » : inutile. Si vous êtes déjà sur une offre payante, vous l'avez. Si vous êtes sur la version gratuite et que vous l'utilisez tous les jours pour votre travail, les 20€/mois de l'offre payante se rentabilisent dès la première heure de temps gagnée. Le vrai investissement n'est pas l'abonnement — c'est d'apprendre à bien s'en servir.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> GPT-5.5 est une bonne mise à jour, mais ce n'est pas une raison de tout changer. Si vous utilisez déjà l'outil, vous l'avez déjà. Si vous ne l'utilisez pas encore, ce n'est pas la version qui vous freine — c'est de ne pas avoir été accompagné pour démarrer sur vos vrais cas métier. C'est là que se joue le vrai écart.</div>`,
+    questions:[
+      {id:'q1', text:'Tu utilises ChatGPT ou un outil équivalent dans ton travail aujourd\'hui ?', opts:[{v:'oui',l:'Oui, régulièrement'},{v:'parfois',l:'De temps en temps'},{v:'non',l:'Pas encore'}]},
+      {id:'q2', text:'Tu es sur la version gratuite ou une version payante ?', opts:[{v:'payant',l:'Version payante'},{v:'gratuit',l:'Version gratuite'},{v:'sais',l:'Je ne sais pas trop'}]},
+      {id:'q3', text:'Pour quel type de tâches tu t\'en sers le plus ?', opts:[{v:'redac',l:'Rédaction (mails, annonces, docs)'},{v:'synth',l:'Résumer ou analyser des documents'},{v:'rien',l:'Je ne m\'en sers pas vraiment'}]},
+      {id:'q4', text:'Tu as déjà eu l\'impression que l\'IA te répondait à côté de ta demande ?', opts:[{v:'souvent',l:'Oui, souvent'},{v:'parfois',l:'Parfois'},{v:'rare',l:'Rarement, j\'ai l\'habitude'}]},
+      {id:'q5', text:'Tu cours après les nouvelles versions et les nouveaux outils IA ?', opts:[{v:'oui',l:'Oui, j\'aime tester'},{v:'non',l:'Non, je veux juste que ça marche'},{v:'perdu',l:'Je me sens un peu dépassé par le rythme'}]},
+    ],
+    getVerdict(a){
+  const usage = a.q1==='oui'||a.q1==='parfois';
+  const cote = a.q4==='souvent'||a.q4==='parfois';
+  if(a.q1==='non') return {cls:'attente',txt:'⏳ <strong>Ce n\'est pas la version qui compte pour toi.</strong> Tu n\'utilises pas encore l\'IA — donc GPT-5.5 ou GPT-5.4, peu importe. Ce qui te ferait gagner du temps, c\'est de démarrer sur 2 ou 3 cas concrets de ton métier. C\'est exactement ce qu\'on fait en premier.'};
+  if(usage&&a.q2==='gratuit') return {cls:'utile',txt:'✅ <strong>Tu t\'en sers déjà, mais en gratuit.</strong> Tu te prives de la vitesse et de la fiabilité de la dernière version. Si l\'IA fait partie de ton quotidien pro, l\'offre payante se rentabilise en une heure. On voit ensemble si ça vaut le coup pour toi.'};
+  if(usage&&cote) return {cls:'utile',txt:'✅ <strong>Le problème n\'est pas la version.</strong> Si l\'IA te répond souvent à côté, ce n\'est pas GPT-5.5 qui réglera ça — c\'est la façon de lui parler. Une demi-journée pour apprendre à cadrer tes demandes, et tu gagnes plus qu\'avec n\'importe quelle mise à jour.'};
+  if(usage&&a.q2==='payant') return {cls:'utile',txt:'✅ <strong>Tu as déjà GPT-5.5.</strong> La mise à jour est automatique sur ton offre. La vraie marge de progression maintenant, c\'est l\'usage : structurer tes prompts métier pour en tirer le maximum. C\'est là qu\'on peut t\'aider.'};
+  return {cls:'attente',txt:'⏳ <strong>À voir selon ton usage.</strong> Tu as des éléments qui pourraient justifier d\'aller plus loin. 30 minutes ensemble pour faire le point sur ta façon d\'utiliser l\'IA et ce qui te ferait vraiment gagner du temps.'};
+}
+  },
+  {
+    id:12, cat:'Systèmes', tag:'systeme', date:'Mai 2026',
+    photo:'https://images.unsplash.com/photo-1516382799247-87df95d790b7?w=800&q=80',
+    title:'Vos clients vous cherchent dans ChatGPT, plus seulement sur Google. C\'est le GEO.',
+    excerpt:'« Agent immo à Bordeaux », « artisan BTP en Gironde » : de plus en plus, ces recherches se font dans ChatGPT, Perplexity ou Gemini. Si votre site n\'est pas lisible par ces IA, vous n\'existez pas pour elles.',
+    body:`
+<p>Posez-vous la question : la dernière fois que vous avez cherché un prestataire, un horaire, une définition — êtes-vous allé sur Google, ou avez-vous demandé directement à ChatGPT ? De plus en plus de gens posent leur question à une IA et lisent la réponse, sans jamais cliquer sur un lien. Vos clients font pareil.</p>
+<p>Quand quelqu'un demande à ChatGPT, à Claude, à Perplexity ou à Gemini « quel notaire pour une succession à Blanquefort » ou « qui fait de la rénovation énergétique en Gironde », l'IA ne renvoie pas dix liens bleus. Elle donne une réponse, et elle cite quelques noms. La vraie question, désormais, c'est : est-ce que votre nom en fait partie ?</p>
+<p>Ces IA construisent leurs réponses en lisant des sites. Si le vôtre est clair, bien structuré, avec des informations cohérentes — votre métier, votre zone, vos services, vos coordonnées — vous avez une chance d'être compris et cité. S'il est confus, daté, ou si vos informations se contredisent d'un endroit à l'autre du web, l'IA passe à côté. Et vous devenez invisible pour une part croissante de vos prospects.</p>
+<p>Ça porte un nom : le GEO, pour Generative Engine Optimization. C'est au moteur de réponse génératif ce que le SEO était au moteur de recherche. Le principe change : on n'optimise plus seulement pour être en première page, on optimise pour être la réponse. Pour un agent immobilier, un courtier, un artisan ou une profession libérale ancrée localement, c'est en train de devenir un vrai sujet de visibilité — pas dans cinq ans, maintenant.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L'avantage</div>Très peu de pros s'en occupent aujourd'hui. Ceux qui structurent leur présence dès maintenant pour être lisibles par les IA prennent une avance réelle — au moment précis où ces usages explosent. Être la réponse citée, c'est une visibilité qu'un concurrent ne peut pas vous racheter d'un simple clic comme une pub.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>Personne ne peut vous garantir d'apparaître dans ChatGPT — les IA décident seules de ce qu'elles citent, et leurs règles évoluent. Méfiez-vous de quiconque vous vend « la première place dans ChatGPT ». Ce qui se travaille, c'est la lisibilité de votre présence : un site clair, des informations cohérentes partout, des réponses aux vraies questions de vos clients. On augmente vos chances. On ne signe pas un miracle.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Un prospect qui demande à une IA « un bon courtier près de chez moi » et qui tombe sur votre nom, c'est un contact qualifié qui ne vous a rien coûté en publicité. À l'inverse, être invisible sur ce canal pendant que vos concurrents y apparaissent, c'est un manque à gagner silencieux — vous ne voyez même pas les clients que vous ne recevez pas. Le coût n'est pas dans l'action. Il est dans l'inaction.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> Le GEO n'est pas un gadget, et ce n'est pas non plus de la magie. C'est tôt — et c'est précisément pour ça qu'il faut s'y mettre. Commencer par un diagnostic simple : qu'est-ce que les IA disent de vous aujourd'hui, et votre site est-il seulement lisible par elles ? C'est le point de départ. Le reste se construit ensuite, étape par étape.</div>`,
+    questions:[
+      {id:'q1', text:'Tu as un site internet pour ton activité ?', opts:[{v:'oui',l:'Oui'},{v:'reseaux',l:'Non, juste des réseaux sociaux'},{v:'non',l:'Non, rien en ligne'}]},
+      {id:'q2', text:'Ton site est à jour (services, zone, coordonnées) ?', opts:[{v:'ajour',l:'Oui, à jour'},{v:'vieux',l:'Il date un peu'},{v:'sais',l:'Aucune idée'}]},
+      {id:'q3', text:'Tu as déjà tapé ton nom ou ton métier dans ChatGPT ou Perplexity pour voir ce qui sort ?', opts:[{v:'oui',l:'Oui, j\'ai testé'},{v:'non',l:'Non, jamais'},{v:'cest',l:'C\'est quoi Perplexity ?'}]},
+      {id:'q4', text:'Aujourd\'hui, comment tes nouveaux clients te trouvent le plus souvent ?', opts:[{v:'bao',l:'Bouche-à-oreille'},{v:'google',l:'Google / recherche en ligne'},{v:'reseaux',l:'Réseaux sociaux'},{v:'sais',l:'Je ne sais pas vraiment'}]},
+      {id:'q5', text:'Ta visibilité en ligne, c\'est un sujet pour toi en ce moment ?', opts:[{v:'oui',l:'Oui, ça me préoccupe'},{v:'curieux',l:'Curieux, mais sans plus'},{v:'non',l:'Non, j\'ai assez de clients'}]},
+      {id:'q6', text:'Tu dépends beaucoup de ton ancrage local (clients de ta région) ?', opts:[{v:'oui',l:'Oui, l\'essentiel de mon activité'},{v:'moyen',l:'En partie'},{v:'non',l:'Non, je travaille partout / à distance'}]},
+    ],
+    getVerdict(a){
+  const local = a.q6==='oui'||a.q6==='moyen';
+  const sujet = a.q5==='oui'||a.q5==='curieux';
+  const jamais = a.q3==='non'||a.q3==='cest';
+  if(a.q1==='non') return {cls:'utile',txt:'✅ <strong>Tu pars d\'une feuille blanche — et c\'est une chance.</strong> Pas de site, ça veut dire invisible pour les IA comme pour Google. Mais ça veut dire aussi qu\'on peut construire directement quelque chose de lisible par les moteurs génératifs, sans corriger d\'existant. On commence par les bases.'};
+  if(a.q1==='oui'&&local&&jamais) return {cls:'utile',txt:'✅ <strong>C\'est exactement ton sujet.</strong> Tu as un site, ton activité est locale, et tu n\'as jamais vérifié ce que les IA disent de toi. C\'est le point de départ idéal : un diagnostic simple pour savoir si tu es lisible — et corriger ce qui te rend invisible.'};
+  if(a.q1==='reseaux') return {cls:'attente',txt:'⏳ <strong>Les réseaux ne suffisent pas ici.</strong> Les IA s\'appuient surtout sur des sites web pour leurs réponses. Avec uniquement des réseaux sociaux, tu es difficilement « citable ». Un site simple mais bien structuré changerait la donne. On regarde ce qui est réaliste pour toi.'};
+  if(a.q1==='oui'&&sujet) return {cls:'utile',txt:'✅ <strong>Tu te poses déjà la bonne question.</strong> Ta visibilité te préoccupe et tu as une présence en ligne à valoriser. Le GEO est la suite logique du référencement classique. Première étape : voir où tu en es, et identifier les 3 corrections qui comptent vraiment.'};
+  if(a.q5==='non') return {cls:'gadget',txt:'⚠️ <strong>Pas une urgence pour toi.</strong> Tu as assez de clients et la visibilité n\'est pas ton sujet du moment. Garde juste l\'info en tête : le jour où tu voudras développer, le GEO sera un levier. Reviens à ce moment-là.'};
+  return {cls:'attente',txt:'⏳ <strong>Un sujet à explorer.</strong> Tu as des éléments qui méritent un coup d\'œil, d\'autres moins urgents. 30 minutes pour regarder ensemble ce que les IA disent de toi aujourd\'hui — et décider si ça vaut le coup d\'agir maintenant.'};
+}
+  },
+  {
+    id:1, cat:'Actu IA', tag:'actu', date:'Avril 2026',
+    photo:'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80',
+    title:'Claude peut travailler sur votre ordinateur. Ce que ça implique vraiment.',
+    excerpt:'Il trie vos mails, range vos fichiers, remplit vos tableaux. Sans que vos données quittent votre bureau. Mais il y a une condition que personne ne mentionne.',
+    body:`
+<p>Claude peut maintenant ouvrir vos applications, lire vos fichiers, rédiger des emails directement dans votre messagerie, mettre à jour un tableau Excel — tout ça sur votre propre ordinateur. Sans passer par le cloud. Vos données restent chez vous.</p>
+<p>Pour un notaire, un courtier, un cabinet comptable : c'est la réponse à la question RGPD que tout le monde se posait. Vous n'envoyez rien nulle part. Claude travaille en local, sur ce que vous lui montrez.</p>
+<p>Un artisan qui fait ses devis sur Excel ? Il peut dicter ses postes à Claude le matin, et retrouver un devis structuré prêt à relire. Un agent immobilier ? Claude ouvre sa messagerie, trie les demandes entrantes, prépare les réponses types. Le tout sans copier-coller.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L'avantage</div>Un outil = une secrétaire qui travaille sur votre poste. Elle trie, rédige, range, relance. Sans abonnement cloud, sans données qui circulent. Pour les professions réglementées, c'est une rupture.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>Votre ordinateur doit être allumé pour que Claude travaille. Si vous lui demandez de trier vos mails chaque matin à 7h — et que votre PC est éteint — ça ne fonctionne pas. Soit vous avez un poste dédié qui tourne en permanence, soit vous intégrez ça dans une refonte de votre organisation. Ce n'est pas un outil qu'on branche en 10 minutes. C'est un outil qu'on configure une fois — bien — et qui tourne ensuite.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Claude Max : 90€/mois. Si ça vous remplace 10h de tâches de secrétariat par semaine — à 25€/h de valeur temps — vous êtes à 1 000€ de valeur produite pour 90€ investis. La question n'est pas "est-ce que c'est cher". La question c'est : combien coûte une heure de votre temps ?</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> Oui, ça vaut le coup. Mais il faut soit une organisation déjà bien rodée où on branche dessus, soit décider que c'est le bon moment pour remettre son organisation à plat. Pas les deux en même temps. Un accompagnement au départ, et ensuite ça tourne.</div>`,
+    questions:[
+      {id:'q1', text:'Combien d\'heures par semaine tu passes à traiter tes emails professionnels ?', opts:[{v:'peu',l:'Moins d\'1h'},{v:'moyen',l:'1 à 3h'},{v:'beaucoup',l:'Plus de 3h'}]},
+      {id:'q2', text:'Tu as déjà eu peur d\'envoyer un document client dans une IA en ligne ?', opts:[{v:'oui',l:'Oui, j\'évite ça'},{v:'non',l:'Non, je le fais sans trop réfléchir'},{v:'sais',l:'Je ne savais pas que c\'était un problème'}]},
+      {id:'q3', text:'Tu utilises l\'IA aujourd\'hui sur ton ordinateur ou uniquement en ligne ?', opts:[{v:'local',l:'Rien en local, tout en ligne'},{v:'mixte',l:'Les deux'},{v:'aucun',l:'Je n\'utilise pas encore l\'IA'}]},
+      {id:'q4', text:'Quand tu finis ta journée, il reste souvent des tâches de gestion non faites ?', opts:[{v:'oui',l:'Oui, presque toujours'},{v:'parfois',l:'Parfois, ça déborde'},{v:'non',l:'Non, je gère bien'}]},
+      {id:'q5', text:'Est-ce qu\'un ordinateur allumé en permanence au bureau est envisageable pour toi ?', opts:[{v:'oui',l:'Oui, j\'ai un poste fixe'},{v:'non',l:'Non, je suis mobile ou j\'éteins tout'},{v:'sais',l:'Je ne sais pas ce que ça implique'}]},
+    ],
+    getVerdict(a){
+  const vol = a.q1==='beaucoup';
+  const peur = a.q2==='oui';
+  const local = a.q5==='oui';
+  const deborde = a.q4==='oui'||a.q4==='parfois';
+  if(vol&&peur&&local) return {cls:'utile',txt:'✅ <strong>Fait pour toi.</strong> Tu passes beaucoup de temps sur tes emails, tu es vigilant sur les données, et tu as un poste fixe. C\'est exactement le profil pour qui cette fonctionnalité a été conçue.'};
+  if(vol&&deborde&&!local) return {cls:'attente',txt:'⏳ <strong>Utile, mais à planifier.</strong> Le volume justifie l\'outil. Sans poste fixe, tu peux quand même l\'utiliser manuellement — tu lances Claude quand tu en as besoin. Moins puissant, mais déjà utile.'};
+  if(a.q1==='peu') return {cls:'gadget',txt:'⚠️ <strong>Pas ta priorité.</strong> Moins d\'1h d\'emails par semaine, le gain ne justifie pas la configuration. Commence par d\'autres usages plus rapides.'};
+  return {cls:'attente',txt:'⏳ <strong>À explorer.</strong> Tu as des éléments qui correspondent, d\'autres moins. 30 minutes ensemble pour voir si ça colle à ton organisation.'};
+}
+  },
+  {
+    id:2, cat:'Actu IA', tag:'actu', date:'Avril 2026',
+    photo:'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80',
+    title:'GPT-5.4 est sorti. Ce qui change vraiment — et ce qui ne change pas — pour vous.',
+    excerpt:'OpenAI a sorti GPT-5.4. J\'ai passé une semaine à le tester sur des cas concrets. Ce n\'est pas un gadget. Ce n\'est pas non plus une révolution pour tout le monde.',
+    body:`
+<p>GPT-5.4 est sorti début mars. Réduction des erreurs de 33% par rapport à la version précédente. Fenêtre de contexte d'1 million de tokens — soit environ 750 pages de texte qu'il peut lire et traiter en une seule fois. Et des capacités d'usage de l'ordinateur intégrées.</p>
+<p>J'ai testé pendant une semaine sur des cas réels : annonces immobilières, analyse de CCTP pour un artisan BTP, résumé d'un bail commercial de 40 pages, emails de relance pour un courtier. Ce que j'ai vu : la qualité est au rendez-vous. Les textes sont plus fluides, les analyses plus précises, et surtout — il se trompe moins.</p>
+<p>La vraie différence utile pour les pros que j'accompagne : les documents longs. Avant, vous pouviez lui donner 20 pages max. Maintenant, vous lui collez un dossier entier — contrat, annexes, conditions générales — et il vous sort une synthèse propre en 3 minutes. Pour un juriste, un courtier en assurance, un agent immo qui lit des diagnostics : c'est concret.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L'avantage</div>Documents longs enfin gérés. Moins d'erreurs. Des capacités agentiques intégrées — il peut agir sur votre ordinateur, pas seulement répondre. Et GPT-5.4 mini est disponible sur abonnement gratuit.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>GPT-5.4 Thinking (le meilleur niveau) est réservé aux abonnements Plus et Pro — à partir de 20€/mois. Si vous n'êtes pas encore abonné et que vous n'avez pas de pratique régulière, cette mise à jour ne change rien pour vous aujourd'hui. Le meilleur outil du monde ne vous sera utile que si vous savez l'utiliser.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>20€/mois pour Plus. Si vous gagnez 1h par semaine sur la rédaction et l'analyse — à votre taux horaire — vous êtes rentable dès le premier mois. La vraie question : est-ce que vous l'utilisez assez pour en tirer la valeur ?</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> Si vous avez déjà un abonnement et une pratique régulière — passez dessus, c'est mieux. Si vous démarrez — commencez. La version que vous utilisez déjà suffit pour apprendre. On s'occupe de l'upgrade quand vous l'exploitez vraiment.</div>`,
+    questions:[
+      {id:'q1', text:'Tu utilises déjà ChatGPT ou Claude régulièrement dans ton travail ?', opts:[{v:'oui',l:'Oui, au moins 3 fois par semaine'},{v:'parfois',l:'De temps en temps'},{v:'non',l:'Non ou presque jamais'}]},
+      {id:'q2', text:'Il t\'arrive de travailler avec des documents de plus de 20 pages — contrats, dossiers, cahiers des charges ?', opts:[{v:'oui',l:'Oui, régulièrement'},{v:'parfois',l:'Parfois'},{v:'non',l:'Rarement ou jamais'}]},
+      {id:'q3', text:'Quand tu lis un long document, tu te retrouves souvent à chercher une info précise dedans ?', opts:[{v:'oui',l:'Oui, ça prend du temps'},{v:'non',l:'Non, je lis tout en entier'},{v:'evite',l:'J\'évite les longs documents'}]},
+      {id:'q4', text:'Tu as un abonnement payant à un outil IA (ChatGPT Plus, Claude Pro...) ?', opts:[{v:'oui',l:'Oui'},{v:'non',l:'Non, version gratuite uniquement'},{v:'sais',l:'Je ne sais pas ce que j\'ai'}]},
+      {id:'q5', text:'Tu te souviens d\'un moment où tu as perdu du temps à chercher une info dans un document ?', opts:[{v:'oui',l:'Oui, ça m\'arrive souvent'},{v:'parfois',l:'Parfois'},{v:'non',l:'Non, je suis organisé'}]},
+    ],
+    getVerdict(a){
+  const docs = a.q2==='oui'||a.q2==='parfois';
+  const cherche = a.q3==='oui'||a.q5==='oui';
+  const usage = a.q1==='oui';
+  const abo = a.q4==='oui';
+  if(usage&&docs&&cherche) return {cls:'utile',txt:'✅ <strong>GPT-5.4 change quelque chose pour toi.</strong> Tu utilises déjà l\'IA, tu travailles avec des documents longs et tu perds du temps à chercher. La fenêtre de contexte élargie va te faire gagner des heures.'};
+  if(!usage) return {cls:'attente',txt:'⏳ <strong>Commence d\'abord.</strong> La mise à jour n\'a de sens que si tu utilises déjà l\'IA. La version gratuite suffit pour démarrer — on s\'occupe de l\'upgrade ensuite.'};
+  if(!docs) return {cls:'gadget',txt:'⚠️ <strong>Pas ta priorité aujourd\'hui.</strong> La grande nouveauté de GPT-5.4, c\'est les longs documents. Si tu n\'en traites pas souvent, le gain est limité.'};
+  return {cls:'utile',txt:'✅ <strong>Utile.</strong> Tu as les bons usages. Si tu n\'es pas encore abonné, un Plus à 20€/mois se rembourse vite sur le temps gagné.'};
+}
+  },
+  {
+    id:3, cat:'Outils', tag:'outil', date:'Mars 2026',
+    photo:'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80',
+    title:'Workflow, automation, agent IA : trois mots. Trois réalités très différentes. Et un coût caché que personne ne mentionne.',
+    excerpt:'Ces trois mots circulent partout. Parfois pour parler de la même chose. Parfois pour vendre des prestations à 5 000€ qui valent 500€. Voilà ce que c\'est vraiment.',
+    body:`
+<p>On va clarifier une fois pour toutes. Parce que la confusion coûte cher — en mauvais choix, en mauvaises dépenses, et en attentes mal calibrées.</p>
+
+<p><strong>Un workflow, c'est une recette de cuisine.</strong> Étape 1, étape 2, étape 3. Toujours dans le même ordre. Un client remplit un formulaire → un email part automatiquement → une fiche s'ouvre dans votre tableau de suivi. Pas d'intelligence. Pas de décision. Juste de l'exécution. C'est simple, fiable, peu coûteux. Et pour 80% des besoins que j'identifie chez mes clients, c'est largement suffisant.</p>
+
+<p><strong>Une automation, c'est un workflow un peu plus intelligent.</strong> Il peut prendre une décision simple : si le client a coché "urgent", l'email part avec un objet différent. Si c'est un nouveau client, une fiche CRM se crée. C'est toujours de la logique conditionnelle — pas d'IA à proprement parler. Accessible, rapide à mettre en place, pas cher.</p>
+
+<p><strong>Un agent IA, c'est autre chose.</strong> Il lit une situation, il l'interprète, il décide quoi faire. Il peut lire un email entrant, comprendre qu'il s'agit d'une réclamation urgente d'un client prioritaire, rédiger une réponse adaptée, l'envoyer, et créer une tâche de suivi — sans que vous ayez rien paramétré pour ce cas précis. C'est puissant. Et c'est là que ça se complique.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L'avantage des agents IA</div>Ils gèrent les situations non prévues. Là où un workflow s'arrête parce qu'il ne reconnaît pas le cas, un agent s'adapte. Pour des volumes importants, des cas complexes, des process qui varient : c'est un gain de temps considérable.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte — et le coût caché</div>Un agent IA, ce n'est pas juste une automation "avec de l'IA dedans". C'est un système qui consomme des crédits API à chaque action. Chaque appel à l'IA coûte de l'argent — quelques centimes à quelques dizaines de centimes selon le modèle. Sur 1 000 traitements par mois, ça chiffre. Et il faut en plus payer l'abonnement à l'outil d'orchestration. Un agent mal conçu peut coûter plus cher qu'il ne rapporte. La configuration initiale est aussi plus longue et demande une vraie expertise.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Workflow simple : 0 à 50€/mois. Automation intermédiaire : 50 à 150€/mois. Agent IA sur-mesure : configuration 490 à 890€ + crédits API variables selon usage. La règle : on commence toujours par le workflow. Si le workflow ne suffit pas, on passe à l'automation. L'agent IA, c'est l'étape 3 — quand les deux premières ont atteint leurs limites.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> Ne vous laissez pas vendre un agent IA si un workflow résout votre problème. Et ne vous arrêtez pas à un workflow si votre volume et votre complexité méritent mieux. Le bon outil, c'est celui qui résout votre problème réel — pas le plus impressionnant à présenter.</div>`,
+    questions:[
+      {id:'q1', text:'Dans ta semaine, il y a des tâches que tu refais exactement de la même façon chaque fois ?', opts:[{v:'oui',l:'Oui, plusieurs'},{v:'parfois',l:'Quelques-unes'},{v:'non',l:'Non, chaque situation est différente'}]},
+      {id:'q2', text:'Combien de fois par semaine tu fais une action manuelle que tu pourrais supprimer si c\'était automatique ?', opts:[{v:'peu',l:'1 à 3 fois'},{v:'moyen',l:'4 à 10 fois'},{v:'beaucoup',l:'Plus de 10 fois'}]},
+      {id:'q3', text:'Tu as déjà entendu parler d\'automatisation ou de workflow dans ton secteur ?', opts:[{v:'oui',l:'Oui et ça m\'intéresse'},{v:'entendu',l:'Oui mais je ne sais pas par où commencer'},{v:'non',l:'Non, pas vraiment'}]},
+      {id:'q4', text:'Si tu pouvais supprimer une seule tâche répétitive de ta semaine, laquelle vient en tête en premier ?', opts:[{v:'emails',l:'Les emails et relances'},{v:'admin',l:'La paperasse et les fiches'},{v:'planning',l:'La gestion du planning et des RDV'},{v:'rien',l:'Je ne vois pas vraiment'}]},
+      {id:'q5', text:'Tu as déjà essayé de mettre en place quelque chose d\'automatique — même simple — dans ton activité ?', opts:[{v:'oui',l:'Oui, avec plus ou moins de succès'},{v:'non',l:'Non, tout est encore manuel'},{v:'tente',l:'J\'ai essayé mais abandonné'}]},
+      {id:'q6', text:'Est-ce que tu gères tout ça seul ou tu as une équipe ou une assistante ?', opts:[{v:'seul',l:'Seul'},{v:'equipe',l:'Avec une équipe'},{v:'partiel',l:'Avec un peu d\'aide externe'}]},
+    ],
+    getVerdict(a){
+  const repet = a.q1==='oui'||a.q1==='parfois';
+  const vol = a.q2==='beaucoup'||a.q2==='moyen';
+  const seul = a.q6==='seul';
+  const tache = a.q4!=='rien';
+  if(repet&&vol&&tache) return {cls:'utile',txt:'✅ <strong>Un workflow change ta vie.</strong> Tu as des tâches répétitives, un volume significatif, et tu sais déjà ce qui te prend le plus de temps. C\'est exactement là qu\'on commence. Résultat en une demi-journée.'};
+  if(!repet) return {cls:'attente',txt:'⏳ <strong>Plutôt un agent IA qu\'un workflow.</strong> Si chaque situation est différente, un système fixe ne suffira pas. Un agent IA qui s\'adapte sera plus pertinent — mais c\'est l\'étape d\'après.'};
+  if(a.q2==='peu') return {cls:'gadget',txt:'⚠️ <strong>Moins de 3 actions manuelles par semaine.</strong> La mise en place prend plus de temps que le gain. Note l\'idée pour plus tard, quand ton volume augmente.'};
+  return {cls:'utile',txt:'✅ <strong>Bonne base.</strong> Tu as des tâches à automatiser. On identifie la plus coûteuse en temps et on la règle en premier.'};
+}
+  },
+  {
+    id:4, cat:'Actu IA', tag:'actu', date:'Mars 2026',
+    photo:'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80',
+    title:'Le "deep research" par l\'IA : ce que c\'est, ce que ça fait, et pourquoi 3 fois par mois c\'est souvent suffisant.',
+    excerpt:'L\'IA qui fait des recherches autonomes pendant 15 minutes et vous rend un rapport sourcé de 10 pages. C\'est réel. Mais les limites aussi.',
+    body:`
+<p>Le principe : vous posez une question complexe. L'IA part chercher sur internet — elle ouvre des pages, lit des articles, compare des sources — pendant 5 à 20 minutes. Elle revient avec un rapport structuré, avec les sources citées. Pas d'hallucinations inventées : elle vous dit exactement d'où vient chaque information.</p>
+<p>J'ai testé sur des cas concrets qui concernent mes clients. Synthèse des nouvelles obligations ALUR pour les mandataires en 2026. Évolution des prix au m² en Gironde sur 12 mois. Jurisprudence récente sur les exclusions de garantie en assurance habitation. Comparatif de matériaux d'isolation pour un artisan. Sur chacun de ces sujets : un rapport propre, sourcé, en 10 minutes. Ce qui m'aurait pris 45 minutes à faire manuellement.</p>
+<p>Le quota : sur abonnement gratuit ou de base (20€/mois), environ 3 utilisations de deep research par mois. Sur abonnement Pro (200€/mois) : illimité ou quasi. La plupart de mes clients n'ont pas besoin de plus de 3 fois par mois — ils choisissent leurs sujets et c'est suffisant.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L'avantage</div>Une heure de veille réglementaire en 10 minutes. Des sources vérifiables que vous pouvez citer. Idéal pour préparer un rendez-vous client, rédiger une note interne, ou vérifier qu'une information que vous avez est toujours d'actualité.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>3 utilisations par mois sur abonnement standard — c'est peu si vous faites de la veille quotidienne. Et la qualité dépend de la façon dont vous posez la question. Une mauvaise question = un rapport hors sujet. Ça s'apprend, mais ce n'est pas magique dès le premier essai.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Si vous passez 2h par semaine à chercher des informations professionnelles sur internet, c'est 8h par mois. Le deep research en couvre une bonne partie en 30 minutes. L'abonnement Plus à 20€/mois se rembourse à la première veille réglementaire sérieuse.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> Utile pour les professions qui font de la veille réglementaire régulière — immo, assurance, droit, BTP. Pas besoin de l'abonnement Pro pour commencer. Testez sur 3 sujets que vous connaissez bien — vous verrez immédiatement si la qualité est au niveau.</div>`,
+    questions:[
+      {id:'q1', text:'Combien de temps tu passes à chercher des informations sur internet pour ton travail chaque semaine ?', opts:[{v:'peu',l:'Moins de 30 min'},{v:'moyen',l:'30 min à 2h'},{v:'beaucoup',l:'Plus de 2h'}]},
+      {id:'q2', text:'Quand tu cherches une info professionnelle, tu arrives facilement à trouver une source fiable ?', opts:[{v:'oui',l:'Oui, assez vite'},{v:'parfois',l:'Parfois, ça prend du temps'},{v:'non',l:'Non, c\'est souvent galère'}]},
+      {id:'q3', text:'Tu as déjà eu besoin d\'une info récente — jurisprudence, réglementation, taux — et tu ne savais pas où chercher ?', opts:[{v:'oui',l:'Oui, régulièrement'},{v:'parfois',l:'Parfois'},{v:'non',l:'Non, j\'ai mes sources habituelles'}]},
+      {id:'q4', text:'Dans ton travail, est-ce que la précision de l\'information compte — une erreur peut avoir des conséquences ?', opts:[{v:'oui',l:'Oui, très important'},{v:'moyen',l:'Ça dépend du sujet'},{v:'non',l:'Non, une approximation suffit souvent'}]},
+      {id:'q5', text:'Tu prépares souvent des rendez-vous clients ou des dossiers qui nécessitent des données récentes ?', opts:[{v:'oui',l:'Oui, souvent'},{v:'parfois',l:'Parfois'},{v:'non',l:'Rarement'}]},
+    ],
+    getVerdict(a){
+  const cherche = a.q1==='beaucoup'||a.q1==='moyen';
+  const galere = a.q2==='non'||a.q2==='parfois';
+  const precision = a.q4==='oui';
+  const prep = a.q5==='oui'||a.q5==='parfois';
+  if(cherche&&galere&&precision) return {cls:'utile',txt:'✅ <strong>Le deep research est fait pour toi.</strong> Tu passes du temps à chercher, tu as du mal à trouver des sources fiables, et la précision compte. 10 minutes au lieu de 45 — et les sources sont citées.'};
+  if(a.q1==='peu') return {cls:'gadget',txt:'⚠️ <strong>Moins de 30 min de recherche par semaine.</strong> Le deep research est puissant mais pas ta priorité. D\'autres usages de l\'IA t\'apporteront plus au quotidien.'};
+  if(!precision&&!prep) return {cls:'gadget',txt:'⚠️ <strong>Pas vraiment ton cas d\'usage.</strong> Si les infos n\'ont pas besoin d\'être précises et citées, une recherche Google classique suffit.'};
+  return {cls:'utile',txt:'✅ <strong>Utile pour toi.</strong> Tu prépares des RDV et des dossiers qui ont besoin d\'infos récentes. Teste sur 3 sujets que tu connais bien — tu verras tout de suite si la qualité est au niveau.'};
+}
+  },
+  {
+    id:5, cat:'Outils', tag:'outil', date:'Mars 2026',
+    photo:'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&q=80',
+    title:'Gemini est maintenant dans Gmail et Google Docs. Si vous êtes déjà sur Google, c\'est peut-être la façon la plus simple de commencer.',
+    excerpt:'Plus besoin d\'ouvrir un nouvel onglet. L\'IA est dans vos outils habituels. J\'ai testé 3 semaines sur des cas métier réels.',
+    body:`
+<p>Google a intégré Gemini directement dans Gmail, Google Docs et Google Sheets. Concrètement : vous êtes dans un email, vous cliquez sur un bouton, Gemini résume le fil de conversation, propose une réponse, ou reformule votre texte — sans que vous quittiez votre messagerie.</p>
+<p>J'ai testé pendant trois semaines sur des situations réelles. Résumé d'un fil d'emails client de 30 messages. Rédaction d'une réponse à une réclamation d'un assuré. Synthèse d'un compte-rendu de réunion dans Docs. Mise en forme d'un tableau de suivi dans Sheets. Sur toutes ces tâches : ça fonctionne. La qualité n'est pas toujours à la hauteur de Claude sur des sujets complexes, mais pour le quotidien bureautique standard, c'est largement suffisant.</p>
+<p>La vraie force : vous ne changez rien à vos habitudes. Pas de nouveau compte, pas d'onglet supplémentaire, pas d'apprentissage d'un nouvel outil. Si votre équipe travaille déjà sur Google Workspace, l'adoption est quasi immédiate.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L'avantage</div>Zéro friction d'adoption. L'IA est là où vous travaillez déjà. Idéal pour les équipes qui résistent aux nouveaux outils — ici, il n'y a rien à apprendre de nouveau, juste un bouton en plus dans une interface connue.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>Gemini dans Workspace est disponible sur les abonnements Business Standard (12€/mois par utilisateur) et au-dessus. Si vous êtes sur la version gratuite de Gmail, vous n'y avez pas accès. Et pour les données très sensibles (clients, données financières), vérifiez les conditions de traitement des données de votre abonnement avant d'activer.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Si vous passez 1h par jour à rédiger des emails et des documents, Gemini peut en couvrir 30 à 40% en quelques clics. Sur un mois de travail, c'est 8 à 10h récupérées. Pour 12€/mois par utilisateur (souvent déjà dans votre abonnement existant), le calcul est vite fait.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> Si vous utilisez Gmail et Google Docs tous les jours et que vous avez un abonnement Workspace payant — activez-le maintenant, vous l'avez peut-être déjà sans le savoir. Si vous n'êtes pas sur Google, ce n'est pas une raison de migrer uniquement pour Gemini.</div>`,
+    questions:[
+      {id:'q1', text:'Tu utilises Gmail et Google Docs comme outils principaux tous les jours ?', opts:[{v:'oui',l:'Oui, c\'est ma base de travail'},{v:'partiel',l:'Oui mais pas exclusivement'},{v:'non',l:'Non, j\'utilise autre chose'}]},
+      {id:'q2', text:'Combien d\'emails professionnels tu envoies par jour en moyenne ?', opts:[{v:'peu',l:'Moins de 5'},{v:'moyen',l:'5 à 20'},{v:'beaucoup',l:'Plus de 20'}]},
+      {id:'q3', text:'Il t\'arrive de passer plus de 15 minutes à rédiger un email important ?', opts:[{v:'oui',l:'Oui, souvent'},{v:'parfois',l:'Parfois'},{v:'non',l:'Non, je suis rapide'}]},
+      {id:'q4', text:'Tu as une équipe qui partage les mêmes outils Google que toi ?', opts:[{v:'oui',l:'Oui'},{v:'non',l:'Non, je suis seul ou mes collègues n\'utilisent pas Google'}]},
+      {id:'q5', text:'Tu sais si tu as un abonnement Google Workspace payant ?', opts:[{v:'oui',l:'Oui, j\'ai Business ou Workspace'},{v:'non',l:'Non, j\'ai la version gratuite'},{v:'sais',l:'Je ne sais pas ce que j\'ai exactement'}]},
+    ],
+    getVerdict(a){
+  const google = a.q1==='oui'||a.q1==='partiel';
+  const emails = a.q2==='beaucoup'||a.q2==='moyen';
+  const lent = a.q3==='oui'||a.q3==='parfois';
+  const abo = a.q5==='oui';
+  if(google&&emails&&lent&&abo) return {cls:'utile',txt:'✅ <strong>Active-le maintenant.</strong> Tu es sur Google tous les jours, tu envoies beaucoup d\'emails, tu prends du temps à rédiger, et tu as probablement déjà l\'accès. Va dans les paramètres — Gemini est peut-être déjà là.'};
+  if(!google) return {cls:'gadget',txt:'⚠️ <strong>Pas pour toi.</strong> Si tu n\'utilises pas Google comme outil principal, il y a des solutions plus adaptées à ce que tu utilises déjà.'};
+  if(a.q5==='non') return {cls:'attente',txt:'⏳ <strong>Vérifie d\'abord ton abonnement.</strong> Sur la version gratuite, Gemini n\'est pas inclus. Mais si tu passes plus de 30 min/jour sur Gmail, le passage à Business Standard à 12€/mois est rentable.'};
+  return {cls:'utile',txt:'✅ <strong>Utile.</strong> Tu as les bons outils et les bons usages. Quelques clics pour l\'activer et tu gagnes du temps sur la rédaction dès demain.'};
+}
+  },
+  {
+    id:6, cat:'Outils', tag:'outil', date:'Février 2026',
+    photo:'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=800&q=80',
+    title:'L\'IA peut maintenant se souvenir de vous d\'une session à l\'autre. 10 minutes de configuration, des semaines de gain.',
+    excerpt:'Plus besoin de réexpliquer qui vous êtes, quel est votre secteur, comment vous écrivez. Elle sait. Voilà ce que ça change concrètement.',
+    body:`
+<p>Jusqu'à récemment, chaque nouvelle conversation avec ChatGPT ou Claude repartait de zéro. Vous deviez réexpliquer que vous êtes agent immobilier à Bordeaux, que vous vouvouyez vos clients, que vous travaillez sur le marché des maisons individuelles en Gironde. À chaque fois. C'est fini.</p>
+<p>La mémoire persistante permet à l'IA de retenir des informations entre vos sessions. Votre secteur, votre style de communication, vos types de clients habituels, vos formulations préférées. La prochaine fois que vous ouvrez une conversation, elle sait déjà de qui vous parlez.</p>
+<p>En pratique, j'ai configuré la mémoire d'un agent immobilier que j'accompagne. Secteur géographique, fourchette de prix habituelle, style d'annonce, formules de politesse. Résultat : une annonce qui prenait 20 minutes en prend maintenant 4. L'IA ne repart plus de zéro, elle repart de votre contexte.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L'avantage</div>Vous gagnez du temps à chaque utilisation. Plus de copier-coller de votre contexte en début de conversation. L'IA s'affine avec le temps — plus vous l'utilisez, plus elle connaît votre façon de travailler.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>La mémoire se remplit avec ce que vous lui donnez. Si vous lui donnez des informations imprécises ou incohérentes, elle se souvient de quelque chose d'imprécis. Il faut 10 minutes au départ pour configurer ça correctement — et c'est là que se joue la qualité du gain. La mémoire se partage aussi entre toutes vos conversations : si vous l'utilisez pour différents projets très distincts, il faut faire attention à ne pas mélanger les contextes.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Si vous utilisez l'IA 5 fois par semaine et que vous économisez 3 minutes de configuration à chaque fois : 15 minutes par semaine, 60 minutes par mois. Sur un an, c'est 12h récupérées — pour 10 minutes de configuration initiale. C'est l'un des meilleurs retours sur investissement en temps que je connaisse.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> Activez-la ce soir. 10 minutes de configuration maintenant = du gain à chaque utilisation. C'est une fonctionnalité disponible sur les abonnements payants — une raison de plus de passer à l'abonnement si ce n'est pas encore fait.</div>`,
+    questions:[
+      {id:'q1', text:'Quand tu ouvres une nouvelle conversation avec une IA, tu réexpliques souvent qui tu es et ce que tu fais ?', opts:[{v:'oui',l:'Oui, à chaque fois'},{v:'parfois',l:'Parfois, selon le sujet'},{v:'non',l:'Non, j\'ai trouvé une astuce'}]},
+      {id:'q2', text:'Tu utilises l\'IA plusieurs fois par semaine dans ton travail ?', opts:[{v:'oui',l:'Oui, au moins 3 fois'},{v:'parfois',l:'1 à 2 fois'},{v:'non',l:'Rarement ou jamais'}]},
+      {id:'q3', text:'Tu as souvent les mêmes demandes à faire à l\'IA — le même type de texte, le même style, les mêmes contraintes ?', opts:[{v:'oui',l:'Oui, c\'est assez répétitif'},{v:'non',l:'Non, chaque demande est différente'}]},
+      {id:'q4', text:'Est-ce que tu as déjà copié-collé un contexte ou une description de ton travail d\'une conversation à l\'autre ?', opts:[{v:'oui',l:'Oui, je fais ça tout le temps'},{v:'parfois',l:'Parfois'},{v:'non',l:'Non, je recommence à chaque fois'}]},
+      {id:'q5', text:'Ton style de communication avec tes clients est assez stable d\'une semaine à l\'autre ?', opts:[{v:'oui',l:'Oui, j\'ai mes formulations habituelles'},{v:'non',l:'Non, ça change beaucoup selon les situations'}]},
+    ],
+    getVerdict(a){
+  const reexplique = a.q1==='oui'||a.q1==='parfois';
+  const usage = a.q2==='oui'||a.q2==='parfois';
+  const repet = a.q3==='oui';
+  const copie = a.q4==='oui'||a.q4==='parfois';
+  if(usage&&reexplique&&repet) return {cls:'utile',txt:'✅ <strong>Configure-la ce soir.</strong> Tu utilises l\'IA régulièrement, tu réexpliques ton contexte à chaque fois, et tes demandes sont souvent similaires. 10 minutes de configuration = du temps gagné à chaque utilisation.'};
+  if(a.q2==='non') return {cls:'attente',txt:'⏳ <strong>Commence d\'abord à utiliser l\'IA régulièrement.</strong> La mémoire est utile quand on l\'utilise souvent. Construis d\'abord l\'habitude.'};
+  if(!repet) return {cls:'gadget',txt:'⚠️ <strong>Moins pertinent pour toi.</strong> Si chaque demande est différente, une mémoire fixe aide moins. D\'autres fonctionnalités t\'apporteront plus.'};
+  return {cls:'utile',txt:'✅ <strong>Utile.</strong> Tu copies-colles ton contexte — c\'est exactement ce que la mémoire supprime. 10 minutes pour la configurer une fois pour toutes.'};
+}
+  },
+  {
+    id:7, cat:'RGPD & Sécurité', tag:'rgpd', date:'Février 2026',
+    photo:'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80',
+    title:'RGPD et IA : ce que vous pouvez vraiment lui envoyer — et ce que vous ne devez pas. Sans langue de bois.',
+    excerpt:'La question que tout le monde se pose en chuchotant. La vraie réponse, sans jargon juridique et sans catastrophisme.',
+    body:`
+<p>On va être directs. Parce que j'entends deux extrêmes : ceux qui envoient tout sans se poser de question, et ceux qui refusent d'utiliser l'IA parce que "c'est pas RGPD". Les deux ont tort.</p>
+<p><strong>Ce que vous pouvez utiliser sans aucun problème :</strong> des textes génériques, des modèles de documents sans données personnelles, des brouillons d'emails où vous remplacez ensuite le nom du client, des analyses de situations anonymisées ("un client dans une situation X"), des résumés de réglementations publiques. L'IA ne sait pas de qui il s'agit — il n'y a rien à protéger.</p>
+<p><strong>Ce que vous ne devez pas envoyer dans une version publique :</strong> le nom complet d'un client avec son adresse et son numéro de téléphone, un contrat avec des données financières personnelles identifiées, un dossier médical, un bilan comptable nominatif. Pas parce que l'IA va "voler" l'information — mais parce que ces données alimentent potentiellement l'entraînement des modèles sur les versions grand public.</p>
+<p>La solution pour travailler avec des données sensibles : les versions Enterprise de ChatGPT et Claude incluent une clause de non-utilisation de vos données. Vos conversations ne servent pas à entraîner le modèle. Et l'IA locale (Claude sur votre propre ordinateur, dont on parlait plus haut) règle la question définitivement.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L'avantage</div>L'immense majorité de ce que vous faites avec l'IA est compatible RGPD si vous anonymisez les données. Et pour ce qui ne l'est pas, des solutions existent — elles coûtent plus cher, mais elles existent.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>Ça demande de la rigueur. Pas une rigueur compliquée — juste un réflexe : avant de copier un document dans l'IA, est-ce qu'il contient des données personnelles identifiables ? Si oui : soit vous anonymisez, soit vous utilisez une version sécurisée. C'est tout.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Une violation de données RGPD peut coûter jusqu'à 4% du chiffre d'affaires annuel en amende. Un abonnement Enterprise ChatGPT ou Claude : entre 25 et 40€/mois par utilisateur. Le choix est rapide à faire.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> L'IA et le RGPD cohabitent parfaitement — à condition de savoir où mettre la limite. Cette limite est plus simple à gérer que vous ne le pensez. Et si votre secteur est réglementé, une session de 1h30 suffit à mettre en place les bons réflexes pour toute votre équipe.</div>`,
+    questions:[
+      {id:'q1', text:'Dans ton travail, tu manipules des données personnelles de clients — noms, coordonnées, finances ?', opts:[{v:'oui',l:'Oui, c\'est mon quotidien'},{v:'parfois',l:'Parfois, selon les dossiers'},{v:'non',l:'Non, rarement'}]},
+      {id:'q2', text:'Il t\'est déjà arrivé de copier un document client dans une IA pour l\'analyser ou le résumer ?', opts:[{v:'oui',l:'Oui, ça m\'arrive'},{v:'non',l:'Non, je ne l\'ai jamais fait'},{v:'sais',l:'Je ne savais pas que c\'était un problème'}]},
+      {id:'q3', text:'Tu travailles dans un secteur avec des obligations légales sur la confidentialité des données ?', opts:[{v:'oui',l:'Oui — immo, assurance, juridique, santé, compta...'},{v:'non',l:'Non, pas de contrainte spécifique'}]},
+      {id:'q4', text:'Tu as déjà entendu parler de RGPD et tu sais globalement ce que ça implique pour ton activité ?', opts:[{v:'oui',l:'Oui, je suis au courant'},{v:'vague',l:'Vaguement, mais pas les détails'},{v:'non',l:'Non, pas vraiment'}]},
+      {id:'q5', text:'Si tu devais travailler sur un dossier client sensible avec l\'IA, tu saurais comment faire ça de façon sécurisée ?', opts:[{v:'oui',l:'Oui, je sais comment procéder'},{v:'non',l:'Non, je n\'ai aucune idée'},{v:'aproxim',l:'Je ferais quelque chose mais sans être sûr'}]},
+    ],
+    getVerdict(a){
+  const donnees = a.q1==='oui'||a.q1==='parfois';
+  const envoie = a.q2==='oui';
+  const reglemente = a.q3==='oui';
+  const sait = a.q5==='oui';
+  if(donnees&&envoie&&reglemente) return {cls:'gadget',txt:'🔴 <strong>Point de vigilance.</strong> Tu travailles avec des données personnelles, tu les envoies dans une IA, et ton secteur est réglementé. Ce n\'est pas un drame — c\'est résolvable. Mais il faut le cadrer correctement. On fait le point ensemble.'};
+  if(donnees&&!sait&&reglemente) return {cls:'attente',txt:'⏳ <strong>À clarifier avant d\'aller plus loin.</strong> Tu as des données sensibles et tu ne sais pas comment les utiliser avec l\'IA de façon sécurisée. Une session de 1h30 pour poser les bons réflexes — et tu travailles sereinement ensuite.'};
+  if(!donnees) return {cls:'utile',txt:'✅ <strong>Tu peux utiliser l\'IA sereinement.</strong> Sans données personnelles sensibles, les règles de base suffisent. Je peux te les donner en 10 minutes si tu veux être sûr.'};
+  return {cls:'utile',txt:'✅ <strong>Bonne pratique.</strong> Tu es conscient du sujet. Continue à anonymiser et on peut voir ensemble comment aller plus loin sans risque.'};
+}
+  },
+  {
+    id:8, cat:'Outils', tag:'outil', date:'Janvier 2026',
+    photo:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
+    title:'Perplexity : l\'outil de veille que personne ne vous a expliqué. Et pourtant c\'est probablement le plus utile pour commencer.',
+    excerpt:'Une IA connectée à internet en temps réel. Elle cherche, elle synthétise, elle cite ses sources. J\'ai testé sur des sujets métier précis. Le résultat m\'a surpris.',
+    body:`
+<p>Perplexity, c'est une IA qui cherche sur internet en temps réel. La différence avec Google : elle ne vous donne pas une liste de liens à aller consulter. Elle lit les pages pour vous, elle synthétise les informations, elle vous répond directement. Et elle cite ses sources — vous pouvez vérifier.</p>
+<p>Contrairement à ChatGPT ou Claude en mode standard, elle ne part pas de sa base de connaissance qui date d'il y a 6 mois. Elle cherche maintenant, aujourd'hui, dans l'actualité disponible.</p>
+<p>J'ai testé sur des sujets qui concernent directement mes clients. Nouvelles obligations de formation ALUR pour les mandataires en 2026 — résultat précis en 3 minutes, avec les sources officielles citées. Évolution des prix de l'immobilier en Gironde sur les 6 derniers mois — données récentes, comparaison par secteur. Jurisprudence récente sur les délais de carence en assurance — synthèse claire avec les décisions de référence. Ce qui m'aurait pris 45 minutes à faire en cherchant moi-même.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L'avantage</div>Informations à jour, sources vérifiables, réponse directe sans avoir à lire 12 articles. C'est l'outil que je recommande en premier à ceux qui font de la veille régulière — et souvent le premier à leur faire dire "ah, ça c'est utile".</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>La qualité dépend de la qualité des sources disponibles sur internet. Sur des sujets très spécialisés ou très locaux, il peut manquer d'informations récentes. Et comme tout outil de recherche, il faut savoir poser les bonnes questions pour obtenir les bonnes réponses. Ce n'est pas instantanément parfait — mais c'est perfectible.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Version gratuite : déjà très capable pour un usage régulier. Version Pro : 20€/mois — le même prix qu'un abonnement ChatGPT Plus. Si vous passez plus de 30 minutes par semaine à chercher des informations professionnelles sur internet, Perplexity vous rembourse son abonnement dès la première semaine.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> C'est l'un des rares outils que je recommande à presque tout le monde. Essayez la version gratuite cette semaine sur 3 sujets de votre secteur que vous maîtrisez bien. Si les réponses sont au niveau, vous saurez tout de suite si ça vaut le coup pour vous.</div>`,
+    questions:[
+      {id:'q1', text:'Combien de fois par semaine tu fais des recherches professionnelles sur internet ?', opts:[{v:'peu',l:'1 à 2 fois'},{v:'moyen',l:'3 à 5 fois'},{v:'beaucoup',l:'Tous les jours ou presque'}]},
+      {id:'q2', text:'Quand tu cherches une info sur Google, tu en as pour combien de temps avant de trouver ce que tu veux ?', opts:[{v:'rapide',l:'Moins de 5 minutes'},{v:'moyen',l:'5 à 20 minutes'},{v:'long',l:'Plus de 20 minutes souvent'}]},
+      {id:'q3', text:'Tu dois parfois justifier une information devant un client ou dans un document officiel ?', opts:[{v:'oui',l:'Oui, les sources comptent'},{v:'parfois',l:'Parfois'},{v:'non',l:'Non, une synthèse suffit'}]},
+      {id:'q4', text:'Il t\'arrive de rater une info importante parce que tu n\'avais pas le temps de chercher ?', opts:[{v:'oui',l:'Oui, ça m\'est arrivé'},{v:'parfois',l:'Parfois je doute de mes infos'},{v:'non',l:'Non, je suis à jour'}]},
+      {id:'q5', text:'Est-ce que tu as un abonnement à des newsletters ou des sources de veille professionnelle ?', opts:[{v:'oui',l:'Oui, plusieurs'},{v:'un',l:'Une ou deux'},{v:'non',l:'Non, je cherche au cas par cas'}]},
+    ],
+    getVerdict(a){
+  const freq = a.q1==='beaucoup'||a.q1==='moyen';
+  const lent = a.q2==='long'||a.q2==='moyen';
+  const sources = a.q3==='oui'||a.q3==='parfois';
+  const rate = a.q4==='oui'||a.q4==='parfois';
+  if(freq&&lent&&sources) return {cls:'utile',txt:'✅ <strong>Essaie-le cette semaine.</strong> Tu cherches souvent, tu mets du temps à trouver, et les sources comptent. Perplexity te rend une réponse sourcée en 2 minutes au lieu de 20. La version gratuite suffit pour commencer.'};
+  if(a.q1==='peu'&&!rate) return {cls:'gadget',txt:'⚠️ <strong>Pas ta priorité.</strong> Si tu cherches peu et que tu es à jour, l\'outil apportera peu de valeur. D\'autres usages de l\'IA t\'apporteront plus.'};
+  if(rate) return {cls:'utile',txt:'✅ <strong>Utile pour éviter les ratés.</strong> Tu as déjà manqué des infos importantes par manque de temps. Perplexity te permet de faire une veille rapide et fiable même quand tu es dans le rush.'};
+  return {cls:'utile',txt:'✅ <strong>À tester.</strong> Tu fais des recherches régulières. Essaie sur un sujet que tu maîtrises bien — tu verras en 5 minutes si la qualité est au niveau.'};
+}
+  },
+  {
+    id:9, cat:'Par métier', tag:'metier', date:'Janvier 2026',
+    photo:'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80',
+    title:'Claude 4.6 ou GPT-5.4 pour rédiger un bail, un devis ou un email commercial ? J\'ai fait le test sur 20 documents.',
+    excerpt:'Lequel choisir ? La réponse honnête : ça dépend de ce que vous faites. J\'ai testé les deux sur des cas réels de mes secteurs.',
+    body:`
+<p>La question revient dans tous mes rendez-vous. "Lequel est le mieux ?" La vraie réponse, c'est que les deux sont bons — mais pas sur les mêmes choses. Et selon votre métier, ce n'est pas le même choix.</p>
+<p><strong>Claude 4.6 pour les documents réglementés.</strong> Baux, contrats, conditions générales, mentions obligatoires ALUR, comptes-rendus de visite, lettres de mise en demeure. Sur 20 documents testés, Claude fait moins d'erreurs sur les contraintes formelles. Il suit les instructions à la lettre. Il n'invente pas de clauses. Il ne "brode" pas pour remplir l'espace. Pour un notaire, un agent immobilier, un courtier en assurance : c'est son terrain.</p>
+<p><strong>GPT-5.4 pour la communication commerciale.</strong> Emails de prospection, annonces immobilières, posts de communication, scripts de présentation, réponses clients. GPT produit des textes plus fluides, plus naturels, plus proches du ton qu'on veut avoir. Il comprend mieux les nuances de style et s'adapte plus facilement à une charte de communication.</p>
+<p><strong>Pour les devis et documents techniques BTP ?</strong> Les deux se valent — à condition de bien leur expliquer votre contexte. Un artisan qui donne à l'IA ses postes habituels, ses prix unitaires et sa façon de formuler obtiendra un bon résultat avec l'un ou l'autre. La différence vient de la qualité du brief, pas de l'outil.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L'avantage</div>Vous n'avez pas besoin de choisir définitivement. Les deux ont des versions gratuites. Testez sur un vrai document de votre métier — vous verrez en 10 minutes lequel vous convient mieux sur ce type de contenu.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>Ni l'un ni l'autre ne remplace votre expertise. Claude peut écrire un bail — mais c'est vous qui vérifiez que les clauses correspondent à votre situation spécifique. L'IA rédige, vous validez. Ce n'est pas une délégation totale, c'est une accélération.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Un bail standard à rédiger : 45 minutes en moyenne. Avec Claude : 8 minutes de rédaction + 10 minutes de relecture et ajustements. Soit 27 minutes gagnées par document. Sur 10 baux par mois, c'est 4h30 récupérées. À votre taux horaire.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> Claude pour tout ce qui doit être rigoureux et conforme. GPT pour tout ce qui doit être fluide et convaincant. Si vous n'avez qu'un seul abonnement : commencez par Claude — la rigueur est plus importante que le style dans les secteurs que j'accompagne.</div>`,
+    questions:[
+      {id:'q1', text:'Quel type de texte tu rédiges le plus souvent dans ton travail ?', opts:[{v:'legal',l:'Contrats, devis, documents formels'},{v:'commercial',l:'Emails clients, annonces, communication'},{v:'admin',l:'Comptes-rendus, rapports, fiches'},{v:'mixte',l:'Un peu de tout'}]},
+      {id:'q2', text:'Quand tu rédiges un document important, tu relèves souvent des erreurs ou des imprécisions après coup ?', opts:[{v:'oui',l:'Oui, je dois relire plusieurs fois'},{v:'parfois',l:'Parfois'},{v:'non',l:'Non, je suis rigoureux'}]},
+      {id:'q3', text:'Le style et le ton de tes textes sont importants pour ton image professionnelle ?', opts:[{v:'oui',l:'Oui, très important'},{v:'moyen',l:'Assez important'},{v:'non',l:'Non, le fond prime sur la forme'}]},
+      {id:'q4', text:'Tu as déjà essayé de faire rédiger un document par une IA — et le résultat ne correspondait pas à ce que tu attendais ?', opts:[{v:'oui',l:'Oui, c\'était trop générique ou approximatif'},{v:'bien',l:'Oui et c\'était plutôt bien'},{v:'non',l:'Non, je n\'ai pas encore essayé'}]},
+      {id:'q5', text:'Combien de documents professionnels tu rédiges par semaine en moyenne ?', opts:[{v:'peu',l:'Moins de 3'},{v:'moyen',l:'3 à 10'},{v:'beaucoup',l:'Plus de 10'}]},
+    ],
+    getVerdict(a){
+  const legal = a.q1==='legal'||a.q1==='admin';
+  const commercial = a.q1==='commercial';
+  const mixte = a.q1==='mixte';
+  const vol = a.q5==='beaucoup'||a.q5==='moyen';
+  const decu = a.q4==='oui';
+  if(legal&&vol) return {cls:'utile',txt:'✅ <strong>Claude 4.6 pour toi.</strong> Documents formels ou réglementés en volume : Claude est le plus fiable sur ce terrain. Il suit les contraintes formelles, invente moins, et commet moins d\'erreurs sur les textes sensibles. Si tu as été déçu par une IA avant, c\'est probablement que tu n\'utilisais pas le bon outil.'};
+  if(commercial&&vol) return {cls:'utile',txt:'✅ <strong>GPT-5.4 pour toi.</strong> Emails, annonces, communication client en volume : GPT produit des textes plus fluides et naturels. Il s\'adapte mieux au style commercial et à la charte de communication.'};
+  if(mixte) return {cls:'utile',txt:'✅ <strong>Les deux selon la tâche.</strong> Claude pour tout ce qui est formel et réglementé, GPT pour tout ce qui est commercial et communication. Si tu n\'as qu\'un abonnement : commence par Claude.'};
+  if(a.q5==='peu') return {cls:'attente',txt:'⏳ <strong>Volume faible.</strong> Moins de 3 documents par semaine — le gain existe mais reste modéré. L\'IA t\'apportera plus d\'abord sur d\'autres tâches plus répétitives.'};
+  return {cls:'utile',txt:'✅ <strong>Teste sur un vrai document.</strong> Les deux ont des versions gratuites. Essaie sur le type de document que tu fais le plus souvent — la comparaison se fait en 20 minutes sur ton terrain.'};
+}
+  },
+  {
+    id:10, cat:'Systèmes', tag:'systeme', date:'Janvier 2026',
+    photo:'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+    title:'Automatiser son suivi client sans CRM à 200€/mois. Ce que font déjà les pros qui prennent de l\'avance.',
+    excerpt:'Le suivi client, c\'est ce que tout le monde fait mal. Pas par manque de volonté. Par manque de système.',
+    body:`
+<p>Un prospect qui attend une réponse depuis 3 jours. Un client à qui vous avez promis un document et que vous avez oublié. Une relance qui n'est jamais partie parce que vous étiez sur un chantier. Ça arrive à tout le monde. Et ça coûte des affaires — silencieusement, sans qu'on sache exactement combien.</p>
+<p>Ce que j'ai mis en place pour plusieurs clients cette année : un système simple, sans CRM complexe, sans abonnement à 200€/mois. Un formulaire de contact déclenche automatiquement un email de confirmation personnalisé, crée une fiche dans un tableau de suivi partagé, et programme un rappel automatique 48h plus tard si aucune action n'a été enregistrée. Zéro intervention manuelle entre la réception du contact et le premier rappel.</p>
+<p>Pour un agent immobilier qui reçoit 20 demandes par semaine : plus aucun prospect ne tombe dans les oubliettes. Pour un artisan BTP qui répond aux demandes de devis : plus de prospect sans nouvelles depuis 3 semaines parce qu'il était sur un chantier.</p>
+<p>L'IA intervient à deux endroits : elle personnalise l'email de confirmation selon le type de demande (achat, location, renseignement), et elle prépare un résumé de la demande prêt à coller dans votre logiciel de devis. Elle ne rentre pas dans votre logiciel de comptabilité — votre logiciel ne le permettrait pas de toute façon. Mais elle prépare tout en amont pour que vous n'ayez plus que 4 lignes à saisir quand vous êtes devant votre écran.</p>
+
+<div class="bloc-avantage"><div class="bloc-label">✅ L'avantage</div>Aucun prospect oublié. Aucune relance manquée. Le premier email part en moins de 5 minutes, que vous soyez au bureau ou sur un chantier. Et le temps de mise en place : une demi-journée. Une fois.</div>
+
+<div class="bloc-contrainte"><div class="bloc-label">⚠️ La vraie contrainte</div>Ce système demande une configuration initiale — ce n'est pas un bouton qu'on appuie. Il faut connecter les outils entre eux, définir les règles, tester les scénarios. Ça prend une demi-journée avec quelqu'un qui sait faire. Et il faut maintenir le système si votre process change. Ce n'est pas du "set and forget" total — mais c'est proche.</div>
+
+<div class="bloc-roi"><div class="bloc-label">💸 Le calcul</div>Un prospect oublié = un devis non envoyé = une affaire perdue. Sur un artisan avec un panier moyen de 3 000€ par chantier, deux prospects récupérés par mois grâce à une relance automatique = 6 000€ de CA supplémentaire. Pour un système qui coûte 30 à 50€/mois en abonnements. Le calcul est simple.</div>
+
+<div class="bloc-verdict"><strong>Le verdict :</strong> Si vous gérez plus de 5 prospects actifs en simultané et que votre suivi est encore manuel — vous perdez des affaires. Pas peut-être. Chaque semaine. Une demi-journée de mise en place et un accompagnement structuré, et c'est réglé pour les 12 prochains mois.</div>`,
+    questions:[
+      {id:'q1', text:'Combien de prospects ou clients actifs tu gères en simultané en ce moment ?', opts:[{v:'peu',l:'Moins de 5'},{v:'moyen',l:'5 à 15'},{v:'beaucoup',l:'Plus de 15'}]},
+      {id:'q2', text:'Quand un nouveau contact arrive, combien de temps tu mets à lui répondre en moyenne ?', opts:[{v:'rapide',l:'Moins de 2h'},{v:'jour',l:'Dans la journée'},{v:'lent',l:'Souvent le lendemain ou plus'}]},
+      {id:'q3', text:'Il t\'est arrivé de perdre un client ou un prospect parce que tu n\'avais pas relancé à temps ?', opts:[{v:'oui',l:'Oui, j\'en suis quasi certain'},{v:'peut',l:'Peut-être, je ne sais pas trop'},{v:'non',l:'Non, je relance toujours'}]},
+      {id:'q4', text:'Comment tu suis tes prospects aujourd\'hui ?', opts:[{v:'tete',l:'Dans ma tête ou mes emails'},{v:'tableur',l:'Un tableur ou des post-its'},{v:'crm',l:'Un CRM ou outil dédié'},{v:'rien',l:'Pas vraiment de système'}]},
+      {id:'q5', text:'Tu passes du temps chaque semaine à rédiger des emails de suivi ou de relance ?', opts:[{v:'oui',l:'Oui, c\'est chronophage'},{v:'parfois',l:'Parfois'},{v:'non',l:'Non, j\'en envoie peu'}]},
+      {id:'q6', text:'Est-ce que tu penses que ton suivi client actuel est un frein à ta croissance ?', opts:[{v:'oui',l:'Oui, clairement'},{v:'peut',l:'Peut-être, j\'y pense souvent'},{v:'non',l:'Non, ça tourne bien'}]},
+    ],
+    getVerdict(a){
+  const volume = a.q1==='beaucoup'||a.q1==='moyen';
+  const lent = a.q2==='lent';
+  const perdu = a.q3==='oui'||a.q3==='peut';
+  const nosystem = a.q4==='tete'||a.q4==='tableur'||a.q4==='rien';
+  const frein = a.q6==='oui'||a.q6==='peut';
+  if(volume&&perdu&&nosystem) return {cls:'utile',txt:'✅ <strong>Urgent.</strong> Tu gères du volume, tu as probablement perdu des affaires, et ton suivi est encore manuel. Une demi-journée de mise en place = plus aucun prospect dans les oubliettes. Le ROI est immédiat.'};
+  if(a.q1==='peu'&&!frein) return {cls:'gadget',txt:'⚠️ <strong>Moins de 5 contacts actifs.</strong> À ce volume, un tableau simple bien tenu ou un rappel calendrier suffit. Reviens quand ton activité monte en volume.'};
+  if(frein&&nosystem) return {cls:'utile',txt:'✅ <strong>Tu le sais toi-même.</strong> Ton suivi client est un frein et tu travailles encore à la main. C\'est exactement ce qu\'on règle en premier — simple, rapide, rentable dès la première semaine.'};
+  if(a.q4==='crm') return {cls:'utile',txt:'✅ <strong>Tu as déjà un système.</strong> La prochaine étape : connecter ton CRM à l\'IA pour gagner du temps sur la rédaction des emails et la qualification des demandes. On regarde ce qui est possible avec ton outil.'};
+  return {cls:'attente',txt:'⏳ <strong>Selon le volume et l\'urgence.</strong> Tu as des éléments qui pourraient justifier une automatisation. 30 minutes ensemble pour voir si ça vaut le coup maintenant ou plus tard.'};
+}
+  }
+];
+
+// ─────────────────────────────────────────────
+// RENDU CARDS
+// ─────────────────────────────────────────────
+function renderGrid(tag='tout'){
+  const grid=document.getElementById('grid');
+  const filtered=tag==='tout'?actus:actus.filter(a=>a.tag===tag);
+  grid.innerHTML=filtered.map(a=>`
+    <article class="card" onclick="openModal(${a.id})">
+      <div class="card-img">
+        <img src="${a.photo}" alt="${a.title}" loading="lazy">
+        <div class="card-img-overlay"></div>
+        <span class="card-badge">${a.cat}</span>
+        ${a.nouveau?'<span class="card-new">Nouveau</span>':''}
+      </div>
+      <div class="card-body">
+        <div class="card-date">${a.date}</div>
+        <h3 class="card-title">${a.title}</h3>
+        <p class="card-excerpt">${a.excerpt}</p>
+        <div class="card-footer">
+          <span class="card-read">Lire <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          <span class="card-verdict-preview">⚡ Quiz inclus</span>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+function filter(tag,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid(tag);
+}
+
+// ─────────────────────────────────────────────
+// MODAL ARTICLE
+// ─────────────────────────────────────────────
+let cur={};
+
+function openModal(id){
+  const a=actus.find(x=>x.id===id);
+  cur={};
+  document.getElementById('modal-img').src=a.photo;
+  document.getElementById('modal-cat').textContent=a.cat;
+  document.getElementById('modal-title').textContent=a.title;
+  document.getElementById('modal-body').innerHTML=a.body+buildOutil(a);
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function buildOutil(a){
+  const qs=a.questions.map(q=>`
+    <div class="question" id="mq-${a.id}-${q.id}">
+      <p class="question-text">${q.text}</p>
+      <div class="opts">${q.opts.map(o=>`<button class="opt" onclick="pick(${a.id},'${q.id}','${o.v}',this)">${o.l}</button>`).join('')}</div>
+    </div>
+  `).join('');
+  return `<div class="outil">
+    <div class="outil-header"><div class="outil-icon">⚡</div><span class="outil-label">Est-ce que ça vous concerne ?</span></div>
+    ${qs}
+    <button class="btn-go" id="mbtn-${a.id}" onclick="showV(${a.id})">Voir mon verdict →</button>
+    <div class="result-box" id="mres-${a.id}"></div>
+    <div class="cta-rdv" id="mcta-${a.id}">Vous pensez que ça vous concerne ? On fait le tour en 30 minutes lors d'un <a href="https://calendly.com/laurence-lrenov-ia/30min" target="_blank">rendez-vous gratuit</a>. Ça ne vous engage à rien — et vous savez si c'est fait pour vous ou pas.</div>
+  </div>`;
+}
+
+function pick(actId,qId,val,btn){
+  document.getElementById(`mq-${actId}-${qId}`).querySelectorAll('.opt').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  cur[qId]=val;
+  const a=actus.find(x=>x.id===actId);
+  if(a.questions.every(q=>cur[q.id])) document.getElementById(`mbtn-${actId}`).style.display='block';
+}
+
+function showV(actId){
+  const a=actus.find(x=>x.id===actId);
+  const v=a.getVerdict(cur);
+  const res=document.getElementById(`mres-${actId}`);
+  const cta=document.getElementById(`mcta-${actId}`);
+  res.className=`result-box ${v.cls}`;
+  res.innerHTML=v.txt;
+  res.style.display='block';
+  cta.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+
+// ─────────────────────────────────────────────
+// WIDGET PANORAMA
+// ─────────────────────────────────────────────
+function openPano(){
+  // Le site Panorama (Netlify) refuse l'affichage en iframe (X-Frame-Options/CSP).
+  // On l'ouvre donc dans un nouvel onglet — fiable quel que soit le header.
+  window.open('panorama-ia/','_blank','noopener');
+}
+function closePano(){
+  document.getElementById('panoOverlay').classList.remove('open');
+  document.getElementById('pano-iframe').src='';
+  document.body.style.overflow='';
+}
+function closePanoOutside(e){if(e.target===document.getElementById('panoOverlay'))closePano();}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closePano();}});
+
+
+function initWpCanvas() {
+  const canvas = document.getElementById('wpCanvas');
+  if (!canvas) return;
+  const points = [
+    {a:0.8,  r:0.55, col:'#6366f1'},
+    {a:2.1,  r:0.62, col:'#d4893a'},
+    {a:3.6,  r:0.48, col:'#34a853'},
+    {a:5.0,  r:0.58, col:'#8b5cf6'},
+  ];
+  let angle = 0;
+  function draw() {
+    const W = canvas.offsetWidth, H = canvas.offsetHeight;
+    if (!W || !H) { requestAnimationFrame(draw); return; }
+    canvas.width = W * devicePixelRatio;
+    canvas.height = H * devicePixelRatio;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+    const cx = W/2, cy = H/2, R = Math.min(W,H)*0.42;
+    ctx.clearRect(0,0,W,H);
+    // fond radial
+    const bg = ctx.createRadialGradient(cx,cy,0,cx,cy,R*1.1);
+    bg.addColorStop(0,'rgba(45,57,64,.7)');
+    bg.addColorStop(1,'rgba(26,34,41,0)');
+    ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+    // cercles
+    [.3,.6,.9,1].forEach(f=>{
+      ctx.beginPath(); ctx.arc(cx,cy,R*f,0,Math.PI*2);
+      ctx.strokeStyle=`rgba(212,137,58,${f===1?.18:.06})`; ctx.lineWidth=f===1?1:.6; ctx.stroke();
+    });
+    // axes
+    for(let i=0;i<8;i++){
+      const a=(i/8)*Math.PI*2;
+      ctx.beginPath(); ctx.moveTo(cx,cy);
+      ctx.lineTo(cx+Math.cos(a)*R,cy+Math.sin(a)*R);
+      ctx.strokeStyle='rgba(212,137,58,.05)'; ctx.lineWidth=.7; ctx.stroke();
+    }
+    // traîne
+    for(let i=0;i<28;i++){
+      const a=angle-(Math.PI*.7*i/28);
+      ctx.beginPath(); ctx.moveTo(cx,cy);
+      ctx.arc(cx,cy,R,a,a+Math.PI*.7/28); ctx.closePath();
+      ctx.fillStyle=`rgba(212,137,58,${(1-i/28)*.16})`; ctx.fill();
+    }
+    // faisceau
+    ctx.beginPath(); ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+Math.cos(angle)*R,cy+Math.sin(angle)*R);
+    ctx.strokeStyle='rgba(212,137,58,.9)'; ctx.lineWidth=2;
+    ctx.shadowColor='rgba(212,137,58,.7)'; ctx.shadowBlur=10; ctx.stroke(); ctx.shadowBlur=0;
+    // blips
+    points.forEach(p=>{
+      const px=cx+Math.cos(p.a)*R*p.r, py=cy+Math.sin(p.a)*R*p.r;
+      let diff=((angle-p.a)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);
+      if(diff>Math.PI) diff=Math.PI*2-diff;
+      const lit=Math.max(0,1-diff/(Math.PI*.55));
+      ctx.beginPath(); ctx.arc(px,py,lit>.3?5:3,0,Math.PI*2);
+      ctx.fillStyle=lit>.2?p.col:'rgba(212,137,58,.3)';
+      ctx.shadowColor=lit>.3?p.col:'transparent'; ctx.shadowBlur=lit>.3?14:0;
+      ctx.fill(); ctx.shadowBlur=0;
+    });
+    // centre
+    ctx.beginPath(); ctx.arc(cx,cy,3,0,Math.PI*2);
+    ctx.fillStyle='rgba(212,137,58,.75)'; ctx.fill();
+    angle+=.013;
+    requestAnimationFrame(draw);
+  }
+  setTimeout(draw,80);
+}
+
+renderGrid();
+initWpCanvas();
+</script>
+
+<footer>
+  <div class="foot-wrap">
+    <div class="foot-logo">L'Rénov <span>IA</span> Studio</div>
+    <p style="font-size:.75rem;color:rgba(242,234,216,.35);margin-top:.2rem">Laurence Borras · Consultante &amp; Formatrice IA</p>
+    <div style="display:flex;gap:.8rem;margin-top:.8rem">
+      <a href="https://www.linkedin.com/in/laurence-borras-l-renov-ia-studio-31b0992a2" target="_blank" style="color:rgba(242,234,216,.3);transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(242,234,216,.3)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="https://www.instagram.com/laurence_lrenov_ia_studio" target="_blank" style="color:rgba(242,234,216,.3);transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(242,234,216,.3)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      <a href="https://www.facebook.com/LaurenceBorrasLRenovEspacesetIA" target="_blank" style="color:rgba(242,234,216,.3);transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(242,234,216,.3)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+    </div>
+    <div class="foot-links">
+      <a href="https://lrenov-ia.studio/index.html">Accueil</a>
+      <a href="https://lrenov-ia.studio/assistant.html">Mon assistant IA</a>
+      <a href="https://lrenov-ia.studio/outils.html">Outils métier</a>
+      <a href="https://lrenov-ia.studio/agents.html">Agents IA</a>
+      <a href="https://lrenov-ia.studio/audit.html">Audit IA</a>
+      <a href="https://lrenov-ia.studio/secteurs.html">Par secteur</a>
+      <a href="radar-ia.html">Radar IA</a>
+      <a href="https://lrenov-ia.studio/contact.html">Contact</a>
+      <a href="https://lrenov-ia.studio/mentions-legales.html" style="font-size:.73rem;color:rgba(242,234,216,.22);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(242,234,216,.22)'">Mentions légales</a>
+    </div>
+    <p class="copy">© 2026 L'Rénov IA Studio · Blanquefort, Gironde · Tous droits réservés</p>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('navMobile').classList.toggle('open')}
+// Effet "scrolled" du menu — aligné sur les pages refondues
+(function(){
+  var nav=document.getElementById('mainNav');
+  if(nav){window.addEventListener('scroll',function(){
+    if(window.scrollY>20){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}
+  });}
+})();
+</script>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/33609225711?text=Bonjour%20Laurence%2C%20je%20vous%20contacte%20depuis%20votre%20site%20lrenov-ia.studio" target="_blank" style="position:fixed;top:80px;right:16px;z-index:999;width:42px;height:42px;background:#222b32;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(34,43,50,.35);transition:transform .2s,box-shadow .2s;text-decoration:none;border:1.5px solid #d4893a" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 24px rgba(212,137,58,.3)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(34,43,50,.35)'" aria-label="Contacter Laurence sur WhatsApp">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="#d4893a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+</body>
+</html>
