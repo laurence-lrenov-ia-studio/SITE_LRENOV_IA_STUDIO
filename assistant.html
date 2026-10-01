@@ -43,7 +43,7 @@
     color:var(--text);
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
-    cursor:none;
+    cursor:auto;
   }
   h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
   ::-webkit-scrollbar{width:6px}
@@ -1066,7 +1066,17 @@
   }
 
 
-  </style>
+
+  /* Le pointeur natif reste visible jusqu'à l'initialisation effective. */
+  body{cursor:auto}
+  body a,body button,body select,body input[type="range"],body input[type="submit"],body input[type="button"]{cursor:pointer}
+  body input:not([type]),body input[type="text"],body input[type="email"],body input[type="tel"],body input[type="search"],body input[type="password"],body input[type="number"],body textarea{cursor:text}
+  body .cursor,body .cursor-trail{visibility:hidden;pointer-events:none;z-index:9999}
+  @media(hover:hover) and (pointer:fine) and (min-width:1025px){
+    body.custom-cursor-enabled,body.custom-cursor-enabled *{cursor:none!important}
+    body.custom-cursor-enabled .cursor,body.custom-cursor-enabled .cursor-trail{visibility:visible}
+  }
+</style>
 </head>
 <body>
 
@@ -1089,67 +1099,45 @@
       <ul class="nav-links">
         <li><a href="index.html">Accueil</a></li>
         <li class="has-mega-li">
-          <a href="assistant.html" class="has-mega">Mon assistant IA</a>
+          <a href="formations.html" class="has-mega">Formations</a>
           <div class="mega">
-            <a href="assistant.html" class="mega-overview">Vue d'ensemble — Les 5 prestations →</a>
-            <a href="audit.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></div>
-              <div class="mega-content"><strong>Audit IA</strong><span class="desc">Diagnostiquer · cartographier · planifier</span></div>
-            </a>
-            <a href="outils.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-              <div class="mega-content"><strong>Outils métier</strong><span class="desc">Cœur de l'activité · sur-mesure sectoriel</span></div>
-            </a>
-            <a href="agents.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v2"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg></div>
-              <div class="mega-content"><strong>Agents IA</strong><span class="desc">Génération conversationnelle ciblée</span></div>
+            <a href="formations.html" class="mega-overview">Vue d’ensemble</a>
+            <a href="formations.html#shift" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div>
+              <div class="mega-content"><strong>Méthode SHIFT</strong></div>
             </a>
             <a href="ateliers.html" class="mega-item">
               <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1"/><circle cx="17" cy="9" r="2.5"/><path d="M15 20v-1a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v1"/></svg></div>
-              <div class="mega-content"><strong>Ateliers</strong><span class="desc">Co-construction dirigeant + équipe</span></div>
+              <div class="mega-content"><strong>Ateliers SHIFT</strong></div>
             </a>
-            <a href="formations.html" class="mega-item">
+            <a href="formations.html#cpf" class="mega-item">
               <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div>
-              <div class="mega-content"><strong>Formations</strong><span class="desc">3 parcours · Qualiopi · OPCO/CPF</span></div>
+              <div class="mega-content"><strong>Parcours CPF</strong></div>
+            </a>
+            <a href="formations.html#fafcea" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div>
+              <div class="mega-content"><strong>Parcours individualisés FAFCEA</strong></div>
             </a>
           </div>
         </li>
         <li class="has-mega-li">
-          <a href="secteurs.html" class="has-mega">Par secteur</a>
-          <div class="mega mega-sectors">
-            <a href="secteurs.html" class="mega-overview">Vue d'ensemble — Tous les secteurs adressés →</a>
-            <a href="secteur-immobilier.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2h-4v-7H10v7H5a2 2 0 0 1-2-2V10z"/></svg></div>
-              <div class="mega-content"><strong>Immobilier · ALUR</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+          <a href="assistant.html" class="has-mega active">Solutions métier</a>
+          <div class="mega">
+            <a href="assistant.html" class="mega-overview active">Vue d’ensemble</a>
+            <a href="audit.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></div>
+              <div class="mega-content"><strong>Audit IA</strong></div>
             </a>
-            <a href="secteur-btp.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l4-3 4 3v11M13 21V14l4-3 4 3v7M8 14h1M8 17h1"/></svg></div>
-              <div class="mega-content"><strong>BTP · Artisans</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            <a href="outils.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+              <div class="mega-content"><strong>Outils métier</strong></div>
             </a>
-            <a href="secteur-finance-comptabilite.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 5h11a3 3 0 0 1 0 6H8a3 3 0 0 0 0 6h11"/></svg></div>
-              <div class="mega-content"><strong>Compta · Finance</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
-            </a>
-            <a href="secteur-assurance.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 5v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V5l-8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
-              <div class="mega-content"><strong>Assurance · IARD</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
-            </a>
-            <a href="secteur-juridique.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 8h12M4 21h16M7 8l-3 6h6L7 8zm10 0l-3 6h6l-3-6z"/></svg></div>
-              <div class="mega-content"><strong>Juridique · Notariat</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
-            </a>
-            <a href="secteur-professions-liberales.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div>
-              <div class="mega-content"><strong>Professions libérales</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
-            </a>
-            <a href="secteur-communication.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8v.5a8 8 0 0 1-8 8H8l-5 2 1.5-4A8 8 0 0 1 3 11.5V11z"/></svg></div>
-              <div class="mega-content"><strong>Communication · Marketing</strong><span class="desc">Vos prestations IA dans ce métier</span></div>
+            <a href="agents.html" class="mega-item">
+              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v2"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg></div>
+              <div class="mega-content"><strong>Automatisations / Agents</strong></div>
             </a>
           </div>
         </li>
-        <li><a href="ia-et-moi.html">L'IA et moi</a></li>
-        <li><a href="formations.html">Formations</a></li>
         <li><a href="radar-ia.html">Radar IA</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -1160,22 +1148,17 @@
 
     <div class="nav-mobile" id="navMob">
       <a href="index.html">Accueil</a>
-      <a href="assistant.html">Mon assistant IA</a>
+      <a href="formations.html">Formations</a>
+      <a href="formations.html" class="sub">→ Vue d’ensemble</a>
+      <a href="formations.html#shift" class="sub">→ Méthode SHIFT</a>
+      <a href="ateliers.html" class="sub">→ Ateliers SHIFT</a>
+      <a href="formations.html#cpf" class="sub">→ CPF</a>
+      <a href="formations.html#fafcea" class="sub">→ Parcours individualisés FAFCEA</a>
+      <a href="assistant.html" class="active">Solutions métier</a>
+      <a href="assistant.html" class="sub active">→ Vue d’ensemble</a>
       <a href="audit.html" class="sub">→ Audit IA</a>
       <a href="outils.html" class="sub">→ Outils métier</a>
-      <a href="agents.html" class="sub">→ Agents IA</a>
-      <a href="ateliers.html" class="sub">→ Ateliers</a>
-      <a href="formations.html" class="sub">→ Formations</a>
-      <a href="secteurs.html">Par secteur</a>
-      <a href="secteur-immobilier.html" class="sub">→ Immobilier ALUR</a>
-      <a href="secteur-btp.html" class="sub">→ BTP · Artisans</a>
-      <a href="secteur-finance-comptabilite.html" class="sub">→ Compta · Finance</a>
-      <a href="secteur-assurance.html" class="sub">→ Assurance</a>
-      <a href="secteur-juridique.html" class="sub">→ Juridique · Notariat</a>
-      <a href="secteur-professions-liberales.html" class="sub">→ Professions libérales</a>
-      <a href="secteur-communication.html" class="sub">→ Communication</a>
-      <a href="ia-et-moi.html">L'IA et moi</a>
-      <a href="formations.html">Formations</a>
+      <a href="agents.html" class="sub">→ Automatisations / Agents</a>
       <a href="radar-ia.html">Radar IA</a>
       <a href="contact.html">Contact</a>
       <a href="https://calendly.com/laurence-lrenov-ia/30min" style="color:var(--gold);font-weight:600;border-top:1px solid var(--border);margin-top:.5rem;padding-top:1rem">On en parle ?</a>
@@ -1652,28 +1635,65 @@
   </footer>
   <script>
   /* CURSEUR */
-  const cursor = document.getElementById('cursor');
-  const cursorTrail = document.getElementById('cursorTrail');
+  (() => {
+  const cursor = document.querySelector('.cursor');
+  const trail = document.querySelector('.cursor-trail');
+  const body = document.body;
+  let frame = 0, ready = false, active = false;
   let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
-  if(cursor && window.matchMedia('(hover: hover)').matches && window.innerWidth > 1024){
-    document.addEventListener('mousemove',(e)=>{
+  const listeners = [];
+  const disable = () => {
+    body.classList.remove('custom-cursor-enabled');
+    active = false;
+    cancelAnimationFrame(frame);
+    cursor?.classList.remove('hover', 'click');
+    trail?.classList.remove('hover');
+  };
+  try {
+    const desktop = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1025px)');
+    if (!cursor || !trail || !desktop.matches) return;
+    const listen = (target, event, handler) => {
+      const safeHandler = e => { try { handler(e); } catch { disable(); } };
+      target.addEventListener(event, safeHandler);
+      listeners.push(() => target.removeEventListener(event, safeHandler));
+    };
+    const animateTrail = () => {
+      try {
+        if (!active) return;
+        if (!cursor.isConnected || !trail.isConnected || !desktop.matches) { disable(); return; }
+        trailX += (mouseX - trailX) * .12;
+        trailY += (mouseY - trailY) * .12;
+        trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px';
+        frame = requestAnimationFrame(animateTrail);
+      } catch { disable(); }
+    };
+    listen(document, 'mousemove', e => {
+      if (!ready || !desktop.matches || !cursor.isConnected || !trail.isConnected) { disable(); return; }
       mouseX = e.clientX; mouseY = e.clientY;
       cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px';
+      if (!active) {
+        trailX = mouseX; trailY = mouseY;
+        trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px';
+        active = true;
+        frame = requestAnimationFrame(animateTrail);
+        body.classList.add('custom-cursor-enabled');
+      }
     });
-    (function animateTrail(){
-      trailX += (mouseX - trailX) * .12;
-      trailY += (mouseY - trailY) * .12;
-      cursorTrail.style.left = trailX + 'px'; cursorTrail.style.top = trailY + 'px';
-      requestAnimationFrame(animateTrail);
-    })();
-    const clickables = document.querySelectorAll('a,button,input,textarea,.presta-card,.pilier-card,.tab-btn,.sector-card');
-    clickables.forEach(el=>{
-      el.addEventListener('mouseenter',()=>{cursor.classList.add('hover');cursorTrail.classList.add('hover')});
-      el.addEventListener('mouseleave',()=>{cursor.classList.remove('hover');cursorTrail.classList.remove('hover')});
+    document.querySelectorAll('a,button,input,textarea,select,.presta-card,.pilier-card,.tab-btn,.sector-card').forEach(el => {
+      listen(el, 'mouseenter', () => { cursor.classList.add('hover'); trail.classList.add('hover'); });
+      listen(el, 'mouseleave', () => { cursor.classList.remove('hover'); trail.classList.remove('hover'); });
     });
-    document.addEventListener('mousedown',()=>cursor.classList.add('click'));
-    document.addEventListener('mouseup',()=>cursor.classList.remove('click'));
+    listen(document, 'mousedown', () => cursor.classList.add('click'));
+    listen(document, 'mouseup', () => cursor.classList.remove('click'));
+    listen(document.documentElement, 'mouseleave', disable);
+    listen(window, 'blur', disable);
+    listen(desktop, 'change', disable);
+    ready = true;
+  } catch {
+    disable();
+    listeners.forEach(remove => remove());
   }
+})();
 
   /* ANIMATIONS APPARITION */
   const fuObs = new IntersectionObserver((entries)=>{

@@ -43,7 +43,7 @@
     color:var(--text);
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
-    cursor:none; /* Curseur custom — fallback pour mobile via @media */
+    cursor:auto; /* Curseur custom — fallback pour mobile via @media */
   }
   h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
   ::-webkit-scrollbar{width:6px}
@@ -647,7 +647,7 @@
     transition:all .45s cubic-bezier(.23,1,.32,1);
     position:relative;overflow:hidden;
     display:flex;flex-direction:column;gap:1.1rem;
-    cursor:none;
+    cursor:pointer;
     min-height:260px;
   }
   /* Glow qui suit la souris */
@@ -881,7 +881,7 @@
     font-family:'Plus Jakarta Sans',sans-serif;
     font-size:.82rem;font-weight:700;
     letter-spacing:.1em;text-transform:uppercase;
-    cursor:none;
+    cursor:pointer;
     transition:all .3s cubic-bezier(.23,1,.32,1);
     display:inline-flex;align-items:center;gap:.8rem;
     position:relative;overflow:hidden;
@@ -938,7 +938,7 @@
     border:1px solid var(--border-soft);
     display:flex;align-items:center;justify-content:center;
     color:rgba(242,234,216,.6);
-    cursor:none;
+    cursor:pointer;
     transition:all .25s;
   }
   .roi-close:hover{
@@ -993,13 +993,13 @@
     background:rgba(212,137,58,.18);
     border-radius:2px;
     outline:none;
-    cursor:none;
+    cursor:pointer;
   }
   .roi-slider input[type="range"]::-webkit-slider-thumb{
     -webkit-appearance:none;appearance:none;
     width:18px;height:18px;border-radius:50%;
     background:var(--gold);
-    cursor:none;
+    cursor:pointer;
     border:3px solid var(--dark2);
     box-shadow:0 0 12px rgba(212,137,58,.5);
     transition:transform .2s;
@@ -1008,7 +1008,7 @@
   .roi-slider input[type="range"]::-moz-range-thumb{
     width:18px;height:18px;border-radius:50%;
     background:var(--gold);
-    cursor:none;
+    cursor:pointer;
     border:3px solid var(--dark2);
     box-shadow:0 0 12px rgba(212,137,58,.5);
   }
@@ -1737,7 +1737,7 @@
     font-family:'Plus Jakarta Sans',sans-serif;
     font-size:.78rem;font-weight:700;
     letter-spacing:.1em;text-transform:uppercase;
-    cursor:none;transition:all .25s;
+    cursor:pointer;transition:all .25s;
   }
   .parle-form button:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 28px rgba(212,137,58,.3)}
 
@@ -1876,7 +1876,17 @@
     .hero-cta{flex-direction:column;align-items:flex-start;width:100%}
     .hero-cta .btn-gold{width:100%;text-align:center}
   }
-  </style>
+
+  /* Le pointeur natif reste visible jusqu'à l'initialisation effective. */
+  body{cursor:auto}
+  body a,body button,body select,body input[type="range"],body input[type="submit"],body input[type="button"]{cursor:pointer}
+  body input:not([type]),body input[type="text"],body input[type="email"],body input[type="tel"],body input[type="search"],body input[type="password"],body input[type="number"],body textarea{cursor:text}
+  body .cursor,body .cursor-trail{visibility:hidden;pointer-events:none;z-index:9999}
+  @media(hover:hover) and (pointer:fine) and (min-width:1025px){
+    body.custom-cursor-enabled,body.custom-cursor-enabled *{cursor:none!important}
+    body.custom-cursor-enabled .cursor,body.custom-cursor-enabled .cursor-trail{visibility:visible}
+  }
+</style>
 </head>
 <body>
 
@@ -2765,44 +2775,65 @@
   /* =====================================================================
      1. CURSEUR CUSTOM
      ===================================================================== */
-  const cursor = document.getElementById('cursor');
-  const cursorTrail = document.getElementById('cursorTrail');
-  let mouseX = 0, mouseY = 0;
-  let trailX = 0, trailY = 0;
-
-  if(window.matchMedia('(hover: hover)').matches && window.innerWidth > 1024){
-    document.addEventListener('mousemove',(e)=>{
+  (() => {
+  const cursor = document.querySelector('.cursor');
+  const trail = document.querySelector('.cursor-trail');
+  const body = document.body;
+  let frame = 0, ready = false, active = false;
+  let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
+  const listeners = [];
+  const disable = () => {
+    body.classList.remove('custom-cursor-enabled');
+    active = false;
+    cancelAnimationFrame(frame);
+    cursor?.classList.remove('hover', 'click');
+    trail?.classList.remove('hover');
+  };
+  try {
+    const desktop = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1025px)');
+    if (!cursor || !trail || !desktop.matches) return;
+    const listen = (target, event, handler) => {
+      const safeHandler = e => { try { handler(e); } catch { disable(); } };
+      target.addEventListener(event, safeHandler);
+      listeners.push(() => target.removeEventListener(event, safeHandler));
+    };
+    const animateTrail = () => {
+      try {
+        if (!active) return;
+        if (!cursor.isConnected || !trail.isConnected || !desktop.matches) { disable(); return; }
+        trailX += (mouseX - trailX) * .12;
+        trailY += (mouseY - trailY) * .12;
+        trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px';
+        frame = requestAnimationFrame(animateTrail);
+      } catch { disable(); }
+    };
+    listen(document, 'mousemove', e => {
+      if (!ready || !desktop.matches || !cursor.isConnected || !trail.isConnected) { disable(); return; }
       mouseX = e.clientX; mouseY = e.clientY;
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
+      cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px';
+      if (!active) {
+        trailX = mouseX; trailY = mouseY;
+        trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px';
+        active = true;
+        frame = requestAnimationFrame(animateTrail);
+        body.classList.add('custom-cursor-enabled');
+      }
     });
-    // Trail (suit avec délai)
-    function animateTrail(){
-      trailX += (mouseX - trailX) * .12;
-      trailY += (mouseY - trailY) * .12;
-      cursorTrail.style.left = trailX + 'px';
-      cursorTrail.style.top = trailY + 'px';
-      requestAnimationFrame(animateTrail);
-    }
-    animateTrail();
-
-    // Hover effect sur éléments cliquables
-    const clickables = document.querySelectorAll('a,button,input,textarea,.calc-trigger,.roi-close,input[type="range"]');
-    clickables.forEach(el=>{
-      el.addEventListener('mouseenter',()=>{
-        cursor.classList.add('hover');
-        cursorTrail.classList.add('hover');
-      });
-      el.addEventListener('mouseleave',()=>{
-        cursor.classList.remove('hover');
-        cursorTrail.classList.remove('hover');
-      });
+    document.querySelectorAll('a,button,input,textarea,select,.presta-card,.pilier-card,.tab-btn,.sector-card').forEach(el => {
+      listen(el, 'mouseenter', () => { cursor.classList.add('hover'); trail.classList.add('hover'); });
+      listen(el, 'mouseleave', () => { cursor.classList.remove('hover'); trail.classList.remove('hover'); });
     });
-
-    // Click effect
-    document.addEventListener('mousedown',()=>cursor.classList.add('click'));
-    document.addEventListener('mouseup',()=>cursor.classList.remove('click'));
+    listen(document, 'mousedown', () => cursor.classList.add('click'));
+    listen(document, 'mouseup', () => cursor.classList.remove('click'));
+    listen(document.documentElement, 'mouseleave', disable);
+    listen(window, 'blur', disable);
+    listen(desktop, 'change', disable);
+    ready = true;
+  } catch {
+    disable();
+    listeners.forEach(remove => remove());
   }
+})();
 
   /* =====================================================================
      2. ANIMATIONS APPARITION (Intersection Observer)

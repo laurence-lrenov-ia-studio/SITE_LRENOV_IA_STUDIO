@@ -20,7 +20,7 @@
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+  body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:auto}
   h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
   ::-webkit-scrollbar{width:6px}
   ::-webkit-scrollbar-track{background:var(--dark)}
@@ -431,7 +431,100 @@
     .direct-grid{grid-template-columns:1fr}
     .foot-wrap{grid-template-columns:1fr}
   }
-  </style>
+
+  /* Navigation déroulante — styles du header existant */
+  .nav-links .has-mega::after{content:"";display:inline-block;width:6px;height:6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);margin-left:.2rem;opacity:.6}
+
+  /* Pont invisible pour éviter de perdre le hover quand on traverse le gap */
+  .nav-links li.has-mega-li::after{
+    content:"";
+    position:absolute;
+    top:100%;left:50%;transform:translateX(-50%);
+    width:160px;height:18px;
+    background:transparent;
+    z-index:201;
+  }
+
+  /* MÉGA-MENU */
+  .mega{
+    position:absolute;top:calc(100% + 12px);left:50%;
+    transform:translateX(-50%) translateY(-12px);
+    background:rgba(34,43,50,.96);
+    backdrop-filter:blur(24px) saturate(160%);
+    -webkit-backdrop-filter:blur(24px) saturate(160%);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:1.6rem;
+    width:720px;
+    display:grid;grid-template-columns:1fr 1fr;gap:.6rem;
+    opacity:0;pointer-events:none;
+    transition:opacity .3s ease,transform .3s cubic-bezier(.23,1,.32,1);
+    box-shadow:0 32px 80px rgba(0,0,0,.6);
+    z-index:202;
+  }
+  .nav-links li:hover .mega,
+  .nav-links li:focus-within .mega{
+    opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);
+  }
+  .mega::before{
+    content:"";position:absolute;top:-7px;left:50%;
+    transform:translateX(-50%) rotate(45deg);
+    width:13px;height:13px;
+    background:rgba(34,43,50,.96);
+    border-left:1px solid var(--border);
+    border-top:1px solid var(--border);
+  }
+  .mega a.mega-overview{
+    grid-column:1/-1;
+    padding:.85rem 1rem;
+    background:linear-gradient(135deg,rgba(212,137,58,.12) 0%,rgba(232,170,92,.06) 100%);
+    border:1px solid var(--border2);
+    border-radius:8px;
+    color:var(--gold);font-weight:600;font-size:.78rem;
+    text-align:center;text-transform:uppercase;letter-spacing:.1em;
+    transition:all .25s;
+    display:block;
+  }
+  .mega a.mega-overview:hover{
+    background:var(--gold);color:var(--dark);
+  }
+  .mega a.mega-item{
+    display:flex;align-items:flex-start;gap:.85rem;
+    padding:.9rem 1rem;border-radius:8px;
+    border:1px solid transparent;
+    text-transform:none;letter-spacing:0;
+    color:var(--cream);
+    transition:all .25s;
+  }
+  .mega a.mega-item:hover{
+    background:rgba(212,137,58,.08);
+    border-color:var(--border);
+    transform:translateX(2px);
+  }
+  .mega-icon{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:all .3s;margin-top:.2rem;background:none;border:none}
+  .mega a.mega-item:hover .mega-icon{color:var(--gold2);transform:translateX(2px);background:none;border:none}
+  .mega-icon svg{width:22px;height:22px;stroke:currentColor;fill:none}
+  .mega-content{display:flex;flex-direction:column;gap:.15rem;flex:1}
+  .mega-content strong{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:600;font-size:.88rem;color:var(--cream);
+  }
+  .mega-content span.desc{
+    font-size:.74rem;color:rgba(242,234,216,.55);font-weight:400;line-height:1.5;
+  }
+
+  #mainNav .nav-mobile a.sub{padding-left:1.2rem;font-size:.82rem;color:rgba(242,234,216,.5)}
+
+  /* Le pointeur natif reste visible jusqu'à l'initialisation effective. */
+  body{cursor:auto}
+  body a,body button,body select,body input[type="range"],body input[type="submit"],body input[type="button"]{cursor:pointer}
+  body input:not([type]),body input[type="text"],body input[type="email"],body input[type="tel"],body input[type="search"],body input[type="password"],body input[type="number"],body textarea{cursor:text}
+  body .cursor,body .cursor-trail{visibility:hidden;pointer-events:none;z-index:9999}
+  @media(hover:hover) and (pointer:fine) and (min-width:1025px){
+    body.custom-cursor-enabled,body.custom-cursor-enabled *{cursor:none!important}
+    body.custom-cursor-enabled .cursor,body.custom-cursor-enabled .cursor-trail{visibility:visible}
+  }
+</style>
 </head>
 <body>
 
@@ -448,10 +541,46 @@
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Accueil</a></li>
-        <li><a href="assistant.html">Mon assistant IA</a></li>
-        <li><a href="secteurs.html">Par secteur</a></li>
-        <li><a href="ia-et-moi.html">L'IA et moi</a></li>
-        <li><a href="formations.html">Formations</a></li>
+        <li class="has-mega-li">
+          <a href="formations.html" class="has-mega">Formations</a>
+          <div class="mega">
+            <a href="formations.html" class="mega-overview">Vue d’ensemble</a>
+            <a href="formations.html#shift" class="mega-item">
+
+              <div class="mega-content"><strong>Méthode SHIFT</strong></div>
+            </a>
+            <a href="ateliers.html" class="mega-item">
+
+              <div class="mega-content"><strong>Ateliers SHIFT</strong></div>
+            </a>
+            <a href="formations.html#cpf" class="mega-item">
+
+              <div class="mega-content"><strong>Parcours CPF</strong></div>
+            </a>
+            <a href="formations.html#fafcea" class="mega-item">
+
+              <div class="mega-content"><strong>Parcours individualisés FAFCEA</strong></div>
+            </a>
+          </div>
+        </li>
+        <li class="has-mega-li">
+          <a href="assistant.html" class="has-mega">Solutions métier</a>
+          <div class="mega">
+            <a href="assistant.html" class="mega-overview">Vue d’ensemble</a>
+            <a href="audit.html" class="mega-item">
+
+              <div class="mega-content"><strong>Audit IA</strong></div>
+            </a>
+            <a href="outils.html" class="mega-item">
+
+              <div class="mega-content"><strong>Outils métier</strong></div>
+            </a>
+            <a href="agents.html" class="mega-item">
+
+              <div class="mega-content"><strong>Automatisations / Agents</strong></div>
+            </a>
+          </div>
+        </li>
         <li><a href="radar-ia.html">Radar IA</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
@@ -460,12 +589,20 @@
     </div>
     <div class="nav-mobile" id="navMob">
       <a href="index.html">Accueil</a>
-      <a href="assistant.html">Mon assistant IA</a>
-      <a href="secteurs.html">Par secteur</a>
-      <a href="ia-et-moi.html">L'IA et moi</a>
       <a href="formations.html">Formations</a>
+      <a href="formations.html" class="sub">→ Vue d’ensemble</a>
+      <a href="formations.html#shift" class="sub">→ Méthode SHIFT</a>
+      <a href="ateliers.html" class="sub">→ Ateliers SHIFT</a>
+      <a href="formations.html#cpf" class="sub">→ CPF</a>
+      <a href="formations.html#fafcea" class="sub">→ Parcours individualisés FAFCEA</a>
+      <a href="assistant.html">Solutions métier</a>
+      <a href="assistant.html" class="sub">→ Vue d’ensemble</a>
+      <a href="audit.html" class="sub">→ Audit IA</a>
+      <a href="outils.html" class="sub">→ Outils métier</a>
+      <a href="agents.html" class="sub">→ Automatisations / Agents</a>
       <a href="radar-ia.html">Radar IA</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="https://calendly.com/laurence-lrenov-ia/30min" style="color:var(--gold);font-weight:600;border-top:1px solid var(--border);margin-top:.5rem;padding-top:1rem">On en parle ?</a>
     </div>
   </nav>
 
@@ -704,29 +841,65 @@
     navMobBtn.addEventListener('click',()=>navMob.classList.toggle('open'));
 
     // CURSEUR CUSTOM
-    const cursor = document.getElementById('cursor');
-    const cursorTrail = document.getElementById('cursorTrail');
-    let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
-    if(window.matchMedia('(hover: hover)').matches && window.innerWidth > 1024){
-      document.addEventListener('mousemove',(e)=>{
-        mouseX = e.clientX; mouseY = e.clientY;
-        cursor.style.left = mouseX + 'px';
-        cursor.style.top = mouseY + 'px';
-      });
-      (function animateTrail(){
+    (() => {
+  const cursor = document.querySelector('.cursor');
+  const trail = document.querySelector('.cursor-trail');
+  const body = document.body;
+  let frame = 0, ready = false, active = false;
+  let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
+  const listeners = [];
+  const disable = () => {
+    body.classList.remove('custom-cursor-enabled');
+    active = false;
+    cancelAnimationFrame(frame);
+    cursor?.classList.remove('hover', 'click');
+    trail?.classList.remove('hover');
+  };
+  try {
+    const desktop = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1025px)');
+    if (!cursor || !trail || !desktop.matches) return;
+    const listen = (target, event, handler) => {
+      const safeHandler = e => { try { handler(e); } catch { disable(); } };
+      target.addEventListener(event, safeHandler);
+      listeners.push(() => target.removeEventListener(event, safeHandler));
+    };
+    const animateTrail = () => {
+      try {
+        if (!active) return;
+        if (!cursor.isConnected || !trail.isConnected || !desktop.matches) { disable(); return; }
         trailX += (mouseX - trailX) * .12;
         trailY += (mouseY - trailY) * .12;
-        cursorTrail.style.left = trailX + 'px';
-        cursorTrail.style.top = trailY + 'px';
-        requestAnimationFrame(animateTrail);
-      })();
-      document.querySelectorAll('a,button,input,textarea,select').forEach(el=>{
-        el.addEventListener('mouseenter',()=>{ cursor.classList.add('hover'); cursorTrail.classList.add('hover'); });
-        el.addEventListener('mouseleave',()=>{ cursor.classList.remove('hover'); cursorTrail.classList.remove('hover'); });
-      });
-      document.addEventListener('mousedown',()=>cursor.classList.add('click'));
-      document.addEventListener('mouseup',()=>cursor.classList.remove('click'));
-    }
+        trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px';
+        frame = requestAnimationFrame(animateTrail);
+      } catch { disable(); }
+    };
+    listen(document, 'mousemove', e => {
+      if (!ready || !desktop.matches || !cursor.isConnected || !trail.isConnected) { disable(); return; }
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px';
+      if (!active) {
+        trailX = mouseX; trailY = mouseY;
+        trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px';
+        active = true;
+        frame = requestAnimationFrame(animateTrail);
+        body.classList.add('custom-cursor-enabled');
+      }
+    });
+    document.querySelectorAll('a,button,input,textarea,select,.presta-card,.pilier-card,.tab-btn,.sector-card').forEach(el => {
+      listen(el, 'mouseenter', () => { cursor.classList.add('hover'); trail.classList.add('hover'); });
+      listen(el, 'mouseleave', () => { cursor.classList.remove('hover'); trail.classList.remove('hover'); });
+    });
+    listen(document, 'mousedown', () => cursor.classList.add('click'));
+    listen(document, 'mouseup', () => cursor.classList.remove('click'));
+    listen(document.documentElement, 'mouseleave', disable);
+    listen(window, 'blur', disable);
+    listen(desktop, 'change', disable);
+    ready = true;
+  } catch {
+    disable();
+    listeners.forEach(remove => remove());
+  }
+})();
 
     /* Le formulaire est envoyé par contact.php (même domaine → autorisé
        par le CSP form-action 'self'). PHP envoie le mail puis renvoie sur

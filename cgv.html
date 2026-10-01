@@ -157,7 +157,90 @@
     .foot-wrap{grid-template-columns:1fr}
     .data-table th,.data-table td{font-size:.76rem;padding:.6rem .5rem}
   }
-  </style>
+
+  /* Navigation déroulante — styles du header existant */
+  .nav-links .has-mega::after{content:"";display:inline-block;width:6px;height:6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);margin-left:.2rem;opacity:.6}
+
+  /* Pont invisible pour éviter de perdre le hover quand on traverse le gap */
+  .nav-links li.has-mega-li::after{
+    content:"";
+    position:absolute;
+    top:100%;left:50%;transform:translateX(-50%);
+    width:160px;height:18px;
+    background:transparent;
+    z-index:201;
+  }
+
+  /* MÉGA-MENU */
+  .mega{
+    position:absolute;top:calc(100% + 12px);left:50%;
+    transform:translateX(-50%) translateY(-12px);
+    background:rgba(34,43,50,.96);
+    backdrop-filter:blur(24px) saturate(160%);
+    -webkit-backdrop-filter:blur(24px) saturate(160%);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:1.6rem;
+    width:720px;
+    display:grid;grid-template-columns:1fr 1fr;gap:.6rem;
+    opacity:0;pointer-events:none;
+    transition:opacity .3s ease,transform .3s cubic-bezier(.23,1,.32,1);
+    box-shadow:0 32px 80px rgba(0,0,0,.6);
+    z-index:202;
+  }
+  .nav-links li:hover .mega,
+  .nav-links li:focus-within .mega{
+    opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);
+  }
+  .mega::before{
+    content:"";position:absolute;top:-7px;left:50%;
+    transform:translateX(-50%) rotate(45deg);
+    width:13px;height:13px;
+    background:rgba(34,43,50,.96);
+    border-left:1px solid var(--border);
+    border-top:1px solid var(--border);
+  }
+  .mega a.mega-overview{
+    grid-column:1/-1;
+    padding:.85rem 1rem;
+    background:linear-gradient(135deg,rgba(212,137,58,.12) 0%,rgba(232,170,92,.06) 100%);
+    border:1px solid var(--border2);
+    border-radius:8px;
+    color:var(--gold);font-weight:600;font-size:.78rem;
+    text-align:center;text-transform:uppercase;letter-spacing:.1em;
+    transition:all .25s;
+    display:block;
+  }
+  .mega a.mega-overview:hover{
+    background:var(--gold);color:var(--dark);
+  }
+  .mega a.mega-item{
+    display:flex;align-items:flex-start;gap:.85rem;
+    padding:.9rem 1rem;border-radius:8px;
+    border:1px solid transparent;
+    text-transform:none;letter-spacing:0;
+    color:var(--cream);
+    transition:all .25s;
+  }
+  .mega a.mega-item:hover{
+    background:rgba(212,137,58,.08);
+    border-color:var(--border);
+    transform:translateX(2px);
+  }
+  .mega-icon{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:all .3s;margin-top:.2rem;background:none;border:none}
+  .mega a.mega-item:hover .mega-icon{color:var(--gold2);transform:translateX(2px);background:none;border:none}
+  .mega-icon svg{width:22px;height:22px;stroke:currentColor;fill:none}
+  .mega-content{display:flex;flex-direction:column;gap:.15rem;flex:1}
+  .mega-content strong{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:600;font-size:.88rem;color:var(--cream);
+  }
+  .mega-content span.desc{
+    font-size:.74rem;color:rgba(242,234,216,.55);font-weight:400;line-height:1.5;
+  }
+
+  #mainNav .nav-mobile a.sub{padding-left:1.2rem;font-size:.82rem;color:rgba(242,234,216,.5)}
+</style>
 </head>
 <body>
 
@@ -170,24 +253,68 @@
       </a>
       <ul class="nav-links">
         <li><a href="index.html">Accueil</a></li>
-        <li><a href="assistant.html">Mon assistant IA</a></li>
-        <li><a href="secteurs.html">Par secteur</a></li>
-        <li><a href="ia-et-moi.html">L'IA et moi</a></li>
-        <li><a href="formations.html">Formations</a></li>
+        <li class="has-mega-li">
+          <a href="formations.html" class="has-mega">Formations</a>
+          <div class="mega">
+            <a href="formations.html" class="mega-overview">Vue d’ensemble</a>
+            <a href="formations.html#shift" class="mega-item">
+
+              <div class="mega-content"><strong>Méthode SHIFT</strong></div>
+            </a>
+            <a href="ateliers.html" class="mega-item">
+
+              <div class="mega-content"><strong>Ateliers SHIFT</strong></div>
+            </a>
+            <a href="formations.html#cpf" class="mega-item">
+
+              <div class="mega-content"><strong>Parcours CPF</strong></div>
+            </a>
+            <a href="formations.html#fafcea" class="mega-item">
+
+              <div class="mega-content"><strong>Parcours individualisés FAFCEA</strong></div>
+            </a>
+          </div>
+        </li>
+        <li class="has-mega-li">
+          <a href="assistant.html" class="has-mega">Solutions métier</a>
+          <div class="mega">
+            <a href="assistant.html" class="mega-overview">Vue d’ensemble</a>
+            <a href="audit.html" class="mega-item">
+
+              <div class="mega-content"><strong>Audit IA</strong></div>
+            </a>
+            <a href="outils.html" class="mega-item">
+
+              <div class="mega-content"><strong>Outils métier</strong></div>
+            </a>
+            <a href="agents.html" class="mega-item">
+
+              <div class="mega-content"><strong>Automatisations / Agents</strong></div>
+            </a>
+          </div>
+        </li>
         <li><a href="radar-ia.html">Radar IA</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <a href="contact.html" class="nav-btn desk">On en parle ?</a>
+      <a href="https://calendly.com/laurence-lrenov-ia/30min" class="nav-btn desk">On en parle ?</a>
       <button class="nav-mobile-btn" id="navMobBtn" aria-label="Menu">☰</button>
     </div>
     <div class="nav-mobile" id="navMob">
       <a href="index.html">Accueil</a>
-      <a href="assistant.html">Mon assistant IA</a>
-      <a href="secteurs.html">Par secteur</a>
-      <a href="ia-et-moi.html">L'IA et moi</a>
       <a href="formations.html">Formations</a>
+      <a href="formations.html" class="sub">→ Vue d’ensemble</a>
+      <a href="formations.html#shift" class="sub">→ Méthode SHIFT</a>
+      <a href="ateliers.html" class="sub">→ Ateliers SHIFT</a>
+      <a href="formations.html#cpf" class="sub">→ CPF</a>
+      <a href="formations.html#fafcea" class="sub">→ Parcours individualisés FAFCEA</a>
+      <a href="assistant.html">Solutions métier</a>
+      <a href="assistant.html" class="sub">→ Vue d’ensemble</a>
+      <a href="audit.html" class="sub">→ Audit IA</a>
+      <a href="outils.html" class="sub">→ Outils métier</a>
+      <a href="agents.html" class="sub">→ Automatisations / Agents</a>
       <a href="radar-ia.html">Radar IA</a>
       <a href="contact.html">Contact</a>
+      <a href="https://calendly.com/laurence-lrenov-ia/30min" style="color:var(--gold);font-weight:600;border-top:1px solid var(--border);margin-top:.5rem;padding-top:1rem">On en parle ?</a>
     </div>
   </nav>
 

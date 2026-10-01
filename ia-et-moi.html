@@ -42,7 +42,7 @@
     color:var(--text);
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
-    cursor:none;
+    cursor:auto;
   }
   h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif}
   ::-webkit-scrollbar{width:6px}
@@ -279,7 +279,7 @@
     background:var(--gold);color:var(--dark);
     padding:1.05rem 2.2rem;border-radius:4px;
     font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;
-    text-decoration:none;display:inline-block;border:none;cursor:none;
+    text-decoration:none;display:inline-block;border:none;cursor:pointer;
     position:relative;overflow:hidden;
     transition:all .3s cubic-bezier(.23,1,.32,1);
   }
@@ -296,7 +296,7 @@
     border:1px solid var(--gold);color:var(--gold);
     padding:1.05rem 2.2rem;border-radius:4px;
     font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;
-    text-decoration:none;display:inline-block;background:transparent;cursor:none;
+    text-decoration:none;display:inline-block;background:transparent;cursor:pointer;
     position:relative;overflow:hidden;transition:all .3s;
   }
   .btn-outline-gold::before{
@@ -777,18 +777,18 @@
   .roi-slider input[type="range"]{
     -webkit-appearance:none;appearance:none;
     width:100%;height:4px;background:rgba(212,137,58,.18);
-    border-radius:2px;outline:none;cursor:none;
+    border-radius:2px;outline:none;cursor:pointer;
   }
   .roi-slider input[type="range"]::-webkit-slider-thumb{
     -webkit-appearance:none;appearance:none;
     width:18px;height:18px;border-radius:50%;background:var(--gold);
-    cursor:none;border:3px solid var(--dark2);
+    cursor:pointer;border:3px solid var(--dark2);
     box-shadow:0 0 12px rgba(212,137,58,.5);transition:transform .2s;
   }
   .roi-slider input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.2)}
   .roi-slider input[type="range"]::-moz-range-thumb{
     width:18px;height:18px;border-radius:50%;background:var(--gold);
-    cursor:none;border:3px solid var(--dark2);
+    cursor:pointer;border:3px solid var(--dark2);
     box-shadow:0 0 12px rgba(212,137,58,.5);
   }
 
@@ -865,7 +865,7 @@
     background:none;border:none;
     font-family:'Plus Jakarta Sans',sans-serif;
     font-size:1rem;font-weight:600;color:var(--cream);
-    text-align:left;cursor:none;
+    text-align:left;cursor:pointer;
     letter-spacing:-.005em;
     transition:color .3s;
   }
@@ -1089,7 +1089,17 @@
     .nav-logo-text{font-size:.85rem}
     .nav-logo img{height:38px;width:38px}
   }
-  </style>
+
+  /* Le pointeur natif reste visible jusqu'à l'initialisation effective. */
+  body{cursor:auto}
+  body a,body button,body select,body input[type="range"],body input[type="submit"],body input[type="button"]{cursor:pointer}
+  body input:not([type]),body input[type="text"],body input[type="email"],body input[type="tel"],body input[type="search"],body input[type="password"],body input[type="number"],body textarea{cursor:text}
+  body .cursor,body .cursor-trail{visibility:hidden;pointer-events:none;z-index:9999}
+  @media(hover:hover) and (pointer:fine) and (min-width:1025px){
+    body.custom-cursor-enabled,body.custom-cursor-enabled *{cursor:none!important}
+    body.custom-cursor-enabled .cursor,body.custom-cursor-enabled .cursor-trail{visibility:visible}
+  }
+</style>
 </head>
 <body>
 
@@ -1112,37 +1122,45 @@
       <ul class="nav-links">
         <li><a href="index.html">Accueil</a></li>
         <li class="has-mega-li">
-          <a href="assistant.html" class="has-mega">Mon assistant IA</a>
+          <a href="formations.html" class="has-mega">Formations</a>
           <div class="mega">
-            <a href="assistant.html" class="mega-overview">Vue d'ensemble — Les 6 secteurs Pro →</a>
-            <a href="btp-pro.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24"><path d="M14 2v6h6M4 22V8a2 2 0 0 1 2-2h12l4 4v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM9 13h6M9 17h6"/></svg></div>
-              <div class="mega-content"><strong>BTP Pro</strong><span class="desc">Commercial · Chantier · Back-office</span></div>
+            <a href="formations.html" class="mega-overview">Vue d’ensemble</a>
+            <a href="formations.html#shift" class="mega-item">
+
+              <div class="mega-content"><strong>Méthode SHIFT</strong></div>
             </a>
-            <a href="compta-pro.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18M8 6v12M16 6v12"/></svg></div>
-              <div class="mega-content"><strong>Compta Pro</strong><span class="desc">Commercial · Production · Conseil</span></div>
+            <a href="ateliers.html" class="mega-item">
+
+              <div class="mega-content"><strong>Ateliers SHIFT</strong></div>
             </a>
-            <a href="cgp-pro.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 16l4-4 4 4 6-6"/></svg></div>
-              <div class="mega-content"><strong>CGP Pro</strong><span class="desc">Conformité · Conseil · Suivi client</span></div>
+            <a href="formations.html#cpf" class="mega-item">
+
+              <div class="mega-content"><strong>Parcours CPF</strong></div>
             </a>
-            <a href="notariat-pro.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24"><path d="M16 16l3-8 3 8M2 16l3-8 3 8M5.7 12.5h4.6M17.7 12.5h4.6M12 3v18M3 21h18M5 7h14"/></svg></div>
-              <div class="mega-content"><strong>Notariat Pro</strong><span class="desc">Pré-RDV · Actes · Suivi</span></div>
-            </a>
-            <a href="assurance-pro.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-              <div class="mega-content"><strong>Assurance Pro</strong><span class="desc">Recueil · Devis · Sinistres</span></div>
-            </a>
-            <a href="immo-pro.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2V9z"/></svg></div>
-              <div class="mega-content"><strong>Immo Pro</strong><span class="desc">Mandats · Conformité · Prospection</span></div>
+            <a href="formations.html#fafcea" class="mega-item">
+
+              <div class="mega-content"><strong>Parcours individualisés FAFCEA</strong></div>
             </a>
           </div>
         </li>
-        <li><a href="ia-et-moi.html" class="active">L'IA et moi</a></li>
-        <li><a href="formations.html">Formations</a></li>
+        <li class="has-mega-li">
+          <a href="assistant.html" class="has-mega">Solutions métier</a>
+          <div class="mega">
+            <a href="assistant.html" class="mega-overview">Vue d’ensemble</a>
+            <a href="audit.html" class="mega-item">
+
+              <div class="mega-content"><strong>Audit IA</strong></div>
+            </a>
+            <a href="outils.html" class="mega-item">
+
+              <div class="mega-content"><strong>Outils métier</strong></div>
+            </a>
+            <a href="agents.html" class="mega-item">
+
+              <div class="mega-content"><strong>Automatisations / Agents</strong></div>
+            </a>
+          </div>
+        </li>
         <li><a href="radar-ia.html">Radar IA</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -1153,15 +1171,17 @@
 
     <div class="nav-mobile" id="navMob">
       <a href="index.html">Accueil</a>
-      <a href="assistant.html">Mon assistant IA</a>
-      <a href="btp-pro.html" class="sub">→ BTP Pro</a>
-      <a href="compta-pro.html" class="sub">→ Compta Pro</a>
-      <a href="cgp-pro.html" class="sub">→ CGP Pro</a>
-      <a href="notariat-pro.html" class="sub">→ Notariat Pro</a>
-      <a href="assurance-pro.html" class="sub">→ Assurance Pro</a>
-      <a href="immo-pro.html" class="sub">→ Immo Pro</a>
-      <a href="ia-et-moi.html">L'IA et moi</a>
       <a href="formations.html">Formations</a>
+      <a href="formations.html" class="sub">→ Vue d’ensemble</a>
+      <a href="formations.html#shift" class="sub">→ Méthode SHIFT</a>
+      <a href="ateliers.html" class="sub">→ Ateliers SHIFT</a>
+      <a href="formations.html#cpf" class="sub">→ CPF</a>
+      <a href="formations.html#fafcea" class="sub">→ Parcours individualisés FAFCEA</a>
+      <a href="assistant.html">Solutions métier</a>
+      <a href="assistant.html" class="sub">→ Vue d’ensemble</a>
+      <a href="audit.html" class="sub">→ Audit IA</a>
+      <a href="outils.html" class="sub">→ Outils métier</a>
+      <a href="agents.html" class="sub">→ Automatisations / Agents</a>
       <a href="radar-ia.html">Radar IA</a>
       <a href="contact.html">Contact</a>
       <a href="https://calendly.com/laurence-lrenov-ia/30min" style="color:var(--gold);font-weight:600;border-top:1px solid var(--border);margin-top:.5rem;padding-top:1rem">On en parle ?</a>
@@ -1671,41 +1691,65 @@
   /* =====================================================================
      1. CURSEUR CUSTOM
      ===================================================================== */
-  const cursor = document.getElementById('cursor');
-  const cursorTrail = document.getElementById('cursorTrail');
-  let mouseX = 0, mouseY = 0;
-  let trailX = 0, trailY = 0;
-
-  if(window.matchMedia('(hover: hover)').matches && window.innerWidth > 1024){
-    document.addEventListener('mousemove',(e)=>{
+  (() => {
+  const cursor = document.querySelector('.cursor');
+  const trail = document.querySelector('.cursor-trail');
+  const body = document.body;
+  let frame = 0, ready = false, active = false;
+  let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
+  const listeners = [];
+  const disable = () => {
+    body.classList.remove('custom-cursor-enabled');
+    active = false;
+    cancelAnimationFrame(frame);
+    cursor?.classList.remove('hover', 'click');
+    trail?.classList.remove('hover');
+  };
+  try {
+    const desktop = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1025px)');
+    if (!cursor || !trail || !desktop.matches) return;
+    const listen = (target, event, handler) => {
+      const safeHandler = e => { try { handler(e); } catch { disable(); } };
+      target.addEventListener(event, safeHandler);
+      listeners.push(() => target.removeEventListener(event, safeHandler));
+    };
+    const animateTrail = () => {
+      try {
+        if (!active) return;
+        if (!cursor.isConnected || !trail.isConnected || !desktop.matches) { disable(); return; }
+        trailX += (mouseX - trailX) * .12;
+        trailY += (mouseY - trailY) * .12;
+        trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px';
+        frame = requestAnimationFrame(animateTrail);
+      } catch { disable(); }
+    };
+    listen(document, 'mousemove', e => {
+      if (!ready || !desktop.matches || !cursor.isConnected || !trail.isConnected) { disable(); return; }
       mouseX = e.clientX; mouseY = e.clientY;
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
+      cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px';
+      if (!active) {
+        trailX = mouseX; trailY = mouseY;
+        trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px';
+        active = true;
+        frame = requestAnimationFrame(animateTrail);
+        body.classList.add('custom-cursor-enabled');
+      }
     });
-    function animateTrail(){
-      trailX += (mouseX - trailX) * .12;
-      trailY += (mouseY - trailY) * .12;
-      cursorTrail.style.left = trailX + 'px';
-      cursorTrail.style.top = trailY + 'px';
-      requestAnimationFrame(animateTrail);
-    }
-    animateTrail();
-
-    const clickables = document.querySelectorAll('a,button,input,textarea,.faq-q,input[type="range"]');
-    clickables.forEach(el=>{
-      el.addEventListener('mouseenter',()=>{
-        cursor.classList.add('hover');
-        cursorTrail.classList.add('hover');
-      });
-      el.addEventListener('mouseleave',()=>{
-        cursor.classList.remove('hover');
-        cursorTrail.classList.remove('hover');
-      });
+    document.querySelectorAll('a,button,input,textarea,select,.presta-card,.pilier-card,.tab-btn,.sector-card').forEach(el => {
+      listen(el, 'mouseenter', () => { cursor.classList.add('hover'); trail.classList.add('hover'); });
+      listen(el, 'mouseleave', () => { cursor.classList.remove('hover'); trail.classList.remove('hover'); });
     });
-
-    document.addEventListener('mousedown',()=>cursor.classList.add('click'));
-    document.addEventListener('mouseup',()=>cursor.classList.remove('click'));
+    listen(document, 'mousedown', () => cursor.classList.add('click'));
+    listen(document, 'mouseup', () => cursor.classList.remove('click'));
+    listen(document.documentElement, 'mouseleave', disable);
+    listen(window, 'blur', disable);
+    listen(desktop, 'change', disable);
+    ready = true;
+  } catch {
+    disable();
+    listeners.forEach(remove => remove());
   }
+})();
 
   /* =====================================================================
      2. ANIMATIONS APPARITION (Intersection Observer)
