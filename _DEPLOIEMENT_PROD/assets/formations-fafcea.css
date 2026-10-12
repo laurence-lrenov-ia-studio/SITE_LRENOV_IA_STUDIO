@@ -1,69 +1,47 @@
-/* Styles limités à la page FAFCEA ; charte et ressources communes conservées. */
-.fafcea-page .fafcea-intro{max-width:860px;font-size:.95rem}
-.fafcea-page .fafcea-intro p{margin:0 0 12px}
-.fafcea-page .fafcea-progression{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:24px 0 28px}
-.fafcea-page .fafcea-progression a{text-decoration:none}
-.fafcea-page .fafcea-progress-arrow{color:var(--gold)}
-.fafcea-page .fafcea-grid{align-items:stretch;gap:20px}
-.fafcea-page .fafcea-grid:has(details[open]){align-items:start}
-.fafcea-page .fafcea-format{scroll-margin-top:100px;display:flex;flex-direction:column;min-height:400px;padding:24px}
-.fafcea-page .fafcea-card-head{min-height:102px}
-.fafcea-page .fafcea-format .eyebrow{font-size:.72rem;margin:0 0 10px}
-.fafcea-page .fafcea-format h2{font-size:1.2rem;line-height:1.4;margin:0 0 18px}
-.fafcea-page .fafcea-inclusion{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;font-size:.86rem;line-height:1.5;color:var(--cream);margin-bottom:12px}
-.fafcea-page .fafcea-inclusion strong{flex:1;min-width:140px;font-weight:600}
-.fafcea-page .fafcea-inclusion>a{white-space:nowrap}
-.fafcea-page .fafcea-inclusion>span{color:var(--gold)}
-.fafcea-page .fafcea-principle{font-size:.86rem;margin-bottom:16px}
-.fafcea-page .fafcea-meta{display:flex;flex-wrap:wrap;gap:18px 32px;border-top:1px solid var(--border);padding-top:14px;margin:8px 0 14px}
-.fafcea-page .fafcea-meta dt{margin:0;font-size:.75rem;color:var(--text);font-weight:400}
-.fafcea-page .fafcea-meta dd{margin:2px 0 0;font-size:1.08rem;font-weight:700;color:var(--cream)}
-.fafcea-page .fafcea-financing,.fafcea-page .fafcea-group{font-size:.83rem;margin:0 0 8px}
-.fafcea-page .fafcea-detail{margin-top:auto;padding-top:16px}
-.fafcea-page .fafcea-detail summary{display:flex;align-items:center;justify-content:space-between;gap:12px;list-style:none;min-height:44px;padding:10px 0;border-top:1px solid var(--border);font-weight:600}
-.fafcea-page .fafcea-detail summary::-webkit-details-marker{display:none}
-.fafcea-page .fafcea-detail summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
-.fafcea-page .fafcea-detail-indicator{font-size:1.2rem;transition:transform .15s}
-.fafcea-page .fafcea-detail[open] .fafcea-detail-indicator{transform:rotate(45deg)}
-.fafcea-page .fafcea-detail-content{padding-top:16px;font-size:.9rem}
-.fafcea-page .fafcea-inherited{padding-bottom:18px;border-bottom:1px solid var(--border)}
-.fafcea-page .fafcea-module+.fafcea-module{margin-top:28px;padding-top:24px;border-top:1px solid var(--border)}
-.fafcea-page .fafcea-module h3{font-size:1.05rem;line-height:1.5;margin:0 0 12px}
-.fafcea-page .fafcea-module h4{color:var(--cream);font-size:.9rem;margin:22px 0 8px}
-.fafcea-page .module-subtitle{color:var(--cream)}
-.fafcea-page .fafcea-module ul,.fafcea-page .fafcea-common ul{padding-left:20px;margin:0}
-.fafcea-page .fafcea-module li,.fafcea-page .fafcea-common li{margin:0 0 6px}
-.fafcea-page .fafcea-quote{margin-top:18px;align-self:flex-start}
-.fafcea-page [data-fafcea-quote][hidden]{display:none!important}
-.fafcea-page .fafcea-common{border-top:1px solid var(--border);padding-top:28px;margin-top:34px}
-.fafcea-page .fafcea-common>h2{font-size:1.3rem;margin:0 0 20px}
-.fafcea-page .fafcea-common-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;font-size:.9rem}
-.fafcea-page .fafcea-common-grid>section{min-width:0;padding:22px;background:var(--panel);border:1px solid var(--border);border-radius:12px}
-.fafcea-page .fafcea-common h3{font-size:1rem;margin:0 0 12px}
-.fafcea-page .fafcea-common h3:not(:first-child){margin-top:24px}
-.fafcea-page .fafcea-learning{color:var(--gold);line-height:1.7}
-.fafcea-page .fafcea-criterion{margin-top:20px;padding-top:16px;border-top:1px solid var(--border);color:var(--cream)}
-@media(max-width:1050px){.fafcea-page .fafcea-common-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:740px){.fafcea-page .fafcea-format{min-height:0;padding:20px}.fafcea-page .fafcea-card-head{min-height:0}.fafcea-page .fafcea-common-grid{grid-template-columns:1fr}.fafcea-page .fafcea-progression{gap:8px}.fafcea-page .fafcea-progression .shift-key{min-width:50px;padding:8px}.fafcea-page .fafcea-detail{margin-top:8px}}
-@media(prefers-reduced-motion:reduce){.fafcea-page .fafcea-detail-indicator{transition:none}}
-/* Cartes compactes et détail hors du flux, dans des dialogues natifs. */
-.fafcea-page .fafcea-format{min-height:290px;gap:14px;transition:transform .22s,border-color .22s,box-shadow .22s}
-.fafcea-page .fafcea-format h2{margin:0;font-size:1.16rem}.fafcea-page .fafcea-format p{margin:0}
-.fafcea-page .fafcea-card-progression{font-size:.86rem;color:var(--text)}
-.fafcea-page .fafcea-card-price{font-size:1.25rem;font-weight:700;color:var(--cream)}
+/* Styles exclusivement dédiés à la page FAFCEA. */
+.fafcea-page .fafcea-intro{max-width:880px;font-size:.95rem;margin:0 0 18px}
+.fafcea-page .fafcea-notice{padding:18px 22px;border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:10px;background:linear-gradient(110deg,rgba(212,137,58,.1),transparent);margin:20px 0}
+.fafcea-page .fafcea-notice h2{font-size:.8rem;letter-spacing:.1em;color:var(--gold);margin:0 0 8px}
+.fafcea-page .fafcea-notice p{font-size:.9rem;margin:0}
+.fafcea-page .fafcea-notice .fafcea-condition{font-size:.8rem;margin-top:8px}
+.fafcea-page .fafcea-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:24px 0}
+.fafcea-page .fafcea-format{display:flex;flex-direction:column;gap:16px;min-width:0;padding:24px;border:1px solid var(--border);border-radius:14px;background:radial-gradient(ellipse at 100% 0,rgba(212,137,58,.09),transparent 75%),var(--panel);transition:transform .2s,border-color .2s,box-shadow .2s}
+.fafcea-page .fafcea-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.fafcea-page .fafcea-format h2{font-size:1.3rem;line-height:1.35;margin:0}
+.fafcea-page .fafcea-duration{flex:none;color:var(--gold);font-size:1.2rem;font-weight:700}
+.fafcea-page .fafcea-format p{font-size:.9rem;line-height:1.55;margin:0}
+.fafcea-page .fafcea-blocks{border-block:1px solid var(--border);padding:12px 0;font-size:.9rem}
+.fafcea-page .fafcea-blocks span{display:flex;justify-content:space-between;gap:12px}
+.fafcea-page .fafcea-blocks strong{white-space:nowrap;color:var(--cream)}
+.fafcea-page .fafcea-blocks>b{display:block;line-height:1.3;color:var(--gold)}
 .fafcea-page .fafcea-open{margin-top:auto;align-self:flex-start;min-height:44px;border:0;font:inherit;cursor:pointer}
-.fafcea-page .fafcea-common-actions{margin:22px 0;font-size:.9rem}.fafcea-page .fafcea-common-actions .cta{min-height:44px;border:0;font:inherit}
-.fafcea-page .fafcea-common-actions button:disabled{opacity:.65;cursor:not-allowed}.fafcea-page .fafcea-common-actions .muted{font-size:.85rem}
+.fafcea-page .fafcea-classic{padding:22px 0;border-block:1px solid var(--border)}
+.fafcea-page .fafcea-classic h2{font-size:1.3rem;margin:8px 0 12px}
+.fafcea-page .fafcea-classic p{font-size:.9rem;margin:0 0 12px}
+.fafcea-page .fafcea-classic .fafcea-domains{font-size:.84rem;max-width:900px}
+.fafcea-page .fafcea-classic .cta{min-height:44px;margin-top:4px}
+.fafcea-page .fafcea-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:22px 0 0}
+.fafcea-page .fafcea-comparison>div{padding:16px 20px;border:1px solid var(--border);border-radius:10px}
+.fafcea-page .fafcea-comparison h2{font-size:.95rem;margin:0 0 8px}
+.fafcea-page .fafcea-comparison p{font-size:.85rem;margin:0}
 .fafcea-page .fafcea-modal{width:calc(100% - 48px);max-width:1040px;max-height:calc(100dvh - 48px);padding:26px;margin:auto;border:1px solid var(--border);border-radius:14px;background:var(--bg);color:var(--text);overflow:auto;overscroll-behavior:contain}
 .fafcea-page .fafcea-modal::backdrop{background:rgba(0,0,0,.75)}
 .fafcea-page .fafcea-modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;position:sticky;top:-26px;z-index:2;background:var(--bg);padding:10px 0}
-.fafcea-page .fafcea-modal-head h2{font-size:1.35rem;line-height:1.4;margin:0;max-width:780px}
-.fafcea-page .fafcea-close{flex:none;min-height:44px;padding:8px 12px;color:var(--cream);border:1px solid var(--border);background:var(--panel);border-radius:6px;cursor:pointer}
-.fafcea-page .fafcea-modal-meta,.fafcea-page .fafcea-modal-progression{font-size:.88rem;color:var(--gold);margin:14px 0 20px}
-.fafcea-page .fafcea-modal-content{font-size:.9rem}.fafcea-page .two-modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.fafcea-page .two-modules .fafcea-module+.fafcea-module{margin:0;padding:20px;border-top:1px solid var(--border)}
-.fafcea-page .fafcea-modal .fafcea-module{min-width:0;padding:20px;background:var(--panel);border:1px solid var(--border);border-radius:10px}
-.fafcea-page .fafcea-deployment{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.fafcea-page .fafcea-deployment h4{margin-top:14px}
+.fafcea-page .fafcea-modal-head h2{font-size:1.35rem;line-height:1.4;margin:0}
+.fafcea-page .fafcea-close{flex:none;min-width:100px;min-height:48px;padding:8px 14px;color:var(--bg);border:1px solid var(--gold);background:var(--gold);border-radius:6px;cursor:pointer;font-weight:700;white-space:nowrap}
+.fafcea-page .fafcea-modal-meta{font-size:.88rem;color:var(--gold);margin:14px 0}
+.fafcea-page .two-modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;font-size:.9rem}
+.fafcea-page .fafcea-module{min-width:0;padding:20px;background:var(--panel);border:1px solid var(--border);border-radius:10px}
+.fafcea-page .fafcea-module h3{font-size:1.05rem;line-height:1.4;margin:0 0 12px}
+.fafcea-page .fafcea-module h4{color:var(--cream);font-size:.9rem;margin:20px 0 8px}
+.fafcea-page .fafcea-module ul{padding-left:20px;margin:0}
+.fafcea-page .fafcea-module li{margin-bottom:6px}
+.fafcea-page .fafcea-open:focus-visible,.fafcea-page .fafcea-close:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
 @media(hover:hover) and (pointer:fine){.fafcea-page .fafcea-format:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 8px 22px rgba(212,137,58,.12)}}
-@media(max-width:740px){.fafcea-page .fafcea-format{min-height:260px}.fafcea-page .fafcea-modal{width:calc(100% - 24px);max-height:calc(100dvh - 24px);padding:18px}.fafcea-page .fafcea-modal-head{flex-direction:column;gap:12px;top:-18px}.fafcea-page .fafcea-modal-head h2{font-size:1.15rem}.fafcea-page .two-modules,.fafcea-page .fafcea-deployment{grid-template-columns:1fr}.fafcea-page .fafcea-modal .fafcea-module,.fafcea-page .two-modules .fafcea-module+.fafcea-module{padding:16px}}
-@media(prefers-reduced-motion:reduce){.fafcea-page .fafcea-format{transition:none}}
+@media(max-width:740px){.fafcea-page .fafcea-grid,.fafcea-page .fafcea-comparison,.fafcea-page .two-modules{grid-template-columns:1fr;gap:12px}.fafcea-page .fafcea-format{padding:18px;gap:12px}.fafcea-page .fafcea-format h2{font-size:1.15rem}.fafcea-page .fafcea-notice{padding:14px 16px}.fafcea-page .fafcea-modal{width:calc(100% - 24px);max-height:calc(100dvh - 24px);padding:16px}.fafcea-page .fafcea-modal-head{top:-16px;gap:10px}.fafcea-page .fafcea-modal-head h2{font-size:1.05rem}.fafcea-page .fafcea-module{padding:16px}.fafcea-page .fafcea-comparison>div{padding:14px 16px}}
+@media(prefers-reduced-motion:reduce){.fafcea-page .fafcea-format{transition:none}.fafcea-page .fafcea-format:hover{transform:none}}
+
+/* Pointeur natif dans le dialogue et sur son arrière-plan. */
+.fafcea-page .fafcea-modal,.fafcea-page .fafcea-modal *,.fafcea-page .fafcea-modal::backdrop{cursor:auto!important}
+.fafcea-page .fafcea-modal button,.fafcea-page .fafcea-modal a[href]{cursor:pointer!important}
+.fafcea-page .fafcea-close:hover{background:var(--cream);border-color:var(--cream)}

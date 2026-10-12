@@ -2,13 +2,19 @@
   'use strict';
   let trigger = null;
   let previousOverflow = null;
+  let previousScroll = null;
+  let hadModalOpenClass = false;
   const dialogs = [...document.querySelectorAll('.fafcea-modal')];
   document.querySelectorAll('[data-fafcea-open]').forEach(button => {
     button.addEventListener('click', () => {
       const dialog = document.getElementById('fafcea-modal-' + button.dataset.fafceaOpen);
       trigger = button;
+      previousScroll = { left: window.scrollX, top: window.scrollY };
       previousOverflow = [document.documentElement.style.overflow, document.body.style.overflow];
+      hadModalOpenClass = document.body.classList.contains('modal-open');
       dialog.showModal();
+      dialog.scrollTop = 0;
+      document.body.classList.add('modal-open');
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
       dialog.querySelector('[data-fafcea-close]').focus({ preventScroll: true });
@@ -23,17 +29,32 @@
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     });
     dialog.querySelector('[data-fafcea-close]').addEventListener('click', () => dialog.close());
-    dialog.addEventListener('click', event => {
+    const outside = event => {
       const r = dialog.getBoundingClientRect();
-      if (event.target === dialog && (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom)) dialog.close();
+      return event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom;
+    };
+    let backdropPress = false;
+    dialog.addEventListener('pointerdown', event => {
+      backdropPress = event.target === dialog && outside(event);
+    });
+    dialog.addEventListener('pointercancel', () => { backdropPress = false; });
+    dialog.addEventListener('click', event => {
+      if (backdropPress && event.target === dialog && outside(event)) dialog.close();
+      backdropPress = false;
     });
     dialog.addEventListener('close', () => {
+      backdropPress = false;
+      if (!hadModalOpenClass) document.body.classList.remove('modal-open');
       if (previousOverflow) {
         document.documentElement.style.overflow = previousOverflow[0];
         document.body.style.overflow = previousOverflow[1];
         previousOverflow = null;
       }
       trigger?.focus({ preventScroll: true });
+      if (previousScroll) {
+        window.scrollTo({ ...previousScroll, behavior: 'instant' });
+        previousScroll = null;
+      }
     });
   });
   const value = window.FAFCEA_CONFIG?.devisUrl;

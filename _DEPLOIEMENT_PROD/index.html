@@ -1095,6 +1095,7 @@
   }
 </style>
   <link rel="stylesheet" href="assets/global-footer.css">
+  <link rel="stylesheet" href="assets/mobile-navigation.css">
 </head>
 <body>
 
@@ -1123,7 +1124,7 @@
       </ul>
 
       <a href="https://calendly.com/laurence-lrenov-ia/30min" class="nav-btn desk">On en parle ?</a>
-      <button class="nav-mobile-btn" id="navMobBtn" aria-label="Menu">☰</button>
+      <button class="nav-mobile-btn" id="navMobBtn" aria-label="Menu" aria-expanded="false" aria-controls="navMob">☰</button>
     </div>
 
     <div class="nav-mobile" id="navMob">
@@ -1226,7 +1227,7 @@
         <article class="form-card fu fu-d2">
           <div class="eyebrow">PARCOURS INDIVIDUALISÉS</div>
           <h3>Formations FAFCEA</h3>
-          <p class="form-marker">14 h → 21 h → 28 h → 40 h</p>
+          <p class="form-marker">2 parcours individualisés · 20 h chacun</p>
           <p>Des parcours individuels et progressifs pour intégrer l’IA, mieux organiser son activité et structurer son pilotage.</p>
           <a href="formations-fafcea.html" class="btn-outline-gold"><span>Découvrir les parcours FAFCEA</span></a>
         </article>
@@ -1610,11 +1611,13 @@
   const navMob = document.getElementById('navMob');
   navMobBtn.addEventListener('click',()=>{
     navMob.classList.toggle('open');
-    navMobBtn.textContent = navMob.classList.contains('open') ? '' : '☰';
+    navMobBtn.setAttribute('aria-expanded', String(navMob.classList.contains('open')));
+    navMobBtn.textContent = navMob.classList.contains('open') ? '×' : '☰';
   });
   navMob.querySelectorAll('a').forEach(a=>{
     a.addEventListener('click',()=>{
       navMob.classList.remove('open');
+      navMobBtn.setAttribute('aria-expanded', 'false');
       navMobBtn.textContent = '☰';
     });
   });

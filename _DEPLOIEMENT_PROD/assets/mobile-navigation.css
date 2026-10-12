@@ -1,0 +1,26 @@
+/* Même couche de navigation mobile pour les headers du site.
+   Le header constitue la couche 200 ; son panneau reste dans cette couche.
+   Les règles desktop existantes sont conservées. */
+@media (max-width:1024px){
+  .site-header{position:sticky;top:0;z-index:200;isolation:isolate;overflow:visible;background:#1a2229}
+  .site-header .nav-wrap{position:static;height:78px;flex-wrap:nowrap;padding:0 18px}
+  .site-header .menu-toggle{display:block;flex:none;min-width:48px;min-height:48px;cursor:pointer}
+  .site-header .global-links,
+  #mainNav .nav-mobile{
+    position:absolute;top:100%;left:0;right:0;width:100%;
+    display:none;flex-direction:column;align-items:stretch;gap:0;
+    background:#1a2229;opacity:1;
+    border-top:1px solid rgba(232,170,92,.23);
+    border-bottom:1px solid rgba(232,170,92,.23);
+    padding:12px 20px;
+    max-height:calc(100vh - 79px);max-height:calc(100dvh - 79px);
+    overflow-y:auto;overscroll-behavior:contain;
+    box-shadow:0 16px 28px rgba(0,0,0,.3);z-index:1;
+  }
+  .site-header .global-links.open,#mainNav .nav-mobile.open{display:flex}
+  .site-header .global-links a,#mainNav .nav-mobile a{min-height:48px;display:flex;align-items:center;color:#f2ead8;cursor:pointer}
+  .site-header .global-links .formations-submenu{position:static;min-width:0;box-shadow:none}
+  #mainNav .nav-mobile-btn{min-width:48px;min-height:48px;cursor:pointer}
+  #mainNav:has(.nav-mobile.open){background:#1a2229}
+  body:has(#mainNav .nav-mobile.open)>a[href^="https://wa.me/"]{visibility:hidden}
+}

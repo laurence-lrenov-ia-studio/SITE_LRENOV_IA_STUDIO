@@ -47,6 +47,17 @@ ServerSignature Off
   RewriteRule ^(audit|outils|agents)(\.html)?/?$ /assistant [R=301,L]
   RewriteRule ^panorama(\.html)?/?$ /panorama-ia/ [R=301,L]
 
+  # Anciens catalogues SHIFT : redirections serveur independantes des fichiers HTML.
+  RewriteRule ^formations-batiment(\.html)?/?$ /ateliers#cmd [R=301,NE,L]
+  RewriteRule ^formations-communication-marketing(\.html)?/?$ /ateliers#cmd [R=301,NE,L]
+  RewriteRule ^formations-developpement-commercial(\.html)?/?$ /ateliers#cmd [R=301,NE,L]
+  RewriteRule ^formations-finance-assurance(\.html)?/?$ /ateliers#cmd [R=301,NE,L]
+  RewriteRule ^formations-formation(\.html)?/?$ /ateliers#cmd [R=301,NE,L]
+  RewriteRule ^formations-immobilier(\.html)?/?$ /ateliers#cmd [R=301,NE,L]
+  RewriteRule ^formations-pilotage-organisation(\.html)?/?$ /ateliers#cmd [R=301,NE,L]
+  RewriteRule ^formations-services-entreprises(\.html)?/?$ /ateliers#cmd [R=301,NE,L]
+  RewriteRule ^formations-enter(\.html)?/?$ /ateliers#enter [R=301,NE,L]
+
   # Anciennes fiches
   RewriteRule ^fiche-IMM-02\.html$          /secteur-immobilier [R=301,L]
   RewriteRule ^fiche-.*\.html$              /secteurs [R=301,L]
