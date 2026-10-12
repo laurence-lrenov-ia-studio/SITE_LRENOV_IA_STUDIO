@@ -12,3 +12,8 @@ _sauvegardes/
 # Fichiers système
 .DS_Store
 Thumbs.db
+
+_backups/
+validation/
+_sauvegardes/
+*.zip
