@@ -1,0 +1,17 @@
+/* Small mobile-only spacing and decorative sonar adjustment. No article changes. */
+@media(max-width:767px){
+  body[data-mobile-page="radar-ia"] .hero{padding-top:76px;padding-bottom:12px;gap:8px}
+  body[data-mobile-page="radar-ia"] .hero-eyebrow{margin-bottom:10px;gap:8px}
+  body[data-mobile-page="radar-ia"] .hero h1{margin-bottom:10px}
+  body[data-mobile-page="radar-ia"] .hero-sub{margin-bottom:10px;line-height:1.5}
+  body[data-mobile-page="radar-ia"] .badge-update{padding:5px 10px;font-size:.67rem}
+  body[data-mobile-page="radar-ia"] .filters-wrap{margin-bottom:16px;padding:0 14px}
+  body[data-mobile-page="radar-ia"] .radar-search{margin-bottom:12px}
+  body[data-mobile-page="radar-ia"] .radar-search input{padding:10px 12px}
+  body[data-mobile-page="radar-ia"] .filter-btn{padding:6px 12px}
+  body[data-mobile-page="radar-ia"] .hero-eyebrow::after{content:'';display:block;flex:none;width:24px;height:24px;border:1px solid #e8aa5c65;border-radius:50%;background:radial-gradient(circle at center,#e8aa5c 0 1px,transparent 2px),radial-gradient(circle at 70% 25%,#e8aa5c90 0 1px,transparent 2px),conic-gradient(from 0deg,transparent 260deg,#e8aa5c38 350deg,#e8aa5c85 360deg);box-shadow:0 0 10px #e8aa5c12}
+}
+@media(max-width:767px) and (prefers-reduced-motion:no-preference){
+  body[data-mobile-page="radar-ia"] .hero-eyebrow::after{animation:mobile-radar-sweep 14s linear infinite}
+  @keyframes mobile-radar-sweep{to{transform:rotate(360deg)}}
+}
