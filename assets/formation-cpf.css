@@ -1,0 +1,22 @@
+/* Présentation synthétique, limitée à la destination CPF. */
+.cpf-page .cpf-badge{display:inline-block;padding:3px 10px;border:1px solid var(--border);border-radius:4px;color:var(--gold);font-size:.8rem;margin:0 0 18px}
+.cpf-page .cpf-key-info{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:24px 0 30px}
+.cpf-page .cpf-key-info li{padding:9px 12px;border:1px solid var(--border);background:var(--panel);border-radius:7px;color:var(--cream);font-size:.84rem}
+.cpf-page .cpf-section{margin:30px 0}
+.cpf-page .cpf-section>h2{font-size:1.3rem;margin:0 0 16px}
+.cpf-page .cpf-objectives{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 26px;padding-left:20px;font-size:.9rem}
+.cpf-page .cpf-module-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.cpf-page .cpf-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.cpf-page .cpf-card{min-width:0;padding:20px;border:1px solid var(--border);border-radius:12px;background:var(--panel);transition:transform .2s,border-color .2s,box-shadow .2s}
+.cpf-page .cpf-card h3,.cpf-page .cpf-card h2{font-size:1rem;line-height:1.45;margin:10px 0 12px}
+.cpf-page .cpf-card p,.cpf-page .cpf-card ul{font-size:.9rem;margin:0;line-height:1.65}
+.cpf-page .cpf-card ul{padding-left:20px}
+.cpf-page .cpf-number{font-size:.8rem;font-weight:700;color:var(--gold)}
+.cpf-page .cpf-project{max-width:820px;padding:22px;border:1px solid var(--border);border-radius:12px;background:var(--panel);font-size:.9rem}
+.cpf-page .cpf-project p{margin:0 0 12px}.cpf-page .cpf-project p:last-child{margin:12px 0 0}
+.cpf-page .cpf-actions>div{display:flex;flex-wrap:wrap;gap:12px}.cpf-page .cpf-actions .cta{margin:0;min-height:44px}
+.cpf-page .cpf-actions p{font-size:.86rem;margin:14px 0 10px}.cpf-page .cpf-actions button:disabled{opacity:.65;cursor:not-allowed}
+@media(hover:hover) and (pointer:fine){.cpf-page .cpf-card:hover{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 6px 18px rgba(212,137,58,.08)}}
+@media(max-width:1050px){.cpf-page .cpf-module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:740px){.cpf-page .cpf-objectives,.cpf-page .cpf-module-grid,.cpf-page .cpf-pair{grid-template-columns:1fr}.cpf-page .cpf-card{padding:18px}}
+@media(prefers-reduced-motion:reduce){.cpf-page .cpf-card{transition:none}}

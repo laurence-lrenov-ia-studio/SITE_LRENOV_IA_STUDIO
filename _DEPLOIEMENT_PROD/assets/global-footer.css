@@ -1,0 +1,104 @@
+/* Exact footer design from index.html, scoped to public site footers. */
+.global-footer{--gold:#d4893a;--cream:#f2ead8;--dark:#1a2229;--border-soft:rgba(242,234,216,.06);box-sizing:border-box;width:100%;max-width:none;margin:0;border-radius:0;display:block;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:400;line-height:normal;text-align:left;-webkit-font-smoothing:antialiased}
+.global-footer :where(*,*::before,*::after){box-sizing:border-box;margin:0;padding:0}
+html:has(body>.global-footer){overflow-x:clip}
+body:has(>.global-footer){overflow-x:clip}
+  .global-footer{
+    background:#13191e;
+    color:rgba(242,234,216,.5);
+    padding:4rem 2rem 2rem;
+    border-top:1px solid var(--border-soft);
+    position:relative;
+  }
+  .global-footer .foot-wrap{
+    max-width:1280px;margin:0 auto;
+    display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;
+    gap:3rem;
+    margin-bottom:3rem;
+  }
+  .global-footer .foot-col h4{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:.74rem;font-weight:700;letter-spacing:.22em;
+    color:var(--gold);text-transform:uppercase;
+    margin-bottom:1.4rem;
+    display:flex;align-items:center;gap:.6rem;
+  }
+  .global-footer .foot-col h4::after{
+    content:"";flex:1;height:1px;background:var(--border-soft);
+    max-width:48px;
+  }
+  .global-footer .foot-col a{
+    display:block;
+    font-size:.86rem;color:rgba(242,234,216,.5);
+    text-decoration:none;
+    padding:.4rem 0;
+    transition:all .25s;
+    position:relative;padding-left:0;
+  }
+  .global-footer .foot-col a::before{
+    content:"";position:absolute;
+    left:-12px;top:50%;transform:translateY(-50%);
+    width:0;height:1px;background:var(--gold);
+    transition:width .25s;
+  }
+  .global-footer .foot-col a:hover{color:var(--gold);padding-left:14px}
+  .global-footer .foot-col a:hover::before{width:8px}
+
+  .global-footer .foot-brand{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:600;font-size:1.2rem;
+    color:var(--cream);margin-bottom:.8rem;
+    letter-spacing:-.01em;
+  }
+  .global-footer .foot-brand span{color:var(--gold)}
+  .global-footer .foot-tagline{
+    font-size:.88rem;line-height:1.75;
+    color:rgba(242,234,216,.5);
+    max-width:360px;margin-bottom:1.5rem;
+  }
+  .global-footer .foot-social{display:flex;gap:.7rem;margin-top:1.4rem}
+  .global-footer .foot-social a,.global-footer .foot-social .coming-soon{
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(34,43,50,.6);
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(242,234,216,.55);
+    transition:all .3s cubic-bezier(.23,1,.32,1);
+    border:1px solid var(--border-soft);
+    padding:0;
+  }
+  .global-footer .foot-social .coming-soon{opacity:.45}
+  .global-footer .foot-social a::before{display:none}
+  .global-footer .foot-social a:hover{
+    background:var(--gold);color:var(--dark);
+    border-color:var(--gold);transform:translateY(-4px) rotate(-6deg);
+    box-shadow:0 8px 20px rgba(212,137,58,.3);
+    padding-left:0;
+  }
+  .global-footer .foot-social svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.5;fill:none}
+
+  .global-footer .foot-contact{
+    font-size:.82rem;line-height:1.6;
+    color:rgba(242,234,216,.5);
+    margin-top:.7rem;padding:.4rem 0;
+  }
+  .global-footer .foot-bottom{
+    max-width:1280px;margin:0 auto;
+    padding-top:2rem;border-top:1px solid var(--border-soft);
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:1rem;
+    font-size:.76rem;color:rgba(242,234,216,.32);
+  }
+  .global-footer .foot-bottom-links{display:flex;gap:1.6rem;flex-wrap:wrap}
+  .global-footer .foot-bottom-links a{
+    color:rgba(242,234,216,.4);text-decoration:none;
+    transition:color .25s;font-size:.76rem;
+  }
+  .global-footer .foot-bottom-links a:hover{color:var(--gold)}
+
+
+@media(max-width:1024px){.global-footer .foot-wrap{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:680px){.global-footer .foot-wrap{grid-template-columns:1fr;gap:2rem}.global-footer .foot-bottom{flex-direction:column;text-align:center}}
+/* The error page needs vertical document flow to accommodate the complete footer. */
+body:has(> .global-footer):has(> .wrap){flex-direction:column;padding:0;overflow-x:hidden;overflow-y:auto;contain:paint}
+body:has(> .global-footer):has(> .wrap)>.wrap{margin:32px;width:calc(100% - 64px);max-width:580px}
+.links .global-formations-menu{display:inline-block;position:relative}.links .global-formations-menu summary{cursor:pointer;color:#d4893a}.links .global-formations-menu>div{position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:220px;background:#222b32;border:1px solid rgba(212,137,58,.3);padding:12px;border-radius:10px;z-index:10}.links .global-formations-menu>div a{display:block;margin:8px 0}

@@ -3,15 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formations SHIFT · L’Rénov IA Studio</title>
-  <meta name="description" content="Des formations pratiques pour prendre le contrôle, construire dans son métier et transformer durablement ses méthodes de travail.">
+  <title>Formations · L’Rénov IA Studio</title>
+  <meta name="description" content="Des formations pour apprendre à utiliser l’IA dans son métier, du travail pratique à la certification.">
   <link rel="canonical" href="https://lrenov-ia.studio/formations">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap">
   <link rel="stylesheet" href="assets/shift-formations.css">
-  <script src="assets/shift-catalogue.js" defer></script>
-  <script src="assets/shift-formations.js" defer></script>
+  <link rel="stylesheet" href="assets/hubs-compacts.css">
+  <link rel="stylesheet" href="assets/formations-hub.css">
+  <script src="assets/formations-config.js" defer></script>
+  <script src="assets/formations-calendar.js" defer></script>
+  <script src="assets/formations-overview.js" defer></script>
+  <script src="assets/hubs-compacts.js" defer></script>
+  <link rel="stylesheet" href="assets/global-footer.css">
 </head>
-<body>
+<body class="compact-page formations-page">
+  <div class="cursor" aria-hidden="true"></div><div class="cursor-trail" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Aller au contenu</a>
   <header class="site-header">
     <nav class="nav-wrap" aria-label="Navigation principale">
@@ -27,34 +33,91 @@
     </nav>
   </header>
   <main id="main">
-
-    <header class="hero"><div class="eyebrow">FORMATIONS · SHIFT</div><h1>Se former à l’IA pour l’utiliser vraiment dans son métier.</h1><p>Des formations pratiques pour prendre le contrôle, construire dans son métier et transformer durablement ses méthodes de travail.</p></header>
-    <section id="shift" class="shift-intro" aria-label="La méthode SHIFT">
-      <article><span class="badge">CTRL</span><h2>Prendre le contrôle</h2><p>Formations transversales</p></article>
-      <article><span class="badge">CMD</span><h2>Construire dans mon métier</h2><p>Des situations professionnelles réelles</p></article>
-      <article><span class="badge">ENTER</span><h2>Transformer</h2><p>Parcours longs</p></article>
+    <header class="hero"><div class="eyebrow">FORMATIONS</div><h1>Se former avec L’Rénov <em style="color:var(--gold);font-style:italic">IA Studio</em></h1><p>Des formations pour apprendre à utiliser l’IA dans son métier, du travail pratique à la certification.</p></header>
+    <section class="formation-offers" aria-label="Nos offres de formation">
+      <article class="offer-card offer-shift">
+        <div class="eyebrow">ATELIERS PRATIQUES</div><h2>Ateliers SHIFT</h2>
+        <div class="offer-keyboard" aria-label="CTRL puis CMD puis ENTER"><span class="shift-key">CTRL</span><span class="shift-arrow" aria-hidden="true">→</span><span class="shift-key">CMD</span><span class="shift-arrow" aria-hidden="true">→</span><span class="shift-key">ENTER</span></div>
+        <p>Une méthode progressive, ancrée dans votre activité, pour prendre le contrôle de votre IA, construire des usages métier et transformer vos méthodes de travail.</p>
+        <a class="cta" href="ateliers.html">Découvrir les Ateliers SHIFT</a>
+      </article>
+      <article class="offer-card offer-fafcea"><div class="eyebrow">PARCOURS INDIVIDUALISÉS</div><h2>Formations FAFCEA</h2><p>Des parcours de formation individualisés pour développer l’usage du numérique et de l’IA dans votre activité professionnelle.</p><a class="cta" href="formations-fafcea.html">Découvrir les parcours FAFCEA</a></article>
+      <article class="offer-card offer-cpf" id="cpf">
+        <div class="eyebrow">PARCOURS CERTIFIANT</div><h2>Améliorer l’efficacité de sa TPE à l’aide de l’IA</h2>
+        <span class="certification-code">RS7311</span>
+        <p>Le parcours certifiant dédié à l’intégration opérationnelle de l’IA dans l’activité de votre TPE.</p>
+        <a class="cta" href="formation-cpf.html">Découvrir le parcours CPF</a>
+      </article>
     </section>
-    <section class="catalog-section" aria-labelledby="ctrl-title"><h2 id="ctrl-title">CTRL — Prendre le contrôle</h2>
-      <a class="catalog-row domain-row" href="ateliers.html"><span class="badge">CTRL</span><span class="row-title">Ateliers pratiques</span><span class="row-meta">Les premiers usages au quotidien.</span><span class="row-action">Voir les formations →</span></a>
-    </section>
-    <section class="catalog-section" aria-labelledby="cmd-title"><h2 id="cmd-title">CMD — Construire dans mon métier</h2><div class="rows">
-      <a class="catalog-row domain-row" href="formations-services-entreprises.html"><span class="badge">CMD</span><span class="row-title">Services aux entreprises</span><span class="row-meta">Structurer les missions et le suivi client.</span><span class="row-action">Voir les formations →</span></a>
-      <a class="catalog-row domain-row" href="formations-batiment.html"><span class="badge">CMD</span><span class="row-title">Bâtiment</span><span class="row-meta">Préparer et suivre les chantiers.</span><span class="row-action">Voir les formations →</span></a>
-      <a class="catalog-row domain-row" href="formations-immobilier.html"><span class="badge">CMD</span><span class="row-title">Immobilier</span><span class="row-meta">Préparer les dossiers et les rendez-vous.</span><span class="row-action">Voir les formations →</span></a>
-      <a class="catalog-row domain-row" href="formations-finance-assurance.html"><span class="badge">CMD</span><span class="row-title">Finance &amp; assurance</span><span class="row-meta">Organiser les dossiers et le suivi client.</span><span class="row-action">Voir les formations →</span></a>
-      <a class="catalog-row domain-row" href="formations-developpement-commercial.html"><span class="badge">CMD</span><span class="row-title">Développement commercial &amp; vente</span><span class="row-meta">Structurer la prospection et les ventes.</span><span class="row-action">Voir les formations →</span></a>
-      <a class="catalog-row domain-row" href="formations-formation.html"><span class="badge">CMD</span><span class="row-title">Formation</span><span class="row-meta">Préparer et piloter la pédagogie.</span><span class="row-action">Voir les formations →</span></a>
-      <a class="catalog-row domain-row" href="formations-communication-marketing.html"><span class="badge">CMD</span><span class="row-title">Communication &amp; marketing</span><span class="row-meta">Organiser les contenus et les campagnes.</span><span class="row-action">Voir les formations →</span></a>
-      <a class="catalog-row domain-row" href="formations-pilotage-organisation.html"><span class="badge">CMD</span><span class="row-title">Pilotage &amp; organisation</span><span class="row-meta">Structurer le travail et les indicateurs.</span><span class="row-action">Voir les formations →</span></a>
-    </div></section>
-    <section class="catalog-section" aria-labelledby="enter-title"><h2 id="enter-title">ENTER — Transformer</h2>
-      <a class="catalog-row domain-row" href="formations-enter.html"><span class="badge">ENTER</span><span class="row-title">Parcours longs</span><span class="row-meta">Transformer ses méthodes de travail.</span><span class="row-action">Voir les formations →</span></a>
-    </section>
-    <section id="cpf" class="catalog-section cpf-block" aria-labelledby="cpf-title"><h2 id="cpf-title">Parcours CPF</h2><p>Un parcours certifiant pour intégrer l’IA dans l’activité d’une TPE.</p><a href="contact.html" class="cta">Se renseigner sur le parcours CPF →</a></section>
-    <section class="catalog-section sessions-block" aria-labelledby="sessions-title"><h2 id="sessions-title">Prochaines formations</h2><div id="upcoming-sessions"><p class="muted">Les prochaines dates seront publiées ici.</p></div></section>
-    <noscript><p>Activez JavaScript pour consulter les fiches détaillées et les prochaines sessions. Vous pouvez aussi <a href="contact.html">nous contacter</a>.</p></noscript>
+    <section class="catalog-section sessions-block overview-calendar" aria-labelledby="sessions-title"><h2 id="sessions-title">Prochaines formations</h2><div class="calendar-filters" role="group" aria-label="Filtrer les formations"><button type="button" data-calendar-filter="Toutes" aria-pressed="true">Toutes</button><button type="button" data-calendar-filter="SHIFT" aria-pressed="false">SHIFT</button><button type="button" data-calendar-filter="FAFCEA" aria-pressed="false">FAFCEA</button><button type="button" data-calendar-filter="CPF" aria-pressed="false">CPF</button></div><div id="upcoming-sessions" aria-live="polite"><p class="muted">Les prochaines sessions seront publiées prochainement.</p></div></section>
+    <noscript><p>Activez JavaScript pour consulter les sessions ouvertes. Vous pouvez aussi <a href="contact.html">nous contacter</a>.</p></noscript>
   </main>
+  <template id="session-card-template"><article class="open-session"><div class="session-description"><h3 data-session-title></h3><p data-session-level hidden></p><p data-session-format hidden></p></div><div class="session-schedule"><time data-session-date></time><p data-session-time></p></div><p data-session-places hidden></p><div class="session-actions"><a class="secondary-cta" data-session-details>Voir la formation</a><a class="secondary-cta" data-session-booking hidden>S’inscrire</a></div></article></template>
+  <footer class="global-footer">
+    <div class="foot-wrap">
+      <div class="foot-col">
+        <div class="foot-brand">L'Rénov <span>IA Studio</span></div>
+        <div class="foot-tagline">
+          Votre métier en mémoire. Votre style en sortie.<br>
+          Pas un outil de plus. Le vôtre.
+        </div>
+        <div class="foot-social">
+          <a href="https://www.linkedin.com/in/laurence-borras-l-renov-ia-studio-31b0992a2" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/laurence_lrenov_ia_studio" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
+          </a>
+          <a href="https://www.facebook.com/LaurenceBorrasLRenovEspacesetIA" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <span class="coming-soon" aria-label="YouTube à venir" title="YouTube (à venir)">
+            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>
+          </span>
+        </div>
+      </div>
 
-  <footer class="site-footer"><span>L’Rénov IA Studio</span><a href="contact.html">Contact</a><a href="mentions-legales.html">Mentions légales</a><a href="confidentialite.html">Confidentialité</a><a href="cgv.html">CGV</a></footer>
+      <div class="foot-col">
+        <h4>Le Studio</h4>
+        <a href="/assistant.html">Solutions métier</a>
+        <a href="/ia-et-moi.html">L'IA et moi</a>
+        <a href="/formations.html">Formations</a>
+        <a href="/ateliers.html">Ateliers SHIFT</a>
+        <a href="/formation-cpf.html">Parcours CPF</a>
+        <a href="https://www.skool.com/signup?ref=f96e251d07c54f30a7e93b423ea52fff" target="_blank" rel="noopener">Institut IA · Skool</a>
+        <a href="/radar-ia.html">Radar IA</a>
+      </div>
+
+      <div class="foot-col">
+        <h4>Secteurs Pro</h4>
+        <a href="/secteur-btp.html">BTP Pro</a>
+        <a href="/secteur-finance-comptabilite.html">Compta Pro</a>
+        <a href="/secteur-finance-comptabilite.html">CGP Pro</a>
+        <a href="/secteur-juridique.html">Notariat Pro</a>
+        <a href="/secteur-assurance.html">Assurance Pro</a>
+        <a href="/secteur-immobilier.html">Immo Pro</a>
+      </div>
+
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@lrenov-ia.studio">contact@lrenov-ia.studio</a>
+        <a href="/contact.html">Contact</a>
+        <a href="https://calendly.com/laurence-lrenov-ia/30min">RDV 30 min offertes</a>
+        <div class="foot-contact">
+          Blanquefort 33 · Gironde<br>
+          Bordeaux et toute la France
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div>© 2026 L'Rénov IA Studio · Laurence Borras · SIRET 912 942 869 00013</div>
+      <div class="foot-bottom-links">
+        <a href="/mentions-legales.html">Mentions légales</a>
+        <a href="/cgv.html">CGV</a>
+        <a href="/confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

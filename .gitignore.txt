@@ -1,0 +1,14 @@
+# Sauvegardes locales
+_backups/
+_sauvegardes/
+
+# Archives
+*.zip
+
+# Fichiers temporaires
+*.bak
+*.tmp
+
+# Fichiers système
+.DS_Store
+Thumbs.db

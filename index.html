@@ -532,7 +532,7 @@
   }
   .form-card{
     min-height:170px;padding:1.6rem;
-    display:flex;flex-direction:column;justify-content:center;gap:.8rem;
+    display:flex;flex-direction:column;justify-content:flex-start;gap:.8rem;
     background:linear-gradient(145deg,var(--dark2),var(--dark));
     border:1px solid var(--border-soft);border-radius:14px;
     position:relative;overflow:hidden;
@@ -546,6 +546,11 @@
   .form-card:hover::before{opacity:1}
   .form-card h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.05rem;color:var(--cream);line-height:1.35}
   .form-card p{font-size:.9rem;color:var(--text);line-height:1.55}
+  .formation .form-card .eyebrow{font-size:.68rem;letter-spacing:.12em;margin:0}
+  .formation .form-card .form-marker{color:var(--gold);font-size:.83rem}
+  .formation .form-certification{display:inline-block;border:1px solid var(--border2);border-radius:4px;padding:.15rem .5rem;font-size:.74rem}
+  .formation .form-card .btn-outline-gold{margin-top:auto;align-self:flex-start;max-width:100%;padding:.8rem 1rem;font-size:.78rem;text-align:center;min-height:44px}
+  @media(min-width:681px) and (max-width:1099px){.formation .formations-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
   .formation-cta{text-align:center}
 
   .shift{
@@ -1089,6 +1094,7 @@
     body.custom-cursor-enabled .cursor,body.custom-cursor-enabled .cursor-trail{visibility:visible}
   }
 </style>
+  <link rel="stylesheet" href="assets/global-footer.css">
 </head>
 <body>
 
@@ -1110,42 +1116,8 @@
 
       <ul class="nav-links">
         <li><a href="index.html" class="active">Accueil</a></li>
-        <li class="has-mega-li">
-          <a href="formations.html" class="has-mega">Formations</a>
-          <div class="mega">
-            <a href="formations.html" class="mega-overview">Vue d’ensemble</a>
-            <a href="formations.html#shift" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div>
-              <div class="mega-content"><strong>Méthode SHIFT</strong></div>
-            </a>
-            <a href="ateliers.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1"/><circle cx="17" cy="9" r="2.5"/><path d="M15 20v-1a3 3 0 0 1 3-3h1a3 3 0 0 1 3 3v1"/></svg></div>
-              <div class="mega-content"><strong>Ateliers SHIFT</strong></div>
-            </a>
-            <a href="formations.html#cpf" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></div>
-              <div class="mega-content"><strong>Parcours CPF</strong></div>
-            </a>
-          </div>
-        </li>
-        <li class="has-mega-li">
-          <a href="assistant.html" class="has-mega">Solutions métier</a>
-          <div class="mega">
-            <a href="assistant.html" class="mega-overview">Vue d’ensemble</a>
-            <a href="audit.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></div>
-              <div class="mega-content"><strong>Audit IA</strong></div>
-            </a>
-            <a href="outils.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-              <div class="mega-content"><strong>Outils métier</strong></div>
-            </a>
-            <a href="agents.html" class="mega-item">
-              <div class="mega-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v2"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg></div>
-              <div class="mega-content"><strong>Automatisations / Agents</strong></div>
-            </a>
-          </div>
-        </li>
+        <li><a href="formations.html">Formations</a></li>
+        <li><a href="assistant.html">Solutions métier</a></li>
         <li><a href="radar-ia.html">Radar IA</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -1157,15 +1129,7 @@
     <div class="nav-mobile" id="navMob">
       <a href="index.html" class="active">Accueil</a>
       <a href="formations.html">Formations</a>
-      <a href="formations.html" class="sub">→ Vue d’ensemble</a>
-      <a href="formations.html#shift" class="sub">→ Méthode SHIFT</a>
-      <a href="ateliers.html" class="sub">→ Ateliers SHIFT</a>
-      <a href="formations.html#cpf" class="sub">→ CPF</a>
       <a href="assistant.html">Solutions métier</a>
-      <a href="assistant.html" class="sub">→ Vue d’ensemble</a>
-      <a href="audit.html" class="sub">→ Audit IA</a>
-      <a href="outils.html" class="sub">→ Outils métier</a>
-      <a href="agents.html" class="sub">→ Automatisations / Agents</a>
       <a href="radar-ia.html">Radar IA</a>
       <a href="contact.html">Contact</a>
       <a href="https://calendly.com/laurence-lrenov-ia/30min" style="color:var(--gold);font-weight:600;border-top:1px solid var(--border);margin-top:.5rem;padding-top:1rem">On en parle ?</a>
@@ -1253,12 +1217,25 @@
       <p class="ssub fu fu-d2">Des formats pour partir d'où vous en êtes, du premier pas aux enjeux plus sensibles.</p>
       <div class="formations-list">
         <article class="form-card fu fu-d1">
+          <div class="eyebrow">ATELIERS PRATIQUES</div>
           <h3>Ateliers SHIFT</h3>
-          <p>Des formats courts pour progresser sur un besoin concret.</p>
+          <p class="form-marker">CTRL → CMD → ENTER</p>
+          <p>Des ateliers pratiques pour prendre le contrôle de son IA, construire des usages métier et faire évoluer ses méthodes de travail.</p>
+          <a href="ateliers.html" class="btn-outline-gold"><span>Découvrir les Ateliers SHIFT</span></a>
         </article>
         <article class="form-card fu fu-d2">
-          <h3>Parcours CPF</h3>
+          <div class="eyebrow">PARCOURS INDIVIDUALISÉS</div>
+          <h3>Formations FAFCEA</h3>
+          <p class="form-marker">14 h → 21 h → 28 h → 40 h</p>
+          <p>Des parcours individuels et progressifs pour intégrer l’IA, mieux organiser son activité et structurer son pilotage.</p>
+          <a href="formations-fafcea.html" class="btn-outline-gold"><span>Découvrir les parcours FAFCEA</span></a>
+        </article>
+        <article class="form-card fu fu-d3">
+          <div class="eyebrow">PARCOURS CERTIFIANT</div>
+          <h3>Améliorer l’efficacité de sa TPE à l’aide de l’IA</h3>
+          <p class="form-marker"><span class="form-certification">RS7311</span></p>
           <p>Un parcours certifiant pour intégrer l'IA dans l'activité d'une TPE.</p>
+          <a href="formation-cpf.html" class="btn-outline-gold"><span>Découvrir le parcours CPF</span></a>
         </article>
       </div>
       <div class="formation-cta fu">
@@ -1421,7 +1398,7 @@
   <!-- ========================================
        FOOTER
        ======================================== -->
-  <footer>
+  <footer class="global-footer">
     <div class="foot-wrap">
       <div class="foot-col">
         <div class="foot-brand">L'Rénov <span>IA Studio</span></div>
@@ -1447,27 +1424,29 @@
 
       <div class="foot-col">
         <h4>Le Studio</h4>
-        <a href="assistant.html">Mon assistant IA</a>
-        <a href="ia-et-moi.html">L'IA et moi</a>
-        <a href="formations.html">Formations</a>
+        <a href="/assistant.html">Solutions métier</a>
+        <a href="/ia-et-moi.html">L'IA et moi</a>
+        <a href="/formations.html">Formations</a>
+        <a href="/ateliers.html">Ateliers SHIFT</a>
+        <a href="/formation-cpf.html">Parcours CPF</a>
         <a href="https://www.skool.com/signup?ref=f96e251d07c54f30a7e93b423ea52fff" target="_blank" rel="noopener">Institut IA · Skool</a>
-        <a href="radar-ia.html">Radar IA</a>
+        <a href="/radar-ia.html">Radar IA</a>
       </div>
 
       <div class="foot-col">
         <h4>Secteurs Pro</h4>
-        <a href="secteur-btp.html">BTP Pro</a>
-        <a href="secteur-finance-comptabilite.html">Compta Pro</a>
-        <a href="secteur-finance-comptabilite.html">CGP Pro</a>
-        <a href="secteur-juridique.html">Notariat Pro</a>
-        <a href="secteur-assurance.html">Assurance Pro</a>
-        <a href="secteur-immobilier.html">Immo Pro</a>
+        <a href="/secteur-btp.html">BTP Pro</a>
+        <a href="/secteur-finance-comptabilite.html">Compta Pro</a>
+        <a href="/secteur-finance-comptabilite.html">CGP Pro</a>
+        <a href="/secteur-juridique.html">Notariat Pro</a>
+        <a href="/secteur-assurance.html">Assurance Pro</a>
+        <a href="/secteur-immobilier.html">Immo Pro</a>
       </div>
 
       <div class="foot-col">
         <h4>Contact</h4>
         <a href="mailto:contact@lrenov-ia.studio">contact@lrenov-ia.studio</a>
-        <a href="contact.html">Formulaire</a>
+        <a href="/contact.html">Contact</a>
         <a href="https://calendly.com/laurence-lrenov-ia/30min">RDV 30 min offertes</a>
         <div class="foot-contact">
           Blanquefort 33 · Gironde<br>
@@ -1479,9 +1458,9 @@
     <div class="foot-bottom">
       <div>© 2026 L'Rénov IA Studio · Laurence Borras · SIRET 912 942 869 00013</div>
       <div class="foot-bottom-links">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="cgv.html">CGV</a>
-        <a href="confidentialite.html">Confidentialité</a>
+        <a href="/mentions-legales.html">Mentions légales</a>
+        <a href="/cgv.html">CGV</a>
+        <a href="/confidentialite.html">Confidentialité</a>
       </div>
     </div>
   </footer>

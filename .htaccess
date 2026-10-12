@@ -41,7 +41,11 @@ ServerSignature Off
 
   # Anciennes pages formation
   RewriteRule ^formation\.html$             /formations [R=301,L]
-  RewriteRule ^formation-cpf\.html$         /formations [R=301,L]
+  # La page CPF dédiée est désormais active : ne pas la rediriger vers le hub.
+
+  # Destinations approuvées lors de l'audit du 7 octobre 2026
+  RewriteRule ^(audit|outils|agents)(\.html)?/?$ /assistant [R=301,L]
+  RewriteRule ^panorama(\.html)?/?$ /panorama-ia/ [R=301,L]
 
   # Anciennes fiches
   RewriteRule ^fiche-IMM-02\.html$          /secteur-immobilier [R=301,L]

@@ -1,11 +1,23 @@
 /* Shared catalogue and native accessible dialog for every SHIFT page. */
 (() => {
   'use strict';
-  const formations = window.SHIFT_FORMATIONS || [];
+  const formations = (window.SHIFT_FORMATIONS || []).map(formation => {
+    const formats = {
+      CTRL: { duree: '1 h 30', prix_public: 79 },
+      ENTER: { duree: '7 h — 2 × 3 h 30', prix_public: 399 },
+      standard: { duree: '2 h 30', prix_public: 119 },
+      outil: { duree: '2 h 30', prix_public: 139 }
+    };
+    const format = formation.niveau === 'CMD' ? formats[formation.type_cmd] : formats[formation.niveau];
+    return formation.statut === 'programme_a_valider' ? formation : { ...formation, ...format };
+  });
+  const formationsById = new Map(formations.map(f => [f.id, f]));
+  const domainReferences = window.SHIFT_CMD_DOMAINES || {};
+  const toolsLabel = f => f.environnements?.join(f.environnements_par_session ? ' ou ' : ' / ') + (f.environnements_par_session ? ' (selon la session)' : '');
   const dialog = document.getElementById('formation-modal');
   const content = document.getElementById('formation-detail');
   let trigger = null;
-  const price = value => typeof value === 'number' ? `${value} €` : 'Tarif non renseigné';
+  const price = value => typeof value === 'number' ? `${value} €` : '';
   function element(tag, text, className) {
     const node = document.createElement(tag);
     if (text !== undefined) node.textContent = text;
@@ -30,23 +42,24 @@
     const title = element('h2', formation.titre);
     title.id = 'formation-modal-title';
     content.append(title);
-    const meta = element('div', undefined, 'modal-meta');
-    meta.append(element('p', `Durée : ${formation.duree || 'non renseignée'}`));
-    meta.append(element('p', `Tarif public : ${price(formation.prix_public)}`));
-    if (formation.environnements?.length) meta.append(element('p', `Environnement : ${formation.environnements.join(' / ')}`));
-    if (formation.niveau === 'ENTER') meta.append(element('p', 'Groupe : 4 à 8 participants'));
-    content.append(meta);
-    if (formation.statut === 'programme_a_valider') content.append(element('p', 'Programme en cours de validation. Type et tarif non fixés.', 'pending'));
-    section('Résumé', formation.resume);
-    section('Objectif', formation.objectif);
-    section('Résultat attendu', formation.resultat);
-    section('Prérequis', formation.prerequis);
+    section('Introduction', formation.resume);
+    section('Pour qui ?', formation.public);
+    section('Objectifs', formation.objectif);
     section('Programme', formation.programme);
-    if (formation.niveau === 'CMD') {
-      const promise = element('div', undefined, 'cmd-promise');
-      ['Venez avec votre cas réel.', 'Vous construisez pendant l’atelier.', 'Vous repartez avec une première version fonctionnelle.'].forEach(text => promise.append(element('p', text)));
-      content.append(promise);
-    }
+    section('Pendant l’atelier', formation.pratique);
+    section('Ce que vous repartez avec', formation.resultat);
+    section('Prérequis', formation.prerequis);
+    const formatSection = element('section', undefined, 'modal-section');
+    formatSection.append(element('h3', 'Format'));
+    const meta = element('div', undefined, 'modal-meta');
+    meta.append(element('p', `Niveau : ${formation.niveau}`));
+    if (formation.duree) meta.append(element('p', `Durée : ${formation.duree}`));
+    if (typeof formation.prix_public === 'number') meta.append(element('p', `Tarif public : ${price(formation.prix_public)}`));
+    if (formation.environnements?.length) meta.append(element('p', `Environnement : ${toolsLabel(formation)}`));
+    if (formation.niveau === 'ENTER') meta.append(element('p', 'Groupe : 4 à 8 participants'));
+    formatSection.append(meta);
+    content.append(formatSection);
+    if (formation.statut === 'programme_a_valider') content.append(element('p', 'Programme en cours de validation. Type et tarif non fixés.', 'pending'));
     const cta = element('a', 'Échanger sur cette formation →', 'cta');
     cta.href = `mailto:laurence@lrenov-ia.studio?subject=${encodeURIComponent('Formation SHIFT — ' + formation.titre)}`;
     content.append(cta);
@@ -56,7 +69,10 @@
     dialog.querySelector('.modal-close').focus();
   }
   document.querySelectorAll('[data-catalogue]').forEach(list => {
-    const selection = formations.filter(f => f.niveau === list.dataset.niveau && (!list.dataset.sphere || f.sphere === list.dataset.sphere));
+    const refs = list.dataset.niveau === 'CMD' && list.dataset.sphere ? domainReferences[list.dataset.sphere] : null;
+    const selection = refs ? refs.map(id => formationsById.get(id)).filter(Boolean) : formations.filter(f => f.niveau === list.dataset.niveau && (!list.dataset.sphere || f.sphere === list.dataset.sphere));
+    const count = list.closest('.shift-domain')?.querySelector('summary span');
+    if (count) count.textContent = selection.length + ' ateliers';
     selection.forEach(formation => {
       const button = element('button', undefined, 'catalog-row');
       button.type = 'button';
@@ -66,9 +82,16 @@
       button.append(element('span', formation.niveau, 'badge'));
       const details = element('span');
       details.append(element('span', formation.titre, 'row-title'));
+      const cardLayout = Boolean(list.closest('.shift-family'));
+      if (cardLayout && formation.environnements?.length) details.append(element('span', toolsLabel(formation), 'card-tools'));
       button.append(details);
       const facts = [formation.duree, typeof formation.prix_public === 'number' ? price(formation.prix_public) : null].filter(Boolean);
-      button.append(element('span', (facts.length ? facts.join(' · ') + ' · ' : '') + 'Voir les détails →', 'row-action'));
+      if (cardLayout) {
+        const bottom = element('span', undefined, 'card-bottom');
+        if (facts.length) bottom.append(element('span', facts.join(' · '), 'card-facts'));
+        bottom.append(element('span', 'Voir les détails →', 'row-action'));
+        button.append(bottom);
+      } else button.append(element('span', (facts.length ? facts.join(' · ') + ' · ' : '') + 'Voir les détails →', 'row-action'));
       button.addEventListener('click', () => openFormation(formation, button));
       list.append(button);
     });
