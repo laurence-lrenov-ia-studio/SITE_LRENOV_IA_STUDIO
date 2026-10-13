@@ -13,6 +13,15 @@
   });
   const formationsById = new Map(formations.map(f => [f.id, f]));
   const domainReferences = window.SHIFT_CMD_DOMAINES || {};
+  const ateliersPage = Boolean(document.querySelector('.shift-family'));
+  function reservation(formation, card = false) {
+    const label = formation.niveau === 'ENTER' ? (card ? 'Je pré-réserve' : 'Je pré-réserve ma place') : 'Je réserve';
+    const link = element('a', label, 'cta');
+    link.href = 'https://www.billetweb.fr/pro/lrenov-ia-studio';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    return link;
+  }
   const toolsLabel = f => f.environnements?.join(f.environnements_par_session ? ' ou ' : ' / ') + (f.environnements_par_session ? ' (selon la session)' : '');
   const dialog = document.getElementById('formation-modal');
   const content = document.getElementById('formation-detail');
@@ -38,17 +47,17 @@
   function openFormation(formation, button) {
     trigger = button;
     content.replaceChildren();
-    content.append(element('span', formation.niveau, 'badge'));
+    content.append(element('span', ateliersPage && formation.type_cmd === 'outil' ? 'CMD·Outil' : formation.niveau, 'badge'));
     const title = element('h2', formation.titre);
     title.id = 'formation-modal-title';
     content.append(title);
     section('Introduction', formation.resume);
     section('Pour qui ?', formation.public);
-    section('Objectifs', formation.objectif);
-    section('Programme', formation.programme);
+    section(ateliersPage ? 'Ce que vous allez apprendre' : 'Objectifs', formation.objectif);
+    section(ateliersPage ? 'Au programme' : 'Programme', formation.programme);
     section('Pendant l’atelier', formation.pratique);
     section('Ce que vous repartez avec', formation.resultat);
-    section('Prérequis', formation.prerequis);
+    section('Prérequis', ateliersPage ? (formation.prerequis?.length ? formation.prerequis : 'Aucun prérequis spécifique.') : formation.prerequis);
     const formatSection = element('section', undefined, 'modal-section');
     formatSection.append(element('h3', 'Format'));
     const meta = element('div', undefined, 'modal-meta');
@@ -58,11 +67,20 @@
     if (formation.environnements?.length) meta.append(element('p', `Environnement : ${toolsLabel(formation)}`));
     if (formation.niveau === 'ENTER') meta.append(element('p', 'Groupe : 4 à 8 participants'));
     formatSection.append(meta);
-    content.append(formatSection);
+    if (ateliersPage) content.insertBefore(formatSection, content.querySelector('.modal-section'));
+    else content.append(formatSection);
     if (formation.statut === 'programme_a_valider') content.append(element('p', 'Programme en cours de validation. Type et tarif non fixés.', 'pending'));
-    const cta = element('a', 'Échanger sur cette formation →', 'cta');
-    cta.href = `mailto:laurence@lrenov-ia.studio?subject=${encodeURIComponent('Formation SHIFT — ' + formation.titre)}`;
-    content.append(cta);
+    if (ateliersPage) {
+      if (formation.niveau === 'ENTER') {
+        section('Financement possible', 'OPCO · FAFCEA · AGEFICE · FIF PL');
+        content.append(element('p', 'Pré-réservez votre place pendant le montage de votre dossier de financement.'));
+      }
+      content.append(reservation(formation));
+    } else {
+      const cta = element('a', 'Échanger sur cette formation →', 'cta');
+      cta.href = `mailto:laurence@lrenov-ia.studio?subject=${encodeURIComponent('Formation SHIFT — ' + formation.titre)}`;
+      content.append(cta);
+    }
     dialog.showModal();
     dialog.scrollTop = 0;
     document.body.classList.add('modal-open');
@@ -74,6 +92,28 @@
     const count = list.closest('.shift-domain')?.querySelector('summary span');
     if (count) count.textContent = selection.length + ' ateliers';
     selection.forEach(formation => {
+      const cardLayout = Boolean(list.closest('.shift-family'));
+      if (cardLayout) {
+        const card = element('article', undefined, 'catalog-row');
+        card.dataset.formationId = formation.id;
+        card.dataset.niveau = formation.niveau;
+        card.append(element('span', formation.type_cmd === 'outil' ? 'CMD·Outil' : formation.niveau, 'badge'));
+        card.append(element('h3', formation.titre, 'row-title'));
+        if (formation.environnements?.length) card.append(element('span', toolsLabel(formation), 'card-tools'));
+        const facts = [formation.duree, price(formation.prix_public)].filter(Boolean);
+        card.append(element('span', facts.join(' · '), 'card-facts'));
+        const actions = element('div', undefined, 'card-actions');
+        const details = element('button', 'Voir les détails →', 'row-action card-detail');
+        details.type = 'button';
+        details.setAttribute('aria-haspopup', 'dialog');
+        details.setAttribute('aria-controls', 'formation-modal');
+        details.setAttribute('aria-label', `Voir les détails : ${formation.titre}`);
+        details.addEventListener('click', () => openFormation(formation, details));
+        actions.append(details, reservation(formation, true));
+        card.append(actions);
+        list.append(card);
+        return;
+      }
       const button = element('button', undefined, 'catalog-row');
       button.type = 'button';
       button.dataset.formationId = formation.id;
@@ -82,7 +122,6 @@
       button.append(element('span', formation.niveau, 'badge'));
       const details = element('span');
       details.append(element('span', formation.titre, 'row-title'));
-      const cardLayout = Boolean(list.closest('.shift-family'));
       if (cardLayout && formation.environnements?.length) details.append(element('span', toolsLabel(formation), 'card-tools'));
       button.append(details);
       const facts = [formation.duree, typeof formation.prix_public === 'number' ? price(formation.prix_public) : null].filter(Boolean);
