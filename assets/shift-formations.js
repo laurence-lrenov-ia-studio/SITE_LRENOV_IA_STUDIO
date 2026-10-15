@@ -1,6 +1,7 @@
 /* Shared catalogue and native accessible dialog for every SHIFT page. */
 (() => {
   'use strict';
+  const publicSessions = window.FORMATIONS_SESSIONS || [];
   const formations = (window.SHIFT_FORMATIONS || []).map(formation => {
     const formats = {
       CTRL: { duree: '1 h 30', prix_public: 79 },
@@ -9,18 +10,63 @@
       outil: { duree: '2 h 30', prix_public: 139 }
     };
     const format = formation.niveau === 'CMD' ? formats[formation.type_cmd] : formats[formation.niveau];
-    return formation.statut === 'programme_a_valider' ? formation : { ...formation, ...format };
+    const sessions = publicSessions.filter(session => session.offre === 'SHIFT' && session.formation_id === formation.id);
+    return formation.statut === 'programme_a_valider' ? { ...formation, sessions } : { ...formation, ...format, sessions };
   });
   const formationsById = new Map(formations.map(f => [f.id, f]));
   const domainReferences = window.SHIFT_CMD_DOMAINES || {};
   const ateliersPage = Boolean(document.querySelector('.shift-family'));
-  function reservation(formation, card = false) {
-    const label = formation.niveau === 'ENTER' ? (card ? 'Je pré-réserve' : 'Je pré-réserve ma place') : 'Je réserve';
-    const link = element('a', label, 'cta');
-    link.href = 'https://www.billetweb.fr/pro/lrenov-ia-studio';
+  function bookingUrl(session) {
+    if (session.statut !== 'programmee' || session.reservation_verifiee !== true || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})$/.test(session.date || '') || !Number.isFinite(Date.parse(session.date)) || Date.parse(session.date) < Date.now() || (Number.isInteger(session.places) && session.places <= 0)) return null;
+    try {
+      const url = new URL(session.url_inscription);
+      if (url.protocol !== 'https:' || !['billetweb.fr', 'www.billetweb.fr'].includes(url.hostname) || url.username || url.password || url.pathname !== '/shop.php') return null;
+      if (!/^\d+$/.test(session.billetweb_evenement || '') || !/^\d+$/.test(session.billetweb_seance || '') || url.searchParams.get('event') !== session.billetweb_evenement || url.searchParams.get('session') !== session.billetweb_seance) return null;
+      return url.href;
+    } catch { return null; }
+  }
+  const bookableSessions = formation => formation.statut === 'programme_a_valider' ? [] : formation.sessions.filter(session => bookingUrl(session)).sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+  function sessionLink(session, label, className = 'cta') {
+    const link = element('a', label, className);
+    link.href = bookingUrl(session);
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
+    link.dataset.bookingSession = session.id;
     return link;
+  }
+  function openReservation(formation, button) {
+    const sessions = bookableSessions(formation);
+    if (!sessions.length) return;
+    if (!dialog.open) trigger = button;
+    content.replaceChildren();
+    const title = element('h2', formation.titre);
+    title.id = 'formation-modal-title';
+    content.append(title, element('p', 'Choisissez votre date et votre environnement.'));
+    const list = element('ul', undefined, 'session-list');
+    const dateFormat = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short', timeZone: 'Europe/Paris' });
+    const timeFormat = new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' });
+    sessions.forEach(session => {
+      const item = element('li');
+      const label = `${dateFormat.format(new Date(session.date))}${session.fin ? ' – ' + timeFormat.format(new Date(session.fin)) : ''} · ${session.environnement}`;
+      item.append(sessionLink(session, label));
+      list.append(item);
+    });
+    content.append(list);
+    if (!dialog.open) dialog.showModal();
+    dialog.scrollTop = 0;
+    document.body.classList.add('modal-open');
+    dialog.querySelector('.modal-close').focus();
+  }
+  function reservation(formation, card = false) {
+    const sessions = bookableSessions(formation);
+    if (!sessions.length) return element('span', 'Réservation non ouverte', 'pending');
+    const label = formation.niveau === 'ENTER' ? (card ? 'Je pré-réserve' : 'Je pré-réserve ma place') : 'Je réserve';
+    const button = element('button', label, 'cta');
+    button.type = 'button';
+    button.setAttribute('aria-haspopup', 'dialog');
+    button.setAttribute('aria-controls', 'formation-modal');
+    button.addEventListener('click', () => openReservation(formation, button));
+    return button;
   }
   const toolsLabel = f => f.environnements?.join(f.environnements_par_session ? ' ou ' : ' / ') + (f.environnements_par_session ? ' (selon la session)' : '');
   const dialog = document.getElementById('formation-modal');
@@ -70,17 +116,13 @@
     if (ateliersPage) content.insertBefore(formatSection, content.querySelector('.modal-section'));
     else content.append(formatSection);
     if (formation.statut === 'programme_a_valider') content.append(element('p', 'Programme en cours de validation. Type et tarif non fixés.', 'pending'));
-    if (ateliersPage) {
+    if (ateliersPage && bookableSessions(formation).length) {
       if (formation.niveau === 'ENTER') {
         section('Financement possible', 'OPCO · FAFCEA · AGEFICE · FIF PL');
         content.append(element('p', 'Pré-réservez votre place pendant le montage de votre dossier de financement.'));
       }
-      content.append(reservation(formation));
-    } else {
-      const cta = element('a', 'Échanger sur cette formation →', 'cta');
-      cta.href = `mailto:laurence@lrenov-ia.studio?subject=${encodeURIComponent('Formation SHIFT — ' + formation.titre)}`;
-      content.append(cta);
     }
+    content.append(reservation(formation));
     dialog.showModal();
     dialog.scrollTop = 0;
     document.body.classList.add('modal-open');

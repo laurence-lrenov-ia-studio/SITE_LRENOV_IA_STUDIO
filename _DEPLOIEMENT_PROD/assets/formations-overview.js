@@ -12,6 +12,14 @@
   const filters = [...document.querySelectorAll('[data-calendar-filter]')];
   const validDate = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})$/.test(value) && Number.isFinite(Date.parse(value));
   function safeUrl(value) { if (typeof value !== 'string' || !value.trim()) return null; try { const url = new URL(value, location.href); return ['http:', 'https:'].includes(url.protocol) ? url.href : null; } catch { return null; } }
+  function bookingUrl(session) {
+    if (session.offre !== 'SHIFT') return safeUrl(session.url_inscription);
+    if (session.reservation_verifiee !== true) return null;
+    try {
+      const url = new URL(session.url_inscription);
+      return url.protocol === 'https:' && ['billetweb.fr', 'www.billetweb.fr'].includes(url.hostname) && !url.username && !url.password && url.pathname === '/shop.php' && /^\d+$/.test(session.billetweb_evenement || '') && /^\d+$/.test(session.billetweb_seance || '') && url.searchParams.get('event') === session.billetweb_evenement && url.searchParams.get('session') === session.billetweb_seance ? url.href : null;
+    } catch { return null; }
+  }
   const sessions = (window.FORMATIONS_SESSIONS || []).filter(s => ['SHIFT','FAFCEA','CPF'].includes(s.offre) && typeof s.titre === 'string' && s.titre.trim() && s.statut === 'programmee' && validDate(s.date) && Date.parse(s.date) >= Date.now() && safeUrl(s.url_formation) && !(Number.isInteger(s.places) && s.places <= 0)).sort((a,b) => Date.parse(a.date)-Date.parse(b.date));
   const dateFormat = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long', timeZone: 'Europe/Paris' });
   const timeFormat = new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' });
@@ -31,7 +39,7 @@
       const places=fragment.querySelector('[data-session-places]'); if(Number.isInteger(s.places)&&s.places>0){places.textContent=s.places+' place'+(s.places>1?'s':'')+' disponible'+(s.places>1?'s':'');places.hidden=false;}
       fragment.querySelector('[data-session-details]').href=safeUrl(s.url_formation);
       const booking=fragment.querySelector('[data-session-booking]');
-      const inscription=safeUrl(s.url_inscription)||(s.offre==='CPF'?safeUrl(window.FORMATIONS_CONFIG?.cpfInscriptionUrl):null);
+      const inscription=bookingUrl(s)||(s.offre==='CPF'?safeUrl(window.FORMATIONS_CONFIG?.cpfInscriptionUrl):null);
       if(inscription){booking.href=inscription;booking.hidden=false;}
       list.append(fragment);
     }); target.replaceChildren(list);
