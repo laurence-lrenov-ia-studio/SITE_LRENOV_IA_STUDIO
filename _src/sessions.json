@@ -1,0 +1,572 @@
+{
+ "_note": "Source unique du calendrier. Ateliers en ligne publiés sur Billetweb (grille V6 du 4 nov. 2026). url_verifiee=false : lien à contrôler. url=null : lien Billetweb inconnu, renvoi vers la page générale.",
+ "billetweb_general": "https://www.billetweb.fr/multi_event.php?multi=46661",
+ "ateliers": [
+  {
+   "atelier": "personnaliser-son-ia",
+   "titre": "Personnaliser son IA",
+   "date": "2026-11-10",
+   "debut": "09:00",
+   "fin": "10:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/personnaliser-son-ia",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "creer-ses-contenus",
+   "titre": "Créer ses contenus avec l'IA",
+   "date": "2026-11-10",
+   "debut": "11:00",
+   "fin": "12:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-contenus-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "documents-professionnels",
+   "titre": "Créer ses documents professionnels avec l'IA",
+   "date": "2026-11-10",
+   "debut": "13:30",
+   "fin": "15:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-documents-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "mission-client",
+   "titre": "Gérer une mission client de A à Z avec l'IA",
+   "date": "2026-11-10",
+   "debut": "15:30",
+   "fin": "18:00",
+   "format": "En ligne",
+   "prix": 119,
+   "url": null,
+   "url_verifiee": false
+  },
+  {
+   "atelier": "documents-professionnels",
+   "titre": "Créer ses documents professionnels avec l'IA",
+   "date": "2026-11-24",
+   "debut": "09:00",
+   "fin": "10:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-documents-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "decouvrir-notion",
+   "titre": "Découvrir Notion et créer sa première base",
+   "date": "2026-11-24",
+   "debut": "14:00",
+   "fin": "15:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/decouvrir-notion-et-creer-sa-premiere-base",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "tableau-de-bord",
+   "titre": "Construire son tableau de bord avec l'IA",
+   "date": "2026-11-24",
+   "debut": "16:00",
+   "fin": "18:30",
+   "format": "En ligne",
+   "prix": 119,
+   "url": null,
+   "url_verifiee": false
+  },
+  {
+   "atelier": "creer-ses-contenus",
+   "titre": "Créer ses contenus avec l'IA",
+   "date": "2026-12-01",
+   "debut": "13:30",
+   "fin": "15:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-contenus-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "creer-ses-visuels",
+   "titre": "Créer ses visuels avec l'IA",
+   "date": "2026-12-01",
+   "debut": "15:30",
+   "fin": "17:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-visuels-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "personnaliser-son-ia",
+   "titre": "Personnaliser son IA",
+   "date": "2026-12-08",
+   "debut": "15:30",
+   "fin": "17:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/personnaliser-son-ia",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "decouvrir-notion",
+   "titre": "Découvrir Notion et créer sa première base",
+   "date": "2026-12-15",
+   "debut": "09:00",
+   "fin": "10:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/decouvrir-notion-et-creer-sa-premiere-base",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "documents-professionnels",
+   "titre": "Créer ses documents professionnels avec l'IA",
+   "date": "2026-12-15",
+   "debut": "13:30",
+   "fin": "15:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-documents-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "personnaliser-son-ia",
+   "titre": "Personnaliser son IA",
+   "date": "2027-01-05",
+   "debut": "09:00",
+   "fin": "10:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/personnaliser-son-ia",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "documents-professionnels",
+   "titre": "Créer ses documents professionnels avec l'IA",
+   "date": "2027-01-05",
+   "debut": "11:00",
+   "fin": "12:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-documents-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "creer-ses-contenus",
+   "titre": "Créer ses contenus avec l'IA",
+   "date": "2027-01-05",
+   "debut": "13:30",
+   "fin": "15:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-contenus-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "mission-client",
+   "titre": "Gérer une mission client de A à Z avec l'IA",
+   "date": "2027-01-05",
+   "debut": "15:30",
+   "fin": "18:00",
+   "format": "En ligne",
+   "prix": 119,
+   "url": null,
+   "url_verifiee": false
+  },
+  {
+   "atelier": "documents-professionnels",
+   "titre": "Créer ses documents professionnels avec l'IA",
+   "date": "2027-01-12",
+   "debut": "09:00",
+   "fin": "10:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-documents-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "exploiter-ses-donnees",
+   "titre": "Exploiter ses données avec l'IA",
+   "date": "2027-01-12",
+   "debut": "11:00",
+   "fin": "12:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/exploiter-ses-donnees-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "tableau-de-bord",
+   "titre": "Construire son tableau de bord avec l'IA",
+   "date": "2027-01-12",
+   "debut": "15:30",
+   "fin": "18:00",
+   "format": "En ligne",
+   "prix": 119,
+   "url": null,
+   "url_verifiee": false
+  },
+  {
+   "atelier": "exploiter-ses-donnees",
+   "titre": "Exploiter ses données avec l'IA",
+   "date": "2027-01-19",
+   "debut": "13:30",
+   "fin": "15:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/exploiter-ses-donnees-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "documents-professionnels",
+   "titre": "Créer ses documents professionnels avec l'IA",
+   "date": "2027-01-19",
+   "debut": "15:30",
+   "fin": "17:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-documents-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "personnaliser-son-ia",
+   "titre": "Personnaliser son IA",
+   "date": "2027-01-26",
+   "debut": "13:30",
+   "fin": "15:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/personnaliser-son-ia",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "creer-ses-visuels",
+   "titre": "Créer ses visuels avec l'IA",
+   "date": "2027-01-26",
+   "debut": "15:30",
+   "fin": "17:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-visuels-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "decouvrir-notion",
+   "titre": "Découvrir Notion et créer sa première base",
+   "date": "2027-02-02",
+   "debut": "09:00",
+   "fin": "10:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/decouvrir-notion-et-creer-sa-premiere-base",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "exploiter-ses-donnees",
+   "titre": "Exploiter ses données avec l'IA",
+   "date": "2027-02-02",
+   "debut": "13:30",
+   "fin": "15:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/exploiter-ses-donnees-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "tableau-de-bord",
+   "titre": "Construire son tableau de bord avec l'IA",
+   "date": "2027-02-02",
+   "debut": "15:30",
+   "fin": "18:00",
+   "format": "En ligne",
+   "prix": 119,
+   "url": null,
+   "url_verifiee": false
+  },
+  {
+   "atelier": "creer-ses-contenus",
+   "titre": "Créer ses contenus avec l'IA",
+   "date": "2027-02-09",
+   "debut": "09:00",
+   "fin": "10:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-contenus-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "creer-ses-visuels",
+   "titre": "Créer ses visuels avec l'IA",
+   "date": "2027-02-09",
+   "debut": "11:00",
+   "fin": "12:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-visuels-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "mission-client",
+   "titre": "Gérer une mission client de A à Z avec l'IA",
+   "date": "2027-02-09",
+   "debut": "15:30",
+   "fin": "18:00",
+   "format": "En ligne",
+   "prix": 119,
+   "url": null,
+   "url_verifiee": false
+  },
+  {
+   "atelier": "personnaliser-son-ia",
+   "titre": "Personnaliser son IA",
+   "date": "2027-02-16",
+   "debut": "15:30",
+   "fin": "17:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/personnaliser-son-ia",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "decouvrir-notion",
+   "titre": "Découvrir Notion et créer sa première base",
+   "date": "2027-02-23",
+   "debut": "13:30",
+   "fin": "15:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/decouvrir-notion-et-creer-sa-premiere-base",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "documents-professionnels",
+   "titre": "Créer ses documents professionnels avec l'IA",
+   "date": "2027-02-23",
+   "debut": "15:30",
+   "fin": "17:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-documents-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "documents-professionnels",
+   "titre": "Créer ses documents professionnels avec l'IA",
+   "date": "2027-03-02",
+   "debut": "09:00",
+   "fin": "10:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-documents-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "exploiter-ses-donnees",
+   "titre": "Exploiter ses données avec l'IA",
+   "date": "2027-03-02",
+   "debut": "11:00",
+   "fin": "12:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/exploiter-ses-donnees-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "personnaliser-son-ia",
+   "titre": "Personnaliser son IA",
+   "date": "2027-03-02",
+   "debut": "13:30",
+   "fin": "15:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/personnaliser-son-ia",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "mission-client",
+   "titre": "Gérer une mission client de A à Z avec l'IA",
+   "date": "2027-03-02",
+   "debut": "15:30",
+   "fin": "18:00",
+   "format": "En ligne",
+   "prix": 119,
+   "url": null,
+   "url_verifiee": false
+  },
+  {
+   "atelier": "decouvrir-notion",
+   "titre": "Découvrir Notion et créer sa première base",
+   "date": "2027-03-09",
+   "debut": "11:00",
+   "fin": "12:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/decouvrir-notion-et-creer-sa-premiere-base",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "personnaliser-son-ia",
+   "titre": "Personnaliser son IA",
+   "date": "2027-03-09",
+   "debut": "13:30",
+   "fin": "15:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/personnaliser-son-ia",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "decouvrir-notion",
+   "titre": "Découvrir Notion et créer sa première base",
+   "date": "2027-03-16",
+   "debut": "09:00",
+   "fin": "10:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/decouvrir-notion-et-creer-sa-premiere-base",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "exploiter-ses-donnees",
+   "titre": "Exploiter ses données avec l'IA",
+   "date": "2027-03-16",
+   "debut": "13:30",
+   "fin": "15:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/exploiter-ses-donnees-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "tableau-de-bord",
+   "titre": "Construire son tableau de bord avec l'IA",
+   "date": "2027-03-16",
+   "debut": "15:30",
+   "fin": "18:00",
+   "format": "En ligne",
+   "prix": 119,
+   "url": null,
+   "url_verifiee": false
+  },
+  {
+   "atelier": "documents-professionnels",
+   "titre": "Créer ses documents professionnels avec l'IA",
+   "date": "2027-03-23",
+   "debut": "09:00",
+   "fin": "10:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-documents-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "creer-ses-contenus",
+   "titre": "Créer ses contenus avec l'IA",
+   "date": "2027-03-23",
+   "debut": "11:00",
+   "fin": "12:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-contenus-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "creer-ses-visuels",
+   "titre": "Créer ses visuels avec l'IA",
+   "date": "2027-03-23",
+   "debut": "13:30",
+   "fin": "15:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-visuels-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "mission-client",
+   "titre": "Gérer une mission client de A à Z avec l'IA",
+   "date": "2027-03-23",
+   "debut": "15:30",
+   "fin": "18:00",
+   "format": "En ligne",
+   "prix": 119,
+   "url": null,
+   "url_verifiee": false
+  },
+  {
+   "atelier": "personnaliser-son-ia",
+   "titre": "Personnaliser son IA",
+   "date": "2027-03-30",
+   "debut": "09:00",
+   "fin": "10:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/personnaliser-son-ia",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "exploiter-ses-donnees",
+   "titre": "Exploiter ses données avec l'IA",
+   "date": "2027-03-30",
+   "debut": "11:00",
+   "fin": "12:30",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/exploiter-ses-donnees-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "documents-professionnels",
+   "titre": "Créer ses documents professionnels avec l'IA",
+   "date": "2027-03-30",
+   "debut": "13:30",
+   "fin": "15:00",
+   "format": "En ligne",
+   "prix": 79,
+   "url": "https://www.billetweb.fr/creer-ses-documents-professionnels-avec-l-ia-chatgpt",
+   "url_verifiee": false
+  },
+  {
+   "atelier": "tableau-de-bord",
+   "titre": "Construire son tableau de bord avec l'IA",
+   "date": "2027-03-30",
+   "debut": "15:30",
+   "fin": "18:00",
+   "format": "En ligne",
+   "prix": 119,
+   "url": null,
+   "url_verifiee": false
+  }
+ ],
+ "pass": {
+  "titre": "Pass IA 360°",
+  "prix_net": 1920,
+  "jour_net": 690,
+  "sessions": [
+   [
+    "2026-12-07",
+    "2026-12-10",
+    "2026-12-14"
+   ],
+   [
+    "2027-01-18",
+    "2027-01-21",
+    "2027-01-25"
+   ],
+   [
+    "2027-02-01",
+    "2027-02-04",
+    "2027-02-08"
+   ],
+   [
+    "2027-03-08",
+    "2027-03-11",
+    "2027-03-15"
+   ]
+  ]
+ }
+}

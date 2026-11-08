@@ -1,0 +1,19 @@
+SITE L'RÉNOV IA STUDIO — MODE D'EMPLOI DU GÉNÉRATEUR
+=====================================================
+Un seul modèle (en-tête, menu, pied de page, style) pour toutes les pages.
+
+Où modifier quoi :
+- Textes d'une page ............ _src/pages/<page>.html
+- Menu, e-mail, téléphone ...... _src/site.json
+- Dates des ateliers et du Pass  _src/sessions.json
+- Couleurs et mise en forme .... _src/assets/site.css
+
+Générer :
+- Aperçu local (non publié) :  python3 _src/build.py preview
+    -> dossier _NOUVEAU_SITE/ à ouvrir dans Chrome (index.html)
+- Version en ligne :           python3 _src/build.py prod
+    -> écrit les pages à la racine du dépôt, prêtes pour Hostinger
+       (les encadrés « À valider » sont retirés automatiquement)
+
+Redirections des anciennes pages : _src/redirections-proposees.htaccess.txt
+(à intégrer dans .htaccess au moment de la mise en ligne, pas avant).

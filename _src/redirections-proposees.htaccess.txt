@@ -1,0 +1,13 @@
+# ============================================================
+# Redirections proposées pour la refonte (à ajouter dans .htaccess
+# AVANT la règle qui retire .html — PAS ENCORE APPLIQUÉ)
+# ============================================================
+# Pages secteurs -> nouvelles pages formation
+RewriteRule ^secteur-btp(\.html)?/?$ /formations-fafcea [R=301,L]
+RewriteRule ^secteur-(immobilier|assurance|juridique|finance-comptabilite|professions-liberales|communication)(\.html)?/?$ /formations [R=301,L]
+RewriteRule ^secteurs(\.html)?/?$ /formations [R=301,L]
+# Ancienne page « L'IA et moi » -> Agents IA & automatisations
+RewriteRule ^ia-et-moi(\.html)?/?$ /assistant [R=301,L]
+# Doublon
+RewriteRule ^index\ \(1\)\.html$ / [R=301,L]
+# Déjà en place (inchangé) : audit|outils|agents -> /assistant ; panorama -> /panorama-ia/ ; anciens catalogues formations-* -> /ateliers

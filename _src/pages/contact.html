@@ -1,0 +1,36 @@
+<!--META {"title":"Contact · rendez-vous de 30 min | L'Rénov IA Studio","h":"Contact","crumbs":[],"description":"Contactez Laurence Borras, L'Rénov IA Studio : rendez-vous de 30 minutes, téléphone, e-mail ou formulaire. Blanquefort, Bordeaux, Gironde et à distance.","priority":"0.6"} META-->
+<section class="hero"><div class="wrap">
+  {{crumbs}}
+  <span class="kicker">Contact</span>
+  <h1>Parlons de <em>votre activité</em></h1>
+  <p class="lead">Le plus simple : un rendez-vous de 30 minutes pour faire le point sur vos besoins, votre financement et la bonne formule.</p>
+  <div class="actions"><a class="btn btn-gold" href="{{calendly}}" target="_blank" rel="noopener">Prendre rendez-vous</a></div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="grid grid-2">
+    <div>
+      <h2>Me joindre</h2>
+      <ul class="list" style="list-style:none;padding:0">
+        <li><strong>E-mail :</strong> <a href="mailto:{{email}}">{{email}}</a></li>
+        <li><strong>Téléphone :</strong> <a href="tel:{{phone_intl}}">{{phone}}</a></li>
+        <li><strong>Rendez-vous :</strong> <a href="{{calendly}}" target="_blank" rel="noopener">réserver 30 minutes</a></li>
+        <li><strong>Où :</strong> Blanquefort (Gironde). Interventions à Bordeaux, en Gironde et à distance.</li>
+      </ul>
+    </div>
+    <div class="card" id="formulaire">
+      <h2>Écrire un message</h2>
+      <form class="form" action="contact.php" method="POST">
+        <div><label for="nom">Nom *</label><input id="nom" name="nom" required autocomplete="name"></div>
+        <div><label for="email">E-mail *</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+        <div><label for="telephone">Téléphone</label><input id="telephone" name="telephone" type="tel" autocomplete="tel"></div>
+        <div><label for="entreprise">Entreprise</label><input id="entreprise" name="entreprise" autocomplete="organization"></div>
+        <div><label for="secteur">Votre métier</label><input id="secteur" name="secteur"></div>
+        <div><label for="message">Votre message *</label><textarea id="message" name="message" required></textarea></div>
+        <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="check"><input type="checkbox" name="consent" required> J'accepte que mes données soient utilisées pour répondre à ma demande (voir la <a href="{{u:confidentialite}}">politique de confidentialité</a>).</label>
+        <button class="btn btn-gold" type="submit">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</div></section>
