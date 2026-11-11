@@ -1,7 +1,7 @@
 # ============================================
 # .htaccess — L'Rénov IA Studio
 # Serveur : Apache (Hostinger)
-# Maj : 26 mai 2026
+# Maj : 10 novembre 2026 (refonte du site)
 # ============================================
 
 # ----- Pages d'erreur -----
@@ -34,10 +34,10 @@ ServerSignature Off
   # ============================================
 
   # Anciens catalogues sectoriels
-  RewriteRule ^catalogue-assurance\.html$   /secteur-assurance [R=301,L]
+  RewriteRule ^catalogue-assurance\.html$   /formations [R=301,L]
   RewriteRule ^catalogue-formation\.html$   /formations [R=301,L]
-  # Tout autre ancien catalogue -> page d'accueil des secteurs (sûr, aucune 404)
-  RewriteRule ^catalogue-.*\.html$          /secteurs [R=301,L]
+  # Tout autre ancien catalogue -> formations (sûr, aucune 404)
+  RewriteRule ^catalogue-.*\.html$          /formations [R=301,L]
 
   # Anciennes pages formation
   RewriteRule ^formation\.html$             /formations [R=301,L]
@@ -59,8 +59,15 @@ ServerSignature Off
   RewriteRule ^formations-enter(\.html)?/?$ /ateliers#enter [R=301,NE,L]
 
   # Anciennes fiches
-  RewriteRule ^fiche-IMM-02\.html$          /secteur-immobilier [R=301,L]
-  RewriteRule ^fiche-.*\.html$              /secteurs [R=301,L]
+  RewriteRule ^fiche-.*\.html$              /formations [R=301,L]
+
+  # Refonte du 10 novembre 2026 : pages secteurs et « L'IA et moi » retirées
+  RewriteRule ^secteurs?(-[a-z-]+)?(\.html)?/?$ /formations [R=301,L]
+  RewriteRule ^ia-et-moi(\.html)?/?$ /assistant [R=301,L]
+  RewriteRule ^index\ \(1\)\.html$ / [R=301,L]
+
+  # Dossiers de travail : jamais accessibles en ligne
+  RewriteRule ^(_src|_NOUVEAU_SITE|_backups|_DEPLOIEMENT_PROD|_SEO_[^/]*|00_PILOTAGE|validation)(/|$) - [F,L]
 
   # ============================================
 

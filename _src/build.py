@@ -218,7 +218,8 @@ def fill(body, slug, meta):
     body = re.sub(r'\{\{u:([^}]*)\}\}', lambda m: url(m.group(1)), body)
     rep = {'{{calendly}}': SITE['calendly'], '{{email}}': SITE['email'], '{{phone}}': SITE['phone'], '{{phone_intl}}': SITE['phone_intl'],
            '{{cal:glissant}}': cal_upcoming(), '{{cal:complet}}': cal_full(), '{{pass:dates}}': pass_dates(),
-           '{{billetweb}}': SESS['billetweb_general']}
+           '{{billetweb}}': SESS['billetweb_general'],
+           '{{cpf_mcf}}': SITE.get('cpf_mcf') or SITE['calendly'], '{{cpf_labacademy}}': SITE.get('cpf_labacademy') or SITE['calendly']}
     for k, v in rep.items(): body = body.replace(k, v)
     body = re.sub(r'\{\{dates:([a-z0-9-]+)\}\}', lambda m: atelier_dates(m.group(1)), body)
     if slug != 'index' and meta.get('crumbs') is not None:

@@ -158,3 +158,4 @@ a.card:hover{border-color:var(--gold);transform:translateY(-3px)}
 .card .cal-title{display:none}
 .next-date{margin:4px 0 16px;color:var(--cream);font-weight:600}
 .next-date span{display:block;font:600 .74rem var(--font-title);letter-spacing:.12em;text-transform:uppercase;color:var(--gold2);margin-bottom:4px}
+.form-err{border-left-color:#e07a5f;background:rgba(224,122,95,.12)}

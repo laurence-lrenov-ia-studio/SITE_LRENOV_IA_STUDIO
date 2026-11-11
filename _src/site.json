@@ -10,10 +10,27 @@
   "instagram": "https://www.instagram.com/laurence_lrenov_ia_studio",
   "siret": "912 942 869 00013",
   "nav": [
-    ["formations", "Formations"],
-    ["assistant", "Agents IA & automatisations"],
-    ["radar-ia", "Radar IA"],
-    ["a-propos", "À propos"],
-    ["contact", "Contact"]
-  ]
+    [
+      "formations",
+      "Formations"
+    ],
+    [
+      "assistant",
+      "Agents IA & automatisations"
+    ],
+    [
+      "radar-ia",
+      "Radar IA"
+    ],
+    [
+      "a-propos",
+      "À propos"
+    ],
+    [
+      "contact",
+      "Contact"
+    ]
+  ],
+  "cpf_mcf": "",
+  "cpf_labacademy": ""
 }

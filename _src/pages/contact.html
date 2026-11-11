@@ -20,6 +20,8 @@
     </div>
     <div class="card" id="formulaire">
       <h2>Écrire un message</h2>
+      <p id="form-ok" class="note" hidden>Merci, votre message est bien parti. Je vous réponds rapidement.</p>
+      <p id="form-err" class="note form-err" hidden>Le message n'a pas pu être envoyé. Vérifiez les champs obligatoires, ou écrivez directement à {{email}}.</p>
       <form class="form" action="contact.php" method="POST">
         <div><label for="nom">Nom *</label><input id="nom" name="nom" required autocomplete="name"></div>
         <div><label for="email">E-mail *</label><input id="email" name="email" type="email" required autocomplete="email"></div>
@@ -34,3 +36,4 @@
     </div>
   </div>
 </div></section>
+<script>(function(){var q=location.search;if(q.indexOf('envoye=1')>-1)document.getElementById('form-ok').hidden=false;if(q.indexOf('erreur=1')>-1)document.getElementById('form-err').hidden=false;})();</script>
