@@ -36,8 +36,7 @@
   <h1>Améliorer l'efficacité de sa TPE <em>à l'aide de l'IA</em></h1>
   <p class="lead">Une formation IA certifiante pour intégrer concrètement l'IA dans votre activité : produire, analyser, automatiser et structurer vos méthodes de travail, autour d'un projet réel.</p>
   <ul class="facts"><li>30 heures</li><li>3 visios individuelles</li><li>2 ateliers de groupe</li><li>24 h en autonomie</li><li>Éligible CPF</li><li>RS7311</li></ul>
-  <div class="actions"><a class="btn btn-gold" href="https://calendly.com/laurence-lrenov-ia/30min" target="_blank" rel="noopener">S'inscrire sur Mon Compte Formation</a><a class="btn btn-line" href="https://calendly.com/laurence-lrenov-ia/30min" target="_blank" rel="noopener">Descriptif de la formation</a></div>
-  <p class="todo">À compléter : liens Mon Compte Formation et Lab Académie (en attendant, les boutons mènent au rendez-vous).</p>
+  <div class="actions"><a class="btn btn-gold" href="https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/98248941100016_AETAIA/98248941100016_AETPEIA?contexteFormation=ACTIVITE_PROFESSIONNELLE" target="_blank" rel="noopener">S'inscrire sur Mon Compte Formation</a><a class="btn btn-line" href="https://labacademie.qualiobee.fr/qualiobee/formation/1991d821-8e33-4b00-b5c8-c6ef01a25b40/registration" target="_blank" rel="noopener">Voir la formation sur Lab Académie</a></div>
 </div></section>
 
 <section class="section"><div class="wrap">
@@ -99,6 +98,11 @@ document.querySelectorAll('.cal-item[data-date]').forEach(function(li){if(new Da
 document.querySelectorAll('[data-glissant]').forEach(function(ul){var max=new Date(today);max.setDate(max.getDate()+(+ul.dataset.glissant));
 var items=[].slice.call(ul.children),k=0;items.forEach(function(li){var d=new Date(li.dataset.date+'T00:00:00');if(d>max||k>=+ul.dataset.limit){li.remove();}else{k++;}});
 if(!ul.children.length){ul.hidden=true;var e=ul.nextElementSibling;if(e)e.hidden=false;}});
+var J=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],M=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'],MS=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+function dd(s){return new Date(s+'T12:00:00');}function lg(s){var d=dd(s);return J[d.getDay()]+' '+d.getDate()+(d.getDate()==1?'er':'')+' '+M[d.getMonth()];}function sh(s){var d=dd(s);return d.getDate()+(d.getDate()==1?'er':'')+' '+MS[d.getMonth()];}
+document.querySelectorAll('.pass-dates[data-sessions]').forEach(function(b){var ses=b.dataset.sessions.split(';').map(function(x){return x.split(',');}).filter(function(x){return dd(x[x.length-1])>=today;});
+if(!ses.length){b.innerHTML='<p class="cal-empty">Prochaines sessions à venir.</p>';return;}var n=ses[0],h='<p><strong>Prochaine session :</strong> '+n.slice(0,-1).map(lg).join(', ')+' et '+lg(n[n.length-1])+'.</p>';
+if(ses.length>1)h+='<p style="color:var(--muted)">Puis : '+ses.slice(1).map(function(x){return sh(x[0])+' → '+sh(x[x.length-1]);}).join(' · ')+'</p>';b.innerHTML=h;});
 document.querySelectorAll('.next-date[data-dates]').forEach(function(p){var l=p.dataset.dates.split(' ').filter(function(x){return new Date(x.split('|')[0]+'T23:59:59')>=today;});
 if(!l.length){p.innerHTML='<span>Prochaine séance</span>Nouvelles dates à venir';return;}
 var a=l[0].split('|'),d=new Date(a[0]+'T12:00:00'),t=a[1].split(':'),h=(+t[0])+' h'+(t[1]==='00'?'':' '+t[1]);

@@ -70,10 +70,12 @@ def cal_upcoming(days=31, limit=4):
             f'<p class="cal-empty" hidden>Pas de séance dans les prochaines semaines : consultez le calendrier complet.</p>')
 
 def cal_full(limit=5):
-    """Calendrier court : les prochaines séances seulement, le reste sur Billetweb."""
-    items = [s for s in SESS['ateliers'] if s['date'] >= TODAY.isoformat()][:limit]
-    if not items: return '<p class="cal-empty">Les prochaines dates seront publiées très prochainement.</p>'
-    return ('<ul class="cal-list" data-limit-simple="%d">' % limit + ''.join(cal_item(s) for s in items) + '</ul>'
+    """Toutes les séances futures sont écrites ; le navigateur n'affiche que les 5 prochaines."""
+    items = [s for s in SESS['ateliers'] if s['date'] >= TODAY.isoformat()]
+    empty = '<p class="cal-empty"%s>Les prochaines dates seront publiées très prochainement.</p>'
+    if not items: return empty % ''
+    return ('<ul class="cal-list" data-glissant="3650" data-limit="%d">' % limit + ''.join(cal_item(s) for s in items) + '</ul>'
+            + empty % ' hidden' +
             f'<p style="margin-top:18px"><a href="{esc(SESS["billetweb_general"])}" target="_blank" rel="noopener">Voir toutes les dates →</a></p>')
 
 def short(d):
@@ -82,12 +84,14 @@ def short(d):
     return f"{d.day}{'er' if d.day == 1 else ''} {m}"
 
 def pass_dates():
+    """Sessions du Pass : la prochaine en clair, les suivantes sur une ligne (recalculé dans le navigateur)."""
     ses = [x for x in SESS['pass']['sessions'] if x[-1] >= TODAY.isoformat()]
     if not ses: return '<p class="cal-empty">Prochaines sessions à venir.</p>'
+    data = ';'.join(','.join(x) for x in ses)
     nxt = ses[0]
-    first = '<p><strong>Prochaine session :</strong> ' + ', '.join(fdate(d) for d in nxt[:-1]) + ' et ' + fdate(nxt[-1]) + '.</p>'
+    first = '<p class="pass-next"><strong>Prochaine session :</strong> ' + ', '.join(fdate(d) for d in nxt[:-1]) + ' et ' + fdate(nxt[-1]) + '.</p>'
     rest = ' · '.join(f"{short(x[0])} → {short(x[-1])}" for x in ses[1:])
-    return first + (f'<p style="color:var(--muted)">Puis : {rest}</p>' if rest else '')
+    return f'<div class="pass-dates" data-sessions="{data}">' + first + (f'<p class="pass-rest" style="color:var(--muted)">Puis : {rest}</p>' if rest else '') + '</div>'
 
 def atelier_dates(aid):
     """Une seule date affichée par atelier : la prochaine. Les autres sont sur la page d'inscription."""
@@ -170,6 +174,11 @@ document.querySelectorAll('.cal-item[data-date]').forEach(function(li){if(new Da
 document.querySelectorAll('[data-glissant]').forEach(function(ul){var max=new Date(today);max.setDate(max.getDate()+(+ul.dataset.glissant));
 var items=[].slice.call(ul.children),k=0;items.forEach(function(li){var d=new Date(li.dataset.date+'T00:00:00');if(d>max||k>=+ul.dataset.limit){li.remove();}else{k++;}});
 if(!ul.children.length){ul.hidden=true;var e=ul.nextElementSibling;if(e)e.hidden=false;}});
+var J=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],M=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'],MS=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+function dd(s){return new Date(s+'T12:00:00');}function lg(s){var d=dd(s);return J[d.getDay()]+' '+d.getDate()+(d.getDate()==1?'er':'')+' '+M[d.getMonth()];}function sh(s){var d=dd(s);return d.getDate()+(d.getDate()==1?'er':'')+' '+MS[d.getMonth()];}
+document.querySelectorAll('.pass-dates[data-sessions]').forEach(function(b){var ses=b.dataset.sessions.split(';').map(function(x){return x.split(',');}).filter(function(x){return dd(x[x.length-1])>=today;});
+if(!ses.length){b.innerHTML='<p class="cal-empty">Prochaines sessions à venir.</p>';return;}var n=ses[0],h='<p><strong>Prochaine session :</strong> '+n.slice(0,-1).map(lg).join(', ')+' et '+lg(n[n.length-1])+'.</p>';
+if(ses.length>1)h+='<p style="color:var(--muted)">Puis : '+ses.slice(1).map(function(x){return sh(x[0])+' → '+sh(x[x.length-1]);}).join(' · ')+'</p>';b.innerHTML=h;});
 document.querySelectorAll('.next-date[data-dates]').forEach(function(p){var l=p.dataset.dates.split(' ').filter(function(x){return new Date(x.split('|')[0]+'T23:59:59')>=today;});
 if(!l.length){p.innerHTML='<span>Prochaine séance</span>Nouvelles dates à venir';return;}
 var a=l[0].split('|'),d=new Date(a[0]+'T12:00:00'),t=a[1].split(':'),h=(+t[0])+' h'+(t[1]==='00'?'':' '+t[1]);

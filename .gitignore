@@ -17,3 +17,7 @@ _backups/
 validation/
 _sauvegardes/
 *.zip
+
+# Dossiers de travail Claude (jamais sur GitHub ni sur Hostinger)
+_SEO_*/
+_A_DEPOSER_HOSTINGER/
