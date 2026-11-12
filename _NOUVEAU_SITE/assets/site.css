@@ -128,7 +128,7 @@ a.card:hover{border-color:var(--gold);transform:translateY(-3px)}
 .foot-bottom a{color:var(--muted)}
 
 /* Mobile */
-@media(max-width:960px){
+@media(max-width:1080px){
   .grid-3{grid-template-columns:1fr 1fr}
   .steps{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr 1fr}

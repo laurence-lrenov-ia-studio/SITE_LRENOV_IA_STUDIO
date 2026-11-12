@@ -238,6 +238,68 @@ def fill(body, slug, meta):
         body = re.sub(r'<p class="todo">.*?</p>', '', body, flags=re.S)  # les notes « à valider » ne partent jamais en ligne
     return body
 
+
+# ---------- Pages conservées (Radar, Panorama, pages légales, 404) ----------
+# Elles gardent leur contenu et leur style, mais reçoivent le même en-tête et le même pied de page.
+LEGACY_PAGES = {'radar-ia.html': 'radar-ia', 'mentions-legales.html': 'mentions-legales', 'cgv.html': 'cgv',
+                'confidentialite.html': 'confidentialite', '404.html': '', 'panorama-ia/index.html': 'panorama-ia/'}
+
+def abs_url(slug):
+    return '/' if slug in ('', 'index') else '/' + slug
+
+def legacy_header(current):
+    cur = ' aria-current="page"'
+    li = ''.join('<li><a href="%s"%s>%s</a></li>' % (abs_url(s), cur if s == current else '', esc(t)) for s, t in SITE['nav'])
+    return ('<!--LR-HEADER--><header class="lrh"><div class="lrh-in">'
+            '<a class="lrh-logo" href="/"><img src="/assets/img/logo.png" alt="" width="38" height="38">L\'Rénov <span>IA Studio</span></a>'
+            '<button class="lrh-btn" type="button" aria-expanded="false" aria-controls="lrh-menu">Menu</button>'
+            f'<div class="lrh-nav" id="lrh-menu" role="navigation" aria-label="Menu principal"><ul>{li}</ul></div>'
+            f'<a class="lrh-cta" href="{SITE["calendly"]}" target="_blank" rel="noopener">Prendre rendez-vous</a>'
+            '</div></header><!--/LR-HEADER-->')
+
+def legacy_footer():
+    f = footer().replace('site-footer', 'lrf').replace('class="wrap"', 'class="lrf-in"').replace('foot-grid', 'lrf-grid') \
+                .replace('foot-bottom', 'lrf-bottom').replace('class="logo"', 'class="lrf-logo"')
+    f = re.sub(r'href="(?!https?:|mailto:|tel:|/)([^"]*)"', lambda m: 'href="/' + m.group(1).replace('.html', '') + '"', f)
+    js = ('<script>(function(){var b=document.querySelector(".lrh-btn"),n=document.getElementById("lrh-menu");'
+          'if(b&&n)b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o)});})();</script>')
+    return '<!--LR-FOOTER-->' + f + js + '<!--/LR-FOOTER-->'
+
+LEGACY_HEAD = ('<!--LR-HEAD--><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap">'
+               '<link rel="stylesheet" href="/assets/chrome.css"><!--/LR-HEAD-->')
+
+def patch_legacy(root):
+    done = []
+    for rel, slug in LEGACY_PAGES.items():
+        p = root / rel
+        if not p.exists(): continue
+        s = p.read_text(encoding='utf-8')
+        nl = '\r\n' if '\r\n' in s else '\n'
+        # 1re fois : retirer l'ancien menu, l'ancien pied de page et leurs scripts
+        s = re.sub(r'\s*<link rel="stylesheet" href="(?:\.\./)?assets/(?:global-footer|mobile-app|mobile-navigation|home-mobile)\.css">', '', s)
+        s = re.sub(r'\s*<script src="(?:\.\./)?assets/(?:mobile-app|home-mobile)\.js" defer></script>', '', s)
+        s = re.sub(r'<nav id="mainNav">.*?</nav>', '', s, count=1, flags=re.S)
+        s = re.sub(r'<header class="site-header">.*?</header>',
+                   '<button class="menu-toggle" type="button" hidden></button><nav id="main-nav" hidden></nav>', s, count=1, flags=re.S)
+        s = re.sub(r'<footer class="global-footer">.*?</footer>', '', s, count=1, flags=re.S)
+        s = re.sub(r'<script>(?:(?!</script>).){0,700}getElementById\(\'mainNav\'\)(?:(?!</script>).){0,700}</script>', '',
+                   s, flags=re.S) if rel != 'radar-ia.html' else s
+        # en-tête / pied de page communs (remplacés à chaque génération)
+        head = LEGACY_HEAD
+        if rel == '404.html':  # page centrée : on empile en-tête, contenu et pied de page
+            head = head.replace('<!--/LR-HEAD-->', '<style>html{overflow-x:hidden}body{flex-direction:column;justify-content:flex-start;padding:0;overflow-x:hidden;overflow-y:auto}body>.wrap{margin:64px auto;padding:0 24px}</style><!--/LR-HEAD-->')
+        for tag, block, anchor in (('HEAD', head, '</head>'), ('HEADER', legacy_header(slug), None), ('FOOTER', legacy_footer(), '</body>')):
+            pat = re.compile(r'<!--LR-%s-->.*?<!--/LR-%s-->' % (tag, tag), re.S)
+            if pat.search(s):
+                s = pat.sub(lambda m: block, s, count=1)
+            elif tag == 'HEADER':
+                s = re.sub(r'(<body[^>]*>)', lambda m: m.group(1) + nl + block, s, count=1)
+            else:
+                i = s.rfind(anchor); s = s[:i] + block + nl + s[i:]
+        p.write_text(s, encoding='utf-8', newline='')
+        done.append(rel)
+    return done
+
 def main():
     OUT.mkdir(exist_ok=True)
     pages = []
@@ -250,6 +312,9 @@ def main():
         pages.append((slug, meta))
     (OUT / 'assets').mkdir(exist_ok=True)
     shutil.copy(SRC / 'assets' / 'site.css', OUT / 'assets' / 'site.css')
+    shutil.copy(SRC / 'assets' / 'chrome.css', OUT / 'assets' / 'chrome.css')
+    if MODE == 'prod':
+        print('Pages conservées mises à jour :', ', '.join(patch_legacy(ROOT)))
     if MODE == 'preview':  # images nécessaires à l'aperçu local
         (OUT / 'assets' / 'img').mkdir(exist_ok=True); (OUT / 'image').mkdir(exist_ok=True)
         shutil.copy(ROOT / 'assets' / 'img' / 'logo.png', OUT / 'assets' / 'img' / 'logo.png')

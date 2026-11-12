@@ -11,6 +11,10 @@
   "siret": "912 942 869 00013",
   "nav": [
     [
+      "index",
+      "Accueil"
+    ],
+    [
       "formations",
       "Formations"
     ],
@@ -31,6 +35,6 @@
       "Contact"
     ]
   ],
-  "cpf_mcf": "",
-  "cpf_labacademy": ""
+  "cpf_mcf": "https://www.moncompteformation.gouv.fr/espace-prive/html/#/formation/recherche/98248941100016_AETAIA/98248941100016_AETPEIA?contexteFormation=ACTIVITE_PROFESSIONNELLE",
+  "cpf_labacademy": "https://labacademie.qualiobee.fr/qualiobee/formation/1991d821-8e33-4b00-b5c8-c6ef01a25b40/registration"
 }
